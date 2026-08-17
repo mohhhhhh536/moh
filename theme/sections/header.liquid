@@ -493,7 +493,12 @@
                 alt: logo_alt
               }}
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              {{ 'thessvane-logo.svg' | asset_url | image_tag:
+                class: 'header__heading-logo motion-reduce',
+                width: settings.logo_width,
+                height: settings.logo_width | divided_by: 3.3,
+                alt: shop.name
+              }}
             {%- endif -%}
           </{% if section.settings.logo_link != blank %}a{% else %}div{% endif %}>
       {%- if request.page_type == 'index' -%}
@@ -616,7 +621,12 @@
                 alt: logo_alt
               }}
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              {{ 'thessvane-logo.svg' | asset_url | image_tag:
+                class: 'header__heading-logo',
+                width: settings.logo_width,
+                height: settings.logo_width | divided_by: 3.3,
+                alt: shop.name
+              }}
             {%- endif -%}
           </{% if section.settings.logo_link != blank %}a{% else %}div{% endif %}>
       {%- if request.page_type == 'index' -%}
