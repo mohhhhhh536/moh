@@ -1,0 +1,239 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .ugc-{{ section.id }} .ugc__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    gap: 4px;
+  }
+  .ugc-{{ section.id }} .ugc__tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+  }
+  .ugc-{{ section.id }} .ugc__tile img,
+  .ugc-{{ section.id }} .ugc__tile .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ugc-{{ section.id }} .ugc__handle {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: #FDFBF7;
+    background: rgba(43, 42, 74, 0.55);
+    padding: 4px 9px;
+    border-radius: 5px;
+  }
+  .ugc-{{ section.id }} .ugc__cta { margin-top: 32px; text-align: center; }
+{%- endstyle -%}
+
+<div class="ugc-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="collection section-{{ section.id }}-padding page-width">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="collection__description subtitle rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="ugc__grid">
+      {%- assign placeholder_keys = 'image,lifestyle-2' | split: ',' -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tile' -%}
+          {%- assign placeholder_index = forloop.index0 | modulo: 2 -%}
+          <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile" {{ block.shopify_attributes }}>
+            {%- if block.settings.handle != blank -%}
+              <span class="ugc__handle">{{ block.settings.handle | escape }}</span>
+            {%- endif -%}
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 800 | image_tag: sizes: '(min-width: 750px) 20vw, 33vw', widths: '200, 400, 600, 800', loading: 'lazy' }}
+            {%- else -%}
+              {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
+            {%- endif -%}
+          </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- liquid
+      assign cta_url = section.settings.cta_link
+      if cta_url == blank and settings.social_instagram_link != blank
+        assign cta_url = settings.social_instagram_link
+      endif
+    -%}
+    {%- if section.settings.show_cta and section.settings.cta_label != blank -%}
+      <div class="ugc__cta">
+        <a
+          {% if cta_url == blank %}role="link" aria-disabled="true"{% else %}href="{{ cta_url }}"{% endif %}
+          class="button button--secondary"
+        >
+          {{- section.settings.cta_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Thessvane UGC Grid",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Tiles without an assigned image show a generic placeholder graphic until real customer/social photos are uploaded."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Tag @thessvane",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Share your ritual for a chance to be featured.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "default": true,
+      "label": "Show button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "default": "Follow on Instagram",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link",
+      "info": "Leave blank to use the Instagram link from Theme Settings > Social media, if set."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Photo tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Overlay text",
+          "info": "e.g. an Instagram handle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane UGC Grid",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}
