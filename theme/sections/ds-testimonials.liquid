@@ -23,6 +23,33 @@
     --gradient-background: {% if section.settings.custom_gradient_background != blank %}{{ section.settings.custom_gradient_background }}{% else %}{{ section.settings.custom_colors_background }}{% endif %};
     --color-foreground: {{ section.settings.custom_colors_text.red }}, {{ section.settings.custom_colors_text.green }}, {{ section.settings.custom_colors_text.blue }};
   }
+
+  /* Thessvane: distinct tinted cards instead of one flat block */
+  #Slider-{{ section.id }} .multicolumn-list__item {
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #Slider-{{ section.id }} .multicolumn-card {
+    padding: 2rem 1.75rem;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  #Slider-{{ section.id }} .multicolumn-list__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -18px rgba(43, 42, 74, 0.35);
+  }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+1) .multicolumn-card { background: #E3EDDD; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+1) .testimonial-card__quotes { color: #7C9473; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+1) .testimonial-card__stars { --stars-color: #7C9473; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+2) .multicolumn-card { background: #F6E1E5; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+2) .testimonial-card__quotes { color: #D98FA0; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+2) .testimonial-card__stars { --stars-color: #D98FA0; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+3) .multicolumn-card { background: #F3EAD8; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+3) .testimonial-card__quotes { color: #B9A98F; }
+  #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+3) .testimonial-card__stars { --stars-color: #B9A98F; }
+  #Slider-{{ section.id }} .testimonial-card__quotes svg { width: 32px; height: 32px; }
+  #Slider-{{ section.id }} .testimonial-card__stars { font-size: 1.3rem; letter-spacing: 2px; }
 {%- endstyle -%}
 
 {%- liquid
