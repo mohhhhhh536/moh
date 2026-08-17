@@ -1,0 +1,303 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- if section.settings.enable_quick_add -%}
+  <link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+<noscript>{{ 'template-collection.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .thessvane-trust-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 28px;
+  }
+  .thessvane-trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--color-foreground), 0.15);
+    color: rgb(var(--color-foreground));
+    background: transparent;
+  }
+{%- endstyle -%}
+
+<div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="collection section-{{ section.id }}-padding">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="collection__description {{ section.settings.description_style }} rte">
+          {{ section.settings.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_trust_row -%}
+      <div class="page-width thessvane-trust-row">
+        {%- assign trust_items = section.settings.trust_items | split: ',' -%}
+        {%- for item in trust_items -%}
+          <span class="thessvane-trust-pill">{{ item | strip }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="page-width">
+      <ul
+        id="Thessvane-Featured-{{ section.id }}"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+        role="list"
+      >
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          <li id="Thessvane-Featured-Slide-{{ section.id }}-{{ forloop.index }}" class="grid__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              show_vendor: false,
+              show_rating: section.settings.show_rating,
+              quick_add: section.settings.enable_quick_add,
+              section_id: section.id
+            %}
+          </li>
+        {%- else -%}
+          {%- for i in (1..section.settings.products_to_show) -%}
+            <li class="grid__item">
+              {% render 'card-product', show_vendor: false %}
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {%- if section.settings.show_view_all and section.settings.collection != blank -%}
+      <div class="center collection__view-all">
+        <a
+          href="{{ section.settings.collection.url }}"
+          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+        >
+          {{ section.settings.view_all_label | default: 'View all' }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Thessvane Featured Collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "If no collection is selected, this shows Dawn's built-in placeholder product cards until you assign a real collection."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Best Sellers",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Clean, natural formulas for your everyday routine.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "description_style",
+      "label": "Description style",
+      "options": [
+        { "value": "body", "label": "Body" },
+        { "value": "subtitle", "label": "Subtitle" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_row",
+      "default": true,
+      "label": "Show trust badge row"
+    },
+    {
+      "type": "text",
+      "id": "trust_items",
+      "label": "Trust badges (comma-separated)",
+      "default": "Cruelty-Free, Dermatologist Tested, Clean Ingredients"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 5,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'view all' link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "default": "Shop All",
+      "label": "'View all' label"
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "label": "'View all' style",
+      "options": [
+        { "value": "link", "label": "Link" },
+        { "value": "outline", "label": "Outline button" },
+        { "value": "solid", "label": "Solid button" }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating",
+      "info": "Requires a product rating app."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": true,
+      "label": "Enable quick add"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Featured Collection"
+    }
+  ]
+}
+{% endschema %}
