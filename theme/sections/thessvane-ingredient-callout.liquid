@@ -1,0 +1,177 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="image-with-text image-with-text--no-overlap isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--2-col-tablet{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
+        <div class="image-with-text__media-item image-with-text__media-item--medium image-with-text__media-item--top grid__item">
+          <div class="image-with-text__media image-with-text__media--medium global-media-settings media">
+            {%- if section.settings.image != blank -%}
+              {{
+                section.settings.image
+                | image_url: width: 1500
+                | image_tag: sizes: '(min-width: 750px) 50vw, 100vw', widths: '165, 360, 535, 750, 1070, 1500'
+              }}
+            {%- else -%}
+              {{
+                'thessvane-ingredients-placeholder.jpg'
+                | asset_url
+                | image_tag: width: 1600, height: 2400, loading: 'lazy'
+              }}
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="image-with-text__text-item grid__item">
+          <div class="image-with-text__content image-with-text__content--top image-with-text__content--desktop-left image-with-text__content--mobile-left content-container gradient color-{{ section.settings.color_scheme }}">
+            {%- if section.settings.eyebrow != blank -%}
+              <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+            {%- endif -%}
+            <h2 class="image-with-text__heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+            <div class="image-with-text__text rte">{{ section.settings.text }}</div>
+            {%- if section.settings.button_label != blank -%}
+              <a
+                {% if section.settings.button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.button_link }}"{% endif %}
+                class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+              >
+                {{ section.settings.button_label | escape }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Thessvane Ingredient Callout",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Uses assets/thessvane-ingredients-placeholder.jpg until you pick a real image here."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional override)"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "image_first", "label": "Image first" },
+        { "value": "text_first", "label": "Text first" }
+      ],
+      "default": "image_first",
+      "label": "Desktop layout"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Why Clean Ingredients",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Nothing Hidden. Nothing Harsh.",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Every Thessvane formula starts with naturally derived ingredients and skips the synthetic fragrances, sulfates, and fillers common in mass-market skincare. Clean doesn't mean compromise &mdash; it means a routine you can trust, morning and night.</p>",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Our Ingredients",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "default": "/pages/about",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "Use outline button style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Text panel color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Ingredient Callout"
+    }
+  ]
+}
+{% endschema %}
