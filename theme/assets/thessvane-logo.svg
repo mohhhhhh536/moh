@@ -1,0 +1,11 @@
+<svg viewBox="0 0 660 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: an open ring (orbit/vane) with a single pointer dot -->
+  <g transform="translate(30,25)">
+    <circle cx="70" cy="70" r="52" fill="none" stroke="#2B2A4A" stroke-width="6" stroke-linecap="round" stroke-dasharray="300 40" transform="rotate(-95 70 70)"/>
+    <circle cx="70" cy="12" r="7" fill="#B9A98F"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="180" y="102" font-family="'Century Gothic', 'Futura', Helvetica, Arial, sans-serif" font-size="44" letter-spacing="7" fill="#2B2A4A">THESSVANE</text>
+  <text x="182" y="128" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="5" fill="#B9A98F">MODERN SKIN RITUAL</text>
+</svg>
