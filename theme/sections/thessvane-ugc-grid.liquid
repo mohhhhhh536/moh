@@ -57,10 +57,10 @@
     </div>
 
     <div class="ugc__grid">
-      {%- assign placeholder_keys = 'image,lifestyle-2' | split: ',' -%}
+      {%- assign placeholder_keys = 'thessvane-ugc-placeholder-1.jpg,thessvane-ugc-placeholder-2.jpg,thessvane-hero-placeholder.jpg,thessvane-story-placeholder.jpg,thessvane-story-placeholder-2.jpg' | split: ',' -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'tile' -%}
-          {%- assign placeholder_index = forloop.index0 | modulo: 2 -%}
+          {%- assign placeholder_index = forloop.index0 | modulo: 5 -%}
           <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile" {{ block.shopify_attributes }}>
             {%- if block.settings.handle != blank -%}
               <span class="ugc__handle">{{ block.settings.handle | escape }}</span>
@@ -68,7 +68,7 @@
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 800 | image_tag: sizes: '(min-width: 750px) 20vw, 33vw', widths: '200, 400, 600, 800', loading: 'lazy' }}
             {%- else -%}
-              {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
+              {{- placeholder_keys[placeholder_index] | asset_url | image_tag: width: 800, loading: 'lazy' -}}
             {%- endif -%}
           </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
         {%- endif -%}
