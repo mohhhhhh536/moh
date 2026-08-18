@@ -50,6 +50,52 @@
   #Slider-{{ section.id }} .multicolumn-list__item:nth-child(3n+3) .testimonial-card__stars { --stars-color: #B9A98F; }
   #Slider-{{ section.id }} .testimonial-card__quotes svg { width: 32px; height: 32px; }
   #Slider-{{ section.id }} .testimonial-card__stars { font-size: 1.3rem; letter-spacing: 2px; }
+
+  #Slider-{{ section.id }} .testimonial-card__product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1.25rem;
+    padding: 8px 12px 8px 8px;
+    border-radius: 10px;
+    background: rgba(43, 42, 74, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+  }
+  #Slider-{{ section.id }} .testimonial-card__product:hover {
+    background: rgba(43, 42, 74, 0.12);
+  }
+  #Slider-{{ section.id }} .testimonial-card__product-media {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  #Slider-{{ section.id }} .testimonial-card__product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #Slider-{{ section.id }} .testimonial-card__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  #Slider-{{ section.id }} .testimonial-card__product-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #Slider-{{ section.id }} .testimonial-card__product-price {
+    font-size: 0.8rem;
+    opacity: 0.75;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -172,6 +218,23 @@
                     {%- endif -%}
                   </div>
                 {%- endunless -%}
+                {%- if block.settings.product != blank -%}
+                  <a href="{{ block.settings.product.url }}" class="testimonial-card__product">
+                    {%- if block.settings.product.featured_media -%}
+                      <span class="testimonial-card__product-media">
+                        {{
+                          block.settings.product.featured_media
+                          | image_url: width: 120
+                          | image_tag: width: 60, height: 60, loading: 'lazy'
+                        }}
+                      </span>
+                    {%- endif -%}
+                    <span class="testimonial-card__product-info">
+                      <span class="testimonial-card__product-title">{{ block.settings.product.title | escape }}</span>
+                      {%- render 'price', product: block.settings.product, price_class: 'testimonial-card__product-price' -%}
+                    </span>
+                  </a>
+                {%- endif -%}
               </div>
             </div>
           </li>
@@ -497,6 +560,12 @@
           "id": "author",
           "default": "Author",
           "label": "Author"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Featured product",
+          "info": "Shows a small linked product card under the review."
         }
       ]
     }
