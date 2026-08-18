@@ -68,7 +68,7 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'step' -%}
           <div class="routine__step" {{ block.shopify_attributes }}>
-            <p class="routine__step-index"></p>
+            <p class="routine__step-index"><span class="visually-hidden">Step {{ forloop.index }}</span></p>
             <h3 class="routine__step-title h4">{{ block.settings.step_title | escape }}</h3>
             {%- if block.settings.step_text != blank -%}
               <div class="routine__step-text rte">{{ block.settings.step_text }}</div>
