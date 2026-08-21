@@ -13,6 +13,25 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .thessvane-newsletter__eyebrow-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.6rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--color-base-accent-1));
+  }
+  .thessvane-newsletter__eyebrow-{{ section.id }}::before,
+  .thessvane-newsletter__eyebrow-{{ section.id }}::after {
+    content: '';
+    width: 2.2rem;
+    height: 1.5px;
+    background: currentColor;
+  }
 {%- endstyle -%}
 
 <div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
@@ -21,6 +40,8 @@
       {%- case block.type -%}
         {%- when '@app' -%}
           {% render block %}
+        {%- when 'eyebrow' -%}
+          <p class="thessvane-newsletter__eyebrow-{{ section.id }}" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
         {%- when 'heading' -%}
           <h2
             class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -172,6 +193,19 @@
   ],
   "blocks": [
     {
+      "type": "eyebrow",
+      "name": "Eyebrow label",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Join The Ritual",
+          "label": "Text"
+        }
+      ]
+    },
+    {
       "type": "heading",
       "name": "t:sections.newsletter.blocks.heading.name",
       "limit": 1,
@@ -238,6 +272,9 @@
     {
       "name": "t:sections.newsletter.presets.name",
       "blocks": [
+        {
+          "type": "eyebrow"
+        },
         {
           "type": "heading"
         },

@@ -303,6 +303,46 @@
         "padding_top": 80,
         "padding_bottom": 88
       }
+    },
+    "thessvane_newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "eyebrow_nl": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Join The Ritual"
+          }
+        },
+        "heading_nl": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get 10% Off Your First Order",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_nl": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Plus skincare tips and early access to new products, straight to your inbox.</p>"
+          }
+        },
+        "email_form_nl": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "eyebrow_nl",
+        "heading_nl",
+        "paragraph_nl",
+        "email_form_nl"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 96,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
@@ -311,6 +351,7 @@
     "thessvane_our_story",
     "thessvane_ingredient_callout",
     "thessvane_reviews",
-    "thessvane_ugc"
+    "thessvane_ugc",
+    "thessvane_newsletter"
   ]
 }
