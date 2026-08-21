@@ -1,0 +1,186 @@
+{{ 'section-thessvane-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  class="thessvane-reviews color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="thessvane-reviews__inner page-width">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'eyebrow' -%}
+          <p class="thessvane-reviews__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+        {%- when 'heading' -%}
+          <h2 class="thessvane-reviews__heading" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h2>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+    {%- if review_blocks.size > 0 -%}
+      <div class="thessvane-reviews__grid">
+        {%- for block in review_blocks -%}
+          <div class="thessvane-reviews__card" {{ block.shopify_attributes }}>
+            <div class="thessvane-reviews__stars" aria-hidden="true">
+              {%- for i in (1..5) -%}
+                {%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}
+              {%- endfor -%}
+            </div>
+            <p class="thessvane-reviews__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
+            <div class="thessvane-reviews__person">
+              <span class="thessvane-reviews__avatar" aria-hidden="true">{{ block.settings.name | slice: 0, 1 }}</span>
+              <span>
+                <strong>{{ block.settings.name | escape }}</strong>
+                <span>{{ block.settings.badge | escape }}</span>
+              </span>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Thessvane Reviews",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow label",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Real Results",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "What Our Customers Are Saying",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "default": "My skin feels calmer and looks brighter within two weeks. Nothing harsh, nothing complicated — just results.",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Maya R.",
+          "label": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "default": "Verified Customer",
+          "label": "Badge text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Reviews",
+      "blocks": [
+        { "type": "eyebrow" },
+        { "type": "heading" },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "My skin feels calmer and looks brighter within two weeks. Nothing harsh, nothing complicated — just results.",
+            "name": "Maya R.",
+            "badge": "Verified Customer"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I've tried so many 'clean' brands that still broke me out. Thessvane is the first one that's actually gentle.",
+            "name": "Priya K.",
+            "badge": "Verified Customer"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I can pronounce every ingredient and my skin has never looked better. That's the whole point, right?",
+            "name": "Jordan L.",
+            "badge": "Verified Customer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

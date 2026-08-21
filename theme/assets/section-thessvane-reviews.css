@@ -1,0 +1,107 @@
+.thessvane-reviews__inner {
+  text-align: center;
+}
+
+.thessvane-reviews__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.8rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--color-base-accent-1));
+}
+
+.thessvane-reviews__eyebrow::before,
+.thessvane-reviews__eyebrow::after {
+  content: '';
+  width: 2.2rem;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.thessvane-reviews__heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  color: rgb(var(--color-foreground));
+  font-size: clamp(3rem, 4vw, 4.4rem);
+  line-height: 1.1;
+  max-width: 54rem;
+  margin: 0 auto 5.6rem;
+}
+
+.thessvane-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  text-align: left;
+}
+
+.thessvane-reviews__card {
+  background: rgb(var(--color-base-background-2));
+  border-radius: 1rem;
+  padding: 3.2rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.thessvane-reviews__stars {
+  color: rgb(var(--color-base-accent-1));
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.8rem;
+}
+
+.thessvane-reviews__quote {
+  font-size: 1.6rem;
+  line-height: 1.65;
+  color: rgb(var(--color-foreground));
+  margin: 0 0 2.8rem;
+  flex: 1;
+}
+
+.thessvane-reviews__person {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.thessvane-reviews__avatar {
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.4rem;
+  flex: none;
+}
+
+.thessvane-reviews__person strong {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: rgb(var(--color-foreground));
+}
+
+.thessvane-reviews__person span span {
+  display: block;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+  margin-top: 0.2rem;
+}
+
+@media screen and (max-width: 989px) {
+  .thessvane-reviews__grid {
+    grid-template-columns: 1fr;
+  }
+}

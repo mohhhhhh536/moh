@@ -196,12 +196,69 @@
         "padding_top": 104,
         "padding_bottom": 104
       }
+    },
+    "thessvane_reviews": {
+      "type": "thessvane-reviews",
+      "blocks": {
+        "eyebrow_rev": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Real Results"
+          }
+        },
+        "heading_rev": {
+          "type": "heading",
+          "settings": {
+            "heading": "What Our Customers Are Saying"
+          }
+        },
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "My skin feels calmer and looks brighter within two weeks. Nothing harsh, nothing complicated \u2014 just results.",
+            "name": "Maya R.",
+            "badge": "Verified Customer"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I've tried so many 'clean' brands that still broke me out. Thessvane is the first one that's actually gentle.",
+            "name": "Priya K.",
+            "badge": "Verified Customer"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "I can pronounce every ingredient and my skin has never looked better. That's the whole point, right?",
+            "name": "Jordan L.",
+            "badge": "Verified Customer"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_rev",
+        "heading_rev",
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
   "order": [
     "thessvane_hero",
     "thessvane_bestsellers",
     "thessvane_our_story",
-    "thessvane_ingredient_callout"
+    "thessvane_ingredient_callout",
+    "thessvane_reviews"
   ]
 }
