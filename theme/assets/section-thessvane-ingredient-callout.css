@@ -1,0 +1,96 @@
+.thessvane-ingredient__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thessvane-ingredient__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--color-base-accent-1));
+}
+
+.thessvane-ingredient__eyebrow::before,
+.thessvane-ingredient__eyebrow::after {
+  content: '';
+  width: 2.4rem;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.thessvane-ingredient__heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  color: rgb(var(--color-foreground));
+  font-size: clamp(3.2rem, 4.6vw, 5.2rem);
+  line-height: 1.08;
+  margin: 0 0 2.2rem;
+}
+
+.thessvane-ingredient__text {
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.thessvane-ingredient__text p {
+  margin: 0 auto 4rem;
+  max-width: 56ch;
+  font-size: 1.65rem;
+  line-height: 1.7;
+}
+
+.thessvane-ingredient__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 4.4rem;
+}
+
+.thessvane-ingredient__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem 1rem 1.6rem;
+  border-radius: 999px;
+  background: rgb(var(--color-base-background-1));
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.thessvane-ingredient__tag svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+}
+
+.thessvane-ingredient__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 3.4rem;
+  border-radius: 100px;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.thessvane-ingredient__btn:hover {
+  transform: translateY(-1px);
+}
+
+@media screen and (max-width: 749px) {
+  .thessvane-ingredient__text p {
+    margin-bottom: 3.2rem;
+  }
+}

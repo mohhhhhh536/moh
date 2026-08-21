@@ -19,7 +19,7 @@
         "text_thessvane": {
           "type": "text",
           "settings": {
-            "text": "Clean, natural ingredients thoughtfully formulated for radiant, healthy skin — no complicated routine required."
+            "text": "Clean, natural ingredients thoughtfully formulated for radiant, healthy skin \u2014 no complicated routine required."
           }
         },
         "buttons_thessvane": {
@@ -96,7 +96,7 @@
         "text_story": {
           "type": "text",
           "settings": {
-            "text": "<p>Thessvane started with a simple frustration: skincare shouldn't require a chemistry degree to understand.</p><p>We formulate with naturally derived ingredients, skip the synthetic filler, and keep every routine simple enough to actually stick to — a small, deliberate ritual instead of a twelve-step regimen.</p>"
+            "text": "<p>Thessvane started with a simple frustration: skincare shouldn't require a chemistry degree to understand.</p><p>We formulate with naturally derived ingredients, skip the synthetic filler, and keep every routine simple enough to actually stick to \u2014 a small, deliberate ritual instead of a twelve-step regimen.</p>"
           }
         },
         "signature_story": {
@@ -127,7 +127,81 @@
         "padding_top": 96,
         "padding_bottom": 96
       }
+    },
+    "thessvane_ingredient_callout": {
+      "type": "thessvane-ingredient-callout",
+      "blocks": {
+        "eyebrow_ing": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Why Clean Ingredients"
+          }
+        },
+        "heading_ing": {
+          "type": "heading",
+          "settings": {
+            "heading": "Nothing Hidden. Nothing Harsh."
+          }
+        },
+        "text_ing": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every Thessvane formula starts with naturally derived ingredients and skips the fillers common in mass-market skincare. Clean doesn't mean compromise \u2014 it means a routine you can trust, morning and night.</p>"
+          }
+        },
+        "tag_1": {
+          "type": "tag",
+          "settings": {
+            "label": "No Sulfates"
+          }
+        },
+        "tag_2": {
+          "type": "tag",
+          "settings": {
+            "label": "No Parabens"
+          }
+        },
+        "tag_3": {
+          "type": "tag",
+          "settings": {
+            "label": "No Synthetic Fragrance"
+          }
+        },
+        "tag_4": {
+          "type": "tag",
+          "settings": {
+            "label": "No Animal Testing"
+          }
+        },
+        "button_ing": {
+          "type": "button",
+          "settings": {
+            "label": "Our Ingredients",
+            "link": "/pages/about"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_ing",
+        "heading_ing",
+        "text_ing",
+        "tag_1",
+        "tag_2",
+        "tag_3",
+        "tag_4",
+        "button_ing"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "padding_top": 104,
+        "padding_bottom": 104
+      }
     }
   },
-  "order": ["thessvane_hero", "thessvane_bestsellers", "thessvane_our_story"]
+  "order": [
+    "thessvane_hero",
+    "thessvane_bestsellers",
+    "thessvane_our_story",
+    "thessvane_ingredient_callout"
+  ]
 }
