@@ -64,6 +64,10 @@
     max-width: 54rem;
     margin: 0 auto;
   }
+  .section-{{ section.id }}-padding .collection__view-all .button--secondary {
+    --alpha-button-background: 0;
+    box-shadow: inset 0 0 0 0.15rem rgba(var(--color-foreground), 0.55);
+  }
 {%- endstyle -%}
 
 <div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
