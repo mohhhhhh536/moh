@@ -53,7 +53,31 @@
         "section_height": 90,
         "color_scheme": "scheme-1"
       }
+    },
+    "thessvane_bestsellers": {
+      "type": "thessvane-featured-collection",
+      "settings": {
+        "eyebrow": "Shop The Ritual",
+        "title": "Best Sellers",
+        "heading_size": "h1",
+        "description": "<p>Clean, natural formulas for your everyday routine.</p>",
+        "description_style": "subtitle",
+        "show_trust_row": true,
+        "trust_items": "Cruelty-Free, Dermatologist Tested, Clean Ingredients",
+        "color_scheme": "scheme-3",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "show_view_all": true,
+        "view_all_label": "Shop All",
+        "view_all_style": "outline",
+        "image_ratio": "square",
+        "show_rating": false,
+        "enable_quick_add": true,
+        "columns_mobile": "2",
+        "padding_top": 80,
+        "padding_bottom": 88
+      }
     }
   },
-  "order": ["thessvane_hero"]
+  "order": ["thessvane_hero", "thessvane_bestsellers"]
 }

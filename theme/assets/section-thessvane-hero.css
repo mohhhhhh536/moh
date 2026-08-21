@@ -53,7 +53,7 @@
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgb(var(--color-secondary-button-text));
+  color: rgb(var(--color-base-accent-1));
 }
 
 .thessvane-hero__eyebrow::before {
@@ -147,7 +147,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgb(var(--color-secondary-button-text));
+  background: rgb(var(--color-base-accent-1));
 }
 
 @media screen and (max-width: 749px) {

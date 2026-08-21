@@ -26,7 +26,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 0 0 28px;
+    margin: 30px 0 54px;
   }
   .thessvane-trust-pill {
     display: inline-flex;
@@ -37,15 +37,41 @@
     text-transform: uppercase;
     padding: 7px 16px;
     border-radius: 999px;
-    border: 1px solid rgba(var(--color-foreground), 0.15);
+    border: 1px solid rgba(var(--color-foreground), 0.2);
     color: rgb(var(--color-foreground));
     background: transparent;
+  }
+  .thessvane-eyebrow-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--color-base-accent-1));
+  }
+  .thessvane-eyebrow-{{ section.id }}::before,
+  .thessvane-eyebrow-{{ section.id }}::after {
+    content: '';
+    width: 2rem;
+    height: 1.5px;
+    background: currentColor;
+  }
+  .thessvane-collection-head-{{ section.id }} {
+    text-align: center;
+    max-width: 54rem;
+    margin: 0 auto;
   }
 {%- endstyle -%}
 
 <div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding">
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width thessvane-collection-head-{{ section.id }}">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="thessvane-eyebrow-{{ section.id }}">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
       {%- endif -%}
@@ -120,6 +146,12 @@
     },
     {
       "type": "text",
+      "id": "eyebrow",
+      "default": "Shop The Ritual",
+      "label": "Eyebrow label"
+    },
+    {
+      "type": "text",
       "id": "title",
       "default": "Best Sellers",
       "label": "Heading"
@@ -174,7 +206,7 @@
         { "value": "scheme-4", "label": "Scheme 4" },
         { "value": "scheme-5", "label": "Scheme 5" }
       ],
-      "default": "scheme-1",
+      "default": "scheme-3",
       "label": "Color scheme"
     },
     {
@@ -281,7 +313,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 48
+      "default": 80
     },
     {
       "type": "range",
@@ -291,7 +323,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 48
+      "default": 88
     }
   ],
   "presets": [
