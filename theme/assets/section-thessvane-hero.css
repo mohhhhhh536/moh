@@ -1,0 +1,207 @@
+.thessvane-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-height, 88vh);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.thessvane-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.thessvane-hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-focal-position, 68% 38%);
+}
+
+.thessvane-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(var(--color-background), 0.94) 0%,
+    rgba(var(--color-background), 0.82) 24%,
+    rgba(var(--color-background), 0.36) 46%,
+    rgba(var(--color-background), 0.02) 62%
+  );
+}
+
+.thessvane-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.thessvane-hero__content {
+  max-width: 54rem;
+}
+
+.thessvane-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--color-secondary-button-text));
+}
+
+.thessvane-hero__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 2.8rem;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.thessvane-hero__heading {
+  color: rgb(var(--color-foreground));
+  line-height: 1.04;
+  margin: 0 0 2.2rem;
+  max-width: 20ch;
+}
+
+.thessvane-hero__text {
+  color: rgba(var(--color-foreground), 0.75);
+  max-width: 42rem;
+  margin: 0 0 3.4rem;
+}
+
+.thessvane-hero__text p {
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1.6;
+}
+
+.thessvane-hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-bottom: 3rem;
+}
+
+.thessvane-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 3rem;
+  border-radius: 100px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.thessvane-hero__btn:hover {
+  transform: translateY(-1px);
+}
+
+.thessvane-hero__btn--primary {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  border: 1.5px solid rgb(var(--color-button));
+}
+
+.thessvane-hero__btn--secondary {
+  background: transparent;
+  color: rgb(var(--color-foreground));
+  border: 1.5px solid rgba(var(--color-foreground), 0.55);
+}
+
+.thessvane-hero__btn--secondary:hover {
+  background: rgba(var(--color-foreground), 0.06);
+}
+
+.thessvane-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.thessvane-hero__trust li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.thessvane-hero__trust li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgb(var(--color-secondary-button-text));
+}
+
+@media screen and (max-width: 749px) {
+  .thessvane-hero {
+    min-height: 64rem;
+    align-items: flex-end;
+    padding-bottom: 4.6rem;
+  }
+
+  .thessvane-hero__scrim {
+    background: linear-gradient(
+      0deg,
+      rgba(var(--color-shadow), 0.55) 0%,
+      rgba(var(--color-shadow), 0.12) 45%,
+      rgba(var(--color-shadow), 0) 70%
+    );
+  }
+
+  .thessvane-hero__content {
+    max-width: 100%;
+  }
+
+  .thessvane-hero__heading,
+  .thessvane-hero__eyebrow,
+  .thessvane-hero__trust {
+    color: rgb(var(--color-background));
+  }
+
+  .thessvane-hero__text {
+    color: rgba(var(--color-background), 0.88);
+  }
+
+  .thessvane-hero__btn--primary {
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    border-color: rgb(var(--color-background));
+  }
+
+  .thessvane-hero__btn--secondary {
+    color: rgb(var(--color-background));
+    border-color: rgba(var(--color-background), 0.7);
+  }
+
+  .thessvane-hero__btn--secondary:hover {
+    background: rgba(var(--color-background), 0.12);
+  }
+
+  .thessvane-hero__trust li::before {
+    background: rgb(var(--color-background));
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .thessvane-hero__heading {
+    font-size: clamp(4rem, 5.4vw, 6.6rem);
+  }
+}

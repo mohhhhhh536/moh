@@ -3,13 +3,13 @@
     "logo": "shopify://shop_images/logo.webp",
     "logo_width": 180,
     "favicon": "shopify://shop_images/favicon.png",
-    "colors_solid_button_labels": "#FDFBF7",
-    "colors_accent_1": "#E7B8BE",
-    "colors_accent_2": "#7C9473",
+    "colors_solid_button_labels": "#FBF6F0",
+    "colors_accent_1": "#C2A878",
+    "colors_accent_2": "#8B9574",
     "colors_text": "#2B2A4A",
-    "colors_background_1": "#A06272",
-    "colors_background_2": "#F3E9E4",
-    "type_header_font": "playfair_display_n4",
+    "colors_background_1": "#FBF6F0",
+    "colors_background_2": "#EFDCD8",
+    "type_header_font": "jost_n4",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
     "body_scale": 100,
@@ -106,7 +106,7 @@
     "sale_badge_text": "Save [percentage]",
     "sold_out_badge_color_scheme": "background-1",
     "brand_headline": "<strong>Who We Are</strong>",
-    "brand_description": "<h5><strong>Founded with a passion for style and quality, we are dedicated to creating timeless designs that seamlessly blend with modern trends, offering versatile pieces for every lifestyle.</strong></h5><h5><strong>What We Stand For:</strong><br/></h5><h5>👗 <strong>Style Meets Comfort:</strong> Every piece is designed with you in mind, combining chic aesthetics with everyday practicality.<br/></h5><h5>✨ <strong>Quality First:</strong> From premium fabrics to expert craftsmanship, we ensure every product meets the highest standards.<br/></h5><h5>🌿 <strong>Sustainability:</strong> We are committed to reducing our environmental impact by using eco-friendly materials and ethical production practices.</h5>",
+    "brand_description": "<h5><strong>Founded with a passion for style and quality, we are dedicated to creating timeless designs that seamlessly blend with modern trends, offering versatile pieces for every lifestyle.</strong></h5><h5><strong>What We Stand For:</strong><br/></h5><h5>\ud83d\udc57 <strong>Style Meets Comfort:</strong> Every piece is designed with you in mind, combining chic aesthetics with everyday practicality.<br/></h5><h5>\u2728 <strong>Quality First:</strong> From premium fabrics to expert craftsmanship, we ensure every product meets the highest standards.<br/></h5><h5>\ud83c\udf3f <strong>Sustainability:</strong> We are committed to reducing our environmental impact by using eco-friendly materials and ethical production practices.</h5>",
     "brand_image": "shopify://shop_images/Screenshot_2025-01-01_at_17.24.31-removebg-preview.png",
     "brand_image_width": 100,
     "social_facebook_link": "",
@@ -191,34 +191,34 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#A06272",
+          "background": "#FBF6F0",
           "background_gradient": "",
-          "text": "#FDFBF7",
-          "button": "#FDFBF7",
-          "button_label": "#2B2A4A",
-          "secondary_button_label": "#FDFBF7",
-          "shadow": "#000000"
+          "text": "#2B2A4A",
+          "button": "#2B2A4A",
+          "button_label": "#FBF6F0",
+          "secondary_button_label": "#2B2A4A",
+          "shadow": "#2B2A4A"
         }
       },
       "scheme-2": {
         "settings": {
-          "background": "#F3E9E4",
+          "background": "#EFDCD8",
           "background_gradient": "",
           "text": "#2B2A4A",
           "button": "#2B2A4A",
-          "button_label": "#FDFBF7",
+          "button_label": "#FBF6F0",
           "secondary_button_label": "#2B2A4A",
           "shadow": "#2B2A4A"
         }
       },
       "scheme-3": {
         "settings": {
-          "background": "#7C9473",
+          "background": "#8B9574",
           "background_gradient": "",
-          "text": "#FDFBF7",
-          "button": "#FDFBF7",
-          "button_label": "#7C9473",
-          "secondary_button_label": "#FDFBF7",
+          "text": "#FBF6F0",
+          "button": "#FBF6F0",
+          "button_label": "#2B2A4A",
+          "secondary_button_label": "#FBF6F0",
           "shadow": "#2B2A4A"
         }
       },
@@ -226,20 +226,20 @@
         "settings": {
           "background": "#2B2A4A",
           "background_gradient": "",
-          "text": "#FDFBF7",
-          "button": "#FDFBF7",
+          "text": "#FBF6F0",
+          "button": "#FBF6F0",
           "button_label": "#2B2A4A",
-          "secondary_button_label": "#FDFBF7",
+          "secondary_button_label": "#FBF6F0",
           "shadow": "#000000"
         }
       },
       "scheme-5": {
         "settings": {
-          "background": "#E7B8BE",
+          "background": "#C2A878",
           "background_gradient": "",
           "text": "#2B2A4A",
           "button": "#2B2A4A",
-          "button_label": "#FDFBF7",
+          "button_label": "#FBF6F0",
           "secondary_button_label": "#2B2A4A",
           "shadow": "#2B2A4A"
         }
