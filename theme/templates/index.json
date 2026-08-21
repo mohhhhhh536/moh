@@ -48,8 +48,8 @@
         "trust_thessvane"
       ],
       "settings": {
-        "image_focal_x": 68,
-        "image_focal_y": 38,
+        "image_focal_x": 55,
+        "image_focal_y": 58,
         "section_height": 90,
         "color_scheme": "scheme-1"
       }
