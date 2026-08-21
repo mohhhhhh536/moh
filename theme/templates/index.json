@@ -77,7 +77,57 @@
         "padding_top": 80,
         "padding_bottom": 88
       }
+    },
+    "thessvane_our_story": {
+      "type": "thessvane-our-story",
+      "blocks": {
+        "eyebrow_story": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Our Story"
+          }
+        },
+        "heading_story": {
+          "type": "heading",
+          "settings": {
+            "heading": "Founded On A Simple Idea"
+          }
+        },
+        "text_story": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Thessvane started with a simple frustration: skincare shouldn't require a chemistry degree to understand.</p><p>We formulate with naturally derived ingredients, skip the synthetic filler, and keep every routine simple enough to actually stick to — a small, deliberate ritual instead of a twelve-step regimen.</p>"
+          }
+        },
+        "signature_story": {
+          "type": "signature",
+          "settings": {
+            "title": "Small-Batch, Thoughtfully Made",
+            "text": "Every formula is developed in small batches and tested for how it feels on skin, not just how it looks on a label."
+          }
+        },
+        "button_story": {
+          "type": "button",
+          "settings": {
+            "label": "Learn More",
+            "link": "/pages/about"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_story",
+        "heading_story",
+        "text_story",
+        "signature_story",
+        "button_story"
+      ],
+      "settings": {
+        "image_position": "left",
+        "color_scheme": "scheme-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
-  "order": ["thessvane_hero", "thessvane_bestsellers"]
+  "order": ["thessvane_hero", "thessvane_bestsellers", "thessvane_our_story"]
 }
