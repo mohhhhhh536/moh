@@ -252,6 +252,57 @@
         "padding_top": 96,
         "padding_bottom": 96
       }
+    },
+    "thessvane_ugc": {
+      "type": "thessvane-ugc-grid",
+      "blocks": {
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "handle": "@thessvane"
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "handle": "@thessvane"
+          }
+        },
+        "tile_4": {
+          "type": "tile",
+          "settings": {}
+        },
+        "tile_5": {
+          "type": "tile",
+          "settings": {
+            "handle": "@thessvane"
+          }
+        }
+      },
+      "block_order": [
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5"
+      ],
+      "settings": {
+        "eyebrow": "Community",
+        "title": "Tag @thessvane",
+        "heading_size": "h1",
+        "description": "<p>Share your ritual for a chance to be featured.</p>",
+        "color_scheme": "scheme-3",
+        "columns_desktop": 5,
+        "show_cta": true,
+        "cta_label": "Follow on Instagram",
+        "cta_link": "",
+        "padding_top": 80,
+        "padding_bottom": 88
+      }
     }
   },
   "order": [
@@ -259,6 +310,7 @@
     "thessvane_bestsellers",
     "thessvane_our_story",
     "thessvane_ingredient_callout",
-    "thessvane_reviews"
+    "thessvane_reviews",
+    "thessvane_ugc"
   ]
 }

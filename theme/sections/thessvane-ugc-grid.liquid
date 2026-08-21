@@ -12,6 +12,30 @@
     }
   }
 
+  .ugc-{{ section.id }} .ugc__title {
+    text-align: center;
+    max-width: 52rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ugc-{{ section.id }} .ugc__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.6rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--color-base-accent-1));
+  }
+  .ugc-{{ section.id }} .ugc__eyebrow::before,
+  .ugc-{{ section.id }} .ugc__eyebrow::after {
+    content: '';
+    width: 2rem;
+    height: 1.5px;
+    background: currentColor;
+  }
   .ugc-{{ section.id }} .ugc__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
@@ -21,15 +45,31 @@
     position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .ugc-{{ section.id }} .ugc__tile img,
-  .ugc-{{ section.id }} .ugc__tile .placeholder-svg {
+  .ugc-{{ section.id }} .ugc__tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
+  .ugc-{{ section.id }} .ugc__tile-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    opacity: 0.55;
+  }
+  .ugc-{{ section.id }} .ugc__tile--0 { background: rgb(var(--color-base-background-2)); }
+  .ugc-{{ section.id }} .ugc__tile--0 .ugc__tile-icon { color: rgb(var(--color-base-text)); }
+  .ugc-{{ section.id }} .ugc__tile--1 { background: rgb(var(--color-base-background-1)); }
+  .ugc-{{ section.id }} .ugc__tile--1 .ugc__tile-icon { color: rgb(var(--color-base-text)); }
+  .ugc-{{ section.id }} .ugc__tile--2 { background: rgb(var(--color-base-accent-2)); }
+  .ugc-{{ section.id }} .ugc__tile--2 .ugc__tile-icon { color: rgb(var(--color-base-background-1)); }
+  .ugc-{{ section.id }} .ugc__tile--3 { background: rgb(var(--color-base-accent-1)); }
+  .ugc-{{ section.id }} .ugc__tile--3 .ugc__tile-icon { color: rgb(var(--color-base-text)); }
+  .ugc-{{ section.id }} .ugc__tile--4 { background: rgb(var(--color-base-text)); }
+  .ugc-{{ section.id }} .ugc__tile--4 .ugc__tile-icon { color: rgb(var(--color-base-background-1)); }
   .ugc-{{ section.id }} .ugc__handle {
     position: absolute;
     left: 10px;
@@ -43,11 +83,18 @@
     border-radius: 5px;
   }
   .ugc-{{ section.id }} .ugc__cta { margin-top: 32px; text-align: center; }
+  .ugc-{{ section.id }} .ugc__cta .button--secondary {
+    --alpha-button-background: 0;
+    box-shadow: inset 0 0 0 0.15rem rgba(var(--color-foreground), 0.55);
+  }
 {%- endstyle -%}
 
 <div class="ugc-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding page-width">
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin ugc__title">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ugc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
       {%- endif -%}
@@ -57,18 +104,21 @@
     </div>
 
     <div class="ugc__grid">
-      {%- assign placeholder_keys = 'image,lifestyle-2' | split: ',' -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'tile' -%}
-          {%- assign placeholder_index = forloop.index0 | modulo: 2 -%}
-          <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile" {{ block.shopify_attributes }}>
+          {%- assign tile_variant = forloop.index0 | modulo: 5 -%}
+          <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile ugc__tile--{{ tile_variant }}" {{ block.shopify_attributes }}>
             {%- if block.settings.handle != blank -%}
               <span class="ugc__handle">{{ block.settings.handle | escape }}</span>
             {%- endif -%}
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 800 | image_tag: sizes: '(min-width: 750px) 20vw, 33vw', widths: '200, 400, 600, 800', loading: 'lazy' }}
             {%- else -%}
-              {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
+              <svg class="ugc__tile-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="6" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 6l1.5-2h5L16 6" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
             {%- endif -%}
           </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
         {%- endif -%}
@@ -105,7 +155,13 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Tiles without an assigned image show a generic placeholder graphic until real customer/social photos are uploaded."
+      "content": "Tiles without an assigned image show a palette-colored icon tile until real customer/social photos are uploaded."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Community",
+      "label": "Eyebrow label"
     },
     {
       "type": "text",
@@ -140,7 +196,7 @@
         { "value": "scheme-4", "label": "Scheme 4" },
         { "value": "scheme-5", "label": "Scheme 5" }
       ],
-      "default": "scheme-1",
+      "default": "scheme-3",
       "label": "Color scheme"
     },
     {
@@ -186,7 +242,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 48
+      "default": 80
     },
     {
       "type": "range",
@@ -196,7 +252,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 48
+      "default": 88
     }
   ],
   "blocks": [
