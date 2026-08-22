@@ -1,0 +1,199 @@
+{{ 'section-thessvane-before-after.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'thessvane-before-after.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  class="thessvane-ba color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="thessvane-ba__inner page-width">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'eyebrow' -%}
+          <p class="thessvane-ba__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+        {%- when 'heading' -%}
+          <h2 class="thessvane-ba__heading" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h2>
+        {%- when 'text' -%}
+          <p class="thessvane-ba__text" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    <before-after-slider class="thessvane-ba__slider" style="--reveal: 50%;">
+      <div class="thessvane-ba__panel thessvane-ba__panel--after">
+        {%- if section.settings.after_image != blank -%}
+          {{
+            section.settings.after_image
+            | image_url: width: 1200
+            | image_tag: sizes: '(min-width: 750px) 50vw, 90vw', widths: '400, 600, 800, 1200', loading: 'lazy'
+          }}
+        {%- else -%}
+          <span class="thessvane-ba__placeholder-label">{{ section.settings.after_label | escape }}</span>
+          <span class="thessvane-ba__placeholder-sub">Photo needed</span>
+        {%- endif -%}
+      </div>
+
+      <div class="thessvane-ba__clip">
+        <div class="thessvane-ba__panel thessvane-ba__panel--before">
+          {%- if section.settings.before_image != blank -%}
+            {{
+              section.settings.before_image
+              | image_url: width: 1200
+              | image_tag: sizes: '(min-width: 750px) 50vw, 90vw', widths: '400, 600, 800, 1200', loading: 'lazy'
+            }}
+          {%- else -%}
+            <span class="thessvane-ba__placeholder-label">{{ section.settings.before_label | escape }}</span>
+            <span class="thessvane-ba__placeholder-sub">Photo needed</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <span class="thessvane-ba__tag thessvane-ba__tag--before">{{ section.settings.before_label | escape }}</span>
+      <span class="thessvane-ba__tag thessvane-ba__tag--after">{{ section.settings.after_label | escape }}</span>
+
+      <span class="thessvane-ba__handle-line" aria-hidden="true"></span>
+      <span class="thessvane-ba__handle-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+
+      <input
+        type="range"
+        class="thessvane-ba__range"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Drag to compare {{ section.settings.before_label | escape }} and {{ section.settings.after_label | escape }}"
+      >
+    </before-after-slider>
+
+    {%- if section.settings.before_image == blank or section.settings.after_image == blank -%}
+      <p class="thessvane-ba__flag">Placeholder photos — add real before/after images in this section's settings</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Thessvane Before/After",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows placeholder panels until you add real before/after photos below. Only use real, unedited results photos here — this makes an efficacy claim to customers."
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "default": "Before",
+      "label": "Before label"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "default": "After",
+      "label": "After label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow label",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "See The Difference",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Real Results, Visible Change",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Drag to compare.",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Before/After",
+      "blocks": [
+        { "type": "eyebrow" },
+        { "type": "heading" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}
