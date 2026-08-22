@@ -343,13 +343,81 @@
         "padding_top": 96,
         "padding_bottom": 100
       }
+    },
+    "thessvane_stats": {
+      "type": "thessvane-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "number": "1,000+",
+            "label": "Rituals Started"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "number": "4.9\u2605",
+            "label": "Average Rating"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "number": "100%",
+            "label": "Cruelty-Free"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "number": "3",
+            "label": "Core Ingredients"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "show_placeholder_flag": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "thessvane_quote_1": {
+      "type": "thessvane-quote",
+      "settings": {
+        "quote": "Good skin isn't about doing more. It's about doing less, better.",
+        "attribution": "Thessvane",
+        "color_scheme": "scheme-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "thessvane_quote_2": {
+      "type": "thessvane-quote",
+      "settings": {
+        "quote": "Skincare should feel like a ritual, not a routine.",
+        "attribution": "Thessvane",
+        "color_scheme": "scheme-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "thessvane_hero",
+    "thessvane_stats",
     "thessvane_bestsellers",
+    "thessvane_quote_1",
     "thessvane_our_story",
     "thessvane_ingredient_callout",
+    "thessvane_quote_2",
     "thessvane_reviews",
     "thessvane_ugc",
     "thessvane_newsletter"

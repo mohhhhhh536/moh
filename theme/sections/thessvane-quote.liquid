@@ -1,0 +1,79 @@
+{{ 'section-thessvane-quote.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  class="thessvane-quote color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="thessvane-quote__inner page-width">
+    <blockquote class="thessvane-quote__text">{{ section.settings.quote | escape }}</blockquote>
+    {%- if section.settings.attribution != blank -%}
+      <cite class="thessvane-quote__cite">{{ section.settings.attribution | escape }}</cite>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Thessvane Quote",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "default": "Good skin isn't about doing more. It's about doing less, better.",
+      "label": "Quote"
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "default": "Thessvane",
+      "label": "Attribution"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Quote"
+    }
+  ]
+}
+{% endschema %}
