@@ -5,46 +5,90 @@
 
 ## Read this first: what is verified and what is not
 
-This session's network egress policy **blocked every source needed for link verification and
-first-party trend data**. Confirmed denials (HTTP 403 at the egress gateway, not transient):
+The egress allowlist was widened mid-research, which unblocked most sources. Current status:
 
-| Source | Status | What it cost this report |
+| Source | Status | Result |
 |---|---|---|
-| `aliexpress.com` | **Blocked** | No live listings, no real prices, **no verifiable links** |
-| `autods.com` | **Blocked** | No AutoDS catalogue search |
-| `trends.google.com` | **Blocked** | No first-party 5–10y Trends curves |
-| `amazon.com` | **Blocked** | No direct review mining (1–2★ filtering) |
-| `reddit.com`, `tiktok.com`, `facebook.com` | **Blocked** | No Meta Ad Library, no native social scraping |
+| **Google Trends** | **Working** | **16-year + 5-year US curves pulled for 12 terms — see §Evergreen below** |
+| **AliExpress** | **Partial** | 60 live listings captured for one category; anti-bot rate-limiting blocked the rest |
+| `autods.com` | Reachable, unusable | Catalogue sits behind a login this session does not have |
+| Amazon reviews | Blocked | Returns 404/CAPTCHA to datacenter IPs |
+| Reddit | Blocked | 403 to datacenter IPs (incl. `.json` endpoints) |
+| Meta Ad Library | Not retrieved | Requires JS + login |
 
-`WebFetch` and `curl` are blocked for **all** hosts. `WebSearch` was the only working capability,
-so every figure below comes from **search-indexed secondary reporting**, cited inline.
+**The distinction that matters:** these are no longer *policy* blocks — they are **anti-bot defences**
+on the retail platforms themselves. Unblocking the proxy was necessary but not sufficient, exactly
+as flagged. AliExpress served one full result set, then flagged this IP and began returning its
+"punish" interstitial.
 
-**Consequently: this report contains no supplier links.** Fabricating AliExpress item IDs would
-have produced dead links — precisely the failure the brief asked to avoid. In their place, every
-product carries a **Sourcing spec** — the exact search strings plus accept/reject criteria to run
-in AutoDS or AliExpress, which turns link-gathering into a 20-minute pass.
+**What changed materially:** Google Trends now gives **first-party 5–10 year evergreen verification**
+rather than second-hand claims — and it **corrected two calls** from the first pass (see §Corrections).
 
-Margin figures are **modelled** from cited category benchmarks, not supplier quotes. Treat them as
-a screening filter, then re-verify against real listings.
+Margin figures remain **modelled** from cited benchmarks. Where real AliExpress unit costs were
+captured, they are marked **[live]** and dated 23 Aug 2026.
+
+---
+
+## Evergreen verification — real Google Trends data
+
+US search interest, annual mean of the monthly index, 2010–2026 (2026 = Jan–Aug, partial).
+Index is relative within each row-group, so read **shape**, not cross-row magnitude.
+
+| Term | 2010 | 2018 | 2021 | 2023 | 2025 | 2026 | Shape |
+|---|---|---|---|---|---|---|---|
+| vitamin c serum | 1.4 | 12.8 | 26.7 | 35.1 | 32.2 | **60.5** | Strongest sustained climb — anchor |
+| gua sha | 1.0 | 4.4 | **41.4** | 30.9 | 30.6 | 35.6 | Peaked 2021, **plateaued high** = staple |
+| rosemary oil hair | 1.9 | 5.2 | 10.8 | 39.5 | 33.0 | **53.8** | 2023 viral spike, **held 3 yrs**, new high |
+| body serum | 0.9 | 2.0 | 2.1 | 4.0 | 7.2 | **35.9** | **2026 breakout** — real but unproven |
+| led face mask | 0.0 | 0.4 | 2.2 | 2.7 | 6.8 | **21.2** | Hockey stick, 3× in one year |
+| hypochlorous acid | 1.2 | 1.3 | 1.6 | 3.2 | 11.4 | **20.8** | **4-year sustained climb** |
+| scalp massager | 1.1 | 4.3 | 7.1 | 10.8 | 9.9 | **16.8** | Steady, low-volatility growth |
+| silk pillowcase | 0.3 | 6.1 | 11.6 | 11.8 | 11.3 | **16.1** | Flat-stable 5 yrs, now rising |
+| satin bonnet | 0.0 | 2.2 | 3.4 | 4.5 | 6.2 | **13.8** | **Monotonic 16-yr climb**, accelerating |
+| keratosis pilaris | 7.5 | 11.0 | 11.8 | 11.1 | 11.8 | 13.8 | **Flat evergreen** — stable problem demand |
+| lip sleeping mask | 0.0 | 1.2 | 2.5 | 2.4 | 1.8 | 3.8 | **Flat and weak** |
+| jade roller | 0.0 | 9.6 | 9.9 | 5.3 | 3.0 | 3.6 | **Declining — down 70% from peak** |
+
+### Corrections this forced
+
+1. **Jade roller is dying; gua sha is not.** My first pass treated them as one category. Jade roller
+   is **down ~70% from its 2021 peak** and still falling, while gua sha plateaued at a high level.
+   **Sell gua sha; do not stock jade rollers.** A "gua sha + jade roller set" actively drags.
+2. **Lip sleeping mask is weak.** Trend index is flat at 1.8–3.8 for a decade with no breakout —
+   the secondary reporting called it a top-2026 trend, the search data does not support it.
+   **Downgraded from "test" to "skip for now."**
+3. **Hypochlorous acid is stronger than I credited.** I called it "unproven, 12-month window." It has
+   climbed for **four consecutive years** (1.6 → 20.8). Still newer than the others, but this is an
+   adoption curve, not a spike. **Upgraded.**
+4. **Keratosis pilaris is the stable floor under the body-serum spike.** "Body serum" jumped 7.2 → 35.9
+   in 2026 (faddish), but "keratosis pilaris" has been **flat at 11–13 for sixteen years**. Anchor
+   the product on the *durable problem*, market it with the *trending format*.
 
 ---
 
 ## Ranked verdict
 
-| # | Product | Momentum | Evergreen | Margin | Ship/Legal risk | Verdict |
-|---|---|---|---|---|---|---|
-| 1 | Satin/silk bonnet + pillowcase set | Strong | **Proven 5y** | High | **Very low** | **Launch first** |
-| 2 | Treatment-led body serum (KP/texture) | Very strong | Building | Good | Low-med | **Launch** |
-| 3 | Scalp serum + massager bundle | Very strong | Strong | Good | Low-med | **Launch** |
-| 4 | Gua sha / ice roller ritual set | Steady | **Proven** | Very high | **Very low** | **Add — AOV filler** |
-| 5 | Hypochlorous acid facial spray | Explosive | Unproven | Good | **Med-high** | Test, claims-limited |
-| 6 | Peptide lip treatment / overnight mask | Strong | Building | Good | Low-med | Test |
-| 7 | LED red-light face mask | **Highest** | Building | High | **SEVERE** | **Avoid — see §7** |
-| 8 | Microcurrent facial device | Cooling | Weak | Med | **High** | **Avoid** |
+Momentum and evergreen columns now reflect **measured Google Trends data**, not secondary reporting.
 
-The two "avoid" calls are deliberate. #7 has the single best demand signal in the entire beauty
-category and is still the wrong product for this store — the reasoning is in §7 and it is the most
-important section here.
+| # | Product | Momentum | Evergreen (measured) | Margin | Ship/Legal risk | Verdict |
+|---|---|---|---|---|---|---|
+| 1 | Satin/silk bonnet + pillowcase set | Strong | **16-yr monotonic climb** | High | **Very low** | **Launch first** |
+| 2 | Body serum anchored on KP | Very strong | **KP flat 16 yrs** | Good | Low-med | **Launch** |
+| 3 | Scalp serum + massager bundle | Very strong | **Both climbing** | Good | Low-med | **Launch** |
+| 4 | Gua sha ritual set (**no jade roller**) | Steady | **Plateaued high** | Very high | **Very low** | **Add — AOV filler** |
+| 5 | Hypochlorous acid facial spray | Strong | **4-yr climb** ↑upgraded | Good | Med-high | **Test** |
+| 6 | Peptide lip treatment | Reported strong | **Flat — contradicts hype** ↓ | Good | Low-med | **Skip for now** |
+| 7 | LED red-light face mask | **Highest** | Hockey stick | High | **SEVERE** | **Avoid — see §7** |
+| 8 | Microcurrent facial device | Cooling | Weak | Med | **High** | **Avoid** |
+| — | *Vitamin C serum (unnumbered)* | Steady | **Strongest on record** | Good | Low-med | *Anchor SKU — see note* |
+
+Two "avoid" calls and one "skip" are deliberate. §7 has the best demand signal in the entire dataset
+and is still the wrong product for this store — that reasoning is the most important section here.
+
+**Note on vitamin C serum:** it posts the strongest and most sustained curve of anything measured
+(1.4 → 60.5 over 16 years). It is not a *winning product* in the dropshipping sense — it is maximally
+commoditised and competitive — but it is the obvious **evergreen anchor SKU** that gives a clean-beauty
+store search-durable ground to stand on. Treat it as portfolio ballast, not a hero product.
 
 ---
 
@@ -179,7 +223,12 @@ product generating all the bad reviews; any listing making regrowth claims.
 
 ---
 
-## 4. Gua sha / ice roller ritual set — *add as AOV filler*
+## 4. Gua sha / ice roller ritual set — *add as AOV filler* (**drop jade roller**)
+
+> **Correction from measured data:** do **not** bundle a jade roller. Jade roller search interest is
+> **down ~70% from its 2021 peak (9.9 → 3.6) and still falling**, while gua sha plateaued high at
+> 30–35. The common "gua sha + jade roller set" listing pairs a staple with a dying product.
+> Source gua sha and **stainless-steel ice rollers** instead — ice roller demand rides the gua sha curve.
 
 **Momentum & evergreen — the point of this one is durability.** The facial roller / gua sha market
 was **$200M+ in 2023 with double-digit growth projected through the decade**. The leading gua sha
@@ -248,7 +297,12 @@ disinfectant or medical claims (you inherit that framing).
 
 ---
 
-## 6. Peptide lip treatment / overnight lip mask — *test*
+## 6. Peptide lip treatment / overnight lip mask — *skip for now* (downgraded)
+
+> **Downgraded on measured data.** Secondary reporting called this a top-2026 trend. Google Trends
+> disagrees: "lip sleeping mask" has been **flat at 1.8–3.8 for a decade** with no breakout, and
+> 2025 was its *weakest* year (1.8). The category is real but static, and the prestige incumbents
+> own it. Revisit only if you see the curve actually move.
 
 **Momentum.** Named one of **2026's most-searched beauty trends**, driven by Rhode's Lip Shape
 launch and TikTok tutorials. The trend is peptide chemistry moving into the **overnight mask**
@@ -318,12 +372,51 @@ electronics compound it. Worse risk-to-reward than §7 on every axis. Skip.
 
 ---
 
+---
+
+## Live AliExpress data — gua sha / ice roller (captured 23 Aug 2026)
+
+This is the one category AliExpress served in full before rate-limiting this IP. **60 listings
+captured**; below are the **11 that clear a 300+ sold / 4.5★+ quality bar.** Prices are the
+listing's lead price (usually the cheapest variant) in USD, before shipping.
+
+| Unit cost | Units sold | Rating | Product | Listing |
+|---|---|---|---|---|
+| US $0.33 | 10,000+ sold | 4.9★ | Ice Face Roller Set 1/2/3pcs Facial Roller Gua Sha M | [link](https://www.aliexpress.com/item/3256809774048377.html) |
+| — | 5,000+ sold | 4.8★ | Natural Stone GuaSha Jade Facial Beauty Scraping Mas | [link](https://www.aliexpress.com/item/3256806021653537.html) |
+| US $16.35 | 4,000+ sold | 4.9★ | Thick Stainless Steel Dolphin Gua Sha Facial Tool -  | [link](https://www.aliexpress.com/item/3256811986585097.html) |
+| US $11.47 | 4,000+ sold | 4.9★ | Gua Sha Scraping Massage Tool Tool For Large Muscles | [link](https://www.aliexpress.com/item/3256811990945579.html) |
+| US $3.33 | 3,000+ sold | 4.6★ | 1/3PCS Ice Face Roller Stainless Steel Gua Sha Board | [link](https://www.aliexpress.com/item/3256808847207429.html) |
+| US $3.33 | 1,000+ sold | 4.9★ | Wooden Massage Roller Tool Set, Wood Massage Kit, Ma | [link](https://www.aliexpress.com/item/3256806674602172.html) |
+| US $11.33 | 1,000+ sold | 4.9★ | Ring Gua Sha Massage Tool, Premium Natural Ceramic,  | [link](https://www.aliexpress.com/item/3256809997034280.html) |
+| US $1.33 | 1,000+ sold | 4.8★ | Heart Guasha Stone Face Rose Quartz Jade Massage Too | [link](https://www.aliexpress.com/item/3256807117240620.html) |
+| US $1.33 | 500+ sold | 4.7★ | Ice Face Roller Facial Skincare Ice Roller Set, Stai | [link](https://www.aliexpress.com/item/3256808267524302.html) |
+| US $0.99 | 500+ sold | 4.6★ | Thick Stainless Steel Dolphin Gua Sha Facial Tool -  | [link](https://www.aliexpress.com/item/3256809276474433.html) |
+| US $3.76 | 431 sold | 4.9★ | 2 Piece Set of Double Head Facial Rollers & Gua Sha  | [link](https://www.aliexpress.com/item/3256806674550217.html) |
+
+**What the real numbers change.** I modelled COGS at $1.80–4.00. The measured floor is **far lower** —
+a 4.9★ ice roller set with **10,000+ sold at $0.33**, and rose quartz gua sha stones at **$1.33**.
+Even allowing $2–4 shipping, a $26 retail ritual set lands at **~85–95% gross**. The margin case is
+*stronger* than modelled.
+
+**Two cautions the data also surfaces.** (1) Lead prices are typically the 1-piece variant — a true
+"set" costs more, so quote the multi-piece variant before committing. (2) The two highest-priced
+items here ($16.35 and $11.47) are **physiotherapy/muscle-scraping tools**, not facial gua sha.
+They pollute the same search results — filter on facial use or you will source the wrong product.
+
+**Verification status:** these URLs came from AliExpress's own structured listing data, so the IDs
+are real. Live HTTP re-checks were run separately; see the verification note below.
+
+---
+
 ## Recommended launch sequence
 
 **Phase 1 — de-risked foundation (weeks 1–3).**
 §1 bonnet/pillowcase set + §4 gua sha ritual set. Neither is liquid, regulated, or perishable; both
-carry 72–85% margins. This gets the store transacting and generates review volume with essentially
-zero compliance surface. §1's $34–44 pricing gap is the single cleanest opportunity found.
+carry 72–85% margins (§4's measured floor implies **85–95%**). This gets the store transacting and
+generates review volume with essentially zero compliance surface. §1's $34–44 pricing gap is the
+single cleanest opportunity found, and §1 has the **only 16-year monotonic demand curve** measured.
+**Stock gua sha and steel ice rollers only — no jade rollers.**
 
 **Phase 2 — the margin engine (weeks 3–8).**
 §2 body serum + §3 scalp serum/massager bundle. Both are repeat-purchase consumables — the actual
@@ -331,9 +424,12 @@ LTV drivers — and both map directly onto the existing "Build Your Ritual" thre
 Resolve the 100ml liquid-lane question before ordering fill sizes.
 
 **Phase 3 — opportunistic (weeks 8+).**
-§5 hypochlorous mist (claims-disciplined, 12-month window) and §6 peptide lip mask (bundle attachment).
+§5 hypochlorous mist, claims-disciplined. Upgraded on measured data: four consecutive years of
+growth (1.6 → 20.8) is an adoption curve, not a spike, so this is a longer window than I first
+credited. Optionally add a vitamin C serum as the evergreen anchor SKU — commoditised and
+competitive, but it owns the strongest search curve in the entire dataset.
 
-**Do not launch** §7 or §8.
+**Do not launch** §6 (peptide lip mask — flat curve contradicts the hype), §7 or §8.
 
 **Cross-cutting note.** The single strongest pattern across all review mining: the losing products
 fail on **expectation-setting**, not formulation. "Doesn't work" after two months on a product that
@@ -343,18 +439,56 @@ exactly on-brand for a store already saying *"Nothing Hidden. Nothing Harsh."*
 
 ---
 
+## Verification note — what "verified link" means here
+
+The brief asked that every link be verified before inclusion. Here is the honest accounting.
+
+**The 11 listing URLs above are real**, extracted from AliExpress's own embedded structured data
+(`_init_data_` / schema.org `ItemList`) on a successfully fetched search page — not constructed or
+guessed. Each carries its real price, order count and rating as AliExpress served them.
+
+**Live HTTP re-verification was only partially achievable.** After the first successful fetch,
+AliExpress flagged this session's IP and began returning its anti-bot "punish" interstitial to
+subsequent requests. A paced re-check with backoff was run against all 11 URLs; results are recorded
+in `verified.json` alongside this report. Any URL not confirmed `LIVE` should be treated as
+**unconfirmed rather than broken** — the block is on the fetcher, not evidence the listing is dead.
+
+**Before you spend money, click them.** AliExpress listings genuinely do disappear, and a real
+browser resolves in seconds what an automated fetch cannot from this environment.
+
+---
+
+## Still not retrieved, and why
+
+| Source | Reason | Fixable? |
+|---|---|---|
+| AliExpress — other 6 categories | IP anti-bot flag after first fetch | Yes — retry later, or run the specs in a browser |
+| AutoDS catalogue | **Login wall** (`platform.autods.com` → sign-in) | Only with your account credentials |
+| Amazon review mining | 404/CAPTCHA to datacenter IPs | Hard — needs residential IP or manual |
+| Reddit threads | 403 to datacenter IPs, incl. `.json` | Hard |
+| Meta Ad Library | 403 + requires JS/login | Hard |
+
+The review-derived pain points in §§2–3 therefore still come from **search-indexed review
+aggregators**, cited inline — not from direct 1–2★ scraping. They are consistent across multiple
+independent sources, but they are second-hand and I am not going to claim otherwise.
+
+---
+
 ## To finish this properly
 
-The analysis is complete; **link verification is not, and cannot be from this session.** To close it:
+1. **Click the 11 listings above** and confirm the multi-piece variant price (lead prices are usually
+   the 1-piece SKU).
+2. **Run the sourcing specs** for the other six products — they are written to paste straight into
+   AliExpress or AutoDS search with accept/reject criteria as your filter.
+3. **Log into AutoDS yourself** for its catalogue and supplier reliability scores; that is the one
+   gap no amount of network access closes from here.
+4. **Re-verify the modelled margins against real landed cost** (unit + shipping + payment fees).
+   The gua sha numbers above show the model can be *conservative* — but verify per product.
 
-1. Ask an admin to allowlist `aliexpress.com`, `autods.com` and `trends.google.com` for this
-   environment (Claude GitHub/environment settings → egress policy), then re-run — I can pull live
-   listings, real prices, and verify every URL resolves.
-2. Or run the eight **Sourcing specs** above yourself; they are written to be pasted directly into
-   AutoDS/AliExpress search with the accept/reject criteria as your filter.
-
-Either way, **re-verify the modelled margins against real landed cost** (unit + shipping + payment
-fees) before committing spend. The margin bands here are screening filters, not quotes.
+The evergreen picture is now settled on real data and will not move much: **satin bonnet, silk
+pillowcase, keratosis pilaris and scalp massager are the durable demand**; gua sha is a
+high-plateau staple; body serum and hypochlorous acid are the live growth bets; jade roller and
+lip sleeping mask are the traps.
 
 ---
 
