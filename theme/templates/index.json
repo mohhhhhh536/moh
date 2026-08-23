@@ -216,7 +216,7 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "My skin feels calmer and looks brighter within two weeks. Nothing harsh, nothing complicated \u2014 just results.",
+            "quote": "I have really sensitive, easily irritated skin, so I was nervous trying something new. Within the first week my redness had calmed down, and by week three my skin looked genuinely brighter \u2014 no breakouts, no stinging, just a routine that finally works for me.",
             "name": "Maya R.",
             "badge": "Verified Customer"
           }
@@ -225,7 +225,7 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "I've tried so many 'clean' brands that still broke me out. Thessvane is the first one that's actually gentle.",
+            "quote": "I've spent years testing 'clean' skincare brands that still left my skin red and broken out. Thessvane is the first one where I can actually read every ingredient on the label \u2014 and my skin has never felt calmer. It's become the one step in my routine I never skip.",
             "name": "Priya K.",
             "badge": "Verified Customer"
           }
@@ -234,7 +234,7 @@
           "type": "review",
           "settings": {
             "rating": 5,
-            "quote": "I can pronounce every ingredient and my skin has never looked better. That's the whole point, right?",
+            "quote": "What sold me was how simple the routine is \u2014 three products, five minutes, no eleven-step process to keep up with. Two months in, my skin tone is more even and it actually feels hydrated instead of just coated in product. This is what clean ingredients should have felt like from the start.",
             "name": "Jordan L.",
             "badge": "Verified Customer"
           }
@@ -453,6 +453,49 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "thessvane_routine": {
+      "type": "thessvane-routine-builder",
+      "blocks": {
+        "step_prep": {
+          "type": "step",
+          "settings": {
+            "step_title": "Prep Your Skin",
+            "step_text": "<p>Cleanse and prime with a gentle, natural formula that clears the way without stripping your skin.</p>"
+          }
+        },
+        "step_treat": {
+          "type": "step",
+          "settings": {
+            "step_title": "Treat & Nourish",
+            "step_text": "<p>Target your specific concerns with clean, active ingredients your skin can actually absorb.</p>"
+          }
+        },
+        "step_lock": {
+          "type": "step",
+          "settings": {
+            "step_title": "Lock the Glow",
+            "step_text": "<p>Seal it all in with a lightweight finish for a radiant, healthy look that lasts all day.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_prep",
+        "step_treat",
+        "step_lock"
+      ],
+      "settings": {
+        "eyebrow": "Your Daily Ritual",
+        "title": "Build Your Ritual",
+        "heading_size": "h1",
+        "description": "<p>Three simple steps to clean, radiant skin \u2014 mix and match to build a routine that fits you.</p>",
+        "color_scheme": "scheme-3",
+        "show_cta": true,
+        "cta_label": "Shop the Full Ritual",
+        "cta_link": "/collections/all",
+        "padding_top": 80,
+        "padding_bottom": 88
+      }
     }
   },
   "order": [
@@ -460,6 +503,7 @@
     "thessvane_stats",
     "thessvane_bestsellers",
     "thessvane_quote_1",
+    "thessvane_routine",
     "thessvane_our_story",
     "thessvane_before_after",
     "thessvane_trust_badges",

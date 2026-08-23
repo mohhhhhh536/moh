@@ -49,11 +49,41 @@
     margin-top: 44px;
     text-align: center;
   }
+  .routine-{{ section.id }} .routine__title-wrapper {
+    text-align: center;
+    max-width: 54rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .routine-{{ section.id }} .routine__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(var(--color-base-accent-1));
+  }
+  .routine-{{ section.id }} .routine__eyebrow::before,
+  .routine-{{ section.id }} .routine__eyebrow::after {
+    content: '';
+    width: 2rem;
+    height: 1.5px;
+    background: currentColor;
+  }
+  .routine-{{ section.id }} .routine__steps {
+    text-align: left;
+  }
 {%- endstyle -%}
 
 <div class="routine-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding page-width">
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin routine__title-wrapper">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="routine__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
       {%- endif -%}
@@ -114,6 +144,12 @@
     },
     {
       "type": "text",
+      "id": "eyebrow",
+      "default": "Your Daily Ritual",
+      "label": "Eyebrow label"
+    },
+    {
+      "type": "text",
       "id": "title",
       "default": "Build Your Ritual",
       "label": "Heading"
@@ -145,7 +181,7 @@
         { "value": "scheme-4", "label": "Scheme 4" },
         { "value": "scheme-5", "label": "Scheme 5" }
       ],
-      "default": "scheme-2",
+      "default": "scheme-3",
       "label": "Color scheme"
     },
     {
@@ -181,7 +217,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 48
+      "default": 80
     },
     {
       "type": "range",
@@ -191,7 +227,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 48
+      "default": 88
     }
   ],
   "blocks": [
