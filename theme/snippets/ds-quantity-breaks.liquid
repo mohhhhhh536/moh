@@ -3,16 +3,37 @@
   if product.options.size >= 2
     assign has_second_option = true
   endif
+
+  assign qb_accent_override = block.settings.custom_accent_color.rgb
+  if block.settings.custom_accent_color.alpha == 0
+    assign qb_accent_override = ''
+  endif
+
+  assign qb_badge_bg = block.settings.badge_background.rgb
+  if block.settings.badge_background.alpha == 0
+    assign qb_badge_bg = ''
+  endif
+
+  assign qb_badge_color = block.settings.badge_text_color.rgb
+  if block.settings.badge_text_color.alpha == 0
+    assign qb_badge_color = ''
+  endif
 %}
 
 <quantity-breaks
-  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}"
+  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}{% if block.settings.show_radio %} quantity-breaks--radio{% endif %}"
   id="quantity-breaks-{{ section.id }}"
   data-section="{{ section.id }}"
   data-update-unavailable="{{ has_second_option }}"
   data-update-prices="{{ block.settings.update_prices }}"
   data-money-format="{{ shop.money_format | escape }}"
-  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;"
+  style="
+    --margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;
+    --margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;
+    {%- if qb_accent_override != blank %}--accent-color: {{ qb_accent_override }};{% endif -%}
+    {%- if qb_badge_bg != blank %}--qb-badge-background: {{ qb_badge_bg }};{% endif -%}
+    {%- if qb_badge_color != blank %}--qb-badge-text: {{ qb_badge_color }};{% endif -%}
+  "
   {{ block.shopify_attributes }}
 >
   {% assign has_variants = false %}
@@ -61,12 +82,31 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_1' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
-        {% endif %}
+        {%- liquid
+          assign qb_badge = block.settings.option_1_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_1'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {%- if qb_badge != blank -%}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
+        {%- endif -%}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_1_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {%- if block.settings.show_option_images and qb_image != blank -%}
+            <span class="quantity-break__media">
+              {{
+                qb_image
+                | image_url: width: 240
+                | image_tag: loading: 'lazy', widths: '80,120,160,240', sizes: '72px', alt: ''
+              }}
+            </span>
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -162,6 +202,23 @@
             </div>
           {% endif %}
         {% endif %}
+        {%- if block.settings.option_1_gift_label != blank -%}
+          <span class="quantity-break__gift">
+            {%- if block.settings.option_1_gift_image != blank -%}
+              <span class="quantity-break__gift-media">
+                {{
+                  block.settings.option_1_gift_image
+                  | image_url: width: 160
+                  | image_tag: loading: 'lazy', widths: '48,96,160', sizes: '40px', alt: ''
+                }}
+              </span>
+            {%- endif -%}
+            <span class="quantity-break__gift-label">{{ block.settings.option_1_gift_label }}</span>
+            {%- if block.settings.option_1_gift_price != blank -%}
+              <span class="quantity-break__gift-price">{{ block.settings.option_1_gift_price }}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
       </label>
     {% endif %}
     {% if block.settings.option_2_quantity != 0 %}
@@ -200,12 +257,31 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_2' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
-        {% endif %}
+        {%- liquid
+          assign qb_badge = block.settings.option_2_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_2'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {%- if qb_badge != blank -%}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
+        {%- endif -%}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_2_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {%- if block.settings.show_option_images and qb_image != blank -%}
+            <span class="quantity-break__media">
+              {{
+                qb_image
+                | image_url: width: 240
+                | image_tag: loading: 'lazy', widths: '80,120,160,240', sizes: '72px', alt: ''
+              }}
+            </span>
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -301,6 +377,23 @@
             </div>
           {% endif %}
         {% endif %}
+        {%- if block.settings.option_2_gift_label != blank -%}
+          <span class="quantity-break__gift">
+            {%- if block.settings.option_2_gift_image != blank -%}
+              <span class="quantity-break__gift-media">
+                {{
+                  block.settings.option_2_gift_image
+                  | image_url: width: 160
+                  | image_tag: loading: 'lazy', widths: '48,96,160', sizes: '40px', alt: ''
+                }}
+              </span>
+            {%- endif -%}
+            <span class="quantity-break__gift-label">{{ block.settings.option_2_gift_label }}</span>
+            {%- if block.settings.option_2_gift_price != blank -%}
+              <span class="quantity-break__gift-price">{{ block.settings.option_2_gift_price }}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
       </label>
     {% endif %}
     {% if block.settings.option_3_quantity != 0 %}
@@ -339,12 +432,31 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_3' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
-        {% endif %}
+        {%- liquid
+          assign qb_badge = block.settings.option_3_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_3'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {%- if qb_badge != blank -%}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
+        {%- endif -%}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_3_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {%- if block.settings.show_option_images and qb_image != blank -%}
+            <span class="quantity-break__media">
+              {{
+                qb_image
+                | image_url: width: 240
+                | image_tag: loading: 'lazy', widths: '80,120,160,240', sizes: '72px', alt: ''
+              }}
+            </span>
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -440,6 +552,23 @@
             </div>
           {% endif %}
         {% endif %}
+        {%- if block.settings.option_3_gift_label != blank -%}
+          <span class="quantity-break__gift">
+            {%- if block.settings.option_3_gift_image != blank -%}
+              <span class="quantity-break__gift-media">
+                {{
+                  block.settings.option_3_gift_image
+                  | image_url: width: 160
+                  | image_tag: loading: 'lazy', widths: '48,96,160', sizes: '40px', alt: ''
+                }}
+              </span>
+            {%- endif -%}
+            <span class="quantity-break__gift-label">{{ block.settings.option_3_gift_label }}</span>
+            {%- if block.settings.option_3_gift_price != blank -%}
+              <span class="quantity-break__gift-price">{{ block.settings.option_3_gift_price }}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
       </label>
     {% endif %}
     {% if block.settings.option_4_quantity != 0 %}
@@ -478,12 +607,31 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_4' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
-        {% endif %}
+        {%- liquid
+          assign qb_badge = block.settings.option_4_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_4'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {%- if qb_badge != blank -%}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
+        {%- endif -%}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_4_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {%- if block.settings.show_option_images and qb_image != blank -%}
+            <span class="quantity-break__media">
+              {{
+                qb_image
+                | image_url: width: 240
+                | image_tag: loading: 'lazy', widths: '80,120,160,240', sizes: '72px', alt: ''
+              }}
+            </span>
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -579,9 +727,58 @@
             </div>
           {% endif %}
         {% endif %}
+        {%- if block.settings.option_4_gift_label != blank -%}
+          <span class="quantity-break__gift">
+            {%- if block.settings.option_4_gift_image != blank -%}
+              <span class="quantity-break__gift-media">
+                {{
+                  block.settings.option_4_gift_image
+                  | image_url: width: 160
+                  | image_tag: loading: 'lazy', widths: '48,96,160', sizes: '40px', alt: ''
+                }}
+              </span>
+            {%- endif -%}
+            <span class="quantity-break__gift-label">{{ block.settings.option_4_gift_label }}</span>
+            {%- if block.settings.option_4_gift_price != blank -%}
+              <span class="quantity-break__gift-price">{{ block.settings.option_4_gift_price }}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
       </label>
     {% endif %}
   </div>
+
+  {%- if block.settings.enable_autoship -%}
+    {%- assign qb_selling_plan = product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan -%}
+    {%- if qb_selling_plan != blank -%}
+      <label class="quantity-breaks__autoship" for="AutoShip-{{ section.id }}">
+        <input
+          id="AutoShip-{{ section.id }}"
+          class="quantity-breaks__autoship-input"
+          type="checkbox"
+          name="selling_plan"
+          value="{{ qb_selling_plan.id }}"
+          form="{{ product_form_id }}"
+        >
+        <span class="quantity-breaks__autoship-box" aria-hidden="true">
+          {%- render 'icon-checkmark' -%}
+        </span>
+        <span class="quantity-breaks__autoship-text">
+          <span class="quantity-breaks__autoship-title">
+            {{- block.settings.autoship_title | replace: '[plan]', qb_selling_plan.name -}}
+          </span>
+          {%- if block.settings.autoship_subtitle != blank -%}
+            <span class="quantity-breaks__autoship-subtitle">{{ block.settings.autoship_subtitle }}</span>
+          {%- endif -%}
+        </span>
+      </label>
+    {%- elsif request.design_mode -%}
+      <p class="quantity-breaks__autoship quantity-breaks__autoship--empty">
+        Auto Ship is enabled, but this product has no subscription plans yet. Add a selling plan with a
+        subscription app to make this row appear on the live store.
+      </p>
+    {%- endif -%}
+  {%- endif -%}
 
   <script data-has-variants="{{ has_variants }}" type="application/json">
     {{ product.variants | json }}

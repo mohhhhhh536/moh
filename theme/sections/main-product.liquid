@@ -1912,6 +1912,65 @@
           "default": false,
           "info": "If the product has multiple variants, a variant picker will be displayed for each quantity."
         },
+        {
+          "type": "checkbox",
+          "id": "show_option_images",
+          "label": "Show bundle images",
+          "default": true,
+          "info": "Shows a thumbnail on each bundle. Falls back to the product's featured image when no image is set."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_radio",
+          "label": "Show radio buttons",
+          "default": true,
+          "info": "Turn off for a cleaner card layout where the selected bundle is highlighted by its border."
+        },
+        {
+          "type": "color",
+          "id": "custom_accent_color",
+          "label": "Custom accent color",
+          "info": "Overrides the color scheme above. Used for the card highlight, gift strip and Auto Ship border."
+        },
+        {
+          "type": "color",
+          "id": "badge_background",
+          "label": "Badge background",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Auto Ship & Save"
+        },
+        {
+          "type": "paragraph",
+          "content": "Shown only when the product has a subscription selling plan. Checking it adds the subscription to the cart."
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_autoship",
+          "label": "Enable Auto Ship row",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "autoship_title",
+          "label": "Auto Ship title",
+          "default": "Auto Ship & Save",
+          "info": "Use [plan] to display the subscription plan name."
+        },
+        {
+          "type": "text",
+          "id": "autoship_subtitle",
+          "label": "Auto Ship subtitle",
+          "default": "Zero Commitment, Cancel Anytime"
+        },
         // {
         //   "type": "checkbox",
         //   "id": "update_prices",
@@ -2015,6 +2074,35 @@
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
         },
         {
+          "type": "image_picker",
+          "id": "option_1_image",
+          "label": "Option #1 Image",
+          "info": "If empty, the product's featured image is used"
+        },
+        {
+          "type": "text",
+          "id": "option_1_badge",
+          "label": "Option #1 Badge",
+          "info": "For example: Most Popular or Best Value. Leave empty for no badge."
+        },
+        {
+          "type": "text",
+          "id": "option_1_gift_label",
+          "label": "Option #1 Free gift label",
+          "info": "For example: + FREE Care Guide E-Book. Leave empty to hide the gift strip."
+        },
+        {
+          "type": "text",
+          "id": "option_1_gift_price",
+          "label": "Option #1 Free gift value",
+          "info": "Displayed with a strike-through, for example $15.00"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_1_gift_image",
+          "label": "Option #1 Free gift image"
+        },
+        {
           "type": "header",
           "content": "Quantity option #2"
         },
@@ -2078,6 +2166,35 @@
           "default": "compare_price",
           "label": "Option #2 Compare price based on",
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_2_image",
+          "label": "Option #2 Image",
+          "info": "If empty, the product's featured image is used"
+        },
+        {
+          "type": "text",
+          "id": "option_2_badge",
+          "label": "Option #2 Badge",
+          "info": "For example: Most Popular or Best Value. Leave empty for no badge."
+        },
+        {
+          "type": "text",
+          "id": "option_2_gift_label",
+          "label": "Option #2 Free gift label",
+          "info": "For example: + FREE Care Guide E-Book. Leave empty to hide the gift strip."
+        },
+        {
+          "type": "text",
+          "id": "option_2_gift_price",
+          "label": "Option #2 Free gift value",
+          "info": "Displayed with a strike-through, for example $15.00"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_2_gift_image",
+          "label": "Option #2 Free gift image"
         },
         {
           "type": "header",
@@ -2145,6 +2262,35 @@
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
         },
         {
+          "type": "image_picker",
+          "id": "option_3_image",
+          "label": "Option #3 Image",
+          "info": "If empty, the product's featured image is used"
+        },
+        {
+          "type": "text",
+          "id": "option_3_badge",
+          "label": "Option #3 Badge",
+          "info": "For example: Most Popular or Best Value. Leave empty for no badge."
+        },
+        {
+          "type": "text",
+          "id": "option_3_gift_label",
+          "label": "Option #3 Free gift label",
+          "info": "For example: + FREE Care Guide E-Book. Leave empty to hide the gift strip."
+        },
+        {
+          "type": "text",
+          "id": "option_3_gift_price",
+          "label": "Option #3 Free gift value",
+          "info": "Displayed with a strike-through, for example $15.00"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_3_gift_image",
+          "label": "Option #3 Free gift image"
+        },
+        {
           "type": "header",
           "content": "Quantity option #4"
         },
@@ -2208,6 +2354,35 @@
           "default": "compare_price",
           "label": "Option #4 Compare price based on",
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_4_image",
+          "label": "Option #4 Image",
+          "info": "If empty, the product's featured image is used"
+        },
+        {
+          "type": "text",
+          "id": "option_4_badge",
+          "label": "Option #4 Badge",
+          "info": "For example: Most Popular or Best Value. Leave empty for no badge."
+        },
+        {
+          "type": "text",
+          "id": "option_4_gift_label",
+          "label": "Option #4 Free gift label",
+          "info": "For example: + FREE Care Guide E-Book. Leave empty to hide the gift strip."
+        },
+        {
+          "type": "text",
+          "id": "option_4_gift_price",
+          "label": "Option #4 Free gift value",
+          "info": "Displayed with a strike-through, for example $15.00"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_4_gift_image",
+          "label": "Option #4 Free gift image"
         },
         {
           "type": "header",
