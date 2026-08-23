@@ -25,10 +25,13 @@
       <div class="thessvane-reviews__grid">
         {%- for block in review_blocks -%}
           <div class="thessvane-reviews__card" {{ block.shopify_attributes }}>
-            <div class="thessvane-reviews__stars" aria-hidden="true">
-              {%- for i in (1..5) -%}
-                {%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}
-              {%- endfor -%}
+            <div class="thessvane-reviews__stars">
+              <span class="visually-hidden">Rated {{ block.settings.rating }} out of 5 stars</span>
+              <span aria-hidden="true">
+                {%- for i in (1..5) -%}
+                  {%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}
+                {%- endfor -%}
+              </span>
             </div>
             <p class="thessvane-reviews__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
             <div class="thessvane-reviews__person">
@@ -41,6 +44,9 @@
           </div>
         {%- endfor -%}
       </div>
+    {%- endif -%}
+    {%- if section.settings.show_placeholder_flag -%}
+      <p class="thessvane-reviews__flag">Example reviews shown until real customer reviews are added — replace with genuine testimonials before launch</p>
     {%- endif -%}
   </div>
 </section>
@@ -55,10 +61,21 @@
   },
   "settings": [
     {
+      "type": "paragraph",
+      "content": "The default reviews below are examples, not real customer feedback. Replace them with genuine reviews before launch, and turn off the on-page reminder flag once you have."
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_placeholder_flag",
+      "default": true,
+      "label": "Show \"example reviews\" reminder text",
+      "info": "A small on-page note reminding you these aren't real reviews yet. Turn off once you've added genuine ones."
     },
     {
       "type": "header",

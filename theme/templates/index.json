@@ -250,7 +250,8 @@
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 96,
-        "padding_bottom": 96
+        "padding_bottom": 96,
+        "show_placeholder_flag": true
       }
     },
     "thessvane_ugc": {
