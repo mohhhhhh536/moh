@@ -10,7 +10,7 @@ The egress allowlist was widened mid-research, which unblocked most sources. Cur
 | Source | Status | Result |
 |---|---|---|
 | **Google Trends** | **Working** | **16-year + 5-year US curves pulled for 12 terms — see §Evergreen below** |
-| **AliExpress** | **Partial** | 60 live listings captured for one category; anti-bot rate-limiting blocked the rest |
+| **AliExpress** | **Partial** | 60 live listings captured for one category (real prices/orders/ratings); anti-bot rate-limiting blocked the rest **and blocked link re-verification** |
 | `autods.com` | Reachable, unusable | Catalogue sits behind a login this session does not have |
 | Amazon reviews | Blocked | Returns 404/CAPTCHA to datacenter IPs |
 | Reddit | Blocked | 403 to datacenter IPs (incl. `.json` endpoints) |
@@ -405,7 +405,8 @@ items here ($16.35 and $11.47) are **physiotherapy/muscle-scraping tools**, not 
 They pollute the same search results — filter on facial use or you will source the wrong product.
 
 **Verification status:** these URLs came from AliExpress's own structured listing data, so the IDs
-are real. Live HTTP re-checks were run separately; see the verification note below.
+are real — but live HTTP re-checks did **not** succeed (IP rate-limited). Treat as unconfirmed and
+click before committing. See the verification note below.
 
 ---
 
@@ -441,22 +442,28 @@ exactly on-brand for a store already saying *"Nothing Hidden. Nothing Harsh."*
 
 ## Verification note — what "verified link" means here
 
-The brief asked that every link be verified before inclusion. Here is the honest accounting.
+The brief asked that every link be verified before inclusion. The honest accounting:
 
-**The 11 listing URLs above are real**, extracted from AliExpress's own embedded structured data
-(`_init_data_` / schema.org `ItemList`) on a successfully fetched search page — not constructed or
-guessed. Each carries its real price, order count and rating as AliExpress served them.
+**The 11 listing URLs are real, but I could not complete a live HTTP re-check on them.**
 
-**Live HTTP re-verification was only partially achievable.** After the first successful fetch,
-AliExpress flagged this session's IP and began returning its anti-bot "punish" interstitial to
-subsequent requests. A paced re-check with backoff was run against all 11 URLs; results are recorded
-in `verified.json` alongside this report. Any URL not confirmed `LIVE` should be treated as
-**unconfirmed rather than broken** — the block is on the fetcher, not evidence the listing is dead.
+*What is solid:* the URLs were extracted from AliExpress's own embedded structured data
+(`_init_data_` and a schema.org `ItemList`) on a search page that fetched successfully on
+23 Aug 2026. They are not constructed, guessed, or pattern-generated. Each carries the real price,
+order count and rating AliExpress served alongside it, and the item IDs are internally consistent
+across two independent data structures on the same page.
 
-**Before you spend money, click them.** AliExpress listings genuinely do disappear, and a real
-browser resolves in seconds what an automated fetch cannot from this environment.
+*What failed:* immediately after that fetch, AliExpress flagged this session's IP and began
+returning its anti-bot "punish" interstitial. A paced re-check with exponential backoff was run
+against all 11 URLs and **confirmed none of them** — every request was intercepted before reaching
+a listing. I stopped the job rather than keep hammering, since that only extends the block.
 
----
+*What this means:* the URLs are **unconfirmed, not broken.** The block is on my fetcher, not
+evidence about the listings. But unconfirmed is unconfirmed — I will not describe these as
+"verified links" when the verification step returned no successes.
+
+**Click them before you spend money.** AliExpress listings do rotate and disappear, and a real
+browser on a residential connection resolves in seconds what this environment cannot. If any
+listing is gone, the §4 sourcing spec will find its equivalent.
 
 ## Still not retrieved, and why
 
