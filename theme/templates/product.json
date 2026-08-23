@@ -176,15 +176,18 @@
         "reviews_wbqVgr": {
           "type": "reviews",
           "settings": {
-            "display_stars": true,
-            "star_color": "#ffcc00",
+            "display_stars": false,
+            "star_color": "#C2A878",
             "avatar_alignment": "top",
-            "author_1": "Yuval",
-            "text_1": "<p>This is my go-to piece! It\u2019s versatile, comfortable, and looks great whether I\u2019m dressing it up or keeping it casual. Highly recommend!</p>",
-            "author_2": "The quality is incredible! The fabric feels premium, and the fit is just perfect. I\u2019ve received so many compliments every time I wear it.",
-            "text_2": "<p>Venesa</p>",
-            "author_3": "Jessica",
-            "text_3": "<p>Absolutely love it! The attention to detail is amazing, and it\u2019s so flattering. Worth every penny!</p>",
+            "author_1": "",
+            "text_1": "<p>Customer reviews for this product are coming soon.</p>",
+            "image_1": "",
+            "author_2": "",
+            "text_2": "",
+            "image_2": "",
+            "author_3": "",
+            "text_3": "",
+            "image_3": "",
             "margin_top": 18,
             "margin_bottom": 18
           }
