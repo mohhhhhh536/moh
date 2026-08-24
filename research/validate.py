@@ -98,10 +98,12 @@ def main():
     print(f"    above it, the {MIN_MARKUP:.0f}x markup rule binds "
           f"({MIN_MARKUP:.0f}x clears ${MIN_NET_PROFIT:.0f} on its own)")
 
-    rec = to_product(data["recommended"])
-    report(rec)
-    sensitivity(data["recommended"]["supplier_cost_range"], rec.sell_price)
-    print(f"\n  Note: {data['recommended']['verdict_notes']}")
+    for key, entry in [("recommended", data["recommended"])] + [
+            ("additional", a) for a in data.get("additional", [])]:
+        p = to_product(entry)
+        report(p)
+        sensitivity(entry["supplier_cost_range"], p.sell_price)
+        print(f"\n  Note: {entry['verdict_notes']}")
 
     report(to_product(data["runner_up"]))
 

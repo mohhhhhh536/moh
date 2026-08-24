@@ -78,6 +78,28 @@ class TestCandidates(unittest.TestCase):
         _, passed = evaluate(to_product(self.data["runner_up"]))
         self.assertTrue(passed)
 
+    def test_all_additional_picks_pass_all_six_gates(self):
+        for entry in self.data["additional"]:
+            gates, passed = evaluate(to_product(entry))
+            failed = [l for l, ok, _ in gates if not ok]
+            self.assertTrue(passed, f"{entry['name']} failed: {failed}")
+
+    def test_every_pick_ships_under_the_ceiling(self):
+        for entry in [self.data["recommended"]] + self.data["additional"]:
+            self.assertLessEqual(entry["shipping_cost"], 5.0, entry["name"])
+
+    def test_every_pick_has_a_recurring_upsell(self):
+        for entry in [self.data["recommended"]] + self.data["additional"]:
+            self.assertTrue(any(u.get("recurring") for u in entry["upsells"]), entry["name"])
+            self.assertGreaterEqual(len(entry["upsells"]), 2, entry["name"])
+
+    def test_acne_pick_sits_below_the_crossover(self):
+        # Documented in its verdict_notes: the $20 net rule binds here, not 3x.
+        acne = next(a for a in self.data["additional"] if "Acne" in a["name"])
+        self.assertLess(acne["supplier_cost"], markup_crossover())
+        self.assertEqual(binding_gate(acne["supplier_cost"]), "net_profit")
+        self.assertAlmostEqual(min_viable_sell(acne["supplier_cost"]), 51.43, places=2)
+
     def test_recommended_shipping_under_ceiling(self):
         self.assertLessEqual(self.data["recommended"]["shipping_cost"], 5.0)
 
