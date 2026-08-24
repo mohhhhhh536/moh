@@ -1,0 +1,69 @@
+{
+  "recommended": {
+    "name": "RF + EMS + LED Neck & Jaw Sculpting Device",
+    "positioning": "Below-the-chin skin tightening. Not a face device.",
+    "supplier_cost": 24.0,
+    "supplier_cost_range": [18.0, 32.0],
+    "sell_price": 89.0,
+    "shipping_cost": 3.5,
+    "weight_grams": 260,
+    "dimensions_in": "7 x 3 x 2 boxed",
+    "pain": "Sagging jawline, jowls and crepey neck skin. The neck is the age tell people cannot hide with makeup. Clinical alternatives are a neck lift ($7k-15k) or Ultherapy ($2k-4k), so the willingness to pay $89 is already established.",
+    "pain_type": "emotional",
+    "evergreen_evidence": "RF is the structural growth leader in home beauty devices: 18.7% CAGR, 30%+ of category share, 42% of consumers name it their primary interest. Home-use beauty devices $14.4B (2026) to $21.85B (2030), 11% CAGR. Anti-aging is evergreen by construction, not a fad cycle.",
+    "upsells": [
+      {"name": "RF conductive gel (4oz)", "cost": 2.5, "sell": 19.0, "recurring": true,
+       "note": "Device does not conduct or glide without it. Mandatory consumable = built-in repeat purchase."},
+      {"name": "Peptide neck & decollete firming serum", "cost": 4.0, "sell": 29.0, "recurring": true},
+      {"name": "Silicone overnight neck smoothing patches", "cost": 3.0, "sell": 24.0, "recurring": false}
+    ],
+    "competitor_keywords": [
+      "neck tightening device",
+      "jawline sculpting device",
+      "RF skin tightening at home",
+      "turkey neck treatment",
+      "double chin device",
+      "neck firming device before after",
+      "EMS neck lifting device",
+      "sagging neck skin device"
+    ],
+    "saturation_note": "Category is validated but the ANGLE is open. LED face masks, pore vacuums and ice rollers are explicitly the saturated plays. RF is dominated by $200-500 brand devices (NuFACE, TriPollar, Therabody, Solawave), and industry analysis flags the high price of incumbents as the opening for price-competitive sellers. Below-the-chin devices are named as the 2026 expansion area rather than a crowded one.",
+    "verdict_notes": "Buy at or under $26 to keep the 3x gate safe. At a $32 supplier cost, $89 falls to 2.78x markup and fails gate 2 even though net profit is still $30.30."
+  },
+  "runner_up": {
+    "name": "Microcurrent Facial Toning Device",
+    "supplier_cost": 19.0,
+    "sell_price": 79.0,
+    "shipping_cost": 3.25,
+    "weight_grams": 220,
+    "dimensions_in": "6 x 3 x 2 boxed",
+    "pain": "Loss of facial definition and muscle tone.",
+    "pain_type": "emotional",
+    "evergreen_evidence": "Unit sales +22.4%, market $691M (2025), but a slower 7% CAGR and visible Dec/Jan gifting peaks with a May trough.",
+    "upsells": [
+      {"name": "Conductive gel primer", "cost": 2.5, "sell": 19.0, "recurring": true},
+      {"name": "Travel case", "cost": 3.0, "sell": 19.0, "recurring": false}
+    ],
+    "competitor_keywords": ["microcurrent facial device", "face lifting device", "NuFACE alternative", "facial toning device"],
+    "saturation_note": "Weaker on gate 6 than the RF pick. NuFACE has trained the market so hard that most listings read as dupes, and search interest is seasonal rather than flat.",
+    "verdict_notes": "Passes all six gates but on thinner ground. Hold as the second test, not the first."
+  },
+  "rejected": [
+    {
+      "name": "LED Face Mask",
+      "reason": "Gate 6. Highest-share device sub-category (23.7% of facial device market, +27.6% YoY) and named across dropshipping roundups as a top pick, which is exactly the problem. Competing against Omnilux, CurrentBody and Shark plus every dropshipper running the same creative."
+    },
+    {
+      "name": "Ice Roller / Cryo Globes",
+      "reason": "Gates 2 and 6. Supplier cost around $3-5 forces a 7x+ markup to reach $20 net, which the perceived value will not carry. Market described as competitive with many brands selling variants."
+    },
+    {
+      "name": "Blackhead / Pore Vacuum",
+      "reason": "Gate 1 and 6. Pain is cosmetic-mild rather than deep, the device underdelivers against the satisfying-content marketing that sells it, and the resulting refund rate blows past the 5% returns assumption in the formula."
+    },
+    {
+      "name": "Facial Steamer",
+      "reason": "Gate 3. Bulky and water-holding, pushing shipping past the $5 ceiling."
+    }
+  ]
+}
