@@ -3,7 +3,10 @@
     "name": "RF + EMS + LED Neck & Jaw Sculpting Device",
     "positioning": "Below-the-chin skin tightening. Not a face device.",
     "supplier_cost": 24.0,
-    "supplier_cost_range": [18.0, 32.0],
+    "supplier_cost_range": [
+      18.0,
+      32.0
+    ],
     "sell_price": 89.0,
     "shipping_cost": 3.5,
     "weight_grams": 260,
@@ -12,10 +15,25 @@
     "pain_type": "emotional",
     "evergreen_evidence": "RF is the structural growth leader in home beauty devices: 18.7% CAGR, 30%+ of category share, 42% of consumers name it their primary interest. Home-use beauty devices $14.4B (2026) to $21.85B (2030), 11% CAGR. Anti-aging is evergreen by construction, not a fad cycle.",
     "upsells": [
-      {"name": "RF conductive gel (4oz)", "cost": 2.5, "sell": 19.0, "recurring": true,
-       "note": "Device does not conduct or glide without it. Mandatory consumable = built-in repeat purchase."},
-      {"name": "Peptide neck & decollete firming serum", "cost": 4.0, "sell": 29.0, "recurring": true},
-      {"name": "Silicone overnight neck smoothing patches", "cost": 3.0, "sell": 24.0, "recurring": false}
+      {
+        "name": "RF conductive gel (4oz)",
+        "cost": 2.5,
+        "sell": 19.0,
+        "recurring": true,
+        "note": "Device does not conduct or glide without it. Mandatory consumable = built-in repeat purchase."
+      },
+      {
+        "name": "Peptide neck & decollete firming serum",
+        "cost": 4.0,
+        "sell": 29.0,
+        "recurring": true
+      },
+      {
+        "name": "Silicone overnight neck smoothing patches",
+        "cost": 3.0,
+        "sell": 24.0,
+        "recurring": false
+      }
     ],
     "competitor_keywords": [
       "neck tightening device",
@@ -27,8 +45,24 @@
       "EMS neck lifting device",
       "sagging neck skin device"
     ],
-    "saturation_note": "Category is validated but the ANGLE is open. LED face masks, pore vacuums and ice rollers are explicitly the saturated plays. RF is dominated by $200-500 brand devices (NuFACE, TriPollar, Therabody, Solawave), and industry analysis flags the high price of incumbents as the opening for price-competitive sellers. Below-the-chin devices are named as the 2026 expansion area rather than a crowded one.",
-    "verdict_notes": "Buy at or under $26 to keep the 3x gate safe. At a $32 supplier cost, $89 falls to 2.78x markup and fails gate 2 even though net profit is still $30.30."
+    "saturation_note": "Category is validated but the ANGLE is open. LED face masks, pore vacuums and ice rollers are explicitly the saturated plays. Verified incumbent pricing (Aug 2026): NuFACE Trinity starter $350 (complete $525), TriPollar STOP Vx $629, STOP Vx Gold $849. Nothing credible sits under $100, so an $89 offer enters an empty price band rather than undercutting a crowded one. Below-the-chin devices are named as the 2026 expansion area rather than a crowded one.",
+    "verdict_notes": "Buy at or under $26 to keep the 3x gate safe. At a $32 supplier cost, $89 falls to 2.78x markup and fails gate 2 even though net profit is still $30.30.",
+    "incumbent_pricing_usd": {
+      "NuFACE Trinity starter": 350,
+      "NuFACE Trinity complete": 525,
+      "TriPollar STOP Vx": 629,
+      "TriPollar STOP Vx Gold": 849
+    },
+    "pain_review_language": [
+      "Finally an easy to use and comfortable device to address aging skin.",
+      "got rid of my second chin and sagging skin on my jawline",
+      "I will never stop using this. My skin is tighter, firmer and glowing."
+    ],
+    "unverified": {
+      "meta_ads_library": "Not reachable. /ads/library/ returns 403 to non-browser clients and keyword search needs a logged-in FB session. TikTok Creative Center also login-gated. No competitor ad spend or run-length is measured or claimed.",
+      "supplier_cost": "$24 is a published wholesale range, not a confirmed SKU quote.",
+      "google_trends": "Evergreen case rests on market CAGR data, not a pulled 5-year Trends curve."
+    }
   },
   "runner_up": {
     "name": "Microcurrent Facial Toning Device",
@@ -41,10 +75,25 @@
     "pain_type": "emotional",
     "evergreen_evidence": "Unit sales +22.4%, market $691M (2025), but a slower 7% CAGR and visible Dec/Jan gifting peaks with a May trough.",
     "upsells": [
-      {"name": "Conductive gel primer", "cost": 2.5, "sell": 19.0, "recurring": true},
-      {"name": "Travel case", "cost": 3.0, "sell": 19.0, "recurring": false}
+      {
+        "name": "Conductive gel primer",
+        "cost": 2.5,
+        "sell": 19.0,
+        "recurring": true
+      },
+      {
+        "name": "Travel case",
+        "cost": 3.0,
+        "sell": 19.0,
+        "recurring": false
+      }
     ],
-    "competitor_keywords": ["microcurrent facial device", "face lifting device", "NuFACE alternative", "facial toning device"],
+    "competitor_keywords": [
+      "microcurrent facial device",
+      "face lifting device",
+      "NuFACE alternative",
+      "facial toning device"
+    ],
     "saturation_note": "Weaker on gate 6 than the RF pick. NuFACE has trained the market so hard that most listings read as dupes, and search interest is seasonal rather than flat.",
     "verdict_notes": "Passes all six gates but on thinner ground. Hold as the second test, not the first."
   },
