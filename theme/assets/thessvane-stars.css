@@ -1,0 +1,39 @@
+.tv-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1;
+}
+
+.tv-stars__row {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--tv-star-color, #e0a100);
+}
+
+.tv-stars__track {
+  display: inline-flex;
+  gap: 0.2rem;
+  opacity: 0.25;
+}
+
+.tv-stars__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  gap: 0.2rem;
+  overflow: hidden;
+}
+
+.tv-stars__star {
+  width: var(--tv-star-size, 14px);
+  height: var(--tv-star-size, 14px);
+  flex: 0 0 auto;
+}
+
+.tv-stars__label {
+  font-size: 1.3rem;
+  opacity: 0.75;
+}

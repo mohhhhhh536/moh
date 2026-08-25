@@ -1,0 +1,376 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .htu-{{ section.id }} .htu__intro {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .htu-{{ section.id }} .htu__title { margin: 0 0 8px; }
+  .htu-{{ section.id }} .htu__description {
+    margin: 0 auto;
+    max-width: 62ch;
+  }
+
+  .htu-{{ section.id }} .htu__steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    counter-reset: htu-step;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media screen and (min-width: 750px) {
+    .htu-{{ section.id }} .htu__steps {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  .htu-{{ section.id }} .htu__step {
+    counter-increment: htu-step;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .htu-{{ section.id }} .htu__frame {
+    position: relative;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    border-radius: {{ section.settings.corner_radius }}px;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+  .htu-{{ section.id }} .htu__frame img,
+  .htu-{{ section.id }} .htu__frame .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .htu-{{ section.id }} .htu__frame .placeholder-svg {
+    background: rgba(var(--color-foreground), 0.04);
+    fill: rgba(var(--color-foreground), 0.28);
+  }
+
+  .htu-{{ section.id }} .htu__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  }
+  .htu-{{ section.id }} .htu__badge::before {
+    content: counter(htu-step);
+  }
+
+  .htu-{{ section.id }} .htu__step-title { margin: 0; }
+  .htu-{{ section.id }} .htu__step-text { margin: 0; }
+  .htu-{{ section.id }} .htu__step-text p { margin: 0; }
+
+  .htu-{{ section.id }} .htu__step-note {
+    /* Pushed to the bottom so notes line up across steps of unequal length. */
+    margin: auto 0 0;
+    padding-left: 10px;
+    border-left: 2px solid rgba(var(--color-foreground), 0.25);
+    font-size: 1.3rem;
+    font-style: italic;
+    opacity: 0.75;
+    text-align: left;
+  }
+
+  .htu-{{ section.id }} .htu__note {
+    margin: 28px auto 0;
+    max-width: 70ch;
+    text-align: center;
+    font-size: 1.3rem;
+    opacity: 0.7;
+  }
+  .htu-{{ section.id }} .htu__note p { margin: 0; }
+  .htu-{{ section.id }} .htu__cta { margin-top: 32px; text-align: center; }
+{%- endstyle -%}
+
+<div class="htu-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="section-{{ section.id }}-padding page-width">
+    {%- if section.settings.title != blank or section.settings.description != blank -%}
+      <div class="htu__intro">
+        {%- if section.settings.title != blank -%}
+          <h2 class="htu__title title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="htu__description subtitle rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ol class="htu__steps">
+      {%- for block in section.blocks -%}
+        {%- assign step_alt = block.settings.image.alt | default: block.settings.step_title -%}
+        <li class="htu__step" {{ block.shopify_attributes }}>
+          <div class="htu__frame">
+            {%- if section.settings.show_step_numbers -%}
+              <span class="htu__badge" aria-hidden="true"></span>
+            {%- endif -%}
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '(min-width: 990px) 22vw, (min-width: 750px) 30vw, 45vw',
+                  widths: '200, 300, 400, 600, 900',
+                  alt: step_alt
+              }}
+            {%- else -%}
+              {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' -}}
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.step_title != blank -%}
+            <h3 class="htu__step-title h5">{{ block.settings.step_title | escape }}</h3>
+          {%- endif -%}
+          {%- if block.settings.step_text != blank -%}
+            <div class="htu__step-text rte">{{ block.settings.step_text }}</div>
+          {%- endif -%}
+          {%- if block.settings.step_note != blank -%}
+            <p class="htu__step-note">{{ block.settings.step_note | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- if section.settings.footnote != blank -%}
+      <div class="htu__note rte">{{ section.settings.footnote }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="htu__cta">
+        <a
+          {% if section.settings.cta_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.cta_link }}"
+          {% endif %}
+          class="button"
+        >
+          {{- section.settings.cta_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How To Use Steps",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "A numbered row of application steps. Steps without an uploaded photo show a placeholder graphic, so you can write the routine now and add real photos or video stills later."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "How To Use It",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Four steps, about a minute. Works into an existing morning or evening routine without rearranging it.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-2",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Steps per row on desktop"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "3 / 4", "label": "Tall portrait" },
+        { "value": "9 / 16", "label": "Vertical video" }
+      ],
+      "default": "3 / 4",
+      "label": "Photo shape"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 12,
+      "label": "Photo corner radius"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_step_numbers",
+      "default": true,
+      "label": "Show step numbers on photos"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "richtext",
+      "id": "footnote",
+      "default": "<p>New to acids? Start every other day for the first week, then build up to daily as your skin adjusts.</p>",
+      "label": "Side note",
+      "info": "Small print under the steps. Useful for a usage caution or a patch-test reminder."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "default": "Step title",
+          "label": "Step title"
+        },
+        {
+          "type": "richtext",
+          "id": "step_text",
+          "default": "<p>Describe what to do in one short sentence.</p>",
+          "label": "Step description"
+        },
+        {
+          "type": "text",
+          "id": "step_note",
+          "label": "Side note",
+          "info": "Optional tip shown under the step, e.g. \"a pea-sized amount is plenty\"."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How To Use Steps",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}
