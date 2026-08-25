@@ -26,6 +26,28 @@ import sys
 SECTION_NAME_MAX = 25
 SCHEMA_RE = re.compile(r'\{%\s*schema\s*%\}(.*?)\{%\s*endschema\s*%\}', re.S)
 
+# Shopify's schema parser tolerates // and /* */ comments even though they
+# are not valid JSON — theme developers use them to comment out settings.
+# Strict json.loads chokes on these, so strip them first, respecting quoted
+# strings (a "//" or "/*" inside a JSON string value is not a comment).
+_COMMENT_RE = re.compile(
+    r'"(?:\\.|[^"\\])*"'   # a JSON string — left untouched
+    r'|//[^\n]*'           # a line comment — dropped
+    r'|/\*.*?\*/',         # a block comment — dropped
+    re.S,
+)
+
+
+def strip_json_comments(text):
+    def repl(m):
+        s = m.group(0)
+        return s if s.startswith('"') else ''
+    return _COMMENT_RE.sub(repl, text)
+
+
+def load_jsonc(text):
+    return json.loads(strip_json_comments(text))
+
 
 class Report:
     def __init__(self):
@@ -45,6 +67,29 @@ def setting_ids(settings):
 
 def richtext_ids(settings):
     return {s['id'] for s in settings if s.get('type') == 'richtext' and 'id' in s}
+
+
+def range_specs(settings):
+    """id -> (min, max, step) for every `range` setting."""
+    out = {}
+    for s in settings:
+        if s.get('type') == 'range' and 'id' in s:
+            out[s['id']] = (s.get('min', 0), s.get('max'), s.get('step', 1))
+    return out
+
+
+def range_violation(value, spec):
+    """Shopify requires a range value to land on min + n*step, within bounds."""
+    minimum, maximum, step = spec
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return f"is not a number"
+    if value < minimum or (maximum is not None and value > maximum):
+        return f"is outside {minimum}–{maximum}"
+    if step:
+        steps = (value - minimum) / step
+        if abs(steps - round(steps)) > 1e-9:
+            return f"is not a step of {step} from {minimum}"
+    return None
 
 
 # Shopify's richtext editor requires every top-level node to be one of these;
@@ -72,7 +117,7 @@ def check_section(path, report, lint):
         return None
 
     try:
-        schema = json.loads(match.group(1))
+        schema = load_jsonc(match.group(1))
     except ValueError as exc:
         if lint:
             report.error(f"{path}: schema is not valid JSON: {exc}")
@@ -133,7 +178,7 @@ def check_section(path, report, lint):
 
 def check_template(path, schemas, report):
     try:
-        data = json.load(open(path, encoding='utf-8'))
+        data = load_jsonc(open(path, encoding='utf-8').read())
     except ValueError as exc:
         report.error(f"{path}: not valid JSON: {exc}")
         return
@@ -147,12 +192,17 @@ def check_template(path, schemas, report):
 
         section_ids = setting_ids(schema.get('settings', []))
         section_richtext_ids = richtext_ids(schema.get('settings', []))
+        section_range_specs = range_specs(schema.get('settings', []))
         block_ids = {
             b['type']: setting_ids(b.get('settings', []))
             for b in schema.get('blocks', [])
         }
         block_richtext_ids = {
             b['type']: richtext_ids(b.get('settings', []))
+            for b in schema.get('blocks', [])
+        }
+        block_range_specs = {
+            b['type']: range_specs(b.get('settings', []))
             for b in schema.get('blocks', [])
         }
 
@@ -162,13 +212,21 @@ def check_template(path, schemas, report):
                     f"{path} [{key}]: sets {name!r}, not a setting of "
                     f"{section['type']}"
                 )
-            elif (name in section_richtext_ids and isinstance(value, str)
-                    and not is_wrapped_richtext(value)):
-                report.error(
-                    f"{path} [{key}].{name}: richtext value {value!r} has no "
-                    "top-level <p>/<ul>/<ol>/<h1>-<h6> wrapper; Shopify "
-                    "rejects this on upload"
-                )
+                continue
+            if name in section_richtext_ids and isinstance(value, str):
+                if not is_wrapped_richtext(value):
+                    report.error(
+                        f"{path} [{key}].{name}: richtext value {value!r} has no "
+                        "top-level <p>/<ul>/<ol>/<h1>-<h6> wrapper; Shopify "
+                        "rejects this on upload"
+                    )
+            if name in section_range_specs:
+                problem = range_violation(value, section_range_specs[name])
+                if problem:
+                    report.error(
+                        f"{path} [{key}].{name} = {value!r} {problem} "
+                        f"(range is {section_range_specs[name]})"
+                    )
 
         for block_key, block in section.get('blocks', {}).items():
             block_type = block.get('type')
@@ -184,13 +242,22 @@ def check_template(path, schemas, report):
                         f"{path} [{key}/{block_key}]: sets {name!r}, not a "
                         f"setting of {section['type']}.{block_type}"
                     )
-                elif (name in block_richtext_ids.get(block_type, set())
-                        and isinstance(value, str) and not is_wrapped_richtext(value)):
-                    report.error(
-                        f"{path} [{key}/{block_key}].{name}: richtext value "
-                        f"{value!r} has no top-level <p>/<ul>/<ol>/<h1>-<h6> "
-                        "wrapper; Shopify rejects this on upload"
-                    )
+                    continue
+                if name in block_richtext_ids.get(block_type, set()) and isinstance(value, str):
+                    if not is_wrapped_richtext(value):
+                        report.error(
+                            f"{path} [{key}/{block_key}].{name}: richtext value "
+                            f"{value!r} has no top-level <p>/<ul>/<ol>/<h1>-<h6> "
+                            "wrapper; Shopify rejects this on upload"
+                        )
+                specs = block_range_specs.get(block_type, {})
+                if name in specs:
+                    problem = range_violation(value, specs[name])
+                    if problem:
+                        report.error(
+                            f"{path} [{key}/{block_key}].{name} = {value!r} "
+                            f"{problem} (range is {specs[name]})"
+                        )
 
         for block_key in section.get('block_order', []):
             if block_key not in section.get('blocks', {}):
