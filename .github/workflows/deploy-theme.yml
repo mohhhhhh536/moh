@@ -1,0 +1,128 @@
+name: Deploy theme to Shopify
+
+# Manual only. Nothing deploys on a push — you run this from the Actions tab
+# when you want it live.
+#
+# One-time setup:
+#   1. In Shopify admin, install the "Theme Access" app (published by Shopify).
+#   2. Create a password for the theme. Shopify emails a token starting shptka_.
+#   3. In GitHub: Settings -> Secrets and variables -> Actions -> New repository
+#      secret. Name it SHOPIFY_CLI_THEME_TOKEN and paste the token.
+#
+# Then: Actions -> "Deploy theme to Shopify" -> Run workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_id:
+        description: >-
+          Theme ID to push to. Leave blank to push to the LIVE published theme.
+          Run "List Shopify themes" first to find IDs.
+        type: string
+        required: false
+        default: ''
+      scope:
+        description: What to upload
+        type: choice
+        required: true
+        default: product-page
+        options:
+          - product-page
+          - entire-theme
+      confirm_live:
+        description: >-
+          Tick this to confirm you really mean the live published theme.
+          Ignored when a theme_id is given.
+        type: boolean
+        required: false
+        default: false
+
+env:
+  SHOPIFY_FLAG_STORE: ${{ vars.SHOPIFY_STORE || 'bys-user-store-358852-skpnrnec.myshopify.com' }}
+
+jobs:
+  deploy:
+    name: Push to Shopify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # A broken schema is far cheaper to catch here than on the storefront.
+      - name: Validate theme
+        run: python3 scripts/check-theme.py --theme-root theme
+
+      - name: Guard the live theme
+        if: inputs.theme_id == '' && inputs.confirm_live != true
+        run: |
+          echo "::error::No theme_id given, which targets the LIVE published theme."
+          echo "::error::Re-run with confirm_live ticked, or pass a theme_id."
+          exit 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli@latest
+
+      - name: Show themes on the store
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: shopify theme list
+
+      - name: Push
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          # Passed through the environment rather than interpolated into the
+          # script, so the input cannot be read as shell.
+          THEME_ID: ${{ inputs.theme_id }}
+          SCOPE: ${{ inputs.scope }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$THEME_ID" ]; then
+            echo "Target: the LIVE published theme"
+            target=(--live --allow-live)
+          else
+            echo "Target: theme $THEME_ID"
+            target=(--theme "$THEME_ID")
+          fi
+
+          if [ "$SCOPE" = "product-page" ]; then
+            echo "Scope: the product page files only"
+            # Named one by one rather than globbed, so this can never widen
+            # to files it was not meant to touch.
+            scope=(
+              --only sections/thessvane-product-story.liquid
+              --only sections/thessvane-how-to-use.liquid
+              --only sections/thessvane-before-after.liquid
+              --only snippets/thessvane-stars.liquid
+              --only assets/thessvane-stars.css
+              --only templates/product.json
+              --only templates/product.general_template.json
+            )
+          else
+            echo "Scope: the entire theme, including config/settings_data.json."
+            echo "Any theme-editor change not committed to this repo will be reverted."
+            scope=()
+          fi
+
+          # --nodelete: never remove a file from the store just because this
+          # repo does not have it.
+          shopify theme push \
+            --path theme \
+            --nodelete \
+            "${target[@]}" \
+            "${scope[@]}"
+
+      - name: Done
+        run: |
+          echo "### Pushed to Shopify" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Store: \`$SHOPIFY_FLAG_STORE\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Scope: \`${{ inputs.scope }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Theme: \`${{ inputs.theme_id || 'live published theme' }}\`" >> "$GITHUB_STEP_SUMMARY"

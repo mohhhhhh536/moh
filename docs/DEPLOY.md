@@ -2,6 +2,9 @@
 
 Store: `bys-user-store-358852-skpnrnec.myshopify.com`
 
+There are four ways to do this. **Option D (GitHub Actions) is the one to use
+if you want to click a button rather than copy files by hand.**
+
 ## First, the one rule
 
 **Duplicate your live theme before you touch anything.** Online Store →
@@ -113,3 +116,52 @@ Read `docs/product-page-guide.md`. It lists what to shoot for each photo slot
 and — more importantly — the placeholder claims that need your real numbers
 before customers see them: the 4.9 rating, all the review text and names, the
 3–7 day shipping estimate, and the 10/15/20% bundle discounts.
+
+
+## Option D — deploy from GitHub Actions
+
+`.github/workflows/deploy-theme.yml` pushes the theme to Shopify for you.
+GitHub's runners can reach your store, so this needs nothing installed on your
+machine.
+
+### One-time setup
+
+1. **Shopify admin → Apps → Shopify App Store** → install **Theme Access**
+   (published by Shopify).
+2. Open it → **Create password** → pick the theme → it emails you a token
+   starting `shptka_`.
+3. **GitHub → your repo → Settings → Secrets and variables → Actions → New
+   repository secret.** Name: `SHOPIFY_CLI_THEME_TOKEN`. Value: the token.
+
+The store domain is already set in the workflow. To point it elsewhere, add a
+repository *variable* named `SHOPIFY_STORE`.
+
+### Running it
+
+**Actions → List Shopify themes → Run workflow** first. The log prints every
+theme with its ID, including which one is live.
+
+Then **Actions → Deploy theme to Shopify → Run workflow**:
+
+| Input | What to put |
+|-------|-------------|
+| `theme_id` | The ID to push to. **Leave blank to target the live published theme.** |
+| `scope` | `product-page` uploads only the seven files this change touches. `entire-theme` uploads everything. |
+| `confirm_live` | Only needed when `theme_id` is blank. The run fails without it, so a blank field can't hit the live theme by accident. |
+
+To add the product page to your published theme, leave `theme_id` blank, keep
+`scope` as `product-page`, and tick `confirm_live`.
+
+### What the workflow will not do
+
+- It never runs on a push. Deploys are manual, from the Actions tab.
+- It runs `scripts/check-theme.py` first and stops if a schema or template is
+  broken, so a bad commit can't reach the storefront.
+- It passes `--nodelete`, so it never removes a file from your store just
+  because this repo doesn't have it.
+- With `scope: product-page` it names all seven files explicitly rather than
+  globbing, so it cannot widen to files it wasn't meant to touch —
+  `config/settings_data.json` included.
+
+`.github/workflows/validate-theme.yml` runs the same validator on every push
+and pull request. It needs no secrets.
