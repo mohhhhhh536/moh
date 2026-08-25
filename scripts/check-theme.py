@@ -43,6 +43,27 @@ def setting_ids(settings):
     return {s['id'] for s in settings if 'id' in s}
 
 
+def richtext_ids(settings):
+    return {s['id'] for s in settings if s.get('type') == 'richtext' and 'id' in s}
+
+
+# Shopify's richtext editor requires every top-level node to be one of these;
+# a bare string (or one that merely contains a <p> without opening on one)
+# is rejected at upload with "All top level nodes must be '<p>', '<ul>',
+# '<ol>' or '<h1>'-'<h6>' tags".
+RICHTEXT_TOP_TAGS = (
+    '<p>', '<p ', '<ul>', '<ul ', '<ol>', '<ol ',
+    '<h1', '<h2', '<h3', '<h4', '<h5', '<h6',
+)
+
+
+def is_wrapped_richtext(value):
+    stripped = value.strip()
+    if not stripped:
+        return True  # blank is valid — the field is simply empty
+    return stripped.startswith(RICHTEXT_TOP_TAGS)
+
+
 def check_section(path, report, lint):
     """Parse a section's schema. Returns the schema, or None if it has none."""
     src = open(path, encoding='utf-8').read()
@@ -125,16 +146,28 @@ def check_template(path, schemas, report):
             continue
 
         section_ids = setting_ids(schema.get('settings', []))
+        section_richtext_ids = richtext_ids(schema.get('settings', []))
         block_ids = {
             b['type']: setting_ids(b.get('settings', []))
             for b in schema.get('blocks', [])
         }
+        block_richtext_ids = {
+            b['type']: richtext_ids(b.get('settings', []))
+            for b in schema.get('blocks', [])
+        }
 
-        for name in section.get('settings', {}):
+        for name, value in section.get('settings', {}).items():
             if name not in section_ids:
                 report.error(
                     f"{path} [{key}]: sets {name!r}, not a setting of "
                     f"{section['type']}"
+                )
+            elif (name in section_richtext_ids and isinstance(value, str)
+                    and not is_wrapped_richtext(value)):
+                report.error(
+                    f"{path} [{key}].{name}: richtext value {value!r} has no "
+                    "top-level <p>/<ul>/<ol>/<h1>-<h6> wrapper; Shopify "
+                    "rejects this on upload"
                 )
 
         for block_key, block in section.get('blocks', {}).items():
@@ -145,11 +178,18 @@ def check_template(path, schemas, report):
                     f"by {section['type']}"
                 )
                 continue
-            for name in block.get('settings', {}):
+            for name, value in block.get('settings', {}).items():
                 if name not in block_ids[block_type]:
                     report.error(
                         f"{path} [{key}/{block_key}]: sets {name!r}, not a "
                         f"setting of {section['type']}.{block_type}"
+                    )
+                elif (name in block_richtext_ids.get(block_type, set())
+                        and isinstance(value, str) and not is_wrapped_richtext(value)):
+                    report.error(
+                        f"{path} [{key}/{block_key}].{name}: richtext value "
+                        f"{value!r} has no top-level <p>/<ul>/<ol>/<h1>-<h6> "
+                        "wrapper; Shopify rejects this on upload"
                     )
 
         for block_key in section.get('block_order', []):

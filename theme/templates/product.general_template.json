@@ -565,7 +565,7 @@
           "settings": {
             "icon": "leaf",
             "title": "Clean Ingredients",
-            "text": "Naturally derived, never synthetic fragrance."
+            "text": "<p>Naturally derived, never synthetic fragrance.</p>"
           }
         },
         "column_tested": {
@@ -573,7 +573,7 @@
           "settings": {
             "icon": "heart",
             "title": "Dermatologist Tested",
-            "text": "Every formula, every batch, cruelty-free."
+            "text": "<p>Every formula, every batch, cruelty-free.</p>"
           }
         },
         "column_secure": {
@@ -581,7 +581,7 @@
           "settings": {
             "icon": "lock",
             "title": "Secure Checkout",
-            "text": "Encrypted payments and tracked delivery."
+            "text": "<p>Encrypted payments and tracked delivery.</p>"
           }
         }
       },
