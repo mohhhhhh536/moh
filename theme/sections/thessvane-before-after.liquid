@@ -1,0 +1,503 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+{{ 'thessvane-stars.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .ba-{{ section.id }} .ba__intro {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .ba-{{ section.id }} .ba__title {
+    margin: 0 0 8px;
+    {% if section.settings.uppercase_title %}text-transform: uppercase;{% endif %}
+  }
+  .ba-{{ section.id }} .ba__description {
+    margin: 0 auto;
+    max-width: 62ch;
+  }
+
+  .ba-{{ section.id }} .ba__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media screen and (min-width: 750px) {
+    .ba-{{ section.id }} .ba__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  .ba-{{ section.id }} .ba__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: {{ section.settings.corner_radius }}px;
+    background: rgb(var(--color-background));
+    box-shadow: 0 2px 14px rgba(var(--color-shadow), 0.08);
+  }
+
+  .ba-{{ section.id }} .ba__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    position: relative;
+  }
+  .ba-{{ section.id }} .ba__frame {
+    position: relative;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+  .ba-{{ section.id }} .ba__frame img,
+  .ba-{{ section.id }} .ba__frame .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ba-{{ section.id }} .ba__frame .placeholder-svg {
+    background: rgba(var(--color-foreground), 0.04);
+    fill: rgba(var(--color-foreground), 0.28);
+  }
+  .ba-{{ section.id }} .ba__stamp {
+    position: absolute;
+    bottom: 10px;
+    z-index: 2;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+  }
+  .ba-{{ section.id }} .ba__frame--before .ba__stamp { left: 0; }
+  .ba-{{ section.id }} .ba__frame--after .ba__stamp { right: 0; text-align: right; }
+  @media screen and (min-width: 990px) {
+    .ba-{{ section.id }} .ba__stamp {
+      bottom: 14px;
+      font-size: 1.8rem;
+    }
+  }
+
+  .ba-{{ section.id }} .ba__body {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ section.settings.text_alignment }};
+    text-align: {% if section.settings.text_alignment == 'flex-start' %}left{% elsif section.settings.text_alignment == 'flex-end' %}right{% else %}center{% endif %};
+    gap: 10px;
+    padding: 18px 20px 22px;
+    flex-grow: 1;
+  }
+  .ba-{{ section.id }} .ba__quote {
+    margin: 0;
+  }
+  .ba-{{ section.id }} .ba__quote p {
+    margin: 0;
+  }
+  .ba-{{ section.id }} .ba__meta {
+    /* Pushed to the bottom so bylines line up across reviews of unequal length. */
+    margin: auto 0 0;
+    font-size: 1.3rem;
+    opacity: 0.75;
+  }
+  .ba-{{ section.id }} .ba__author {
+    font-weight: 600;
+    opacity: 1;
+  }
+  .ba-{{ section.id }} .ba__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .ba-{{ section.id }} .ba__verified svg {
+    width: 12px;
+    height: 12px;
+    flex: 0 0 auto;
+  }
+
+  .ba-{{ section.id }} .ba__note {
+    margin: 28px auto 0;
+    max-width: 70ch;
+    text-align: center;
+    font-size: 1.3rem;
+    opacity: 0.7;
+  }
+  .ba-{{ section.id }} .ba__note p { margin: 0; }
+  .ba-{{ section.id }} .ba__cta { margin-top: 32px; text-align: center; }
+{%- endstyle -%}
+
+<div class="ba-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="section-{{ section.id }}-padding page-width">
+    {%- if section.settings.title != blank or section.settings.description != blank -%}
+      <div class="ba__intro">
+        {%- if section.settings.title != blank -%}
+          <h2 class="ba__title title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="ba__description subtitle rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ba__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign before_label = block.settings.before_label | default: 'Untreated'
+          assign after_label = block.settings.after_label | default: 'After'
+          assign before_alt = block.settings.image_before.alt | default: before_label
+          assign after_alt = block.settings.image_after.alt | default: after_label
+        -%}
+        <div class="ba__card" {{ block.shopify_attributes }}>
+          <div class="ba__pair">
+            <div class="ba__frame ba__frame--before">
+              {%- if block.settings.image_before != blank -%}
+                {{
+                  block.settings.image_before
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 20vw, (min-width: 750px) 25vw, 45vw',
+                    widths: '200, 300, 400, 600, 800',
+                    alt: before_alt
+                }}
+              {%- else -%}
+                {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' -}}
+              {%- endif -%}
+              {%- if before_label != blank -%}
+                <p class="ba__stamp">{{ before_label | escape }}</p>
+              {%- endif -%}
+            </div>
+
+            <div class="ba__frame ba__frame--after">
+              {%- if block.settings.image_after != blank -%}
+                {{
+                  block.settings.image_after
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 20vw, (min-width: 750px) 25vw, 45vw',
+                    widths: '200, 300, 400, 600, 800',
+                    alt: after_alt
+                }}
+              {%- else -%}
+                {{- 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' -}}
+              {%- endif -%}
+              {%- if after_label != blank -%}
+                <p class="ba__stamp">{{ after_label | escape }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="ba__body">
+            {%- if section.settings.show_stars -%}
+              {% render 'thessvane-stars',
+                rating: block.settings.rating,
+                color: section.settings.star_color,
+                size: section.settings.star_size
+              %}
+            {%- endif -%}
+
+            {%- if block.settings.quote != blank -%}
+              <div class="ba__quote rte">{{ block.settings.quote }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.author != blank or block.settings.verified_label != blank -%}
+              <p class="ba__meta">
+                {%- if block.settings.author != blank -%}
+                  <span class="ba__author">{{ block.settings.author | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.author != blank and block.settings.verified_label != blank -%}
+                  <span aria-hidden="true"> · </span>
+                {%- endif -%}
+                {%- if block.settings.verified_label != blank -%}
+                  <span class="ba__verified">
+                    <svg viewBox="0 0 20 20" fill="currentColor" focusable="false" aria-hidden="true"><path d="M10 0a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm5.1 7.2-6.3 6.3a1 1 0 0 1-1.4 0L4.9 10.9a1 1 0 1 1 1.4-1.4l1.8 1.8 5.6-5.6a1 1 0 0 1 1.4 1.5Z"/></svg>
+                    {{- block.settings.verified_label | escape -}}
+                  </span>
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <div class="ba__note rte">{{ section.settings.disclaimer }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="ba__cta">
+        <a
+          {% if section.settings.cta_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.cta_link }}"
+          {% endif %}
+          class="button"
+        >
+          {{- section.settings.cta_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Before & After Reviews",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Each review card shows a before photo and an after photo side by side. Cards without uploaded photos show placeholder graphics, so you can lay the page out now and swap in real customer images later."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "What Our Customers Say",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase_title",
+      "default": true,
+      "label": "Uppercase heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Real skin, real routines, no retouching. Every photo below was sent in by a customer using the product as directed.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-2",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Cards per row on desktop"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "3 / 4", "label": "Portrait" },
+        { "value": "2 / 3", "label": "Tall portrait" },
+        { "value": "4 / 3", "label": "Landscape" }
+      ],
+      "default": "3 / 4",
+      "label": "Photo shape",
+      "info": "Applies to each half of the before/after pair."
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8,
+      "label": "Card corner radius"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center",
+      "label": "Card text alignment"
+    },
+    {
+      "type": "header",
+      "content": "Stars"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "default": true,
+      "label": "Show star ratings"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "default": "#E0A100",
+      "label": "Star color"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "label": "Star size"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "default": "<p>Results shown are individual experiences and are not guaranteed. Photos are unedited and shared with permission.</p>",
+      "label": "Side note",
+      "info": "Small print shown under the cards. Useful for a results disclaimer."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "Before photo"
+        },
+        {
+          "type": "text",
+          "id": "before_label",
+          "default": "Untreated",
+          "label": "Before label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "After photo"
+        },
+        {
+          "type": "text",
+          "id": "after_label",
+          "default": "After 4 weeks",
+          "label": "After label"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 0.5,
+          "default": 5,
+          "label": "Star rating"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "default": "<p>Four weeks in and the rough patches on my arms have smoothed right out. I use it after showering and that's the whole routine.</p>",
+          "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "default": "Customer name",
+          "label": "Reviewer name"
+        },
+        {
+          "type": "text",
+          "id": "verified_label",
+          "default": "Verified buyer",
+          "label": "Verified badge text",
+          "info": "Leave blank to hide the badge."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & After Reviews",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}
