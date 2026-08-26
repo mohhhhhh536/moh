@@ -12,7 +12,7 @@
   data-update-unavailable="{{ has_second_option }}"
   data-update-prices="{{ block.settings.update_prices }}"
   data-money-format="{{ shop.money_format | escape }}"
-  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;"
+  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;{% if block.settings.qb_card_bg != blank %}--qb-card-bg: {{ block.settings.qb_card_bg }};{% endif %}{% if block.settings.qb_accent != blank %}--qb-accent: {{ block.settings.qb_accent }};{% endif %}{% if block.settings.qb_gift_bg != blank %}--qb-gift-bg: {{ block.settings.qb_gift_bg }};{% endif %}{% if block.settings.qb_badge_bg != blank %}--qb-badge-bg: {{ block.settings.qb_badge_bg }};{% endif %}"
   {{ block.shopify_attributes }}
 >
   {% assign has_variants = false %}
@@ -61,12 +61,27 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_1' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
+        {%- liquid
+          assign qb_badge = block.settings.option_1_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_1'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_img = block.settings.option_1_image
+            if qb_img == blank
+              assign qb_img = product.featured_image
+            endif
+          -%}
+          {% if qb_img != blank %}
+            <span class="quantity-break__media">
+              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
+            </span>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -162,6 +177,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
+          <span class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-media">
+                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_2_quantity != 0 %}
@@ -200,12 +228,27 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_2' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
+        {%- liquid
+          assign qb_badge = block.settings.option_2_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_2'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_img = block.settings.option_2_image
+            if qb_img == blank
+              assign qb_img = product.featured_image
+            endif
+          -%}
+          {% if qb_img != blank %}
+            <span class="quantity-break__media">
+              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
+            </span>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -301,6 +344,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
+          <span class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-media">
+                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_3_quantity != 0 %}
@@ -339,12 +395,27 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_3' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
+        {%- liquid
+          assign qb_badge = block.settings.option_3_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_3'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_img = block.settings.option_3_image
+            if qb_img == blank
+              assign qb_img = product.featured_image
+            endif
+          -%}
+          {% if qb_img != blank %}
+            <span class="quantity-break__media">
+              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
+            </span>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -440,6 +511,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
+          <span class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-media">
+                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_4_quantity != 0 %}
@@ -478,12 +562,27 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_4' %}
-          <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
-          </p>
+        {%- liquid
+          assign qb_badge = block.settings.option_4_badge
+          if qb_badge == blank and block.settings.display_badge == 'option_4'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
+          <p class="quantity-break__badge">{{ qb_badge }}</p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_img = block.settings.option_4_image
+            if qb_img == blank
+              assign qb_img = product.featured_image
+            endif
+          -%}
+          {% if qb_img != blank %}
+            <span class="quantity-break__media">
+              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
+            </span>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -579,9 +678,51 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
+          <span class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-media">
+                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
   </div>
+
+  {% if block.settings.autoship_enabled %}
+    <div class="quantity-breaks__autoship">
+      <input
+        type="checkbox"
+        class="quantity-breaks__autoship-input"
+        id="qb-autoship-{{ section.id }}"
+        {% if product.selling_plan_groups.size > 0 %}
+          name="selling_plan"
+          value="{{ product.selling_plan_groups.first.selling_plans.first.id }}"
+          form="{{ product_form_id }}"
+        {% endif %}
+        {% if block.settings.autoship_checked %}checked{% endif %}
+      >
+      <label class="quantity-breaks__autoship-label" for="qb-autoship-{{ section.id }}">
+        <span class="quantity-breaks__autoship-box" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M3 8.4l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="quantity-breaks__autoship-copy">
+          <span class="quantity-breaks__autoship-title">{{ block.settings.autoship_title }}</span>
+          {% if block.settings.autoship_subtitle != blank %}
+            <span class="quantity-breaks__autoship-subtitle">{{ block.settings.autoship_subtitle }}</span>
+          {% endif %}
+        </span>
+      </label>
+    </div>
+  {% endif %}
 
   <script data-has-variants="{{ has_variants }}" type="application/json">
     {{ product.variants | json }}
