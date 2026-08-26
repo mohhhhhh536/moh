@@ -390,57 +390,58 @@
         "step_cleanse": {
           "type": "step",
           "settings": {
-            "step_title": "Cleanse",
-            "step_text": "<p>Start on clean, damp skin — straight out of the shower is ideal.</p>",
-            "step_note": "Warm water, not hot."
+            "step_title": "Cleanses",
+            "step_text": "<p>Lifts dirt, oil and the day off your skin without stripping it dry.</p>",
+            "step_tagline": "Clean skin, undisturbed barrier."
           }
         },
-        "step_apply": {
+        "step_hydrate": {
           "type": "step",
           "settings": {
-            "step_title": "Apply",
-            "step_text": "<p>Massage a pea-sized amount over the area in slow circles until it disappears.</p>",
-            "step_note": "A little goes further on damp skin."
+            "step_title": "Hydrates",
+            "step_text": "<p>Locks in moisture so skin stays soft and comfortable, not tight or flaky.</p>",
+            "step_tagline": "Softer skin, lasting comfort."
           }
         },
-        "step_absorb": {
+        "step_repair": {
           "type": "step",
           "settings": {
-            "step_title": "Let It Settle",
-            "step_text": "<p>Give it about sixty seconds to sink in before layering anything on top.</p>",
-            "step_note": "No need to rinse it off."
+            "step_title": "Repairs",
+            "step_text": "<p>Supports skin’s natural barrier so it holds up better against daily stress.</p>",
+            "step_tagline": "Stronger barrier, steadier skin."
           }
         },
-        "step_repeat": {
+        "step_nourish": {
           "type": "step",
           "settings": {
-            "step_title": "Repeat Daily",
-            "step_text": "<p>Once a day, every day. Consistency does more here than quantity ever will.</p>",
-            "step_note": "Evenings suit most routines best."
+            "step_title": "Nourishes",
+            "step_text": "<p>Feeds skin what it needs for a healthy, even-toned glow over time.</p>",
+            "step_tagline": "Nourished skin, visible glow."
           }
         }
       },
       "block_order": [
         "step_cleanse",
-        "step_apply",
-        "step_absorb",
-        "step_repeat"
+        "step_hydrate",
+        "step_repair",
+        "step_nourish"
       ],
       "settings": {
-        "title": "4 Steps To Use It",
+        "title": "What It Does For Your Skin",
         "heading_size": "h1",
-        "description": "<p>Four steps, about a minute. It works into a morning or evening routine without rearranging anything else.</p>",
-        "color_scheme": "scheme-2",
+        "description": "<p>Four benefits, one bottle. Here’s what changes when it becomes part of your routine.</p>",
+        "color_scheme": "scheme-5",
+        "pill_background": "#F6D8DE",
+        "pill_text_color": "#8B3A55",
         "columns_desktop": 4,
-        "image_ratio": "3 / 4",
-        "corner_radius": 12,
+        "image_ratio": "4 / 5",
         "text_alignment": "left",
-        "show_step_numbers": true,
-        "footnote": "<p>New to acids? Start every other day for the first week, then build up to daily as your skin adjusts.</p>",
+        "show_step_numbers": false,
+        "footnote": "",
         "cta_label": "",
         "cta_link": "",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "thessvane_product_reviews": {

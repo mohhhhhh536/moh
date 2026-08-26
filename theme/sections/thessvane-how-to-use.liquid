@@ -12,6 +12,11 @@
     }
   }
 
+  .htu-{{ section.id }} {
+    --htu-pill-bg: {{ section.settings.pill_background }};
+    --htu-pill-text: {{ section.settings.pill_text_color }};
+  }
+
   .htu-{{ section.id }} .htu__intro {
     text-align: center;
     margin-bottom: 32px;
@@ -25,7 +30,7 @@
   .htu-{{ section.id }} .htu__steps {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 3px;
     counter-reset: htu-step;
     list-style: none;
     margin: 0;
@@ -34,7 +39,6 @@
   @media screen and (min-width: 750px) {
     .htu-{{ section.id }} .htu__steps {
       grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
-      gap: 24px;
     }
   }
 
@@ -42,15 +46,53 @@
     counter-increment: htu-step;
     display: flex;
     flex-direction: column;
-    gap: 12px;
     text-align: {{ section.settings.text_alignment }};
+  }
+
+  .htu-{{ section.id }} .htu__text {
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: {% if section.settings.text_alignment == 'center' %}center{% else %}flex-start{% endif %};
+  }
+
+  .htu-{{ section.id }} .htu__pill {
+    display: inline-block;
+    margin: 0 0 10px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--htu-pill-bg);
+    color: var(--htu-pill-text);
+    font-family: var(--font-heading-family);
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  .htu-{{ section.id }} .htu__step-text {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+  .htu-{{ section.id }} .htu__step-text p { margin: 0; }
+
+  .htu-{{ section.id }} .htu__divider {
+    width: 56px;
+    border: none;
+    border-top: 1px solid var(--htu-pill-text);
+    opacity: 0.4;
+    margin: 14px 0 10px;
+  }
+
+  .htu-{{ section.id }} .htu__tagline {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--htu-pill-text);
   }
 
   .htu-{{ section.id }} .htu__frame {
     position: relative;
     aspect-ratio: {{ section.settings.image_ratio }};
     overflow: hidden;
-    border-radius: {{ section.settings.corner_radius }}px;
     background: rgba(var(--color-foreground), 0.04);
   }
   .htu-{{ section.id }} .htu__frame img,
@@ -88,21 +130,6 @@
     content: counter(htu-step);
   }
 
-  .htu-{{ section.id }} .htu__step-title { margin: 0; }
-  .htu-{{ section.id }} .htu__step-text { margin: 0; }
-  .htu-{{ section.id }} .htu__step-text p { margin: 0; }
-
-  .htu-{{ section.id }} .htu__step-note {
-    /* Pushed to the bottom so notes line up across steps of unequal length. */
-    margin: auto 0 0;
-    padding-left: 10px;
-    border-left: 2px solid rgba(var(--color-foreground), 0.25);
-    font-size: 1.3rem;
-    font-style: italic;
-    opacity: 0.75;
-    text-align: left;
-  }
-
   .htu-{{ section.id }} .htu__note {
     margin: 28px auto 0;
     max-width: 70ch;
@@ -131,6 +158,19 @@
       {%- for block in section.blocks -%}
         {%- assign step_alt = block.settings.image.alt | default: block.settings.step_title -%}
         <li class="htu__step" {{ block.shopify_attributes }}>
+          <div class="htu__text">
+            {%- if block.settings.step_title != blank -%}
+              <span class="htu__pill">{{ block.settings.step_title | escape }}</span>
+            {%- endif -%}
+            {%- if block.settings.step_text != blank -%}
+              <div class="htu__step-text rte">{{ block.settings.step_text }}</div>
+            {%- endif -%}
+            {%- if block.settings.step_tagline != blank -%}
+              <hr class="htu__divider">
+              <p class="htu__tagline">{{ block.settings.step_tagline | escape }}</p>
+            {%- endif -%}
+          </div>
+
           <div class="htu__frame">
             {%- if section.settings.show_step_numbers -%}
               <span class="htu__badge" aria-hidden="true"></span>
@@ -149,16 +189,6 @@
               {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' -}}
             {%- endif -%}
           </div>
-
-          {%- if block.settings.step_title != blank -%}
-            <h3 class="htu__step-title h5">{{ block.settings.step_title | escape }}</h3>
-          {%- endif -%}
-          {%- if block.settings.step_text != blank -%}
-            <div class="htu__step-text rte">{{ block.settings.step_text }}</div>
-          {%- endif -%}
-          {%- if block.settings.step_note != blank -%}
-            <p class="htu__step-note">{{ block.settings.step_note | escape }}</p>
-          {%- endif -%}
         </li>
       {%- endfor -%}
     </ol>
@@ -186,7 +216,7 @@
 
 {% schema %}
 {
-  "name": "How To Use Steps",
+  "name": "Skin Benefits Grid",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -195,12 +225,12 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "A numbered row of application steps. Steps without an uploaded photo show a placeholder graphic, so you can write the routine now and add real photos or video stills later."
+      "content": "A row of product benefits, each with a photo. Cards without an uploaded photo show a placeholder graphic, so you can publish the copy now and add real photography later — do not substitute AI-generated “model” photography here without disclosing it, since a photo in this slot reads as a real product/customer shot."
     },
     {
       "type": "text",
       "id": "title",
-      "default": "How To Use It",
+      "default": "What It Does For Your Skin",
       "label": "Heading"
     },
     {
@@ -217,7 +247,7 @@
     {
       "type": "richtext",
       "id": "description",
-      "default": "<p>Four steps, about a minute. Works into an existing morning or evening routine without rearranging it.</p>",
+      "default": "<p>Four benefits, one bottle. Here's what changes when it becomes part of your routine.</p>",
       "label": "Description"
     },
     {
@@ -230,8 +260,24 @@
         { "value": "scheme-4", "label": "Scheme 4" },
         { "value": "scheme-5", "label": "Scheme 5" }
       ],
-      "default": "scheme-2",
+      "default": "scheme-5",
       "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "pill_background",
+      "label": "Pill background",
+      "default": "#F6D8DE"
+    },
+    {
+      "type": "color",
+      "id": "pill_text_color",
+      "label": "Pill text and tagline color",
+      "default": "#8B3A55"
     },
     {
       "type": "header",
@@ -244,7 +290,7 @@
       "max": 5,
       "step": 1,
       "default": 4,
-      "label": "Steps per row on desktop"
+      "label": "Cards per row on desktop"
     },
     {
       "type": "select",
@@ -255,18 +301,8 @@
         { "value": "3 / 4", "label": "Tall portrait" },
         { "value": "9 / 16", "label": "Vertical video" }
       ],
-      "default": "3 / 4",
+      "default": "4 / 5",
       "label": "Photo shape"
-    },
-    {
-      "type": "range",
-      "id": "corner_radius",
-      "min": 0,
-      "max": 28,
-      "step": 2,
-      "unit": "px",
-      "default": 12,
-      "label": "Photo corner radius"
     },
     {
       "type": "select",
@@ -281,8 +317,9 @@
     {
       "type": "checkbox",
       "id": "show_step_numbers",
-      "default": true,
-      "label": "Show step numbers on photos"
+      "default": false,
+      "label": "Show numbered badges on photos",
+      "info": "Turn on if you'd rather present these as ordered steps than as benefits."
     },
     {
       "type": "header",
@@ -291,9 +328,8 @@
     {
       "type": "richtext",
       "id": "footnote",
-      "default": "<p>New to acids? Start every other day for the first week, then build up to daily as your skin adjusts.</p>",
       "label": "Side note",
-      "info": "Small print under the steps. Useful for a usage caution or a patch-test reminder."
+      "info": "Small print under the cards. Leave blank to hide."
     },
     {
       "type": "text",
@@ -317,7 +353,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 48
+      "default": 0
     },
     {
       "type": "range",
@@ -327,13 +363,13 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 48
+      "default": 0
     }
   ],
   "blocks": [
     {
       "type": "step",
-      "name": "Step",
+      "name": "Benefit",
       "settings": [
         {
           "type": "image_picker",
@@ -343,27 +379,28 @@
         {
           "type": "text",
           "id": "step_title",
-          "default": "Step title",
-          "label": "Step title"
+          "default": "Benefit name",
+          "label": "Benefit name",
+          "info": "Shown in the pill above the description, e.g. \"Cleanses\"."
         },
         {
           "type": "richtext",
           "id": "step_text",
-          "default": "<p>Describe what to do in one short sentence.</p>",
-          "label": "Step description"
+          "default": "<p>Describe this benefit in one short sentence.</p>",
+          "label": "Description"
         },
         {
           "type": "text",
-          "id": "step_note",
-          "label": "Side note",
-          "info": "Optional tip shown under the step, e.g. \"a pea-sized amount is plenty\"."
+          "id": "step_tagline",
+          "label": "Tagline",
+          "info": "A short line under the divider, e.g. \"Clean skin, undisturbed barrier.\" Leave blank to hide."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "How To Use Steps",
+      "name": "Skin Benefits Grid",
       "blocks": [
         { "type": "step" },
         { "type": "step" },
