@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 # Push the product page onto the LIVE published theme.
 #
-# Uploads only the files this change touches. config/settings_data.json is
-# deliberately not among them, so theme-editor settings — colours, fonts,
-# logo, the homepage rebuild — are left exactly as they are.
+# Uploads only the files the product-page and bundle-pricing work touches.
+# config/settings_data.json is deliberately not among them, so theme-editor
+# settings — colours, fonts, logo, the homepage rebuild — are left exactly
+# as they are.
+#
+# sections/main-product.liquid and snippets/ds-quantity-breaks.liquid are
+# theme-vendor files this repo has modified in place (new schema settings
+# and bundle-card markup), not new files — pushing them overwrites
+# whatever version is currently live for those two paths specifically.
 #
 # Usage:  ./scripts/push-live.sh [store-domain]
 
@@ -33,5 +39,10 @@ shopify theme push \
   --only sections/thessvane-product-reviews.liquid \
   --only snippets/thessvane-stars.liquid \
   --only assets/thessvane-stars.css \
+  --only sections/main-product.liquid \
+  --only snippets/ds-quantity-breaks.liquid \
+  --only snippets/thessvane-bundle-thumb.liquid \
+  --only snippets/thessvane-bundle-gift.liquid \
+  --only assets/thessvane-bundle-pricing.css \
   --only templates/product.json \
   --only templates/product.general_template.json

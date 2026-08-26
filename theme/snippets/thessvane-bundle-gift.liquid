@@ -1,0 +1,25 @@
+{%- comment -%}
+  Free-gift strip along the bottom of a bundle card.
+
+  Presentational only: it advertises a gift, it does not add one to the cart.
+  Whoever enables it is responsible for actually including the gift.
+
+  Accepts:
+  - block: {Object} The quantity_selector block
+{%- endcomment -%}
+
+{%- if block.settings.gift_enabled and block.settings.gift_label != blank -%}
+  <div class="quantity-break__gift">
+    {%- if block.settings.gift_image != blank -%}
+      {{
+        block.settings.gift_image
+        | image_url: width: 108
+        | image_tag: class: 'quantity-break__gift-thumb', loading: 'lazy', alt: ''
+      }}
+    {%- endif -%}
+    <span class="quantity-break__gift-label">{{ block.settings.gift_label }}</span>
+    {%- if block.settings.gift_value != blank -%}
+      <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1951,6 +1951,99 @@
         },
         {
           "type": "header",
+          "content": "Bundle card style"
+        },
+        {
+          "type": "checkbox",
+          "id": "bundle_style",
+          "label": "Use bundle card layout",
+          "default": true,
+          "info": "Product thumbnail on the left, price on the right, dark badge on the selected card."
+        },
+        {
+          "type": "color",
+          "id": "bundle_accent_color",
+          "label": "Accent (border and selected gift row)",
+          "default": "#C0392B"
+        },
+        {
+          "type": "color",
+          "id": "bundle_card_background",
+          "label": "Card background",
+          "default": "#FBEAEA"
+        },
+        {
+          "type": "color",
+          "id": "bundle_gift_background",
+          "label": "Gift row background",
+          "default": "#F3D9D9"
+        },
+        {
+          "type": "color",
+          "id": "bundle_badge_background",
+          "label": "Badge background",
+          "default": "#1A1A1A"
+        },
+        {
+          "type": "header",
+          "content": "Free gift row"
+        },
+        {
+          "type": "paragraph",
+          "content": "Shown as a strip under every bundle. This is presentational only \u2014 you are responsible for actually including the gift with the order."
+        },
+        {
+          "type": "checkbox",
+          "id": "gift_enabled",
+          "label": "Show free gift row",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "gift_label",
+          "label": "Gift label",
+          "default": "+ FREE Care Guide E-Book"
+        },
+        {
+          "type": "text",
+          "id": "gift_value",
+          "label": "Gift value",
+          "default": "$15.00",
+          "info": "Shown struck through on the right."
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_image",
+          "label": "Gift thumbnail"
+        },
+        {
+          "type": "header",
+          "content": "Auto ship row"
+        },
+        {
+          "type": "paragraph",
+          "content": "DISPLAY ONLY. Ticking this box does not create a subscription \u2014 it needs a subscription app wired up first, or customers will expect recurring delivery and a discount they never receive. Leave off until that is in place."
+        },
+        {
+          "type": "checkbox",
+          "id": "autoship_enabled",
+          "label": "Show auto ship row",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "autoship_title",
+          "label": "Auto ship title",
+          "default": "Auto Ship & Save 15%"
+        },
+        {
+          "type": "text",
+          "id": "autoship_subtitle",
+          "label": "Auto ship subtitle",
+          "default": "Zero Commitment, Cancel Anytime"
+        },
+        {
+          "type": "header",
           "content": "Quantity option #1"
         },
         {
@@ -1963,6 +2056,18 @@
           "label": "Option #1 Quantity",
           "default": 1,
           "info": "Set to 0 to disable this option"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_1_image",
+          "label": "Option #1 Image",
+          "info": "Falls back to the product's featured image."
+        },
+        {
+          "type": "text",
+          "id": "option_1_badge",
+          "label": "Option #1 Badge",
+          "info": "Ribbon shown on this card, e.g. \u201cMost Popular\u201d. Independent of Display Badge below \u2014 leave blank to show none."
         },
         {
           "type": "text",
@@ -2030,6 +2135,18 @@
           "info": "Set to 0 to disable this option"
         },
         {
+          "type": "image_picker",
+          "id": "option_2_image",
+          "label": "Option #2 Image",
+          "info": "Falls back to the product's featured image."
+        },
+        {
+          "type": "text",
+          "id": "option_2_badge",
+          "label": "Option #2 Badge",
+          "info": "Ribbon shown on this card, e.g. \u201cMost Popular\u201d. Independent of Display Badge below \u2014 leave blank to show none."
+        },
+        {
           "type": "text",
           "id": "option_2_label",
           "label": "Option #2 Label",
@@ -2095,6 +2212,18 @@
           "info": "Set to 0 to disable this option"
         },
         {
+          "type": "image_picker",
+          "id": "option_3_image",
+          "label": "Option #3 Image",
+          "info": "Falls back to the product's featured image."
+        },
+        {
+          "type": "text",
+          "id": "option_3_badge",
+          "label": "Option #3 Badge",
+          "info": "Ribbon shown on this card, e.g. \u201cMost Popular\u201d. Independent of Display Badge below \u2014 leave blank to show none."
+        },
+        {
           "type": "text",
           "id": "option_3_label",
           "label": "Option #3 Label",
@@ -2158,6 +2287,18 @@
           "label": "Option #4 Quantity",
           "default": 4,
           "info": "Set to 0 to disable this option"
+        },
+        {
+          "type": "image_picker",
+          "id": "option_4_image",
+          "label": "Option #4 Image",
+          "info": "Falls back to the product's featured image."
+        },
+        {
+          "type": "text",
+          "id": "option_4_badge",
+          "label": "Option #4 Badge",
+          "info": "Ribbon shown on this card, e.g. \u201cMost Popular\u201d. Independent of Display Badge below \u2014 leave blank to show none."
         },
         {
           "type": "text",

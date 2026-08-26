@@ -5,14 +5,18 @@
   endif
 %}
 
+{%- if block.settings.bundle_style -%}
+  {{ 'thessvane-bundle-pricing.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
 <quantity-breaks
-  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}"
+  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}{% if block.settings.bundle_style %} quantity-breaks--bundle{% endif %}"
   id="quantity-breaks-{{ section.id }}"
   data-section="{{ section.id }}"
   data-update-unavailable="{{ has_second_option }}"
   data-update-prices="{{ block.settings.update_prices }}"
   data-money-format="{{ shop.money_format | escape }}"
-  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;"
+  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;{% if block.settings.bundle_style %}--qb-accent: {{ block.settings.bundle_accent_color }};--qb-card-bg: {{ block.settings.bundle_card_background }};--qb-gift-bg: {{ block.settings.bundle_gift_background }};--qb-badge-bg: {{ block.settings.bundle_badge_background }};{% endif %}"
   {{ block.shopify_attributes }}
 >
   {% assign has_variants = false %}
@@ -61,12 +65,24 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_1' %}
+        {% liquid
+          assign option_1_badge_text = block.settings.option_1_badge
+          if option_1_badge_text == blank and block.settings.display_badge == 'option_1'
+            assign option_1_badge_text = block.settings.badge_text
+          endif
+        %}
+        {% if option_1_badge_text != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ option_1_badge_text }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- if block.settings.bundle_style -%}
+            {% render 'thessvane-bundle-thumb',
+              option_image: block.settings.option_1_image,
+              product: product
+            %}
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -95,6 +111,9 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_1_compare_price > option_1_price %}{{ option_1_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.bundle_style %}
+          {% render 'thessvane-bundle-gift', block: block %}
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_1_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-1-variants-{{ section.id }}'>
@@ -200,12 +219,24 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_2' %}
+        {% liquid
+          assign option_2_badge_text = block.settings.option_2_badge
+          if option_2_badge_text == blank and block.settings.display_badge == 'option_2'
+            assign option_2_badge_text = block.settings.badge_text
+          endif
+        %}
+        {% if option_2_badge_text != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ option_2_badge_text }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- if block.settings.bundle_style -%}
+            {% render 'thessvane-bundle-thumb',
+              option_image: block.settings.option_2_image,
+              product: product
+            %}
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -234,6 +265,9 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_2_compare_price > option_2_price %}{{ option_2_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.bundle_style %}
+          {% render 'thessvane-bundle-gift', block: block %}
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_2_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-2-variants-{{ section.id }}'>
@@ -339,12 +373,24 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_3' %}
+        {% liquid
+          assign option_3_badge_text = block.settings.option_3_badge
+          if option_3_badge_text == blank and block.settings.display_badge == 'option_3'
+            assign option_3_badge_text = block.settings.badge_text
+          endif
+        %}
+        {% if option_3_badge_text != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ option_3_badge_text }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- if block.settings.bundle_style -%}
+            {% render 'thessvane-bundle-thumb',
+              option_image: block.settings.option_3_image,
+              product: product
+            %}
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -373,6 +419,9 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_3_compare_price > option_3_price %}{{ option_3_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.bundle_style %}
+          {% render 'thessvane-bundle-gift', block: block %}
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_3_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-3-variants-{{ section.id }}'>
@@ -478,12 +527,24 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_4' %}
+        {% liquid
+          assign option_4_badge_text = block.settings.option_4_badge
+          if option_4_badge_text == blank and block.settings.display_badge == 'option_4'
+            assign option_4_badge_text = block.settings.badge_text
+          endif
+        %}
+        {% if option_4_badge_text != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ option_4_badge_text }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- if block.settings.bundle_style -%}
+            {% render 'thessvane-bundle-thumb',
+              option_image: block.settings.option_4_image,
+              product: product
+            %}
+          {%- endif -%}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -512,6 +573,9 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_4_compare_price > option_4_price %}{{ option_4_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.bundle_style %}
+          {% render 'thessvane-bundle-gift', block: block %}
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_4_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-4-variants-{{ section.id }}'>
@@ -582,6 +646,21 @@
       </label>
     {% endif %}
   </div>
+
+  {%- if block.settings.bundle_style and block.settings.autoship_enabled -%}
+    <label class="quantity-breaks__autoship" for="autoship-{{ section.id }}">
+      <input
+        class="quantity-breaks__autoship-box"
+        id="autoship-{{ section.id }}"
+        type="checkbox"
+        checked
+      >
+      <span class="quantity-breaks__autoship-text">
+        <span class="quantity-breaks__autoship-title">{{ block.settings.autoship_title }}</span>
+        <span class="quantity-breaks__autoship-subtitle">{{ block.settings.autoship_subtitle }}</span>
+      </span>
+    </label>
+  {%- endif -%}
 
   <script data-has-variants="{{ has_variants }}" type="application/json">
     {{ product.variants | json }}

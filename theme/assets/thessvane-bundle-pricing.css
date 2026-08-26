@@ -1,0 +1,261 @@
+/* Bundle card layout for the quantity-breaks block.
+   Scoped to .quantity-breaks--bundle so the theme's original radio-row look
+   stays intact when the block's "Use bundle card layout" setting is off. */
+
+.quantity-breaks--bundle {
+  --qb-muted: rgba(0, 0, 0, 0.55);
+  --qb-strike: rgba(0, 0, 0, 0.4);
+}
+
+/* ---- heading with rules either side ---- */
+
+.quantity-breaks--bundle .quantity-breaks__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  column-gap: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.quantity-breaks--bundle .quantity-breaks__title span:nth-of-type(1),
+.quantity-breaks--bundle .quantity-breaks__title span:nth-of-type(3) {
+  height: 1px;
+  background: var(--qb-accent);
+  opacity: 0.35;
+}
+
+/* ---- the card ---- */
+
+.quantity-breaks--bundle .quantity-break {
+  padding: 0;
+  margin-bottom: 1.4rem;
+  border-radius: 1rem;
+  background: var(--qb-card-bg);
+  border: 2px solid transparent;
+  overflow: visible;
+}
+
+.quantity-breaks--bundle .quantity-break:hover {
+  background: var(--qb-card-bg);
+  border-color: var(--qb-accent);
+}
+
+.quantity-breaks--bundle
+  .quantity-breaks-container
+  input:checked
+  + .quantity-break {
+  background: #ffffff;
+  border-color: var(--qb-accent);
+}
+
+/* The radio dot is replaced by the product thumbnail. */
+.quantity-breaks--bundle .quantity-break::before {
+  display: none;
+}
+
+.quantity-breaks--bundle .quantity-break__content {
+  padding: 1.6rem 1.8rem;
+  column-gap: 1.5rem;
+  align-items: center;
+}
+
+/* ---- product thumbnail ---- */
+
+.quantity-breaks--bundle .quantity-break__thumb {
+  flex: 0 0 auto;
+  width: 5.4rem;
+  height: 6.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-breaks--bundle .quantity-break__thumb img,
+.quantity-breaks--bundle .quantity-break__thumb .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.quantity-breaks--bundle .quantity-break__thumb .placeholder-svg {
+  fill: var(--qb-strike);
+  opacity: 0.5;
+}
+
+/* ---- left column ---- */
+
+.quantity-breaks--bundle .quantity-break__left {
+  flex: 1 1 auto;
+  row-gap: 0.4rem;
+}
+
+.quantity-breaks--bundle .quantity-break__left .quantity-break__label {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.quantity-breaks--bundle .quantity-break__caption {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: var(--qb-muted);
+}
+
+/* ---- right column ---- */
+
+.quantity-breaks--bundle .quantity-break__right {
+  flex: 0 0 auto;
+  row-gap: 0.3rem;
+}
+
+.quantity-breaks--bundle .quantity-break__price {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: inherit;
+}
+
+.quantity-breaks--bundle .quantity-break__compare-price {
+  font-size: 1.5rem;
+  color: var(--qb-strike);
+}
+
+/* ---- badge ---- */
+
+.quantity-breaks--bundle .quantity-break__badge {
+  transform: none;
+  top: -1.2rem;
+  right: -0.2rem;
+  background: var(--qb-badge-bg);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.6rem;
+}
+
+/* ---- free gift strip ---- */
+
+.quantity-breaks--bundle .quantity-break__gift {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  padding: 1rem 1.8rem;
+  background: var(--qb-gift-bg);
+  border-radius: 0 0 0.8rem 0.8rem;
+}
+
+.quantity-breaks--bundle
+  .quantity-breaks-container
+  input:checked
+  + .quantity-break
+  .quantity-break__gift {
+  background: var(--qb-accent);
+  color: #ffffff;
+}
+
+.quantity-breaks--bundle .quantity-break__gift-thumb {
+  flex: 0 0 auto;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 0.4rem;
+  object-fit: cover;
+  display: block;
+}
+
+.quantity-breaks--bundle .quantity-break__gift-label {
+  flex: 1 1 auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.quantity-breaks--bundle .quantity-break__gift-value {
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+/* ---- auto ship row ---- */
+
+.quantity-breaks--bundle .quantity-breaks__autoship {
+  display: flex;
+  align-items: center;
+  column-gap: 1.3rem;
+  margin-top: 1.5rem;
+  padding: 1.3rem 1.6rem;
+  border: 2px dashed var(--qb-accent);
+  border-radius: 1rem;
+  background: var(--qb-card-bg);
+  cursor: pointer;
+}
+
+.quantity-breaks--bundle .quantity-breaks__autoship-box {
+  flex: 0 0 auto;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0;
+  border: 2px solid var(--qb-accent);
+  border-radius: 0.4rem;
+  background: #ffffff;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.quantity-breaks--bundle .quantity-breaks__autoship-box::after {
+  content: "";
+  width: 1.2rem;
+  height: 0.7rem;
+  border-left: 2px solid var(--qb-accent);
+  border-bottom: 2px solid var(--qb-accent);
+  transform: rotate(-45deg) translateY(-0.15rem);
+}
+
+.quantity-breaks--bundle .quantity-breaks__autoship-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.quantity-breaks--bundle .quantity-breaks__autoship-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.quantity-breaks--bundle .quantity-breaks__autoship-subtitle {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: var(--qb-muted);
+  margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .quantity-breaks--bundle .quantity-break__content {
+    padding: 1.3rem 1.4rem;
+    column-gap: 1.1rem;
+  }
+
+  .quantity-breaks--bundle .quantity-break__left .quantity-break__label,
+  .quantity-breaks--bundle .quantity-break__price {
+    font-size: 1.8rem;
+  }
+
+  .quantity-breaks--bundle .quantity-break__gift {
+    padding: 0.9rem 1.4rem;
+  }
+
+  .quantity-breaks--bundle .quantity-break__gift-label {
+    font-size: 1.35rem;
+  }
+}
