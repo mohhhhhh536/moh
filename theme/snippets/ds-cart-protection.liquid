@@ -1,0 +1,116 @@
+{% comment %}
+  Shipping protection toggle.
+
+  Adds or removes a real product line from the cart, so the amount shown is
+  actually charged. Renders nothing unless a protection product is selected
+  in theme settings, which keeps the row from ever claiming a fee the cart
+  does not contain.
+{% endcomment %}
+
+{%- liquid
+  assign protection_product = all_products[settings.cart_protection_product]
+  assign protection_variant = protection_product.selected_or_first_available_variant
+  assign protection_in_cart = false
+  assign protection_key = ''
+  for item in cart.items
+    if item.variant_id == protection_variant.id
+      assign protection_in_cart = true
+      assign protection_key = item.key
+      break
+    endif
+  endfor
+-%}
+
+{%- if settings.cart_protection_enabled and protection_variant != blank and cart != empty -%}
+  <div
+    class="cart-protection"
+    data-cart-protection
+    data-variant-id="{{ protection_variant.id }}"
+    data-line-key="{{ protection_key }}"
+  >
+    {%- if settings.cart_protection_icon != blank -%}
+      <img
+        class="cart-protection__icon"
+        src="{{ settings.cart_protection_icon | image_url: width: 160 }}"
+        alt=""
+        loading="lazy"
+        width="48"
+        height="48"
+      >
+    {%- else -%}
+      <svg class="cart-protection__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <rect x="4" y="14" width="30" height="24" rx="2" fill="#f3c34a"/>
+        <path d="M4 14h30l-4-6H8l-4 6z" fill="#e0a92e"/>
+        <path d="M19 14v24" stroke="#e0a92e" stroke-width="2"/>
+        <path d="M34 22l9 3v7c0 5-4 8-9 10-5-2-9-5-9-10v-7l9-3z" fill="#4a8f5b"/>
+        <path d="M30 32l3 3 6-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    {%- endif -%}
+
+    <div class="cart-protection__copy">
+      <p class="cart-protection__title">{{ settings.cart_protection_title }}</p>
+      {%- if settings.cart_protection_subtitle != blank -%}
+        <p class="cart-protection__subtitle">{{ settings.cart_protection_subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <span class="cart-protection__price">{{ protection_variant.price | money }}</span>
+
+    <span class="cart-protection__switch">
+      <input
+        type="checkbox"
+        class="cart-protection__input"
+        id="CartDrawer-Protection"
+        aria-label="{{ settings.cart_protection_title | escape }}"
+        {% if protection_in_cart %}checked{% endif %}
+      >
+      <span class="cart-protection__track" aria-hidden="true"></span>
+    </span>
+  </div>
+
+  <script>
+    (function () {
+      var row = document.querySelector('[data-cart-protection]');
+      if (!row || row.dataset.bound === 'true') return;
+      row.dataset.bound = 'true';
+
+      var input = row.querySelector('.cart-protection__input');
+
+      input.addEventListener('change', async function () {
+        row.classList.add('is-loading');
+        var wanted = input.checked;
+
+        try {
+          if (wanted) {
+            await fetch(window.Shopify.routes.root + 'cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                items: [{ id: Number(row.dataset.variantId), quantity: 1 }]
+              })
+            });
+          } else {
+            await fetch(window.Shopify.routes.root + 'cart/change.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: row.dataset.lineKey, quantity: 0 })
+            });
+          }
+
+          var res = await fetch(window.Shopify.routes.root + '?sections=cart-drawer');
+          var data = await res.json();
+          var parsed = new DOMParser().parseFromString(data['cart-drawer'], 'text/html');
+          var fresh = parsed.querySelector('#CartDrawer');
+          var current = document.querySelector('#CartDrawer');
+          if (fresh && current) current.innerHTML = fresh.innerHTML;
+          document.documentElement.dispatchEvent(
+            new CustomEvent('cart:refresh', { bubbles: true })
+          );
+        } catch (e) {
+          input.checked = !wanted;
+          row.classList.remove('is-loading');
+        }
+      });
+    })();
+  </script>
+{%- endif -%}

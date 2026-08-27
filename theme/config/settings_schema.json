@@ -4,8 +4,8 @@
     "theme_name": "Dawn",
     "theme_version": "15.2.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
-    "theme_support_url": "https:\/\/support.shopify.com\/"
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -1803,7 +1803,7 @@
           }
         ],
         "default": "classic",
-        "info": "Example for Classic: Color: Green, Size: S. Example for compact: Green \/ S"
+        "info": "Example for Classic: Color: Green, Size: S. Example for compact: Green / S"
       },
       {
         "type": "checkbox",
@@ -1865,7 +1865,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Use the cart progress bar for shipping or other cart promotions. The progress bar will show a success message once the customer reaches the set goal. Make sure to set up an [automatic discount](https:\/\/help.shopify.com\/en\/manual\/discounts\/automatic-discounts)."
+        "content": "Use the cart progress bar for shipping or other cart promotions. The progress bar will show a success message once the customer reaches the set goal. Make sure to set up an [automatic discount](https://help.shopify.com/en/manual/discounts/automatic-discounts)."
       },
       {
         "type": "checkbox",
@@ -2135,7 +2135,7 @@
         "type": "richtext",
         "id": "cart_upsell_1_desc",
         "label": "Upsell #1 Description",
-        "default": "<p>Write a short description about your upsell product to attract customers<\/p>"
+        "default": "<p>Write a short description about your upsell product to attract customers</p>"
       },
       {
         "type": "text",
@@ -2188,6 +2188,127 @@
         "id": "cart_upsell_2_btn_label",
         "label": "Upsell #2 Button label",
         "default": "+ Add"
+      },
+      {
+        "type": "header",
+        "content": "Drawer skin"
+      },
+      {
+        "type": "text",
+        "id": "cart_drawer_heading",
+        "label": "Drawer heading",
+        "default": "Your bag",
+        "info": "Leave empty to use the default translated cart title."
+      },
+      {
+        "type": "text",
+        "id": "cart_totals_label",
+        "label": "Totals label",
+        "default": "Subtotal",
+        "info": "Shopify calculates shipping and tax at checkout, so this figure is a subtotal, not a final total."
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_save_badge",
+        "label": "Show \"you save\" pill on line items",
+        "default": true,
+        "info": "Only appears when the item actually has a higher compare-at price."
+      },
+      {
+        "type": "text",
+        "id": "cart_save_badge_text",
+        "label": "Save pill text",
+        "default": "You save [amount]",
+        "info": "Use [amount] for the saved amount."
+      },
+      {
+        "type": "color",
+        "id": "cart_skin_accent",
+        "label": "Accent (checkout button, add to cart, toggle)",
+        "default": "#c0564e"
+      },
+      {
+        "type": "color",
+        "id": "cart_skin_save_bg",
+        "label": "Save pill background",
+        "default": "#c6d5a6"
+      },
+      {
+        "type": "color",
+        "id": "cart_skin_save_text",
+        "label": "Save pill text colour",
+        "default": "#33401f"
+      },
+      {
+        "type": "color",
+        "id": "cart_skin_alert",
+        "label": "Discount / alert colour",
+        "default": "#c0392b"
+      },
+      {
+        "type": "header",
+        "content": "Live shopper count"
+      },
+      {
+        "type": "paragraph",
+        "content": "This row states a fact about other shoppers. The theme cannot measure it, so whatever number you enter is shown as-is. Presenting an invented figure as live activity is a misrepresentation and carries FTC exposure in the US. Leave this off unless you can substantiate the number."
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_social_proof_enabled",
+        "label": "Show shopper count row",
+        "default": false
+      },
+      {
+        "type": "number",
+        "id": "cart_social_proof_count",
+        "label": "Count to display",
+        "default": 0
+      },
+      {
+        "type": "text",
+        "id": "cart_social_proof_text",
+        "label": "Row text",
+        "default": "[count] people are checking out now",
+        "info": "Use [count] for the number."
+      },
+      {
+        "type": "header",
+        "content": "Shipping protection"
+      },
+      {
+        "type": "paragraph",
+        "content": "The toggle adds and removes a real product line, so the price shown is the price charged. Select the product below or the row stays hidden."
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_protection_enabled",
+        "label": "Show shipping protection row",
+        "default": false
+      },
+      {
+        "type": "product",
+        "id": "cart_protection_product",
+        "label": "Protection product"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_protection_icon",
+        "label": "Row icon",
+        "info": "Falls back to a built-in icon."
+      },
+      {
+        "type": "text",
+        "id": "cart_protection_title",
+        "label": "Title",
+        "default": "Same Day Processing with Shipping Protection"
+      },
+      {
+        "type": "text",
+        "id": "cart_protection_subtitle",
+        "label": "Subtitle",
+        "default": "Add protection to your order",
+        "info": "Only claim postal-code or location targeting here if you actually run that logic."
       }
     ]
   }
