@@ -1,0 +1,1707 @@
+diff --git a/assets/ds-cart-skin.css b/assets/ds-cart-skin.css
+new file mode 100644
+index 0000000..1ec6d05
+--- /dev/null
++++ b/assets/ds-cart-skin.css
+@@ -0,0 +1,480 @@
++/* ==========================================================================
++   Cart drawer skin
++   Layers on top of component-cart-drawer.css. All colours come from theme
++   settings via custom properties set on .cart-drawer, so nothing here is
++   hard-coded to one palette.
++   ========================================================================== */
++
++.cart-drawer {
++  --cs-accent: #c0564e;
++  --cs-save-bg: #c6d5a6;
++  --cs-save-text: #33401f;
++  --cs-alert: #c0392b;
++  --cs-muted: #6f6d80;
++  --cs-rule: #e7e4ec;
++  --cs-radius: 0.6rem;
++  --cs-pad-x: 2rem;
++}
++
++/* ---------- header ---------- */
++.cart-drawer .drawer__header {
++  position: relative;
++  padding: 1.8rem var(--cs-pad-x);
++  border-bottom: 1px solid var(--cs-rule);
++  align-items: center;
++}
++.cart-drawer .drawer__heading {
++  margin: 0;
++  width: 100%;
++  text-align: center;
++  font-size: 2.8rem;
++  font-weight: 400;
++  line-height: 1.2;
++  letter-spacing: -0.01em;
++}
++.cart-drawer .drawer__header .drawer__close {
++  position: absolute;
++  top: 50%;
++  right: calc(var(--cs-pad-x) - 0.4rem);
++  transform: translateY(-50%);
++  margin: 0;
++}
++
++/* ---------- line items ---------- */
++.cart-drawer .cart-item {
++  display: grid;
++  grid-template-columns: 7.2rem minmax(0, 1fr) auto;
++  grid-template-areas:
++    "media details totals"
++    "media qty     qty";
++  column-gap: 1.4rem;
++  row-gap: 1rem;
++  align-items: start;
++  padding: 1.8rem 0;
++  border-bottom: 1px solid var(--cs-rule);
++}
++.cart-drawer .cart-item > td {
++  padding: 0;
++  border: 0;
++}
++.cart-drawer .cart-item__media {
++  grid-area: media;
++  width: 7.2rem;
++}
++.cart-drawer .cart-item__image {
++  width: 100%;
++  height: auto;
++  border-radius: var(--cs-radius);
++  display: block;
++}
++.cart-drawer .cart-item__details {
++  grid-area: details;
++  min-width: 0;
++}
++.cart-drawer .cart-item__name {
++  display: block;
++  font-size: 1.65rem;
++  font-weight: 700;
++  line-height: 1.28;
++  letter-spacing: -0.005em;
++  text-decoration: none;
++  color: inherit;
++  margin: 0 0 0.4rem;
++}
++.cart-drawer .cart-item__details .product-option {
++  font-size: 1.4rem;
++  line-height: 1.35;
++  color: var(--cs-muted);
++  margin: 0;
++}
++.cart-drawer .cart-item__totals {
++  grid-area: totals;
++  display: flex;
++  flex-direction: column;
++  align-items: flex-end;
++  row-gap: 0.5rem;
++  text-align: right;
++}
++.cart-drawer .cart-item__price-wrapper {
++  display: flex;
++  flex-direction: column;
++  align-items: flex-end;
++  row-gap: 0.6rem;
++}
++.cart-drawer .cart-item__price-wrapper .cart-item__discounted-prices {
++  display: flex;
++  flex-direction: column;
++  align-items: flex-end;
++  row-gap: 0.2rem;
++}
++.cart-drawer .cart-item__old-price {
++  font-size: 1.6rem;
++  font-weight: 500;
++  color: var(--cs-muted);
++  text-decoration: line-through;
++}
++.cart-drawer .cart-drawer__final-item-price {
++  font-size: 1.8rem;
++  font-weight: 700;
++  letter-spacing: -0.01em;
++}
++
++/* ---------- "you save" pill ---------- */
++.cart-item__save-badge,
++.cart-upsell__save-badge {
++  display: inline-flex;
++  align-items: center;
++  column-gap: 0.5rem;
++  background: var(--cs-save-bg);
++  color: var(--cs-save-text);
++  font-size: 1.35rem;
++  font-weight: 700;
++  line-height: 1.3;
++  padding: 0.4rem 0.8rem;
++  border-radius: 0.4rem;
++  white-space: nowrap;
++}
++.cart-item__save-badge svg,
++.cart-upsell__save-badge svg {
++  width: 1.3rem;
++  height: 1.3rem;
++  flex: 0 0 auto;
++}
++
++/* ---------- quantity row ---------- */
++.cart-drawer .cart-item__quantity {
++  grid-area: qty;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  column-gap: 1rem;
++  padding: 0;
++}
++.cart-drawer .cart-item__quantity-wrapper {
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  width: 100%;
++  column-gap: 1rem;
++}
++.cart-drawer .quantity.cart-quantity {
++  display: flex;
++  flex: 0 0 auto;
++  width: 11.6rem;
++  height: 4rem;
++  min-height: 4rem;
++  border: 1px solid var(--cs-rule);
++  border-radius: var(--cs-radius);
++}
++.cart-drawer .quantity.cart-quantity::after,
++.cart-drawer .quantity.cart-quantity::before {
++  box-shadow: none;
++  border: 0;
++}
++.cart-drawer .quantity.cart-quantity .quantity__button {
++  flex: 0 0 3.4rem;
++  width: 3.4rem;
++  padding: 0;
++  color: inherit;
++}
++.cart-drawer .quantity.cart-quantity .quantity__input {
++  flex: 1 1 auto;
++  width: auto;
++  min-width: 0;
++  padding: 0;
++  font-size: 1.55rem;
++  font-weight: 600;
++  opacity: 1;
++  text-align: center;
++}
++.cart-drawer cart-remove-button {
++  margin: 0;
++}
++.cart-drawer cart-remove-button .button {
++  min-width: 0;
++  min-height: 0;
++  padding: 0.4rem;
++  color: var(--cs-muted);
++}
++.cart-drawer cart-remove-button .button:hover {
++  color: var(--cs-alert);
++}
++
++/* ---------- frequently bought together ---------- */
++.cart-drawer .cart-upsell-container {
++  padding: 1.8rem 0;
++  border-bottom: 1px solid var(--cs-rule);
++}
++.cart-drawer .cart-upsell-container > .title {
++  font-size: 2rem;
++  font-weight: 700;
++  line-height: 1.25;
++  text-align: center;
++  margin: 0 0 1.4rem;
++}
++.cart-drawer .cart-upsell {
++  display: grid;
++  grid-template-columns: 9rem minmax(0, 1fr);
++  column-gap: 1.4rem;
++  align-items: start;
++  box-shadow: none;
++  border: 0;
++  padding: 0;
++  background: transparent;
++}
++.cart-drawer .cart-upsell__image__img {
++  width: 100%;
++  height: auto;
++  border-radius: var(--cs-radius);
++  display: block;
++}
++.cart-drawer .cart-upsell__content {
++  display: flex;
++  flex-direction: column;
++  align-items: flex-start;
++  row-gap: 0.9rem;
++  min-width: 0;
++}
++.cart-drawer .cart-upsell__title {
++  font-size: 1.6rem;
++  font-weight: 700;
++  line-height: 1.3;
++  margin: 0;
++  text-decoration: none;
++}
++.cart-drawer .cart-upsell__price-row {
++  display: flex;
++  align-items: center;
++  flex-wrap: wrap;
++  column-gap: 0.9rem;
++  row-gap: 0.5rem;
++}
++.cart-drawer .cart-upsell__price {
++  font-size: 1.7rem;
++  font-weight: 700;
++  letter-spacing: -0.01em;
++}
++.cart-drawer .cart-upsell__compare {
++  font-size: 1.55rem;
++  font-weight: 500;
++  color: var(--cs-muted);
++  text-decoration: line-through;
++}
++.cart-drawer .cart-upsell__submit,
++.cart-drawer .cart-upsell button[type="submit"] {
++  background: var(--cs-accent);
++  color: #fff;
++  border: 0;
++  border-radius: var(--cs-radius);
++  font-size: 1.45rem;
++  font-weight: 700;
++  line-height: 1.2;
++  padding: 1rem 1.6rem;
++  min-height: 0;
++  min-width: 0;
++  width: auto;
++  cursor: pointer;
++  box-shadow: none;
++}
++.cart-drawer .cart-upsell__submit:hover,
++.cart-drawer .cart-upsell button[type="submit"]:hover {
++  filter: brightness(0.93);
++}
++
++/* ---------- social proof strip ---------- */
++.cart-social-proof {
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  column-gap: 0.8rem;
++  border: 1px solid var(--cs-rule);
++  border-radius: var(--cs-radius);
++  padding: 1.2rem 1.4rem;
++  margin: 1.6rem 0;
++  font-size: 1.5rem;
++  line-height: 1.3;
++  text-align: center;
++}
++.cart-social-proof__dot {
++  width: 0.9rem;
++  height: 0.9rem;
++  border-radius: 50%;
++  background: var(--cs-alert);
++  flex: 0 0 auto;
++}
++.cart-social-proof__text strong {
++  color: var(--cs-alert);
++  font-weight: 700;
++}
++
++/* ---------- shipping protection ---------- */
++.cart-protection {
++  display: grid;
++  grid-template-columns: 4.8rem minmax(0, 1fr) auto auto;
++  align-items: center;
++  column-gap: 1.2rem;
++  padding: 1.4rem 0;
++  border-top: 1px solid var(--cs-rule);
++}
++.cart-protection__icon {
++  width: 4.8rem;
++  height: auto;
++  display: block;
++}
++.cart-protection__copy {
++  min-width: 0;
++}
++.cart-protection__title {
++  font-size: 1.55rem;
++  font-weight: 700;
++  line-height: 1.3;
++  margin: 0 0 0.2rem;
++}
++.cart-protection__subtitle {
++  font-size: 1.4rem;
++  line-height: 1.3;
++  color: var(--cs-muted);
++  margin: 0;
++}
++.cart-protection__price {
++  font-size: 1.7rem;
++  font-weight: 700;
++  white-space: nowrap;
++}
++.cart-protection__switch {
++  position: relative;
++  width: 4.6rem;
++  height: 2.6rem;
++  flex: 0 0 auto;
++}
++.cart-protection__input {
++  position: absolute;
++  opacity: 0;
++  width: 100%;
++  height: 100%;
++  margin: 0;
++  cursor: pointer;
++  z-index: 1;
++}
++.cart-protection__track {
++  position: absolute;
++  inset: 0;
++  border-radius: 1.3rem;
++  background: #d6d3dc;
++  transition: background-color 0.15s ease;
++  pointer-events: none;
++}
++.cart-protection__track::after {
++  content: "";
++  position: absolute;
++  top: 0.3rem;
++  left: 0.3rem;
++  width: 2rem;
++  height: 2rem;
++  border-radius: 50%;
++  background: #fff;
++  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
++  transition: transform 0.15s ease;
++}
++.cart-protection__input:checked + .cart-protection__track {
++  background: var(--cs-accent);
++}
++.cart-protection__input:checked + .cart-protection__track::after {
++  transform: translateX(2rem);
++}
++.cart-protection__input:focus-visible + .cart-protection__track {
++  outline: 0.2rem solid var(--cs-accent);
++  outline-offset: 0.2rem;
++}
++.cart-protection.is-loading {
++  opacity: 0.55;
++  pointer-events: none;
++}
++
++/* ---------- totals ---------- */
++.cart-drawer .cart-drawer__footer .discounts {
++  display: flex;
++  flex-direction: column;
++  row-gap: 0.4rem;
++  margin: 0 0 0.6rem;
++}
++.cart-drawer .cart-drawer__footer .discounts__discount {
++  padding-left: 0;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  column-gap: 1rem;
++  color: var(--cs-alert);
++  font-size: 1.55rem;
++  font-weight: 500;
++  line-height: 1.3;
++}
++.cart-drawer .totals {
++  display: flex;
++  align-items: baseline;
++  justify-content: space-between;
++  column-gap: 1rem;
++  margin: 0.4rem 0 0;
++}
++.cart-drawer .totals__total,
++.cart-drawer .totals__total-value {
++  font-size: 1.9rem;
++  font-weight: 700;
++  line-height: 1.3;
++  margin: 0;
++  letter-spacing: -0.01em;
++}
++
++/* ---------- checkout button ---------- */
++.cart-drawer .cart__ctas {
++  margin-top: 1.4rem;
++}
++.cart-drawer .cart__checkout-button {
++  width: 100%;
++  background: var(--cs-accent);
++  color: #fff;
++  border: 0;
++  border-radius: var(--cs-radius);
++  font-size: 1.9rem;
++  font-weight: 700;
++  letter-spacing: 0.06em;
++  text-transform: uppercase;
++  min-height: 5.6rem;
++  box-shadow: none;
++}
++.cart-drawer .cart__checkout-button:hover {
++  filter: brightness(0.93);
++}
++.cart-drawer .cart__checkout-button::after,
++.cart-drawer .cart__checkout-button::before {
++  display: none;
++}
++
++@media screen and (max-width: 420px) {
++  .cart-drawer {
++    --cs-pad-x: 1.5rem;
++  }
++  .cart-drawer .drawer__heading {
++    font-size: 2.4rem;
++  }
++  .cart-drawer .cart-item {
++    grid-template-columns: 6rem minmax(0, 1fr) auto;
++    column-gap: 1.1rem;
++  }
++  .cart-drawer .cart-item__media {
++    width: 6rem;
++  }
++  .cart-drawer .cart-item__name {
++    font-size: 1.5rem;
++  }
++  .cart-drawer .cart__checkout-button {
++    font-size: 1.7rem;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .cart-protection__track,
++  .cart-protection__track::after {
++    transition: none;
++  }
++}
+diff --git a/assets/section-main-product.css b/assets/section-main-product.css
+index b20a26a..46b14ba 100644
+--- a/assets/section-main-product.css
++++ b/assets/section-main-product.css
+@@ -3470,30 +3470,46 @@ a.product__text {
+ 
+ quantity-breaks {
+   display: block;
++  --qb-card-bg: #fbeaeb;
++  --qb-accent: #c0392b;
++  --qb-gift-bg: #f5dadc;
++  --qb-badge-bg: #141414;
++  --qb-muted: #7c7c85;
++  --qb-radius: 1rem;
++  --qb-pad-x: 1.8rem;
+ }
+ .quantity-breaks-container {
+   display: flex;
+   flex-direction: column;
++  row-gap: 1.2rem;
+   position: relative;
++  padding-top: 0.8rem;
+ }
++
++/* ---- section heading: rule / label / rule ---- */
+ .quantity-breaks__title {
+-  margin: 0;
++  margin: 0 0 1.4rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+-  font-size: 1.4rem;
+-  line-height: 1;
+-  column-gap: 10px;
+-  margin-bottom: 1.3rem;
++  column-gap: 1.2rem;
++  font-size: 1.5rem;
++  font-weight: 800;
++  line-height: 1.25;
++  letter-spacing: 0.085em;
++  text-transform: uppercase;
+ }
+ .quantity-breaks__title span:nth-of-type(1),
+ .quantity-breaks__title span:nth-of-type(3) {
+   display: block;
+-  height: 2px;
++  height: 1px;
+   flex-grow: 1;
+-  background: rgb(var(--accent-color));
++  background: var(--qb-accent);
++  opacity: 0.35;
+ }
++
++/* ---- tier card ---- */
+ .quantity-breaks-container input {
+   opacity: 0;
+   width: 0;
+@@ -3502,120 +3518,310 @@ quantity-breaks {
+   position: absolute;
+ }
+ .quantity-break {
+-  padding: 1.75rem 1.75rem 1.75rem 4rem;
+-  margin-bottom: 0.85rem;
+-  cursor: pointer;
+-  border-radius: 1rem;
+-  background: rgba(var(--accent-color), 0.02);
+-  border: solid 2px rgba(var(--accent-color), 0.3);
+   position: relative;
+-}
+-.quantity-break:last-of-type {
++  display: block;
++  padding: 0;
+   margin-bottom: 0;
++  cursor: pointer;
++  border-radius: var(--qb-radius);
++  background: var(--qb-card-bg);
++  border: 0.2rem solid transparent;
++  transition: border-color 0.15s ease, background-color 0.15s ease;
++}
++.quantity-break:hover {
++  border-color: var(--qb-accent);
++  background: var(--qb-card-bg);
+ }
+ .quantity-breaks-container input:checked + .quantity-break {
+-  background: rgba(var(--accent-color), 0.1);
+-  border: solid 2px rgb(var(--accent-color));
++  background: rgb(var(--color-background));
++  border-color: var(--qb-accent);
+ }
+-.quantity-break:hover {
+-  background: rgba(var(--accent-color), 0.15);
+-  border: solid 2px rgb(var(--accent-color));
++.quantity-breaks-container input:focus-visible + .quantity-break {
++  outline: 0.2rem solid var(--qb-accent);
++  outline-offset: 0.2rem;
+ }
++
++/* ---- badge ---- */
+ .quantity-break__badge {
+   position: absolute;
+-  background: rgb(var(--accent-color));
+-  color: rgb(var(--color-background));
+-  font-weight: 700;
+-  font-size: 1.5rem;
+-  line-height: 1.6;
+-  top: -1rem;
+-  right: -1rem;
+-  transform: rotate(3deg);
++  top: -1.2rem;
++  right: -0.2rem;
++  z-index: 2;
+   margin: 0;
+-  padding: 0 0.5em;
+-  border-radius: 0.2em;
++  padding: 0.45rem 1.1rem;
++  background: var(--qb-badge-bg);
++  color: #fff;
++  font-size: 1.15rem;
++  font-weight: 800;
++  line-height: 1.3;
++  letter-spacing: 0.07em;
++  text-transform: uppercase;
++  border-radius: 0.4rem;
++  transform: none;
++  white-space: nowrap;
+ }
++.quantity-break__badge::before {
++  content: "";
++  position: absolute;
++  left: 0;
++  bottom: -0.55rem;
++  width: 0;
++  height: 0;
++  border-style: solid;
++  border-width: 0.6rem 0.8rem 0 0;
++  border-color: var(--qb-badge-bg) transparent transparent transparent;
++  filter: brightness(0.65);
++}
++
++/* ---- card body ---- */
+ .quantity-break__content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
++  column-gap: 1.4rem;
++  padding: 1.5rem var(--qb-pad-x);
++}
++.quantity-break__media {
++  flex: 0 0 auto;
++  width: 4.4rem;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++}
++.quantity-break__media img {
++  display: block;
++  width: 100%;
++  height: auto;
++  object-fit: contain;
+ }
+ .quantity-break__left span,
+ .quantity-break__right span {
+   display: block;
+ }
+ .quantity-break__left {
++  flex: 1 1 auto;
++  min-width: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+-  row-gap: 0.5rem;
++  row-gap: 0.4rem;
+   text-align: left;
+ }
+ .quantity-break__left .quantity-break__label {
+-  font-size: 1.6rem;
+-  font-weight: 700;
+-  line-height: 1;
++  font-size: 2.1rem;
++  font-weight: 800;
++  line-height: 1.15;
++  letter-spacing: -0.01em;
+   display: flex;
+   align-items: center;
++  flex-wrap: wrap;
+ }
+ .quantity-break__label-text {
+-  line-height: 1;
++  line-height: 1.15;
+ }
+ .quantity-break__benefit {
+   display: inline-block;
+-  font-size: 1rem;
++  font-size: 1.1rem;
+   background: rgb(var(--color-background));
+-  color: rgb(var(--accent-color));
+-  line-height: 1.9;
+-  padding: 0 0.75rem;
++  color: var(--qb-accent);
++  line-height: 1.8;
++  padding: 0 0.7rem;
+   font-weight: 700;
+-  border: solid 1px rgb(var(--accent-color));
+-  border-radius: 0.6rem;
+-  margin-left: 0.5rem;
++  border: solid 1px var(--qb-accent);
++  border-radius: 0.5rem;
++  margin-left: 0.6rem;
+   white-space: nowrap;
+ }
+ .quantity-break__caption {
+   font-size: 1.4rem;
+-  line-height: 1;
++  font-weight: 500;
++  line-height: 1.3;
++  color: var(--qb-muted);
++}
++.quantity-break__caption span {
++  display: inline;
+ }
+-
+ .quantity-break__right {
++  flex: 0 0 auto;
+   text-align: right;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+-  row-gap: 0.5rem;
++  row-gap: 0.3rem;
+ }
+ .quantity-break__price {
+-  line-height: 1;
+-  font-size: 1.6rem;
+-  font-weight: 700;
+-  color: rgb(var(--accent-color));
++  font-size: 2.4rem;
++  font-weight: 800;
++  line-height: 1.1;
++  letter-spacing: -0.02em;
++  color: inherit;
+ }
+ .quantity-break__compare-price {
+-  font-size: 1.4rem;
++  font-size: 1.5rem;
++  font-weight: 500;
++  line-height: 1.2;
+   text-decoration: line-through;
+-  line-height: 1;
++  color: var(--qb-muted);
+ }
+-.quantity-break__caption span {
+-  display: inline;
++
++/* ---- free-gift strip ---- */
++.quantity-break__gift {
++  display: flex;
++  align-items: center;
++  column-gap: 1.1rem;
++  padding: 0.9rem var(--qb-pad-x);
++  background: var(--qb-gift-bg);
++  border-radius: 0 0 calc(var(--qb-radius) - 0.2rem) calc(var(--qb-radius) - 0.2rem);
++  transition: background-color 0.15s ease, color 0.15s ease;
++}
++.quantity-break__gift-media {
++  flex: 0 0 auto;
++  width: 3.2rem;
++  display: block;
+ }
+-.quantity-break::before {
+-  content: "";
++.quantity-break__gift-media img {
+   display: block;
++  width: 100%;
++  height: auto;
++  border-radius: 0.3rem;
++}
++.quantity-break__gift-text {
++  flex: 1 1 auto;
++  font-size: 1.5rem;
++  font-weight: 700;
++  line-height: 1.3;
++}
++.quantity-break__gift-value {
++  flex: 0 0 auto;
++  font-size: 1.4rem;
++  font-weight: 600;
++  line-height: 1.3;
++  text-decoration: line-through;
++  opacity: 0.7;
++}
++.quantity-breaks-container input:checked + .quantity-break .quantity-break__gift {
++  background: var(--qb-accent);
++  color: #fff;
++}
++.quantity-breaks-container input:checked + .quantity-break .quantity-break__gift-value {
++  opacity: 0.85;
++}
++
++/* ---- auto-ship ---- */
++.quantity-breaks__autoship {
++  margin-top: 1.2rem;
++  border: 0.2rem dashed var(--qb-accent);
++  border-radius: var(--qb-radius);
++}
++.quantity-breaks__autoship-input {
++  position: absolute;
++  opacity: 0;
++  width: 0;
++  height: 0;
++}
++.quantity-breaks__autoship-label {
++  display: flex;
++  align-items: center;
++  column-gap: 1.3rem;
++  padding: 1.4rem var(--qb-pad-x);
++  cursor: pointer;
++  margin: 0;
++}
++.quantity-breaks__autoship-box {
++  flex: 0 0 auto;
++  width: 2.4rem;
++  height: 2.4rem;
++  border: 0.2rem solid var(--qb-accent);
++  border-radius: 0.4rem;
++  background: rgb(var(--color-background));
++  color: var(--qb-accent);
++  display: flex;
++  align-items: center;
++  justify-content: center;
++}
++.quantity-breaks__autoship-box svg {
+   width: 1.5rem;
+   height: 1.5rem;
+-  position: absolute;
+-  left: 2rem;
+-  top: 50%;
+-  transform: translate(-50%, -50%);
+-  border-radius: 50%;
+-  border: solid 0.2rem rgba(var(--accent-color), 0.3);
++  opacity: 0;
++  transition: opacity 0.12s ease;
+ }
+-.quantity-breaks-container input:checked + .quantity-break::before {
+-  border: solid 0.2rem rgb(var(--color-background));
+-  background: rgb(var(--accent-color));
+-  box-shadow: 0 0 0 0.1rem rgb(var(--accent-color));
++.quantity-breaks__autoship-input:checked
++  + .quantity-breaks__autoship-label
++  .quantity-breaks__autoship-box
++  svg {
++  opacity: 1;
++}
++.quantity-breaks__autoship-input:focus-visible
++  + .quantity-breaks__autoship-label
++  .quantity-breaks__autoship-box {
++  outline: 0.2rem solid var(--qb-accent);
++  outline-offset: 0.2rem;
++}
++.quantity-breaks__autoship-copy {
++  display: flex;
++  flex-direction: column;
++  row-gap: 0.2rem;
++}
++.quantity-breaks__autoship-title {
++  font-size: 1.6rem;
++  font-weight: 800;
++  line-height: 1.25;
++}
++.quantity-breaks__autoship-subtitle {
++  font-size: 1.35rem;
++  line-height: 1.3;
++  color: var(--qb-muted);
++}
++
++/* ---- variant selectors sit inside the padded card ---- */
++.quantity-break__variants {
++  padding-left: var(--qb-pad-x);
++  padding-right: var(--qb-pad-x);
++}
++.quantity-breaks-container
++  input:checked
++  + .quantity-break
++  .quantity-break__variants {
++  padding-bottom: 1.4rem;
++}
++
++@media screen and (max-width: 480px) {
++  quantity-breaks {
++    --qb-pad-x: 1.3rem;
++  }
++  .quantity-break__content {
++    column-gap: 1rem;
++    padding-top: 1.2rem;
++    padding-bottom: 1.2rem;
++  }
++  .quantity-break__media {
++    width: 3.6rem;
++  }
++  .quantity-break__left .quantity-break__label {
++    font-size: 1.8rem;
++  }
++  .quantity-break__price {
++    font-size: 2rem;
++  }
++  .quantity-break__compare-price,
++  .quantity-break__caption {
++    font-size: 1.3rem;
++  }
++  .quantity-break__gift-text {
++    font-size: 1.35rem;
++  }
++  .quantity-breaks__title {
++    font-size: 1.35rem;
++    column-gap: 0.9rem;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .quantity-break,
++  .quantity-break__gift,
++  .quantity-breaks__autoship-box svg {
++    transition: none;
++  }
+ }
+ 
+ .quantity-break__variants {
+diff --git a/config/settings_schema.json b/config/settings_schema.json
+index 2533d30..34055c9 100644
+--- a/config/settings_schema.json
++++ b/config/settings_schema.json
+@@ -4,8 +4,8 @@
+     "theme_name": "Dawn",
+     "theme_version": "15.2.0",
+     "theme_author": "Shopify",
+-    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
+-    "theme_support_url": "https:\/\/support.shopify.com\/"
++    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
++    "theme_support_url": "https://support.shopify.com/"
+   },
+   {
+     "name": "t:settings_schema.logo.name",
+@@ -1803,7 +1803,7 @@
+           }
+         ],
+         "default": "classic",
+-        "info": "Example for Classic: Color: Green, Size: S. Example for compact: Green \/ S"
++        "info": "Example for Classic: Color: Green, Size: S. Example for compact: Green / S"
+       },
+       {
+         "type": "checkbox",
+@@ -1865,7 +1865,7 @@
+       },
+       {
+         "type": "paragraph",
+-        "content": "Use the cart progress bar for shipping or other cart promotions. The progress bar will show a success message once the customer reaches the set goal. Make sure to set up an [automatic discount](https:\/\/help.shopify.com\/en\/manual\/discounts\/automatic-discounts)."
++        "content": "Use the cart progress bar for shipping or other cart promotions. The progress bar will show a success message once the customer reaches the set goal. Make sure to set up an [automatic discount](https://help.shopify.com/en/manual/discounts/automatic-discounts)."
+       },
+       {
+         "type": "checkbox",
+@@ -2135,7 +2135,7 @@
+         "type": "richtext",
+         "id": "cart_upsell_1_desc",
+         "label": "Upsell #1 Description",
+-        "default": "<p>Write a short description about your upsell product to attract customers<\/p>"
++        "default": "<p>Write a short description about your upsell product to attract customers</p>"
+       },
+       {
+         "type": "text",
+@@ -2188,7 +2188,128 @@
+         "id": "cart_upsell_2_btn_label",
+         "label": "Upsell #2 Button label",
+         "default": "+ Add"
++      },
++      {
++        "type": "header",
++        "content": "Drawer skin"
++      },
++      {
++        "type": "text",
++        "id": "cart_drawer_heading",
++        "label": "Drawer heading",
++        "default": "Your bag",
++        "info": "Leave empty to use the default translated cart title."
++      },
++      {
++        "type": "text",
++        "id": "cart_totals_label",
++        "label": "Totals label",
++        "default": "Subtotal",
++        "info": "Shopify calculates shipping and tax at checkout, so this figure is a subtotal, not a final total."
++      },
++      {
++        "type": "checkbox",
++        "id": "cart_show_save_badge",
++        "label": "Show \"you save\" pill on line items",
++        "default": true,
++        "info": "Only appears when the item actually has a higher compare-at price."
++      },
++      {
++        "type": "text",
++        "id": "cart_save_badge_text",
++        "label": "Save pill text",
++        "default": "You save [amount]",
++        "info": "Use [amount] for the saved amount."
++      },
++      {
++        "type": "color",
++        "id": "cart_skin_accent",
++        "label": "Accent (checkout button, add to cart, toggle)",
++        "default": "#c0564e"
++      },
++      {
++        "type": "color",
++        "id": "cart_skin_save_bg",
++        "label": "Save pill background",
++        "default": "#c6d5a6"
++      },
++      {
++        "type": "color",
++        "id": "cart_skin_save_text",
++        "label": "Save pill text colour",
++        "default": "#33401f"
++      },
++      {
++        "type": "color",
++        "id": "cart_skin_alert",
++        "label": "Discount / alert colour",
++        "default": "#c0392b"
++      },
++      {
++        "type": "header",
++        "content": "Live shopper count"
++      },
++      {
++        "type": "paragraph",
++        "content": "This row states a fact about other shoppers. The theme cannot measure it, so whatever number you enter is shown as-is. Presenting an invented figure as live activity is a misrepresentation and carries FTC exposure in the US. Leave this off unless you can substantiate the number."
++      },
++      {
++        "type": "checkbox",
++        "id": "cart_social_proof_enabled",
++        "label": "Show shopper count row",
++        "default": false
++      },
++      {
++        "type": "number",
++        "id": "cart_social_proof_count",
++        "label": "Count to display",
++        "default": 0
++      },
++      {
++        "type": "text",
++        "id": "cart_social_proof_text",
++        "label": "Row text",
++        "default": "[count] people are checking out now",
++        "info": "Use [count] for the number."
++      },
++      {
++        "type": "header",
++        "content": "Shipping protection"
++      },
++      {
++        "type": "paragraph",
++        "content": "The toggle adds and removes a real product line, so the price shown is the price charged. Select the product below or the row stays hidden."
++      },
++      {
++        "type": "checkbox",
++        "id": "cart_protection_enabled",
++        "label": "Show shipping protection row",
++        "default": false
++      },
++      {
++        "type": "product",
++        "id": "cart_protection_product",
++        "label": "Protection product"
++      },
++      {
++        "type": "image_picker",
++        "id": "cart_protection_icon",
++        "label": "Row icon",
++        "info": "Falls back to a built-in icon."
++      },
++      {
++        "type": "text",
++        "id": "cart_protection_title",
++        "label": "Title",
++        "default": "Same Day Processing with Shipping Protection"
++      },
++      {
++        "type": "text",
++        "id": "cart_protection_subtitle",
++        "label": "Subtitle",
++        "default": "Add protection to your order",
++        "info": "Only claim postal-code or location targeting here if you actually run that logic."
+       }
+     ]
+   }
+-]
++]
+\ No newline at end of file
+diff --git a/sections/main-product.liquid b/sections/main-product.liquid
+index d0992b6..3946deb 100644
+--- a/sections/main-product.liquid
++++ b/sections/main-product.liquid
+@@ -2209,6 +2209,143 @@
+           "label": "Option #4 Compare price based on",
+           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
+         },
++        {
++          "type": "header",
++          "content": "Tier image & badge"
++        },
++        {
++          "type": "image_picker",
++          "id": "option_1_image",
++          "label": "Option #1 image",
++          "info": "Falls back to the product featured image"
++        },
++        {
++          "type": "text",
++          "id": "option_1_badge",
++          "label": "Option #1 badge",
++          "info": "Leave empty for no badge"
++        },
++        {
++          "type": "image_picker",
++          "id": "option_2_image",
++          "label": "Option #2 image",
++          "info": "Falls back to the product featured image"
++        },
++        {
++          "type": "text",
++          "id": "option_2_badge",
++          "label": "Option #2 badge",
++          "info": "Leave empty for no badge"
++        },
++        {
++          "type": "image_picker",
++          "id": "option_3_image",
++          "label": "Option #3 image",
++          "info": "Falls back to the product featured image"
++        },
++        {
++          "type": "text",
++          "id": "option_3_badge",
++          "label": "Option #3 badge",
++          "info": "Leave empty for no badge"
++        },
++        {
++          "type": "image_picker",
++          "id": "option_4_image",
++          "label": "Option #4 image",
++          "info": "Falls back to the product featured image"
++        },
++        {
++          "type": "text",
++          "id": "option_4_badge",
++          "label": "Option #4 badge",
++          "info": "Leave empty for no badge"
++        },
++        {
++          "type": "header",
++          "content": "Free gift row"
++        },
++        {
++          "type": "checkbox",
++          "id": "gift_enabled",
++          "label": "Show free gift row",
++          "default": true
++        },
++        {
++          "type": "image_picker",
++          "id": "gift_image",
++          "label": "Gift image"
++        },
++        {
++          "type": "text",
++          "id": "gift_text",
++          "label": "Gift text",
++          "default": "+ FREE Care Guide E-Book"
++        },
++        {
++          "type": "text",
++          "id": "gift_value",
++          "label": "Gift value",
++          "default": "$15.00",
++          "info": "Displayed struck through"
++        },
++        {
++          "type": "header",
++          "content": "Auto ship"
++        },
++        {
++          "type": "checkbox",
++          "id": "autoship_enabled",
++          "label": "Show auto ship row",
++          "default": false,
++          "info": "This only creates a real subscription if a subscription app has published selling plans for this product. Without one it posts nothing at checkout, so do not advertise a discount you cannot honour."
++        },
++        {
++          "type": "checkbox",
++          "id": "autoship_checked",
++          "label": "Ticked by default",
++          "default": false
++        },
++        {
++          "type": "text",
++          "id": "autoship_title",
++          "label": "Auto ship title",
++          "default": "Auto Ship & Save 15%"
++        },
++        {
++          "type": "text",
++          "id": "autoship_subtitle",
++          "label": "Auto ship subtitle",
++          "default": "Zero Commitment, Cancel Anytime"
++        },
++        {
++          "type": "header",
++          "content": "Bundle colours"
++        },
++        {
++          "type": "color",
++          "id": "qb_card_bg",
++          "label": "Card background",
++          "default": "#fbeaeb"
++        },
++        {
++          "type": "color",
++          "id": "qb_accent",
++          "label": "Selected border & gift bar",
++          "default": "#c0392b"
++        },
++        {
++          "type": "color",
++          "id": "qb_gift_bg",
++          "label": "Gift row background",
++          "default": "#f5dadc"
++        },
++        {
++          "type": "color",
++          "id": "qb_badge_bg",
++          "label": "Badge background",
++          "default": "#141414"
++        },
+         {
+           "type": "header",
+           "content": "Block margin"
+diff --git a/snippets/cart-drawer.liquid b/snippets/cart-drawer.liquid
+index 9eb48c4..3e4c904 100644
+--- a/snippets/cart-drawer.liquid
++++ b/snippets/cart-drawer.liquid
+@@ -6,6 +6,7 @@
+ {% endcomment %}
+ 
+ {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
++{{ 'ds-cart-skin.css' | asset_url | stylesheet_tag }}
+ {% comment %} {{ 'component-card.css' | asset_url | stylesheet_tag }} {% endcomment %}
+ 
+ <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+@@ -26,6 +27,13 @@
+     visibility: hidden;
+   }
+ 
++  .cart-drawer {
++    {% if settings.cart_skin_accent != blank %}--cs-accent: {{ settings.cart_skin_accent }};{% endif %}
++    {% if settings.cart_skin_save_bg != blank %}--cs-save-bg: {{ settings.cart_skin_save_bg }};{% endif %}
++    {% if settings.cart_skin_save_text != blank %}--cs-save-text: {{ settings.cart_skin_save_text }};{% endif %}
++    {% if settings.cart_skin_alert != blank %}--cs-alert: {{ settings.cart_skin_alert }};{% endif %}
++  }
++
+   {% if settings.cart_trust_badges != blank %}
+     .cart__trust-badges {
+       width: {{ settings.cart_trust_badges_width}}%;
+@@ -81,7 +89,13 @@
+         </div>
+       {%- endif -%}
+       <div class="drawer__header">
+-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
++        <h2 class="drawer__heading">
++          {%- if settings.cart_drawer_heading != blank -%}
++            {{ settings.cart_drawer_heading }}
++          {%- else -%}
++            {{ 'sections.cart.title' | t }}
++          {%- endif -%}
++        </h2>
+         <button
+           class="drawer__close"
+           type="button"
+@@ -315,6 +329,18 @@
+                                 {{ item.unit_price_measurement.reference_unit }}
+                               </div>
+                             {%- endif -%}
++                            {%- if display_compare and settings.cart_show_save_badge -%}
++                              {%- assign cs_saved = compare_price | minus: item.final_line_price -%}
++                              {%- if cs_saved > 0 -%}
++                                <span class="cart-item__save-badge">
++                                  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false">
++                                    <path d="M8.6 1.4H14a.6.6 0 0 1 .6.6v5.4a1 1 0 0 1-.3.7l-6 6a1 1 0 0 1-1.4 0L1.6 9a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1-.2zM11.6 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
++                                  </svg>
++                                  {%- capture cs_saved_money -%}{{ cs_saved | money_without_trailing_zeros }}{%- endcapture -%}
++                                  {{ settings.cart_save_badge_text | default: 'You save [amount]' | replace: '[amount]', cs_saved_money }}
++                                </span>
++                              {%- endif -%}
++                            {%- endif -%}
+                           </div>
+                         </td>
+                         {%- liquid
+@@ -523,6 +549,21 @@
+         {% if settings.enable_cart_discount %}
+           {% render 'ds-cart-discount-field' %}
+         {% endif %}
++
++        {%- if settings.cart_social_proof_enabled
++          and settings.cart_social_proof_text != blank
++          and cart != empty
++        -%}
++          {%- capture cs_count -%}<strong>{{ settings.cart_social_proof_count }}</strong>{%- endcapture -%}
++          <div class="cart-social-proof">
++            <span class="cart-social-proof__dot" aria-hidden="true"></span>
++            <span class="cart-social-proof__text">
++              {{ settings.cart_social_proof_text | replace: '[count]', cs_count }}
++            </span>
++          </div>
++        {%- endif -%}
++
++        {% render 'ds-cart-protection' %}
+         {%- if settings.show_cart_note -%}
+           <details id="Details-CartDrawer">
+             <summary>
+@@ -562,7 +603,13 @@
+           </div>
+ 
+           <div class="totals" role="status">
+-            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
++            <h2 class="totals__total">
++              {%- if settings.cart_totals_label != blank -%}
++                {{ settings.cart_totals_label }}
++              {%- else -%}
++                {{ 'sections.cart.estimated_total' | t }}
++              {%- endif -%}
++            </h2>
+             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+           </div>
+ 
+diff --git a/snippets/ds-cart-protection.liquid b/snippets/ds-cart-protection.liquid
+new file mode 100644
+index 0000000..911453e
+--- /dev/null
++++ b/snippets/ds-cart-protection.liquid
+@@ -0,0 +1,116 @@
++{% comment %}
++  Shipping protection toggle.
++
++  Adds or removes a real product line from the cart, so the amount shown is
++  actually charged. Renders nothing unless a protection product is selected
++  in theme settings, which keeps the row from ever claiming a fee the cart
++  does not contain.
++{% endcomment %}
++
++{%- liquid
++  assign protection_product = all_products[settings.cart_protection_product]
++  assign protection_variant = protection_product.selected_or_first_available_variant
++  assign protection_in_cart = false
++  assign protection_key = ''
++  for item in cart.items
++    if item.variant_id == protection_variant.id
++      assign protection_in_cart = true
++      assign protection_key = item.key
++      break
++    endif
++  endfor
++-%}
++
++{%- if settings.cart_protection_enabled and protection_variant != blank and cart != empty -%}
++  <div
++    class="cart-protection"
++    data-cart-protection
++    data-variant-id="{{ protection_variant.id }}"
++    data-line-key="{{ protection_key }}"
++  >
++    {%- if settings.cart_protection_icon != blank -%}
++      <img
++        class="cart-protection__icon"
++        src="{{ settings.cart_protection_icon | image_url: width: 160 }}"
++        alt=""
++        loading="lazy"
++        width="48"
++        height="48"
++      >
++    {%- else -%}
++      <svg class="cart-protection__icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
++        <rect x="4" y="14" width="30" height="24" rx="2" fill="#f3c34a"/>
++        <path d="M4 14h30l-4-6H8l-4 6z" fill="#e0a92e"/>
++        <path d="M19 14v24" stroke="#e0a92e" stroke-width="2"/>
++        <path d="M34 22l9 3v7c0 5-4 8-9 10-5-2-9-5-9-10v-7l9-3z" fill="#4a8f5b"/>
++        <path d="M30 32l3 3 6-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
++      </svg>
++    {%- endif -%}
++
++    <div class="cart-protection__copy">
++      <p class="cart-protection__title">{{ settings.cart_protection_title }}</p>
++      {%- if settings.cart_protection_subtitle != blank -%}
++        <p class="cart-protection__subtitle">{{ settings.cart_protection_subtitle }}</p>
++      {%- endif -%}
++    </div>
++
++    <span class="cart-protection__price">{{ protection_variant.price | money }}</span>
++
++    <span class="cart-protection__switch">
++      <input
++        type="checkbox"
++        class="cart-protection__input"
++        id="CartDrawer-Protection"
++        aria-label="{{ settings.cart_protection_title | escape }}"
++        {% if protection_in_cart %}checked{% endif %}
++      >
++      <span class="cart-protection__track" aria-hidden="true"></span>
++    </span>
++  </div>
++
++  <script>
++    (function () {
++      var row = document.querySelector('[data-cart-protection]');
++      if (!row || row.dataset.bound === 'true') return;
++      row.dataset.bound = 'true';
++
++      var input = row.querySelector('.cart-protection__input');
++
++      input.addEventListener('change', async function () {
++        row.classList.add('is-loading');
++        var wanted = input.checked;
++
++        try {
++          if (wanted) {
++            await fetch(window.Shopify.routes.root + 'cart/add.js', {
++              method: 'POST',
++              headers: { 'Content-Type': 'application/json' },
++              body: JSON.stringify({
++                items: [{ id: Number(row.dataset.variantId), quantity: 1 }]
++              })
++            });
++          } else {
++            await fetch(window.Shopify.routes.root + 'cart/change.js', {
++              method: 'POST',
++              headers: { 'Content-Type': 'application/json' },
++              body: JSON.stringify({ id: row.dataset.lineKey, quantity: 0 })
++            });
++          }
++
++          var res = await fetch(window.Shopify.routes.root + '?sections=cart-drawer');
++          var data = await res.json();
++          var parsed = new DOMParser().parseFromString(data['cart-drawer'], 'text/html');
++          var fresh = parsed.querySelector('#CartDrawer');
++          var current = document.querySelector('#CartDrawer');
++          if (fresh && current) current.innerHTML = fresh.innerHTML;
++          document.documentElement.dispatchEvent(
++            new CustomEvent('cart:refresh', { bubbles: true })
++          );
++        } catch (e) {
++          input.checked = !wanted;
++          row.classList.remove('is-loading');
++        }
++      });
++    })();
++  </script>
++{%- endif -%}
+diff --git a/snippets/ds-quantity-breaks.liquid b/snippets/ds-quantity-breaks.liquid
+index 8ac6468..5f909e0 100644
+--- a/snippets/ds-quantity-breaks.liquid
++++ b/snippets/ds-quantity-breaks.liquid
+@@ -12,7 +12,7 @@
+   data-update-unavailable="{{ has_second_option }}"
+   data-update-prices="{{ block.settings.update_prices }}"
+   data-money-format="{{ shop.money_format | escape }}"
+-  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;"
++  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;{% if block.settings.qb_card_bg != blank %}--qb-card-bg: {{ block.settings.qb_card_bg }};{% endif %}{% if block.settings.qb_accent != blank %}--qb-accent: {{ block.settings.qb_accent }};{% endif %}{% if block.settings.qb_gift_bg != blank %}--qb-gift-bg: {{ block.settings.qb_gift_bg }};{% endif %}{% if block.settings.qb_badge_bg != blank %}--qb-badge-bg: {{ block.settings.qb_badge_bg }};{% endif %}"
+   {{ block.shopify_attributes }}
+ >
+   {% assign has_variants = false %}
+@@ -61,12 +61,27 @@
+         data-percentage-left="{{ percentage_left }}"
+         data-fixed-discount="{{ fixed_amount_off }}"
+       >
+-        {% if block.settings.display_badge == 'option_1' %}
+-          <p class="quantity-break__badge">
+-            {{ block.settings.badge_text }}
+-          </p>
++        {%- liquid
++          assign qb_badge = block.settings.option_1_badge
++          if qb_badge == blank and block.settings.display_badge == 'option_1'
++            assign qb_badge = block.settings.badge_text
++          endif
++        -%}
++        {% if qb_badge != blank %}
++          <p class="quantity-break__badge">{{ qb_badge }}</p>
+         {% endif %}
+         <div class="quantity-break__content">
++          {%- liquid
++            assign qb_img = block.settings.option_1_image
++            if qb_img == blank
++              assign qb_img = product.featured_image
++            endif
++          -%}
++          {% if qb_img != blank %}
++            <span class="quantity-break__media">
++              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
++            </span>
++          {% endif %}
+           <div class="quantity-break__left">
+             <span class="quantity-break__label">
+               <span class="quantity-break__label-text">
+@@ -162,6 +177,19 @@
+             </div>
+           {% endif %}
+         {% endif %}
++        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
++          <span class="quantity-break__gift">
++            {% if block.settings.gift_image != blank %}
++              <span class="quantity-break__gift-media">
++                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
++              </span>
++            {% endif %}
++            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
++            {% if block.settings.gift_value != blank %}
++              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
++            {% endif %}
++          </span>
++        {% endif %}
+       </label>
+     {% endif %}
+     {% if block.settings.option_2_quantity != 0 %}
+@@ -200,12 +228,27 @@
+         data-percentage-left="{{ percentage_left }}"
+         data-fixed-discount="{{ fixed_amount_off }}"
+       >
+-        {% if block.settings.display_badge == 'option_2' %}
+-          <p class="quantity-break__badge">
+-            {{ block.settings.badge_text }}
+-          </p>
++        {%- liquid
++          assign qb_badge = block.settings.option_2_badge
++          if qb_badge == blank and block.settings.display_badge == 'option_2'
++            assign qb_badge = block.settings.badge_text
++          endif
++        -%}
++        {% if qb_badge != blank %}
++          <p class="quantity-break__badge">{{ qb_badge }}</p>
+         {% endif %}
+         <div class="quantity-break__content">
++          {%- liquid
++            assign qb_img = block.settings.option_2_image
++            if qb_img == blank
++              assign qb_img = product.featured_image
++            endif
++          -%}
++          {% if qb_img != blank %}
++            <span class="quantity-break__media">
++              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
++            </span>
++          {% endif %}
+           <div class="quantity-break__left">
+             <span class="quantity-break__label">
+               <span class="quantity-break__label-text">
+@@ -301,6 +344,19 @@
+             </div>
+           {% endif %}
+         {% endif %}
++        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
++          <span class="quantity-break__gift">
++            {% if block.settings.gift_image != blank %}
++              <span class="quantity-break__gift-media">
++                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
++              </span>
++            {% endif %}
++            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
++            {% if block.settings.gift_value != blank %}
++              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
++            {% endif %}
++          </span>
++        {% endif %}
+       </label>
+     {% endif %}
+     {% if block.settings.option_3_quantity != 0 %}
+@@ -339,12 +395,27 @@
+         data-percentage-left="{{ percentage_left }}"
+         data-fixed-discount="{{ fixed_amount_off }}"
+       >
+-        {% if block.settings.display_badge == 'option_3' %}
+-          <p class="quantity-break__badge">
+-            {{ block.settings.badge_text }}
+-          </p>
++        {%- liquid
++          assign qb_badge = block.settings.option_3_badge
++          if qb_badge == blank and block.settings.display_badge == 'option_3'
++            assign qb_badge = block.settings.badge_text
++          endif
++        -%}
++        {% if qb_badge != blank %}
++          <p class="quantity-break__badge">{{ qb_badge }}</p>
+         {% endif %}
+         <div class="quantity-break__content">
++          {%- liquid
++            assign qb_img = block.settings.option_3_image
++            if qb_img == blank
++              assign qb_img = product.featured_image
++            endif
++          -%}
++          {% if qb_img != blank %}
++            <span class="quantity-break__media">
++              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
++            </span>
++          {% endif %}
+           <div class="quantity-break__left">
+             <span class="quantity-break__label">
+               <span class="quantity-break__label-text">
+@@ -440,6 +511,19 @@
+             </div>
+           {% endif %}
+         {% endif %}
++        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
++          <span class="quantity-break__gift">
++            {% if block.settings.gift_image != blank %}
++              <span class="quantity-break__gift-media">
++                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
++              </span>
++            {% endif %}
++            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
++            {% if block.settings.gift_value != blank %}
++              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
++            {% endif %}
++          </span>
++        {% endif %}
+       </label>
+     {% endif %}
+     {% if block.settings.option_4_quantity != 0 %}
+@@ -478,12 +562,27 @@
+         data-percentage-left="{{ percentage_left }}"
+         data-fixed-discount="{{ fixed_amount_off }}"
+       >
+-        {% if block.settings.display_badge == 'option_4' %}
+-          <p class="quantity-break__badge">
+-            {{ block.settings.badge_text }}
+-          </p>
++        {%- liquid
++          assign qb_badge = block.settings.option_4_badge
++          if qb_badge == blank and block.settings.display_badge == 'option_4'
++            assign qb_badge = block.settings.badge_text
++          endif
++        -%}
++        {% if qb_badge != blank %}
++          <p class="quantity-break__badge">{{ qb_badge }}</p>
+         {% endif %}
+         <div class="quantity-break__content">
++          {%- liquid
++            assign qb_img = block.settings.option_4_image
++            if qb_img == blank
++              assign qb_img = product.featured_image
++            endif
++          -%}
++          {% if qb_img != blank %}
++            <span class="quantity-break__media">
++              {{ qb_img | image_url: width: 200 | image_tag: loading: 'lazy', widths: '72,144,216', alt: '' }}
++            </span>
++          {% endif %}
+           <div class="quantity-break__left">
+             <span class="quantity-break__label">
+               <span class="quantity-break__label-text">
+@@ -579,10 +678,52 @@
+             </div>
+           {% endif %}
+         {% endif %}
++        {% if block.settings.gift_enabled and block.settings.gift_text != blank %}
++          <span class="quantity-break__gift">
++            {% if block.settings.gift_image != blank %}
++              <span class="quantity-break__gift-media">
++                {{ block.settings.gift_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '48,96', alt: '' }}
++              </span>
++            {% endif %}
++            <span class="quantity-break__gift-text">{{ block.settings.gift_text }}</span>
++            {% if block.settings.gift_value != blank %}
++              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
++            {% endif %}
++          </span>
++        {% endif %}
+       </label>
+     {% endif %}
+   </div>
+ 
++  {% if block.settings.autoship_enabled %}
++    <div class="quantity-breaks__autoship">
++      <input
++        type="checkbox"
++        class="quantity-breaks__autoship-input"
++        id="qb-autoship-{{ section.id }}"
++        {% if product.selling_plan_groups.size > 0 %}
++          name="selling_plan"
++          value="{{ product.selling_plan_groups.first.selling_plans.first.id }}"
++          form="{{ product_form_id }}"
++        {% endif %}
++        {% if block.settings.autoship_checked %}checked{% endif %}
++      >
++      <label class="quantity-breaks__autoship-label" for="qb-autoship-{{ section.id }}">
++        <span class="quantity-breaks__autoship-box" aria-hidden="true">
++          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
++            <path d="M3 8.4l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
++          </svg>
++        </span>
++        <span class="quantity-breaks__autoship-copy">
++          <span class="quantity-breaks__autoship-title">{{ block.settings.autoship_title }}</span>
++          {% if block.settings.autoship_subtitle != blank %}
++            <span class="quantity-breaks__autoship-subtitle">{{ block.settings.autoship_subtitle }}</span>
++          {% endif %}
++        </span>
++      </label>
++    </div>
++  {% endif %}
++
+   <script data-has-variants="{{ has_variants }}" type="application/json">
+     {{ product.variants | json }}
+   </script>
