@@ -1,0 +1,181 @@
+{{ 'ds-before-after.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_any = false
+  for block in section.blocks
+    if block.settings.image_before != blank and block.settings.image_after != blank
+      assign has_any = true
+      break
+    endif
+  endfor
+-%}
+
+<div
+  class="ba-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+  style="--ba-ratio: {{ section.settings.image_ratio }};"
+>
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.intro != blank -%}
+      <div class="ba-section__head">
+        {%- if section.settings.title != blank -%}
+          <h2 class="ba-section__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.intro != blank -%}
+          <div class="ba-section__intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if has_any -%}
+      <div class="ba-grid ba-grid--{{ section.blocks.size | at_most: 3 }}">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.image_before == blank or block.settings.image_after == blank -%}
+            {%- continue -%}
+          {%- endif -%}
+          <div class="ba-item" {{ block.shopify_attributes }}>
+            {%- if section.settings.layout == 'slider' -%}
+              <div class="ba-frame" data-ba-frame>
+                <img
+                  class="ba-img ba-img--after"
+                  src="{{ block.settings.image_after | image_url: width: 1200 }}"
+                  alt="{{ block.settings.image_after.alt | escape }}"
+                  loading="lazy" width="1200" height="1500"
+                >
+                <img
+                  class="ba-img ba-img--before"
+                  src="{{ block.settings.image_before | image_url: width: 1200 }}"
+                  alt="{{ block.settings.image_before.alt | escape }}"
+                  loading="lazy" width="1200" height="1500"
+                >
+                <span class="ba-tag ba-tag--before">{{ block.settings.label_before }}</span>
+                <span class="ba-tag ba-tag--after">{{ block.settings.label_after }}</span>
+                <input
+                  class="ba-range"
+                  type="range" min="0" max="100" value="50" step="1"
+                  aria-label="{{ 'Reveal before and after' }}"
+                  data-ba-range
+                >
+                <span class="ba-divider" aria-hidden="true"></span>
+                <span class="ba-knob" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6L4 12l5 6M15 6l5 6-5 6"/>
+                  </svg>
+                </span>
+              </div>
+            {%- else -%}
+              <div class="ba-pair">
+                <figure>
+                  <img
+                    src="{{ block.settings.image_before | image_url: width: 800 }}"
+                    alt="{{ block.settings.image_before.alt | escape }}"
+                    loading="lazy" width="800" height="1000"
+                  >
+                  <span class="ba-tag">{{ block.settings.label_before }}</span>
+                </figure>
+                <figure>
+                  <img
+                    src="{{ block.settings.image_after | image_url: width: 800 }}"
+                    alt="{{ block.settings.image_after.alt | escape }}"
+                    loading="lazy" width="800" height="1000"
+                  >
+                  <span class="ba-tag">{{ block.settings.label_after }}</span>
+                </figure>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.caption != blank -%}
+              <p class="ba-caption">{{ block.settings.caption }}</p>
+            {%- endif -%}
+            {%- if block.settings.meta != blank -%}
+              <p class="ba-meta">{{ block.settings.meta }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- elsif request.design_mode -%}
+      <div class="ba-empty">
+        Add a block and pick a before image and an after image for it to appear here.
+      </div>
+    {%- endif -%}
+
+    {%- if has_any and section.settings.disclaimer != blank -%}
+      <p class="ba-disclaimer">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-ba-frame]').forEach(function (frame) {
+      if (frame.dataset.baBound === 'true') return;
+      frame.dataset.baBound = 'true';
+      var range = frame.querySelector('[data-ba-range]');
+      if (!range) return;
+      var apply = function () { frame.style.setProperty('--pos', range.value + '%'); };
+      range.addEventListener('input', apply);
+      apply();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Before & after",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Real results" },
+    {
+      "type": "select", "id": "heading_size", "label": "Heading size", "default": "h2",
+      "options": [
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ]
+    },
+    { "type": "richtext", "id": "intro", "label": "Intro text" },
+    {
+      "type": "select", "id": "layout", "label": "Layout", "default": "slider",
+      "options": [
+        { "value": "slider", "label": "Drag slider" },
+        { "value": "side_by_side", "label": "Side by side" }
+      ]
+    },
+    {
+      "type": "select", "id": "image_ratio", "label": "Image shape", "default": "4 / 5",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "3 / 4", "label": "Tall portrait" },
+        { "value": "16 / 9", "label": "Landscape" }
+      ]
+    },
+    {
+      "type": "textarea", "id": "disclaimer", "label": "Disclaimer",
+      "default": "Individual results vary. Photos are unretouched and published with the customer's permission.",
+      "info": "Before and after photos in cosmetics advertising must be genuine, unretouched and typical of what customers can expect. Keep a signed permission and the original files on record for every photo you use here."
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "background-1" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "comparison",
+      "name": "Comparison",
+      "settings": [
+        { "type": "image_picker", "id": "image_before", "label": "Before image" },
+        { "type": "image_picker", "id": "image_after", "label": "After image" },
+        { "type": "text", "id": "label_before", "label": "Before label", "default": "Before" },
+        { "type": "text", "id": "label_after", "label": "After label", "default": "After" },
+        { "type": "text", "id": "caption", "label": "Caption", "info": "e.g. what changed" },
+        { "type": "text", "id": "meta", "label": "Small print", "info": "e.g. 8 weeks, once daily. Same lighting and camera." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Before & after", "blocks": [ { "type": "comparison" } ] }
+  ]
+}
+{% endschema %}
