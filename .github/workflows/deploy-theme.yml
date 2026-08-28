@@ -1,0 +1,164 @@
+name: Deploy theme to Shopify
+
+# Manual only. Nothing deploys on a push — you run this from the Actions tab
+# when you want it live.
+#
+# One-time setup:
+#   1. In Shopify admin, install the "Theme Access" app (published by Shopify).
+#   2. Create a password for the theme. Shopify emails a token starting shptka_.
+#   3. In GitHub: Settings -> Secrets and variables -> Actions -> New repository
+#      secret. Name it SHOPIFY_CLI_THEME_TOKEN and paste the token.
+#
+# Then: Actions -> "Deploy theme to Shopify" -> Run workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_id:
+        description: >-
+          Theme ID *or name* to push to, e.g. 123456789 or "Thessvane rebuild".
+          Leave blank to push to the LIVE published theme.
+          Run "List Shopify themes" first to see what is on the store.
+        type: string
+        required: false
+        default: ''
+      scope:
+        description: What to upload
+        type: choice
+        required: true
+        default: collagen-template
+        options:
+          - collagen-template
+          - product-page
+          - entire-theme
+      confirm_live:
+        description: >-
+          Tick this to confirm you really mean the live published theme.
+          Ignored when a theme_id is given.
+        type: boolean
+        required: false
+        default: false
+
+env:
+  SHOPIFY_FLAG_STORE: ${{ vars.SHOPIFY_STORE || 'bys-user-store-358852-skpnrnec.myshopify.com' }}
+
+jobs:
+  deploy:
+    name: Push to Shopify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # A broken schema is far cheaper to catch here than on the storefront.
+      - name: Validate theme
+        run: python3 scripts/check-theme.py --theme-root theme
+
+      - name: Guard the live theme
+        if: inputs.theme_id == '' && inputs.confirm_live != true
+        run: |
+          echo "::error::No theme_id given, which targets the LIVE published theme."
+          echo "::error::Re-run with confirm_live ticked, or pass a theme_id."
+          exit 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli@latest
+
+      - name: Show themes on the store
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: shopify theme list
+
+      - name: Push
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          # Passed through the environment rather than interpolated into the
+          # script, so the input cannot be read as shell.
+          THEME_ID: ${{ inputs.theme_id }}
+          SCOPE: ${{ inputs.scope }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$THEME_ID" ]; then
+            echo "Target: the LIVE published theme"
+            target=(--live --allow-live)
+          else
+            echo "Target: theme $THEME_ID"
+            target=(--theme "$THEME_ID")
+          fi
+
+          # Named one by one rather than globbed, so a scope can never widen
+          # to files it was not meant to touch.
+          case "$SCOPE" in
+            collagen-template)
+              echo "Scope: the PDRN Collagen Stick template and what it needs"
+              files=(
+                templates/product.collagen.json
+                sections/thessvane-ingredient-callout.liquid
+                assets/thessvane-ingredients-placeholder.jpg
+              )
+              ;;
+            product-page)
+              echo "Scope: the product page files only"
+              files=(
+                sections/thessvane-product-story.liquid
+                sections/thessvane-how-to-use.liquid
+                sections/thessvane-before-after.liquid
+                snippets/thessvane-stars.liquid
+                assets/thessvane-stars.css
+                templates/product.json
+                templates/product.general_template.json
+              )
+              ;;
+            *)
+              files=()
+              ;;
+          esac
+
+          if [ "${#files[@]}" -gt 0 ]; then
+            # Every file a scope names must exist on the branch being deployed.
+            # Pushing a partial scope is worse than not pushing: you would get
+            # some of the change, and the missing half would not announce
+            # itself until someone loaded the page.
+            missing=()
+            for f in "${files[@]}"; do
+              [ -f "theme/$f" ] || missing+=("$f")
+            done
+            if [ "${#missing[@]}" -gt 0 ]; then
+              echo "::error::Scope '$SCOPE' names files that are not on this branch:"
+              printf '::error::  %s\n' "${missing[@]}"
+              echo "::error::Run the workflow from a branch that has them, or pick another scope."
+              exit 1
+            fi
+            scope=()
+            for f in "${files[@]}"; do
+              scope+=(--only "$f")
+            done
+          else
+            echo "Scope: the entire theme, including config/settings_data.json."
+            echo "Any theme-editor change not committed to this repo will be reverted."
+            scope=()
+          fi
+
+          # --nodelete: never remove a file from the store just because this
+          # repo does not have it.
+          shopify theme push \
+            --path theme \
+            --nodelete \
+            "${target[@]}" \
+            "${scope[@]}"
+
+      - name: Done
+        run: |
+          echo "### Pushed to Shopify" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Store: \`$SHOPIFY_FLAG_STORE\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Scope: \`${{ inputs.scope }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Theme: \`${{ inputs.theme_id || 'live published theme' }}\`" >> "$GITHUB_STEP_SUMMARY"
