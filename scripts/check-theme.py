@@ -22,9 +22,58 @@ import json
 import os
 import re
 import sys
+from html.parser import HTMLParser
 
 SECTION_NAME_MAX = 25
 SCHEMA_RE = re.compile(r'\{%\s*schema\s*%\}(.*?)\{%\s*endschema\s*%\}', re.S)
+
+# Shopify rejects a richtext value whose top level holds anything but these.
+# Bare text is the easy mistake: it looks fine in the JSON and fails the push.
+RICHTEXT_TOP_LEVEL = {'p', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
+VOID_TAGS = {'br', 'img', 'hr', 'input', 'meta', 'link', 'source'}
+
+
+class _TopLevelNodes(HTMLParser):
+    """Collect whatever sits at the top level of a richtext value."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.depth = 0
+        self.offenders = []
+
+    def handle_starttag(self, tag, attrs):
+        if self.depth == 0 and tag not in RICHTEXT_TOP_LEVEL:
+            self.offenders.append(f'<{tag}>')
+        if tag not in VOID_TAGS:
+            self.depth += 1
+
+    def handle_startendtag(self, tag, attrs):
+        if self.depth == 0:
+            self.offenders.append(f'<{tag}/>')
+
+    def handle_endtag(self, tag):
+        if tag not in VOID_TAGS and self.depth > 0:
+            self.depth -= 1
+
+    def handle_data(self, data):
+        if self.depth == 0 and data.strip():
+            self.offenders.append('bare text')
+
+
+def richtext_offenders(value):
+    """Top-level nodes Shopify will reject, or [] if the value is fine.
+
+    An empty value is fine. So is one built from Liquid — a metafield_tag
+    filter emits its own wrapper, and we cannot see through it from here.
+    """
+    if not isinstance(value, str) or not value.strip():
+        return []
+    if '{{' in value or '{%' in value:
+        return []
+    parser = _TopLevelNodes()
+    parser.feed(value)
+    parser.close()
+    return sorted(set(parser.offenders))
 
 
 class Report:
@@ -39,8 +88,31 @@ class Report:
         self.warnings.append(msg)
 
 
+def parse_schema(text):
+    """Parse a section schema, tolerating what Shopify tolerates.
+
+    Shopify's own parser accepts trailing commas and // comments; Python's
+    does not. Four of this theme's vendor sections use them -- main-product
+    among them -- so a strict-only parse silently drops those schemas and
+    every template that uses them goes unchecked.
+
+    Returns (schema, needed_leniency), or (None, False) if it will not parse.
+    """
+    try:
+        return json.loads(text), False
+    except ValueError:
+        pass
+    relaxed = re.sub(r'^\s*//.*$', '', text, flags=re.M)
+    relaxed = re.sub(r',(\s*[}\]])', r'\1', relaxed)
+    try:
+        return json.loads(relaxed), True
+    except ValueError:
+        return None, False
+
+
 def setting_ids(settings):
-    return {s['id'] for s in settings if 'id' in s}
+    """Map of setting id -> setting type. Membership tests still read as a set."""
+    return {s['id']: s.get('type') for s in settings if 'id' in s}
 
 
 def check_section(path, report, lint):
@@ -50,12 +122,16 @@ def check_section(path, report, lint):
     if not match:
         return None
 
-    try:
-        schema = json.loads(match.group(1))
-    except ValueError as exc:
+    schema, relaxed = parse_schema(match.group(1))
+    if schema is None:
         if lint:
-            report.error(f"{path}: schema is not valid JSON: {exc}")
+            report.error(f"{path}: schema is not valid JSON")
         return None
+    if relaxed and lint:
+        report.warn(
+            f"{path}: schema has trailing commas or comments -- Shopify "
+            "tolerates them, strict JSON parsers do not"
+        )
 
     name = schema.get('name', '')
     # Translation keys are resolved at runtime, so the limit only binds literals.
@@ -130,12 +206,21 @@ def check_template(path, schemas, report):
             for b in schema.get('blocks', [])
         }
 
-        for name in section.get('settings', {}):
+        for name, value in section.get('settings', {}).items():
             if name not in section_ids:
                 report.error(
                     f"{path} [{key}]: sets {name!r}, not a setting of "
                     f"{section['type']}"
                 )
+                continue
+            if section_ids[name] == 'richtext':
+                bad = richtext_offenders(value)
+                if bad:
+                    report.error(
+                        f"{path} [{key}]: richtext {name!r} has {', '.join(bad)} "
+                        "at its top level; Shopify allows only <p>, <ul>, <ol> "
+                        "and <h1>-<h6> there"
+                    )
 
         for block_key, block in section.get('blocks', {}).items():
             block_type = block.get('type')
@@ -145,12 +230,21 @@ def check_template(path, schemas, report):
                     f"by {section['type']}"
                 )
                 continue
-            for name in block.get('settings', {}):
+            for name, value in block.get('settings', {}).items():
                 if name not in block_ids[block_type]:
                     report.error(
                         f"{path} [{key}/{block_key}]: sets {name!r}, not a "
                         f"setting of {section['type']}.{block_type}"
                     )
+                    continue
+                if block_ids[block_type][name] == 'richtext':
+                    bad = richtext_offenders(value)
+                    if bad:
+                        report.error(
+                            f"{path} [{key}/{block_key}]: richtext {name!r} has "
+                            f"{', '.join(bad)} at its top level; Shopify allows "
+                            "only <p>, <ul>, <ol> and <h1>-<h6> there"
+                        )
 
         for block_key in section.get('block_order', []):
             if block_key not in section.get('blocks', {}):
