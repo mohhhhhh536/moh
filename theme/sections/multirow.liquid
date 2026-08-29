@@ -68,9 +68,14 @@
                   | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
                 }}
               {%- elsif forloop.index == 1 -%}
-                {{ 'thessvane-story-placeholder.jpg' | asset_url | image_tag: width: 1600, height: 2400, loading: 'lazy' }}
+                {%- assign story_placeholder = 'thessvane-story-placeholder.jpg' | asset_url -%}
+                {%- if story_placeholder != blank -%}
+                  {{ story_placeholder | image_tag: width: 1600, height: 2400, loading: 'lazy' }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
               {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </div>
           </div>

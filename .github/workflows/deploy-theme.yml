@@ -102,16 +102,20 @@ jobs:
               echo "Scope: the PDRN Collagen Stick template and what it needs"
               files=(
                 templates/product.collagen.json
+                sections/multirow.liquid
                 sections/thessvane-ingredient-callout.liquid
                 assets/thessvane-ingredients-placeholder.jpg
+                assets/thessvane-story-placeholder.jpg
               )
               ;;
             magnesium-template)
               echo "Scope: the Magnesium Complex template and what it needs"
               files=(
                 templates/product.magnesium.json
+                sections/multirow.liquid
                 sections/thessvane-ingredient-callout.liquid
                 assets/thessvane-ingredients-placeholder.jpg
+                assets/thessvane-story-placeholder.jpg
               )
               ;;
             product-page)
