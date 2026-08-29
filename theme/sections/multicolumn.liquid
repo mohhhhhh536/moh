@@ -83,7 +83,7 @@
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
                   <div
                     class="media media--transparent media--{{ section.settings.image_ratio }}"
-                    {% if section.settings.image_ratio == 'adapt' %}
+                    {% if section.settings.image_ratio == 'adapt' and highest_ratio > 0 %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
                   >
@@ -115,6 +115,18 @@
                         sizes: sizes,
                         class: 'multicolumn-card__image'
                     }}
+                  </div>
+                </div>
+              {%- elsif section.settings.show_image_placeholders -%}
+                {%- liquid
+                  assign placeholder_ratio = section.settings.image_ratio
+                  if placeholder_ratio == 'adapt'
+                    assign placeholder_ratio = 'square'
+                  endif
+                -%}
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' %} multicolumn-card-spacing{% endif %}">
+                  <div class="media media--transparent media--{{ placeholder_ratio }}">
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'multicolumn-card__image placeholder-svg' }}
                   </div>
                 </div>
               {%- endif -%}
@@ -252,6 +264,13 @@
       ],
       "default": "full",
       "label": "t:sections.multicolumn.settings.image_width.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_placeholders",
+      "default": false,
+      "label": "Show placeholder images on columns without one",
+      "info": "Leave off to show text-only columns until you upload real images."
     },
     {
       "type": "select",
