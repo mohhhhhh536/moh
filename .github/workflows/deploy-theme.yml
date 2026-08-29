@@ -113,7 +113,6 @@ jobs:
               echo "Scope: the NAD Firming Serum template and what it needs"
               files=(
                 templates/product.serum.json
-                sections/thessvane-ugc-grid.liquid
                 sections/thessvane-featured-collection.liquid
               )
               ;;
