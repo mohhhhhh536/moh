@@ -29,6 +29,7 @@ on:
         default: collagen-template
         options:
           - collagen-template
+          - magnesium-template
           - product-page
           - entire-theme
       confirm_live:
@@ -101,6 +102,14 @@ jobs:
               echo "Scope: the PDRN Collagen Stick template and what it needs"
               files=(
                 templates/product.collagen.json
+                sections/thessvane-ingredient-callout.liquid
+                assets/thessvane-ingredients-placeholder.jpg
+              )
+              ;;
+            magnesium-template)
+              echo "Scope: the Magnesium Complex template and what it needs"
+              files=(
+                templates/product.magnesium.json
                 sections/thessvane-ingredient-callout.liquid
                 assets/thessvane-ingredients-placeholder.jpg
               )
