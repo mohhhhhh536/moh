@@ -115,6 +115,7 @@ jobs:
                 templates/product.serum.json
                 sections/thessvane-routine-builder.liquid
                 sections/thessvane-ugc-grid.liquid
+                sections/thessvane-featured-collection.liquid
               )
               ;;
             magnesium-template)
