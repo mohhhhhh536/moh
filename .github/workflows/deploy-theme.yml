@@ -30,6 +30,7 @@ on:
         options:
           - collagen-template
           - magnesium-template
+          - serum-template
           - product-page
           - entire-theme
       confirm_live:
@@ -106,6 +107,15 @@ jobs:
                 sections/thessvane-ingredient-callout.liquid
                 assets/thessvane-ingredients-placeholder.jpg
                 assets/thessvane-story-placeholder.jpg
+              )
+              ;;
+            serum-template)
+              echo "Scope: the NAD Firming Serum template and what it needs"
+              files=(
+                templates/product.serum.json
+                sections/multicolumn.liquid
+                sections/thessvane-ingredient-callout.liquid
+                assets/thessvane-ingredients-placeholder.jpg
               )
               ;;
             magnesium-template)
