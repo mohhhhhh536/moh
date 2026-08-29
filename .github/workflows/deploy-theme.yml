@@ -113,9 +113,8 @@ jobs:
               echo "Scope: the NAD Firming Serum template and what it needs"
               files=(
                 templates/product.serum.json
-                sections/multicolumn.liquid
-                sections/thessvane-ingredient-callout.liquid
-                assets/thessvane-ingredients-placeholder.jpg
+                sections/thessvane-routine-builder.liquid
+                sections/thessvane-ugc-grid.liquid
               )
               ;;
             magnesium-template)
