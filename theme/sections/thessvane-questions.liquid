@@ -1,0 +1,469 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .qa-{{ section.id }} .qa__layout {
+    display: grid;
+    gap: 32px;
+  }
+  .qa-{{ section.id }} .qa__intro-heading {
+    margin: 0 0 12px;
+  }
+  .qa-{{ section.id }} .qa__eyebrow {
+    margin: 0 0 8px;
+  }
+  .qa-{{ section.id }} .qa__intro-text {
+    margin: 0;
+    max-width: 46ch;
+  }
+  .qa-{{ section.id }} .qa__list {
+    display: grid;
+    gap: 12px;
+  }
+  .qa-{{ section.id }} .qa__item {
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: var(--text-boxes-radius, 0.8rem);
+    background-color: rgba(var(--color-foreground), 0.035);
+    transition: background-color 0.2s ease-in-out;
+  }
+  .qa-{{ section.id }} .qa__item[open],
+  .qa-{{ section.id }} .qa__item:hover {
+    background-color: rgba(var(--color-foreground), 0.07);
+  }
+  .qa-{{ section.id }} .qa__item summary {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .qa-{{ section.id }} .qa__item summary::-webkit-details-marker {
+    display: none;
+  }
+  .qa-{{ section.id }} .qa__item summary:focus-visible {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+    outline-offset: 0.3rem;
+  }
+  .qa-{{ section.id }} .qa__question {
+    flex: 1 1 auto;
+    margin: 0;
+    word-break: break-word;
+  }
+  .qa-{{ section.id }} .qa__question .qa__question-text {
+    display: block;
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
+    line-height: 1.3;
+  }
+  .qa-{{ section.id }} .qa__label {
+    display: inline-block;
+    margin: 0 0 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: rgba(var(--color-foreground), 0.08);
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+  .qa-{{ section.id }} .qa__toggle {
+    position: relative;
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.4rem;
+  }
+  .qa-{{ section.id }} .qa__toggle::before,
+  .qa-{{ section.id }} .qa__toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.6rem;
+    height: 0.15rem;
+    background-color: rgb(var(--color-foreground));
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+  .qa-{{ section.id }} .qa__toggle::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .qa-{{ section.id }} .qa__item[open] .qa__toggle::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  .qa-{{ section.id }} .qa__answer {
+    padding: 0 24px 22px;
+    max-width: 68ch;
+  }
+  .qa-{{ section.id }} .qa__answer > :first-child {
+    margin-top: 0;
+  }
+  .qa-{{ section.id }} .qa__answer > :last-child {
+    margin-bottom: 0;
+  }
+  .qa-{{ section.id }} .qa__support {
+    padding: 24px;
+    border-radius: var(--text-boxes-radius, 0.8rem);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+  .qa-{{ section.id }} .qa__support-title {
+    margin: 0 0 8px;
+    font-size: calc(var(--font-heading-scale) * 1.8rem);
+  }
+  .qa-{{ section.id }} .qa__support-text {
+    margin: 0 0 20px;
+    max-width: 42ch;
+  }
+  .qa-{{ section.id }} .qa__support .button {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .qa-{{ section.id }} .qa__question .qa__question-text {
+      font-size: calc(var(--font-heading-scale) * 1.8rem);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .qa-{{ section.id }} .qa__layout--split {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+      grid-template-areas:
+        'intro list'
+        'support list';
+      grid-template-rows: auto 1fr;
+      column-gap: 64px;
+      row-gap: 32px;
+      align-items: start;
+    }
+    .qa-{{ section.id }} .qa__layout--split .qa__intro {
+      grid-area: intro;
+    }
+    .qa-{{ section.id }} .qa__layout--split .qa__list {
+      grid-area: list;
+    }
+    .qa-{{ section.id }} .qa__layout--split .qa__support {
+      grid-area: support;
+      align-self: start;
+    }
+    .qa-{{ section.id }} .qa__layout--centered {
+      max-width: 84rem;
+      margin: 0 auto;
+    }
+    .qa-{{ section.id }} .qa__layout--centered .qa__intro {
+      text-align: center;
+    }
+    .qa-{{ section.id }} .qa__layout--centered .qa__intro-text {
+      margin: 0 auto;
+    }
+    .qa-{{ section.id }} .qa__layout--centered .qa__support {
+      text-align: center;
+    }
+    .qa-{{ section.id }} .qa__layout--centered .qa__support-text {
+      margin: 0 auto 20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="qa-{{ section.id }} color-{{ section.settings.color_scheme }} gradient isolate">
+  <div class="section-{{ section.id }}-padding page-width">
+    <div class="qa__layout qa__layout--{{ section.settings.layout }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="qa__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="qa__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="qa__intro-heading inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="qa__intro-text rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="qa__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'question' -%}
+            <details
+              class="qa__item"
+              id="Question-{{ block.id }}-{{ section.id }}"
+              {% if section.settings.open_first and forloop.first %}open{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <summary id="QuestionSummary-{{ block.id }}-{{ section.id }}">
+                <div class="qa__question">
+                  {%- if block.settings.label != blank -%}
+                    <span class="qa__label">{{ block.settings.label | escape }}</span>
+                  {%- endif -%}
+                  <span class="qa__question-text h5">{{ block.settings.question | escape }}</span>
+                </div>
+                <span class="qa__toggle" aria-hidden="true"></span>
+              </summary>
+              <div
+                class="qa__answer rte"
+                role="region"
+                aria-labelledby="QuestionSummary-{{ block.id }}-{{ section.id }}"
+              >
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_support -%}
+        <div class="qa__support">
+          {%- if section.settings.support_title != blank -%}
+            <h3 class="qa__support-title h5">{{ section.settings.support_title | escape }}</h3>
+          {%- endif -%}
+          {%- if section.settings.support_text != blank -%}
+            <div class="qa__support-text rte">{{ section.settings.support_text }}</div>
+          {%- endif -%}
+          {%- if section.settings.support_button_label != blank -%}
+            <a
+              {% if section.settings.support_button_link == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.support_button_link }}"
+              {% endif %}
+              class="button button--secondary"
+            >
+              {{- section.settings.support_button_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Questions Answered",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The default answers cover the business and common buyer concerns. Check every claim (returns window, shipping times, cruelty-free, testing) against your real policies before going live."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Questions, Answered",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "The Things People Ask Us Most",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Who we are, how we make things, and what happens if a product isn't right for you — answered plainly, with nothing buried in the fine print.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "split", "label": "Intro beside questions" },
+        { "value": "centered", "label": "Intro above questions" }
+      ],
+      "default": "split",
+      "label": "Desktop layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "default": true,
+      "label": "Open the first question by default"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "Still have questions card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_support",
+      "default": true,
+      "label": "Show card"
+    },
+    {
+      "type": "text",
+      "id": "support_title",
+      "default": "Still not sure?",
+      "label": "Card heading"
+    },
+    {
+      "type": "richtext",
+      "id": "support_text",
+      "default": "<p>Send us your question and a real person answers within one business day — no bots, no scripts.</p>",
+      "label": "Card text"
+    },
+    {
+      "type": "text",
+      "id": "support_button_label",
+      "default": "Contact Us",
+      "label": "Card button label"
+    },
+    {
+      "type": "url",
+      "id": "support_button_link",
+      "label": "Card button link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Category label (optional)",
+          "info": "Small pill above the question, e.g. \"The business\" or \"Your skin\"."
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "default": "What makes Thessvane different?",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "default": "<p>We formulate with naturally derived ingredients, skip the synthetic filler, and keep every routine short enough to actually stick to.</p>",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Questions Answered",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "label": "The business",
+            "question": "Who is behind Thessvane?",
+            "answer": "<p>We're a small team that got tired of twelve-step routines and ingredient lists nobody can read. Thessvane is what we wanted for our own bathroom shelves: a handful of clean, well-made formulas that do the job without the theatre.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "The business",
+            "question": "What actually makes your products different?",
+            "answer": "<p>Naturally derived actives, no synthetic fragrance, sulfates, or filler, and a routine built around three steps instead of twelve. Every formula is made in small batches and dermatologist tested before it ships.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "The business",
+            "question": "Are your products cruelty-free and vegan?",
+            "answer": "<p>Yes. We don't test on animals, we don't work with suppliers who do, and every formula in the range is vegan.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "Your skin",
+            "question": "Will this work if my skin is sensitive or reactive?",
+            "answer": "<p>Our formulas are fragrance-free and dermatologist tested with sensitive skin in mind. Skin is personal, though, so patch test on your inner arm for 24 hours before your first full use, and introduce one new product at a time.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "Your skin",
+            "question": "How long before I see a difference?",
+            "answer": "<p>Most people notice softer, better-hydrated skin within the first two weeks. Changes in tone and texture take a full skin cycle — give it six to eight weeks of consistent use before you judge the results.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "Buying with us",
+            "question": "What if it isn't right for me?",
+            "answer": "<p>Contact us within 30 days and we'll sort out a return or exchange. If something reacted badly with your skin, tell us what happened — that feedback shapes the next formula.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "Buying with us",
+            "question": "How quickly do orders ship, and can I track them?",
+            "answer": "<p>Orders leave us in 1&ndash;2 business days and most arrive within 5&ndash;7. You'll get a tracking number by email as soon as your parcel is on its way, and shipping is free over $50.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "label": "Buying with us",
+            "question": "Is my payment and personal information safe?",
+            "answer": "<p>Checkout is encrypted end to end and handled by Shopify Payments, so we never see or store your card details. We use your email to send order updates and, only if you ask for them, occasional notes about new products. We never sell your data.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
