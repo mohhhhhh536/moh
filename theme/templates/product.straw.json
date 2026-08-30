@@ -219,29 +219,29 @@
     "straw_ticker": {
       "type": "ds-vertical-ticker",
       "blocks": {
-        "text_qNHq4H": {
+        "tick_smooth": {
           "type": "text",
           "settings": {
-            "title": "🎉 Limited Time Offer!"
+            "title": "✨ Smoother, softer skin"
           }
         },
-        "text_Q9rnEP": {
+        "tick_hydrate": {
           "type": "text",
           "settings": {
-            "title": "💌 Exclusive Deal!"
+            "title": "💧 Hydrates while it resurfaces"
           }
         },
-        "text_cbCVDH": {
+        "tick_bright": {
           "type": "text",
           "settings": {
-            "title": "🚚 Free Shipping Alert!"
+            "title": "🍓 Brightens uneven tone"
           }
         }
       },
       "block_order": [
-        "text_qNHq4H",
-        "text_Q9rnEP",
-        "text_cbCVDH"
+        "tick_smooth",
+        "tick_hydrate",
+        "tick_bright"
       ],
       "settings": {
         "number_of_rows": 4,
@@ -255,9 +255,9 @@
         "padding_top": 40,
         "padding_bottom": 40,
         "display_content": "always",
-        "content_heading": "🛍️ Flash Sale Alert!",
+        "content_heading": "🍓 Strawberry Skin, Meet Your Match",
         "content_heading_size": "h2",
-        "content_text": "<p>Get 20% off on all bundle deals—limited time only!</p>",
+        "content_text": "<h4>Resurface the bumpy, dotted texture on legs and arms — one cream, once a day.</h4>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -280,47 +280,47 @@
     "straw_icon_bar": {
       "type": "ds-icon-bar",
       "blocks": {
-        "icon_clean": {
+        "icon_smooth": {
           "type": "column",
           "settings": {
-            "icon": "leaf",
-            "title": "Clean Formula",
-            "text": "<p>Naturally derived actives, no sulfates, parabens or synthetic fragrance.</p>"
+            "icon": "silhouette",
+            "title": "Smooths Bumpy Texture",
+            "text": "<p>Resurfaces the rough, dotted feel of strawberry skin on legs, arms and thighs.</p>"
           }
         },
-        "icon_gentle": {
+        "icon_hydrate": {
+          "type": "column",
+          "settings": {
+            "icon": "bottle",
+            "title": "Deep, Lasting Hydration",
+            "text": "<p>A hydrating base means it softens as it resurfaces — no tight, stripped feeling.</p>"
+          }
+        },
+        "icon_bright": {
+          "type": "column",
+          "settings": {
+            "icon": "star",
+            "title": "Brightens Uneven Tone",
+            "text": "<p>Helps soften the look of dark dots and patchy areas over consistent use.</p>"
+          }
+        },
+        "icon_daily": {
           "type": "column",
           "settings": {
             "icon": "heart",
-            "title": "Kind to Every Skin Type",
-            "text": "<p>Dermatologist-tested and balanced for sensitive skin.</p>"
-          }
-        },
-        "icon_fast": {
-          "type": "column",
-          "settings": {
-            "icon": "stopwatch",
-            "title": "Fits a 3-Minute Routine",
-            "text": "<p>One step, morning and night — no complicated ritual required.</p>"
-          }
-        },
-        "icon_cruelty": {
-          "type": "column",
-          "settings": {
-            "icon": "paw_print",
-            "title": "Never Tested on Animals",
-            "text": "<p>Cruelty-free and packed in recyclable materials.</p>"
+            "title": "Simple Enough for Every Day",
+            "text": "<p>One step after your shower. No scrubbing, no complicated body routine.</p>"
           }
         }
       },
       "block_order": [
-        "icon_clean",
-        "icon_gentle",
-        "icon_fast",
-        "icon_cruelty"
+        "icon_smooth",
+        "icon_hydrate",
+        "icon_bright",
+        "icon_daily"
       ],
       "settings": {
-        "title": "Why You'll Love It",
+        "title": "Why It Works",
         "heading_size": "h2",
         "text": "",
         "icon_size": "medium",
@@ -341,11 +341,11 @@
       "type": "thessvane-ingredient-callout",
       "settings": {
         "layout": "image_first",
-        "eyebrow": "Inside The Formula",
-        "heading": "Every Ingredient Earns Its Place",
+        "eyebrow": "What It's For",
+        "heading": "Smooth Skin, Without the Bumps",
         "heading_size": "h1",
-        "text": "<p>We start with a short ingredient list and keep it that way. Each active is chosen for what it does for your skin — hydration, barrier support, a healthy glow — and nothing is added just to fill the bottle. Read the label, then read it again: there is nothing on it you need to look up.</p>",
-        "button_label": "See the Full Ingredient List",
+        "text": "<p>“Strawberry skin” is the dotted, slightly rough texture that shows up on legs and arms — most noticeably after shaving. It's incredibly common, and it's stubborn: ordinary body lotion sits on top of it and changes nothing.</p><p>This resurfacing cream works on the texture itself. It softens and smooths the surface while a hydrating base keeps skin nourished, so you get skin that looks more even and feels genuinely soft — not just moisturised.</p>",
+        "button_label": "See How To Use It",
         "button_link": "",
         "button_style_secondary": true,
         "section_color_scheme": "scheme-2",
@@ -357,38 +357,38 @@
     "straw_benefits": {
       "type": "multicolumn",
       "blocks": {
+        "benefit_smooth": {
+          "type": "column",
+          "settings": {
+            "title": "Resurfaces Rough Texture",
+            "text": "<p>Works on the bumpy, dotted surface that lotion alone can't reach, for skin that feels smooth to the touch.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
         "benefit_hydrate": {
           "type": "column",
           "settings": {
-            "title": "Deep, Lasting Hydration",
-            "text": "<p>Draws moisture into the skin and holds it there, so you wake up soft instead of tight.</p>",
+            "title": "Softens As It Works",
+            "text": "<p>A hydrating, nourishing formula — so resurfacing doesn't come at the cost of comfort or dryness.</p>",
             "link_label": "",
             "link": ""
           }
         },
-        "benefit_barrier": {
+        "benefit_bright": {
           "type": "column",
           "settings": {
-            "title": "A Stronger Skin Barrier",
-            "text": "<p>Supports your skin's natural defences against pollution, weather and daily stress.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "benefit_glow": {
-          "type": "column",
-          "settings": {
-            "title": "A Visible, Healthy Glow",
-            "text": "<p>Evens tone and softens dullness with consistent use — no filter needed.</p>",
+            "title": "Evens The Look Of Tone",
+            "text": "<p>Helps brighten dull, patchy areas so legs and arms look clearer and more even overall.</p>",
             "link_label": "",
             "link": ""
           }
         }
       },
       "block_order": [
+        "benefit_smooth",
         "benefit_hydrate",
-        "benefit_barrier",
-        "benefit_glow"
+        "benefit_bright"
       ],
       "settings": {
         "title": "What It Does For Your Skin",
@@ -410,37 +410,37 @@
     "straw_how_to_use": {
       "type": "thessvane-routine-builder",
       "blocks": {
-        "use_cleanse": {
+        "use_clean": {
           "type": "step",
           "settings": {
-            "step_title": "1. Start Clean",
-            "step_text": "<p>Wash with lukewarm water and pat your skin damp — not dry. Damp skin absorbs more.</p>"
+            "step_title": "1. Start With Clean, Dry Skin",
+            "step_text": "<p>Best straight after a shower, once skin is towel-dry. Warm, clean skin takes it in faster.</p>"
           }
         },
-        "use_apply": {
+        "use_massage": {
           "type": "step",
           "settings": {
-            "step_title": "2. Apply a Pea-Sized Amount",
-            "step_text": "<p>Warm it between your fingertips and press gently over your face and neck. A little goes a long way.</p>"
+            "step_title": "2. Massage Into The Rough Areas",
+            "step_text": "<p>Work a generous amount into legs, thighs, upper arms — anywhere the texture feels bumpy. Massage until it disappears.</p>"
           }
         },
-        "use_seal": {
+        "use_repeat": {
           "type": "step",
           "settings": {
-            "step_title": "3. Seal and Go",
-            "step_text": "<p>Follow with moisturiser at night, or SPF in the morning. That's the whole routine.</p>"
+            "step_title": "3. Repeat Daily",
+            "step_text": "<p>Use it every day and give it a full month before you judge the results. Patch test first if your skin runs sensitive.</p>"
           }
         }
       },
       "block_order": [
-        "use_cleanse",
-        "use_apply",
-        "use_seal"
+        "use_clean",
+        "use_massage",
+        "use_repeat"
       ],
       "settings": {
         "title": "How To Use It",
         "heading_size": "h1",
-        "description": "<p>Three steps, twice a day. Most people see a difference in the first two weeks.</p>",
+        "description": "<p>One step, once a day. Texture takes time — the difference comes from being consistent.</p>",
         "color_scheme": "scheme-2",
         "show_cta": false,
         "cta_label": "Shop the Full Ritual",
@@ -452,58 +452,58 @@
     "straw_comparison": {
       "type": "ds-comparison-table",
       "blocks": {
-        "cmp_clean": {
+        "cmp_resurface": {
           "type": "row",
           "settings": {
-            "benefit": "Naturally derived, short ingredient list",
+            "benefit": "Resurfaces bumpy, uneven texture",
             "us": true,
             "others": false
           }
         },
-        "cmp_fragrance": {
+        "cmp_bright": {
           "type": "row",
           "settings": {
-            "benefit": "No synthetic fragrance or harsh sulfates",
+            "benefit": "Helps brighten dull, patchy areas",
             "us": true,
             "others": false
           }
         },
-        "cmp_tested": {
+        "cmp_hydrate": {
           "type": "row",
           "settings": {
-            "benefit": "Dermatologist-tested on sensitive skin",
+            "benefit": "Hydrates and nourishes at the same time",
+            "us": true,
+            "others": true
+          }
+        },
+        "cmp_body": {
+          "type": "row",
+          "settings": {
+            "benefit": "Formulated for body skin — legs, arms, thighs",
             "us": true,
             "others": false
           }
         },
-        "cmp_cruelty": {
+        "cmp_simple": {
           "type": "row",
           "settings": {
-            "benefit": "Cruelty-free and recyclable packaging",
-            "us": true,
-            "others": false
-          }
-        },
-        "cmp_refill": {
-          "type": "row",
-          "settings": {
-            "benefit": "Refill-friendly, not single-use",
+            "benefit": "One step, no scrubbing or layering",
             "us": true,
             "others": false
           }
         }
       },
       "block_order": [
-        "cmp_clean",
-        "cmp_fragrance",
-        "cmp_tested",
-        "cmp_cruelty",
-        "cmp_refill"
+        "cmp_resurface",
+        "cmp_bright",
+        "cmp_hydrate",
+        "cmp_body",
+        "cmp_simple"
       ],
       "settings": {
-        "title": "Thessvane vs. The Usual Shelf",
+        "title": "Not Just Another Body Lotion",
         "heading_size": "h1",
-        "text": "<p>Most of what sits on a drugstore shelf is built for shelf life. This is built for your skin.</p>",
+        "text": "<p>Ordinary lotion hydrates the surface and stops there. A resurfacing cream works on the texture underneath it.</p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -512,11 +512,11 @@
         "benefit_color_scheme": "background-1",
         "checkmark_color": "#7C9473",
         "icon_cells_color_scheme": "background-1",
-        "us_label": "Thessvane",
+        "us_label": "This Cream",
         "us_label_size": 14,
         "logo_width": 90,
         "mobile_logo_width": 60,
-        "others_label": "Others",
+        "others_label": "Ordinary Lotion",
         "others_label_size": 14,
         "others_logo_width": 90,
         "others_mobile_logo_width": 60,
@@ -533,37 +533,37 @@
     "straw_results": {
       "type": "results",
       "blocks": {
-        "res_hydration": {
+        "res_smooth": {
           "type": "row",
           "settings": {
-            "percentage": 94,
-            "row_text": "<h3>said their skin felt more hydrated after two weeks.</h3>"
+            "percentage": 0,
+            "row_text": "<h3>said their skin felt smoother to the touch. [replace]</h3>"
           }
         },
-        "res_texture": {
+        "res_look": {
           "type": "row",
           "settings": {
-            "percentage": 88,
-            "row_text": "<h3>saw smoother, more even-looking texture.</h3>"
+            "percentage": 0,
+            "row_text": "<h3>saw less visible bumpiness on legs and arms. [replace]</h3>"
           }
         },
-        "res_repurchase": {
+        "res_keep": {
           "type": "row",
           "settings": {
-            "percentage": 91,
-            "row_text": "<h3>would make it a permanent part of their routine.</h3>"
+            "percentage": 0,
+            "row_text": "<h3>would keep it in their routine. [replace]</h3>"
           }
         }
       },
       "block_order": [
-        "res_hydration",
-        "res_texture",
-        "res_repurchase"
+        "res_smooth",
+        "res_look",
+        "res_keep"
       ],
       "settings": {
         "title": "The Results Speak For Themselves",
         "heading_size": "h1",
-        "text": "<h4>Based on a self-assessed consumer study of 120 participants using the product twice daily for four weeks.</h4>",
+        "text": "<h4>PLACEHOLDER — replace these three figures with your own survey or review data, and note the sample size here, before enabling this section.</h4>",
         "color_scheme": "custom",
         "layout": "results_second",
         "results_headline": "",
@@ -582,40 +582,41 @@
         "custom_colors_solid_button_background": "#A06272",
         "custom_colors_solid_button_text": "#FDFBF7",
         "custom_colors_outline_button": "#2B2A4A"
-      }
+      },
+      "disabled": true
     },
     "straw_testimonials": {
       "type": "ds-testimonials",
       "blocks": {
-        "review_maya": {
+        "review_1": {
           "type": "column",
           "settings": {
-            "title": "Finally, Something My Skin Agrees With",
-            "text": "<h5>I have reactive skin and usually spend a month regretting new products. Two weeks in and my face is calm, soft and actually glowing. It's the only thing I've repurchased twice this year.</h5>",
-            "author": "Maya R."
+            "title": "My Legs Finally Feel Smooth",
+            "text": "<h5>I've had those little dark dots on my legs since my teens and assumed that was just how my skin was. Three weeks of using this after every shower and the texture is so much softer. I stopped reaching for tights in the morning.</h5>",
+            "author": "Placeholder — replace"
           }
         },
-        "review_lena": {
+        "review_2": {
           "type": "column",
           "settings": {
-            "title": "Simple Enough That I Actually Stick To It",
-            "text": "<h5>I wanted a routine I'd keep up with on a bad week. This is one step, it takes a minute, and the difference is obvious when I skip it.</h5>",
-            "author": "Lena K."
+            "title": "It Actually Sinks In",
+            "text": "<h5>I've tried scrubs that left me raw and lotions that did nothing. This is the first thing that's both gentle and actually noticeable. It absorbs fast enough that I can get dressed straight after.</h5>",
+            "author": "Placeholder — replace"
           }
         },
-        "review_sofia": {
+        "review_3": {
           "type": "column",
           "settings": {
-            "title": "Clean Without The Compromise",
-            "text": "<h5>I switched for the ingredient list and stayed for the results. Lightweight, no scent, sinks in fast, and my makeup sits better over it.</h5>",
-            "author": "Sofia D."
+            "title": "Smooth And Hydrated, Not Stripped",
+            "text": "<h5>What sold me is that it doesn't dry my skin out the way exfoliating products usually do. My arms feel soft and look more even, and I'm not itchy afterwards. Repurchasing.</h5>",
+            "author": "Placeholder — replace"
           }
         }
       },
       "block_order": [
-        "review_maya",
-        "review_lena",
-        "review_sofia"
+        "review_1",
+        "review_2",
+        "review_3"
       ],
       "settings": {
         "title": "What People Are Saying",
@@ -646,35 +647,35 @@
           "type": "tile",
           "settings": {
             "link": "",
-            "handle": "@ellawrites"
+            "handle": ""
           }
         },
         "ugc_2": {
           "type": "tile",
           "settings": {
             "link": "",
-            "handle": "@theskinjournal"
+            "handle": ""
           }
         },
         "ugc_3": {
           "type": "tile",
           "settings": {
             "link": "",
-            "handle": "@noorbeauty"
+            "handle": ""
           }
         },
         "ugc_4": {
           "type": "tile",
           "settings": {
             "link": "",
-            "handle": "@dailywithmai"
+            "handle": ""
           }
         },
         "ugc_5": {
           "type": "tile",
           "settings": {
             "link": "",
-            "handle": "@clara.k"
+            "handle": ""
           }
         }
       },
@@ -686,9 +687,9 @@
         "ugc_5"
       ],
       "settings": {
-        "title": "Real Skin, Real Routines",
+        "title": "Real Skin, Real Results",
         "heading_size": "h1",
-        "description": "<p>Tag @thessvane to show us how you use it — we feature a new set every month.</p>",
+        "description": "<p>Tag us in your before-and-afters — we feature a new set every month.</p>",
         "color_scheme": "scheme-1",
         "columns_desktop": 5,
         "show_cta": true,
@@ -733,15 +734,15 @@
         "bundle_3"
       ],
       "settings": {
-        "title": "Complete The Ritual",
+        "title": "Build The Full Routine",
         "heading_size": "h1",
-        "text": "<p>Add the steps that pair with it and save more on the full routine.</p>",
+        "text": "<p>Pair it with the rest of your body-care steps and save on the set.</p>",
         "color_scheme": "custom",
         "layout": "horizontal-images-left",
         "enable_price_changes": true,
         "skip_cart": false,
         "total_price_label": "Total Price:",
-        "btn_label": "Add the Ritual to Cart",
+        "btn_label": "Add the Set to Cart",
         "percentage_discount": "0",
         "fixed_amount_discount": "0",
         "padding_top": 48,
@@ -816,58 +817,68 @@
     "straw_faq": {
       "type": "collapsible-content",
       "blocks": {
-        "faq_skin_type": {
+        "faq_what": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Will it work for my skin type?",
+            "heading": "What exactly is “strawberry skin”?",
+            "icon": "question_mark",
+            "row_content": "<p>It's the nickname for the dotted, slightly rough texture that appears on legs and arms — small dark spots that look a little like the seeds on a strawberry. It's very common, it's harmless, and it tends to look most obvious right after shaving.</p>",
+            "page": ""
+          }
+        },
+        "faq_where": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where on my body can I use it?",
             "icon": "silhouette",
-            "row_content": "<p>It's formulated to be non-irritating across dry, oily, combination and sensitive skin. If you're actively treating a skin condition, patch test on your inner arm for 24 hours first — as you would with any new product.</p>",
+            "row_content": "<p>Anywhere the texture bothers you — legs, thighs, upper arms, shoulders and back are the most common areas. It's formulated for body skin, so keep it off your face and away from broken skin.</p>",
             "page": ""
           }
         },
-        "faq_results": {
+        "faq_when": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "How long until I see results?",
+            "heading": "How long until I see a difference?",
             "icon": "stopwatch",
-            "row_content": "<p>Most people notice softer, more hydrated skin within the first week. Changes in tone and texture build over four to six weeks of consistent twice-daily use.</p>",
+            "row_content": "<p>Skin texture changes slowly. Most body-resurfacing routines need consistent daily use before the difference is obvious, so give it a full month of regular use before you decide. Skipping days is what stalls progress.</p>",
             "page": ""
           }
         },
-        "faq_ingredients": {
+        "faq_shaving": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "What's in it — and what isn't?",
-            "icon": "leaf",
-            "row_content": "<p>Naturally derived actives, plant oils and humectants. No sulfates, parabens, synthetic fragrance, mineral oil or animal-derived ingredients. The full INCI list is printed on every carton.</p>",
+            "heading": "Can I use it after shaving or waxing?",
+            "icon": "washing",
+            "row_content": "<p>Wait until the day after. Freshly shaved or waxed skin is more reactive, and giving it 24 hours keeps things comfortable. Day-to-day, applying after your shower is the easiest way to remember it.</p>",
             "page": ""
           }
         },
-        "faq_layering": {
+        "faq_greasy": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Can I layer it with the rest of my routine?",
+            "heading": "Will it feel greasy under clothes?",
             "icon": "bottle",
-            "row_content": "<p>Yes. Apply it to damp skin after cleansing and before moisturiser. It layers cleanly under SPF and makeup, and pairs with the rest of the Thessvane range without pilling.</p>",
+            "row_content": "<p>Massage it in fully and give it a minute to settle before you dress. If you're applying at night, it has all the time it needs to sink in while you sleep.</p>",
             "page": ""
           }
         },
-        "faq_shipping": {
+        "faq_sensitive": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Shipping, returns and refills",
-            "icon": "truck",
-            "row_content": "<p>Orders ship within 1-2 business days. If it isn't right for your skin, return it within 30 days — opened or not — for a full refund. Refill pouches are available for every full-size bottle.</p>",
+            "heading": "Is it suitable for sensitive skin?",
+            "icon": "heart",
+            "row_content": "<p>Patch test first, as you would with any new product: apply a small amount to your inner arm and leave it 24 hours. Check the full ingredient list on the carton if you have known sensitivities, and stop use if you get irritation.</p>",
             "page": ""
           }
         }
       },
       "block_order": [
-        "faq_skin_type",
-        "faq_results",
-        "faq_ingredients",
-        "faq_layering",
-        "faq_shipping"
+        "faq_what",
+        "faq_where",
+        "faq_when",
+        "faq_shaving",
+        "faq_greasy",
+        "faq_sensitive"
       ],
       "settings": {
         "caption": "Good To Know",
@@ -921,7 +932,7 @@
         "nl_text": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Join the ritual for skincare notes, restock alerts and early access to new formulas.</p>",
+            "text": "<p>Join for body-care tips, restock alerts and early access to new drops.</p>",
             "text_style": "body"
           }
         },
