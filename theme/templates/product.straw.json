@@ -41,7 +41,7 @@
         "emoji_benefits_xFGiTn": {
           "type": "emoji_benefits",
           "settings": {
-            "benefits": "<p>🍓 Smooths the bumpy, dotted texture of strawberry skin</p><p>💧 Hydrates and nourishes while it resurfaces</p><p>✨ Helps brighten dull, uneven tone</p><p>🩷 Made for legs, arms and thighs — not just your face</p>",
+            "benefits": "<p>🍓 <strong>Smooths the rough, bumpy feel of KP and strawberry skin.</strong></p><p>💧 <strong>Hydrates deeply — no tight, stripped feeling.</strong></p><p>✨ <strong>Helps soften the look of dark dots and uneven tone.</strong></p><p>🧴 <strong>Made for body skin — legs, arms and thighs.</strong></p>",
             "margin_top": 15,
             "margin_bottom": 15
           }
@@ -161,11 +161,11 @@
             "star_color": "#E7B8BE",
             "avatar_alignment": "top",
             "author_1": "Amira H.",
-            "text_1": "<p>I've had those little dark dots on my legs since I was a teenager and just assumed that was my skin. Three weeks of using this after every shower and they're so much softer. I stopped reaching for tights in the morning.</p>",
+            "text_1": "<p>I've had KP on the backs of my arms my whole life and honestly stopped trying to fix it. A month of using this after every shower and the bumps are so much less noticeable. First short sleeves I've worn in years.</p>",
             "author_2": "Rania K.",
-            "text_2": "<p>Scrubs left me raw and lotion did nothing. This is the first thing that's gentle and actually noticeable. It sinks in fast enough that I can get dressed straight after.</p>",
+            "text_2": "<p>Scrubs left my legs red and raw, and plain lotion did nothing at all. This is the first thing that's gentle and actually works. It sinks in fast enough that I can get dressed straight after.</p>",
             "author_3": "Dana S.",
-            "text_3": "<p>It doesn't dry me out the way exfoliating products usually do. My arms feel soft, the tone looks more even, and no itching afterwards. On my second tube.</p>",
+            "text_3": "<p>The little dark dots on my legs after shaving were the thing I hated most. They're much softer now, and my skin isn't dried out the way exfoliating products usually leave it. On my second tube.</p>",
             "margin_top": 18,
             "margin_bottom": 18
           }
@@ -230,7 +230,7 @@
         "tick_smooth": {
           "type": "text",
           "settings": {
-            "title": "✨ Smoother, softer skin"
+            "title": "✨ Smooths KP bumps"
           }
         },
         "tick_hydrate": {
@@ -263,9 +263,9 @@
         "padding_top": 40,
         "padding_bottom": 40,
         "display_content": "always",
-        "content_heading": "🍓 Strawberry Skin, Meet Your Match",
+        "content_heading": "🍓 KP And Strawberry Skin, Meet Your Match",
         "content_heading_size": "h2",
-        "content_text": "<h4>Resurface the bumpy, dotted texture on legs and arms — one cream, once a day.</h4>",
+        "content_text": "<h4>Smooth the rough bumps on arms, thighs and legs — one cream, once a day.</h4>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -292,8 +292,8 @@
           "type": "column",
           "settings": {
             "icon": "silhouette",
-            "title": "Smooths Bumpy Texture",
-            "text": "<p>Resurfaces the rough, dotted feel of strawberry skin on legs, arms and thighs.</p>"
+            "title": "Smooths KP Bumps",
+            "text": "<p>Resurfaces the rough, bumpy texture of KP on arms and thighs, and strawberry skin on legs.</p>"
           }
         },
         "icon_hydrate": {
@@ -350,9 +350,9 @@
       "settings": {
         "layout": "image_first",
         "eyebrow": "What It's For",
-        "heading": "Smooth Skin, Without the Bumps",
+        "heading": "Made For KP And Strawberry Skin",
         "heading_size": "h1",
-        "text": "<p>“Strawberry skin” is the dotted, slightly rough texture that shows up on legs and arms — most noticeably after shaving. It's incredibly common, and it's stubborn: ordinary body lotion sits on top of it and changes nothing.</p><p>This resurfacing cream works on the texture itself. It softens and smooths the surface while a hydrating base keeps skin nourished, so you get skin that looks more even and feels genuinely soft — not just moisturised.</p>",
+        "text": "<p>Those small rough bumps on the backs of your arms and thighs are <strong>keratosis pilaris</strong> &mdash; KP for short. On your legs it shows up as the dotted look people call strawberry skin, most obvious right after you shave. It's extremely common, it's harmless, and it's stubborn: ordinary body lotion sits on top of it and changes nothing.</p><p>This resurfacing cream works on the texture itself. It smooths and softens the surface while a hydrating base keeps skin nourished, so you're not trading comfort for smoothness the way harsh scrubs make you.</p>",
         "button_label": "See How To Use It",
         "button_link": "",
         "button_style_secondary": true,
@@ -369,7 +369,7 @@
           "type": "column",
           "settings": {
             "title": "Resurfaces Rough Texture",
-            "text": "<p>Works on the bumpy, dotted surface that lotion alone can't reach, for skin that feels smooth to the touch.</p>",
+            "text": "<p>Works on the bumpy KP texture that lotion alone can't reach, for skin that feels smooth to the touch.</p>",
             "link_label": "",
             "link": ""
           }
@@ -463,7 +463,7 @@
         "cmp_resurface": {
           "type": "row",
           "settings": {
-            "benefit": "Resurfaces bumpy, uneven texture",
+            "benefit": "Resurfaces KP bumps and strawberry skin",
             "us": true,
             "others": false
           }
@@ -599,24 +599,24 @@
         "review_1": {
           "type": "column",
           "settings": {
-            "title": "My Legs Finally Feel Smooth",
-            "text": "<h5>I've had those little dark dots on my legs since my teens and assumed that was just how my skin was. Three weeks of using this after every shower and the texture is so much softer. I stopped reaching for tights in the morning.</h5>",
+            "title": "My Arms Look Like Different Skin",
+            "text": "<h5>I've had KP on the backs of my arms my whole life and honestly stopped trying to fix it. A month of using this after every shower and the bumps are so much less noticeable. First short sleeves I've worn in years.</h5>",
             "author": "Amira H."
           }
         },
         "review_2": {
           "type": "column",
           "settings": {
-            "title": "It Actually Sinks In",
-            "text": "<h5>I've tried scrubs that left me raw and lotions that did nothing. This is the first thing that's both gentle and actually noticeable. It absorbs fast enough that I can get dressed straight after.</h5>",
+            "title": "Gentle, And It Actually Works",
+            "text": "<h5>Scrubs left my legs red and raw, and plain lotion did nothing at all. This is the first thing that's both gentle and noticeable. It sinks in fast enough that I can get dressed straight after.</h5>",
             "author": "Rania K."
           }
         },
         "review_3": {
           "type": "column",
           "settings": {
-            "title": "Smooth And Hydrated, Not Stripped",
-            "text": "<h5>What sold me is that it doesn't dry my skin out the way exfoliating products usually do. My arms feel soft and look more even, and I'm not itchy afterwards. Repurchasing.</h5>",
+            "title": "Smooth Without The Dryness",
+            "text": "<h5>The little dark dots on my legs after shaving were the thing I hated most. They're much softer now, and my skin isn't dried out the way exfoliating products usually leave it. On my second tube.</h5>",
             "author": "Dana S."
           }
         }
@@ -828,9 +828,9 @@
         "faq_what": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "What exactly is “strawberry skin”?",
+            "heading": "What are KP and “strawberry skin”?",
             "icon": "question_mark",
-            "row_content": "<p>It's the nickname for the dotted, slightly rough texture that appears on legs and arms — small dark spots that look a little like the seeds on a strawberry. It's very common, it's harmless, and it tends to look most obvious right after shaving.</p>",
+            "row_content": "<p><strong>Keratosis pilaris (KP)</strong> is the small, rough bumps that appear most often on the backs of the arms and the thighs — sometimes called chicken skin. <strong>Strawberry skin</strong> is the related dotted look on the legs, most visible after shaving. Both are very common and completely harmless. This cream is made to smooth how they look and feel; it isn't a medical treatment, so see a dermatologist if your skin is painful, inflamed or not settling.</p>",
             "page": ""
           }
         },
@@ -839,7 +839,7 @@
           "settings": {
             "heading": "Where on my body can I use it?",
             "icon": "silhouette",
-            "row_content": "<p>Anywhere the texture bothers you — legs, thighs, upper arms, shoulders and back are the most common areas. It's formulated for body skin, so keep it off your face and away from broken skin.</p>",
+            "row_content": "<p>Anywhere the texture bothers you — the backs of the upper arms and the thighs are the classic KP spots, and legs are where strawberry skin shows most. It's formulated for body skin, so keep it off your face and away from broken skin.</p>",
             "page": ""
           }
         },
