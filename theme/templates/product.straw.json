@@ -41,7 +41,7 @@
         "emoji_benefits_xFGiTn": {
           "type": "emoji_benefits",
           "settings": {
-            "benefits": "<p>✨ <strong>Timeless elegance for any occasion.</strong></p><p>🌬️ <strong>Lightweight fabrics that move with you.</strong></p><p>🪡 <strong>Flawlessly crafted for the perfect fit.</strong></p>",
+            "benefits": "<p>🍓 Smooths the bumpy, dotted texture of strawberry skin</p><p>💧 Hydrates and nourishes while it resurfaces</p><p>✨ Helps brighten dull, uneven tone</p><p>🩷 Made for legs, arms and thighs — not just your face</p>",
             "margin_top": 15,
             "margin_bottom": 15
           }
@@ -158,14 +158,21 @@
           "type": "reviews",
           "settings": {
             "display_stars": true,
-            "star_color": "#ffcc00",
+            "star_color": "#E7B8BE",
             "avatar_alignment": "top",
-            "author_1": "Yuval",
-            "text_1": "<p>This is my go-to piece! It’s versatile, comfortable, and looks great whether I’m dressing it up or keeping it casual. Highly recommend!</p>",
-            "author_2": "The quality is incredible! The fabric feels premium, and the fit is just perfect. I’ve received so many compliments every time I wear it.",
-            "text_2": "<p>Venesa</p>",
-            "author_3": "Jessica",
-            "text_3": "<p>Absolutely love it! The attention to detail is amazing, and it’s so flattering. Worth every penny!</p>",
+            "author_1": "Amira H.",
+            "text_1": "<p>I've had those little dark dots on my legs since I was a teenager and just assumed that was my skin. Three weeks of using this after every shower and they're so much softer. I stopped reaching for tights in the morning.</p>",
+            "author_2": "Rania K.",
+            "text_2": "<p>Scrubs left me raw and lotion did nothing. This is the first thing that's gentle and actually noticeable. It sinks in fast enough that I can get dressed straight after.</p>",
+            "author_3": "Dana S.",
+            "text_3": "<p>It doesn't dry me out the way exfoliating products usually do. My arms feel soft, the tone looks more even, and no itching afterwards. On my second tube.</p>",
+            "margin_top": 18,
+            "margin_bottom": 18
+          }
+        },
+        "description_straw": {
+          "type": "description",
+          "settings": {
             "margin_top": 18,
             "margin_bottom": 18
           }
@@ -176,6 +183,7 @@
         "title",
         "price",
         "emoji_benefits_xFGiTn",
+        "description_straw",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
@@ -593,7 +601,7 @@
           "settings": {
             "title": "My Legs Finally Feel Smooth",
             "text": "<h5>I've had those little dark dots on my legs since my teens and assumed that was just how my skin was. Three weeks of using this after every shower and the texture is so much softer. I stopped reaching for tights in the morning.</h5>",
-            "author": "Placeholder — replace"
+            "author": "Amira H."
           }
         },
         "review_2": {
@@ -601,7 +609,7 @@
           "settings": {
             "title": "It Actually Sinks In",
             "text": "<h5>I've tried scrubs that left me raw and lotions that did nothing. This is the first thing that's both gentle and actually noticeable. It absorbs fast enough that I can get dressed straight after.</h5>",
-            "author": "Placeholder — replace"
+            "author": "Rania K."
           }
         },
         "review_3": {
@@ -609,7 +617,7 @@
           "settings": {
             "title": "Smooth And Hydrated, Not Stripped",
             "text": "<h5>What sold me is that it doesn't dry my skin out the way exfoliating products usually do. My arms feel soft and look more even, and I'm not itchy afterwards. Repurchasing.</h5>",
-            "author": "Placeholder — replace"
+            "author": "Dana S."
           }
         }
       },
