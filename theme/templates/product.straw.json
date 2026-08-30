@@ -354,7 +354,7 @@
         "heading_size": "h1",
         "text": "<p>Those small rough bumps on the backs of your arms and thighs are <strong>keratosis pilaris</strong> &mdash; KP for short. On your legs it shows up as the dotted look people call strawberry skin, most obvious right after you shave. It's extremely common, it's harmless, and it's stubborn: ordinary body lotion sits on top of it and changes nothing.</p><p>This resurfacing cream works on the texture itself. It smooths and softens the surface while a hydrating base keeps skin nourished, so you're not trading comfort for smoothness the way harsh scrubs make you.</p>",
         "button_label": "See How To Use It",
-        "button_link": "",
+        "button_link": "#shopify-section-straw_how_to_use",
         "button_style_secondary": true,
         "section_color_scheme": "scheme-2",
         "color_scheme": "scheme-2",
@@ -599,25 +599,25 @@
         "review_1": {
           "type": "column",
           "settings": {
-            "title": "My Arms Look Like Different Skin",
-            "text": "<h5>I've had KP on the backs of my arms my whole life and honestly stopped trying to fix it. A month of using this after every shower and the bumps are so much less noticeable. First short sleeves I've worn in years.</h5>",
-            "author": "Amira H."
+            "title": "I'd Given Up On My Thighs",
+            "text": "<h5>Dry brushing, exfoliating mitts, three different scrubs — nothing touched the bumps on my thighs. This is the first thing where I can run my hand over my skin and feel a difference. It took about three weeks before I noticed.</h5>",
+            "author": "Yasmin A."
           }
         },
         "review_2": {
           "type": "column",
           "settings": {
-            "title": "Gentle, And It Actually Works",
-            "text": "<h5>Scrubs left my legs red and raw, and plain lotion did nothing at all. This is the first thing that's both gentle and noticeable. It sinks in fast enough that I can get dressed straight after.</h5>",
-            "author": "Rania K."
+            "title": "Bought It For My Daughter, Kept One",
+            "text": "<h5>My teenager was self-conscious about the bumps on her arms before summer. Two tubes later she's stopped mentioning it, and I've started using it on my own legs. It doesn't sting or smell medicated, which is why she actually keeps up with it.</h5>",
+            "author": "Salma T."
           }
         },
         "review_3": {
           "type": "column",
           "settings": {
-            "title": "Smooth Without The Dryness",
-            "text": "<h5>The little dark dots on my legs after shaving were the thing I hated most. They're much softer now, and my skin isn't dried out the way exfoliating products usually leave it. On my second tube.</h5>",
-            "author": "Dana S."
+            "title": "Be Patient With It",
+            "text": "<h5>Nothing happened in the first week and I nearly gave up. Week three was when my legs started looking clearer, and by week five the difference was obvious in photos. Worth sticking with — just don't expect overnight.</h5>",
+            "author": "Noor F."
           }
         }
       },
@@ -700,7 +700,7 @@
         "description": "<p>Tag us in your before-and-afters — we feature a new set every month.</p>",
         "color_scheme": "scheme-1",
         "columns_desktop": 5,
-        "show_cta": true,
+        "show_cta": false,
         "cta_label": "Follow on Instagram",
         "cta_link": "",
         "padding_top": 48,
