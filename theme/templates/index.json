@@ -496,6 +496,79 @@
         "padding_top": 80,
         "padding_bottom": 88
       }
+    },
+    "thessvane_faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_order": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What order should I use my products in?",
+            "icon": "question_mark",
+            "row_content": "<p>Start with your cleanser, follow with any treatment or serum, then finish by locking it in with a moisturizer. If you're using multiple treatments, apply the thinnest formula first.</p>"
+          }
+        },
+        "faq_sensitive": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are Thessvane products suitable for sensitive skin?",
+            "icon": "question_mark",
+            "row_content": "<p>Our formulas are made with naturally derived ingredients and skip common irritants like synthetic fragrance and sulfates. As with any new skincare product, we recommend patch testing on a small area first.</p>"
+          }
+        },
+        "faq_results": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long until I see results?",
+            "icon": "question_mark",
+            "row_content": "<p>Everyone's skin is different, but most people notice a difference within a few weeks of consistent use. Stick with your routine \u2014 clean skincare works with your skin, not against it.</p>"
+          }
+        },
+        "faq_together": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I use these products together, or just pick one?",
+            "icon": "question_mark",
+            "row_content": "<p>They're designed to work together as a simple 3-step ritual, but each product also works well on its own if you'd rather start slow.</p>"
+          }
+        },
+        "faq_shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's your shipping and return policy?",
+            "icon": "truck",
+            "row_content": "<p>[Add your real shipping and return policy details here before launch.]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_order",
+        "faq_sensitive",
+        "faq_results",
+        "faq_together",
+        "faq_shipping"
+      ],
+      "settings": {
+        "caption": "Got Questions?",
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "padding_top": 80,
+        "padding_bottom": 88
+      }
+    },
+    "thessvane_quote_ritual": {
+      "type": "thessvane-quote",
+      "settings": {
+        "quote": "Confidence starts with skin you feel good in.",
+        "attribution": "Thessvane",
+        "color_scheme": "scheme-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -504,6 +577,8 @@
     "thessvane_bestsellers",
     "thessvane_quote_1",
     "thessvane_routine",
+    "thessvane_faq",
+    "thessvane_quote_ritual",
     "thessvane_our_story",
     "thessvane_before_after",
     "thessvane_trust_badges",
