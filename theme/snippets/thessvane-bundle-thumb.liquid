@@ -1,0 +1,26 @@
+{%- comment -%}
+  Product thumbnail shown at the left of a bundle card.
+
+  Accepts:
+  - option_image: {Image} Per-option image, e.g. a render of three bottles
+  - product: {Product}
+{%- endcomment -%}
+
+{%- liquid
+  assign thumb = option_image
+  if thumb == blank
+    assign thumb = product.featured_image
+  endif
+-%}
+
+<div class="quantity-break__thumb">
+  {%- if thumb != blank -%}
+    {{
+      thumb
+      | image_url: width: 160
+      | image_tag: loading: 'lazy', widths: '54, 108, 160', alt: ''
+    }}
+  {%- else -%}
+    {{- 'image' | placeholder_svg_tag: 'placeholder-svg' -}}
+  {%- endif -%}
+</div>

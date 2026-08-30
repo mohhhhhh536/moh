@@ -1,0 +1,459 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .story-{{ section.id }} .story__intro {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .story-{{ section.id }} .story__eyebrow {
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .story-{{ section.id }} .story__title { margin: 0 0 8px; }
+  .story-{{ section.id }} .story__description {
+    margin: 0 auto;
+    max-width: 62ch;
+  }
+
+  .story-{{ section.id }} .story__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media screen and (min-width: 750px) {
+    .story-{{ section.id }} .story__rows { gap: 64px; }
+  }
+
+  .story-{{ section.id }} .story__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+  @media screen and (min-width: 750px) {
+    .story-{{ section.id }} .story__row {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 48px;
+    }
+    .story-{{ section.id }} .story__row--image-right .story__media { order: 2; }
+    .story-{{ section.id }} .story__row--image-right .story__content { order: 1; }
+  }
+
+  .story-{{ section.id }} .story__media {
+    position: relative;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    border-radius: {{ section.settings.corner_radius }}px;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+  .story-{{ section.id }} .story__media img,
+  .story-{{ section.id }} .story__media .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .story-{{ section.id }} .story__media .placeholder-svg {
+    background: rgba(var(--color-foreground), 0.04);
+    fill: rgba(var(--color-foreground), 0.28);
+  }
+  .story-{{ section.id }} .story__caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    margin: 0;
+    padding: 24px 16px 12px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: #ffffff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  }
+
+  .story-{{ section.id }} .story__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .story-{{ section.id }} .story__row-eyebrow {
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .story-{{ section.id }} .story__heading { margin: 0; }
+  .story-{{ section.id }} .story__text {
+    margin: 0;
+    max-width: 52ch;
+  }
+  .story-{{ section.id }} .story__text > p:first-child { margin-top: 0; }
+  .story-{{ section.id }} .story__text > *:last-child { margin-bottom: 0; }
+
+  .story-{{ section.id }} .story__note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 52ch;
+    padding: 12px 14px;
+    border-left: 3px solid rgba(var(--color-foreground), 0.35);
+    background: rgba(var(--color-foreground), 0.05);
+    border-radius: 0 6px 6px 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+  .story-{{ section.id }} .story__note-icon {
+    flex: 0 0 auto;
+    font-size: 1.5rem;
+    line-height: 1.35;
+  }
+  .story-{{ section.id }} .story__note-body { margin: 0; }
+  .story-{{ section.id }} .story__note-label {
+    display: block;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    opacity: 0.75;
+    margin-bottom: 2px;
+  }
+
+  .story-{{ section.id }} .story__cta { margin-top: 4px; }
+{%- endstyle -%}
+
+<div class="story-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="section-{{ section.id }}-padding page-width">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank or section.settings.description != blank -%}
+      <div class="story__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="story__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="story__title title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="story__description subtitle rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="story__rows">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image_side = section.settings.image_layout
+          if image_side == 'alternate-left'
+            assign remainder = forloop.index0 | modulo: 2
+            if remainder == 0
+              assign image_side = 'left'
+            else
+              assign image_side = 'right'
+            endif
+          elsif image_side == 'alternate-right'
+            assign remainder = forloop.index0 | modulo: 2
+            if remainder == 0
+              assign image_side = 'right'
+            else
+              assign image_side = 'left'
+            endif
+          endif
+
+          assign placeholder_keys = 'lifestyle-1,lifestyle-2,image' | split: ','
+          assign placeholder_index = forloop.index0 | modulo: 3
+          assign row_alt = block.settings.image.alt | default: block.settings.heading
+        -%}
+        <div class="story__row story__row--image-{{ image_side }}" {{ block.shopify_attributes }}>
+          <div class="story__media">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '(min-width: 750px) 45vw, 92vw',
+                  widths: '400, 600, 800, 1000, 1400',
+                  alt: row_alt
+              }}
+            {%- else -%}
+              {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
+            {%- endif -%}
+            {%- if block.settings.image_caption != blank -%}
+              <p class="story__caption">{{ block.settings.image_caption | escape }}</p>
+            {%- endif -%}
+          </div>
+
+          <div class="story__content">
+            {%- if block.settings.eyebrow != blank -%}
+              <p class="story__row-eyebrow">{{ block.settings.eyebrow | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h3 class="story__heading {{ section.settings.row_heading_size }}">{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="story__text rte">{{ block.settings.text }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.note_text != blank -%}
+              <div class="story__note">
+                {%- if block.settings.note_icon != blank -%}
+                  <span class="story__note-icon" aria-hidden="true">{{ block.settings.note_icon | escape }}</span>
+                {%- endif -%}
+                <p class="story__note-body">
+                  {%- if block.settings.note_label != blank -%}
+                    <span class="story__note-label">{{ block.settings.note_label | escape }}</span>
+                  {%- endif -%}
+                  {{- block.settings.note_text | escape -}}
+                </p>
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.link_label != blank -%}
+              <div class="story__cta">
+                <a
+                  {% if block.settings.link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.link }}"
+                  {% endif %}
+                  class="button button--secondary"
+                >
+                  {{- block.settings.link_label | escape -}}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Story Rows",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Long-form product description told as alternating photo-and-text rows. Rows without an uploaded photo show a placeholder graphic, so the page reads correctly before the real photography exists."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "The Details",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "What It Does",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Everything about the formula, the routine and the results — laid out plainly so you know exactly what you're buying.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-2",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_layout",
+      "options": [
+        { "value": "alternate-left", "label": "Alternate, first photo left" },
+        { "value": "alternate-right", "label": "Alternate, first photo right" },
+        { "value": "left", "label": "All photos left" },
+        { "value": "right", "label": "All photos right" }
+      ],
+      "default": "alternate-left",
+      "label": "Photo position"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 3", "label": "Landscape" },
+        { "value": "3 / 2", "label": "Wide" },
+        { "value": "4 / 5", "label": "Portrait" }
+      ],
+      "default": "4 / 3",
+      "label": "Photo shape"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 12,
+      "label": "Photo corner radius"
+    },
+    {
+      "type": "select",
+      "id": "row_heading_size",
+      "options": [
+        { "value": "h4", "label": "Small" },
+        { "value": "h3", "label": "Medium" },
+        { "value": "h2", "label": "Large" }
+      ],
+      "default": "h3",
+      "label": "Row heading size"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "image_caption",
+          "label": "Photo caption",
+          "info": "Optional line shown over the bottom of the photo."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Row heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Describe this part of the product in two or three sentences.</p>",
+          "label": "Text"
+        },
+        {
+          "type": "header",
+          "content": "Side note"
+        },
+        {
+          "type": "text",
+          "id": "note_icon",
+          "default": "✱",
+          "label": "Note icon",
+          "info": "A single character or emoji. Leave blank to hide."
+        },
+        {
+          "type": "text",
+          "id": "note_label",
+          "default": "Good to know",
+          "label": "Note label"
+        },
+        {
+          "type": "text",
+          "id": "note_text",
+          "label": "Note text",
+          "info": "A short aside — a caution, a tip, or a detail that doesn't belong in the main copy. Leave blank to hide the note."
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Story Rows",
+      "blocks": [
+        { "type": "row" },
+        { "type": "row" },
+        { "type": "row" }
+      ]
+    }
+  ]
+}
+{% endschema %}
