@@ -1,0 +1,968 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rating_stars_KqJMmE": {
+          "type": "rating_stars",
+          "settings": {
+            "rating": 4.8,
+            "star_color": "#ffcc00",
+            "bg_stars_style": "full",
+            "bg_star_color": "#ececec",
+            "label": "(345 Reviews)",
+            "size": 12,
+            "alignment": "flex-start",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_size": "h2",
+            "title_alignment": "left",
+            "uppercase_title": false,
+            "margin_top": 0,
+            "margin_bottom": 3
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "layout": "price_second",
+            "price_color": "accent-1",
+            "compare_price_color": "accent-2",
+            "hide_sale_badge": true,
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "emoji_benefits_xFGiTn": {
+          "type": "emoji_benefits",
+          "settings": {
+            "benefits": "<p>✨ <strong>Timeless elegance for any occasion.</strong></p><p>🌬️ <strong>Lightweight fabrics that move with you.</strong></p><p>🪡 <strong>Flawlessly crafted for the perfect fit.</strong></p>",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_types": "swatches, pills",
+            "custom_labels": "[name]",
+            "swatches_custom_colors": "image_alt",
+            "swatches_custom_colors_list": "#000000, #D1DD1D, #0000FF, #FFCC00",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "enable_quantity_discounts": true,
+            "headline": "Bundle & Save here",
+            "preselected": "option_3",
+            "display_badge": "option_3",
+            "badge_text": "Most Popular",
+            "enable_variant_selectors": true,
+            "color_scheme": "outline-button",
+            "option_1_quantity": 2,
+            "option_1_label": "",
+            "option_1_benefit": "",
+            "option_1_caption": "You save [amount_saved]",
+            "option_1_percentage_off_text": "20",
+            "option_1_fixed_amount_off": "0",
+            "option_1_compare_price": "price",
+            "option_2_quantity": 3,
+            "option_2_label": "",
+            "option_2_benefit": "",
+            "option_2_caption": "You save [amount_saved]",
+            "option_2_percentage_off_text": "0",
+            "option_2_fixed_amount_off": "0",
+            "option_2_compare_price": "compare_price",
+            "option_3_quantity": 4,
+            "option_3_label": "",
+            "option_3_benefit": "",
+            "option_3_caption": "You save [amount_saved]",
+            "option_3_percentage_off_text": "0",
+            "option_3_fixed_amount_off": "0",
+            "option_3_compare_price": "compare_price",
+            "option_4_quantity": 5,
+            "option_4_label": "",
+            "option_4_benefit": "",
+            "option_4_caption": "You save [amount_saved]",
+            "option_4_percentage_off_text": "",
+            "option_4_fixed_amount_off": "",
+            "option_4_compare_price": "compare_price",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "skip_cart": false,
+            "uppercase_text": false,
+            "enable_custom_color": false,
+            "custom_color": "#6d388b",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "alignment": "center"
+          }
+        },
+        "sticky_atc_xbBkLM": {
+          "type": "sticky_atc",
+          "disabled": true,
+          "settings": {
+            "function": "add_to_cart",
+            "display_when": "after_scroll",
+            "color_scheme": "background-1",
+            "button_label": "Add to cart",
+            "enable_custom_btn_color": true,
+            "custom_btn_color": "#243d00",
+            "show_price_badge": true,
+            "show_variant_picker": true,
+            "desktop_show_title": true,
+            "desktop_show_price": true,
+            "mobile_show_title": false,
+            "mobile_show_price": false
+          }
+        },
+        "payment_badges_NNJJTd": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, bitcoin, google_pay, ideal, jcb, klarna, litecoin, maestro, master, paypal, shopify_pay, sofort, unionpay, visa",
+            "margin_top": 6,
+            "margin_bottom": 6
+          }
+        },
+        "estimated_shipping_jccxdG": {
+          "type": "estimated_shipping",
+          "settings": {
+            "display_icon": true,
+            "icon_size": "small",
+            "icon_alignment": "middle",
+            "message": "<p>Get it between <strong>[start_date]</strong> and <strong>[end_date]</strong>.</p>",
+            "min_shipping_days": 15,
+            "max_shipping_days": 30,
+            "date_format": "day_mm_dd",
+            "days_labels": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+            "months_labels": "January, February, March, April, May, June, July, August, September, October, November, December",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "reviews_wbqVgr": {
+          "type": "reviews",
+          "settings": {
+            "display_stars": true,
+            "star_color": "#ffcc00",
+            "avatar_alignment": "top",
+            "author_1": "Yuval",
+            "text_1": "<p>This is my go-to piece! It’s versatile, comfortable, and looks great whether I’m dressing it up or keeping it casual. Highly recommend!</p>",
+            "author_2": "The quality is incredible! The fabric feels premium, and the fit is just perfect. I’ve received so many compliments every time I wear it.",
+            "text_2": "<p>Venesa</p>",
+            "author_3": "Jessica",
+            "text_3": "<p>Absolutely love it! The attention to detail is amazing, and it’s so flattering. Worth every penny!</p>",
+            "margin_top": 18,
+            "margin_bottom": 18
+          }
+        }
+      },
+      "block_order": [
+        "rating_stars_KqJMmE",
+        "title",
+        "price",
+        "emoji_benefits_xFGiTn",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "sticky_atc_xbBkLM",
+        "payment_badges_NNJJTd",
+        "estimated_shipping_jccxdG",
+        "reviews_wbqVgr"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "display_variant_image_first": true,
+        "disable_prepend": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "desktop_thumbnails_count": 4,
+        "video_player": "play_btn",
+        "enable_video_looping": false,
+        "autoplay_videos_pause_btn": true,
+        "play_btn_color_scheme": "background-1",
+        "mobile_thumbnails": "columns",
+        "mobile_media_corner_radius": 0,
+        "mobile_spacing": true,
+        "mobile_preview_media": true,
+        "mobile_thumbnails_count": 5,
+        "mobile_pagination": "dots_under",
+        "hide_arrows": true,
+        "dots_color_scheme": "inverse",
+        "trust_badge_position": "top-right",
+        "trust_badge_size": "small",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 100,
+        "desktop_padding_top": 32,
+        "desktop_padding_bottom": 32
+      }
+    },
+    "straw_ticker": {
+      "type": "ds-vertical-ticker",
+      "blocks": {
+        "text_qNHq4H": {
+          "type": "text",
+          "settings": {
+            "title": "🎉 Limited Time Offer!"
+          }
+        },
+        "text_Q9rnEP": {
+          "type": "text",
+          "settings": {
+            "title": "💌 Exclusive Deal!"
+          }
+        },
+        "text_cbCVDH": {
+          "type": "text",
+          "settings": {
+            "title": "🚚 Free Shipping Alert!"
+          }
+        }
+      },
+      "block_order": [
+        "text_qNHq4H",
+        "text_Q9rnEP",
+        "text_cbCVDH"
+      ],
+      "settings": {
+        "number_of_rows": 4,
+        "speed": 3,
+        "text_size": "3",
+        "italic_text": false,
+        "uppercase_text": false,
+        "bold_text": false,
+        "ticker_color_scheme": "custom",
+        "layout": "ticker_second",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "display_content": "always",
+        "content_heading": "🛍️ Flash Sale Alert!",
+        "content_heading_size": "h2",
+        "content_text": "<p>Get 20% off on all bundle deals—limited time only!</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "content_color_scheme": "custom",
+        "overlay_color": "#243d00",
+        "overlay_opacity": 0,
+        "content_padding_top": 36,
+        "content_padding_bottom": 24,
+        "custom_ticker_colors_background": "#243d00",
+        "custom_ticker_gradient_background": "",
+        "custom_ticker_colors_text": "#ffffff",
+        "custom_colors_background": "#243d00",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#ffffff",
+        "custom_colors_solid_button_background": "#ffffff",
+        "custom_colors_solid_button_text": "#243d00",
+        "custom_colors_outline_button": "#dd1d1d"
+      }
+    },
+    "straw_icon_bar": {
+      "type": "ds-icon-bar",
+      "blocks": {
+        "icon_clean": {
+          "type": "column",
+          "settings": {
+            "icon": "leaf",
+            "title": "Clean Formula",
+            "text": "<p>Naturally derived actives, no sulfates, parabens or synthetic fragrance.</p>"
+          }
+        },
+        "icon_gentle": {
+          "type": "column",
+          "settings": {
+            "icon": "heart",
+            "title": "Kind to Every Skin Type",
+            "text": "<p>Dermatologist-tested and balanced for sensitive skin.</p>"
+          }
+        },
+        "icon_fast": {
+          "type": "column",
+          "settings": {
+            "icon": "stopwatch",
+            "title": "Fits a 3-Minute Routine",
+            "text": "<p>One step, morning and night — no complicated ritual required.</p>"
+          }
+        },
+        "icon_cruelty": {
+          "type": "column",
+          "settings": {
+            "icon": "paw_print",
+            "title": "Never Tested on Animals",
+            "text": "<p>Cruelty-free and packed in recyclable materials.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_clean",
+        "icon_gentle",
+        "icon_fast",
+        "icon_cruelty"
+      ],
+      "settings": {
+        "title": "Why You'll Love It",
+        "heading_size": "h2",
+        "text": "",
+        "icon_size": "medium",
+        "columns_desktop": 4,
+        "icon_color": "accent-1",
+        "background_style": "none",
+        "color_scheme": "background-1",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "straw_ingredient_callout": {
+      "type": "thessvane-ingredient-callout",
+      "settings": {
+        "layout": "image_first",
+        "eyebrow": "Inside The Formula",
+        "heading": "Every Ingredient Earns Its Place",
+        "heading_size": "h1",
+        "text": "<p>We start with a short ingredient list and keep it that way. Each active is chosen for what it does for your skin — hydration, barrier support, a healthy glow — and nothing is added just to fill the bottle. Read the label, then read it again: there is nothing on it you need to look up.</p>",
+        "button_label": "See the Full Ingredient List",
+        "button_link": "",
+        "button_style_secondary": true,
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "benefit_hydrate": {
+          "type": "column",
+          "settings": {
+            "title": "Deep, Lasting Hydration",
+            "text": "<p>Draws moisture into the skin and holds it there, so you wake up soft instead of tight.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit_barrier": {
+          "type": "column",
+          "settings": {
+            "title": "A Stronger Skin Barrier",
+            "text": "<p>Supports your skin's natural defences against pollution, weather and daily stress.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit_glow": {
+          "type": "column",
+          "settings": {
+            "title": "A Visible, Healthy Glow",
+            "text": "<p>Evens tone and softens dullness with consistent use — no filter needed.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "benefit_hydrate",
+        "benefit_barrier",
+        "benefit_glow"
+      ],
+      "settings": {
+        "title": "What It Does For Your Skin",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "circle",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_how_to_use": {
+      "type": "thessvane-routine-builder",
+      "blocks": {
+        "use_cleanse": {
+          "type": "step",
+          "settings": {
+            "step_title": "1. Start Clean",
+            "step_text": "<p>Wash with lukewarm water and pat your skin damp — not dry. Damp skin absorbs more.</p>"
+          }
+        },
+        "use_apply": {
+          "type": "step",
+          "settings": {
+            "step_title": "2. Apply a Pea-Sized Amount",
+            "step_text": "<p>Warm it between your fingertips and press gently over your face and neck. A little goes a long way.</p>"
+          }
+        },
+        "use_seal": {
+          "type": "step",
+          "settings": {
+            "step_title": "3. Seal and Go",
+            "step_text": "<p>Follow with moisturiser at night, or SPF in the morning. That's the whole routine.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "use_cleanse",
+        "use_apply",
+        "use_seal"
+      ],
+      "settings": {
+        "title": "How To Use It",
+        "heading_size": "h1",
+        "description": "<p>Three steps, twice a day. Most people see a difference in the first two weeks.</p>",
+        "color_scheme": "scheme-2",
+        "show_cta": false,
+        "cta_label": "Shop the Full Ritual",
+        "cta_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_comparison": {
+      "type": "ds-comparison-table",
+      "blocks": {
+        "cmp_clean": {
+          "type": "row",
+          "settings": {
+            "benefit": "Naturally derived, short ingredient list",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_fragrance": {
+          "type": "row",
+          "settings": {
+            "benefit": "No synthetic fragrance or harsh sulfates",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_tested": {
+          "type": "row",
+          "settings": {
+            "benefit": "Dermatologist-tested on sensitive skin",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_cruelty": {
+          "type": "row",
+          "settings": {
+            "benefit": "Cruelty-free and recyclable packaging",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_refill": {
+          "type": "row",
+          "settings": {
+            "benefit": "Refill-friendly, not single-use",
+            "us": true,
+            "others": false
+          }
+        }
+      },
+      "block_order": [
+        "cmp_clean",
+        "cmp_fragrance",
+        "cmp_tested",
+        "cmp_cruelty",
+        "cmp_refill"
+      ],
+      "settings": {
+        "title": "Thessvane vs. The Usual Shelf",
+        "heading_size": "h1",
+        "text": "<p>Most of what sits on a drugstore shelf is built for shelf life. This is built for your skin.</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "color_scheme": "custom",
+        "layout": "table_second",
+        "benefit_color_scheme": "background-1",
+        "checkmark_color": "#7C9473",
+        "icon_cells_color_scheme": "background-1",
+        "us_label": "Thessvane",
+        "us_label_size": 14,
+        "logo_width": 90,
+        "mobile_logo_width": 60,
+        "others_label": "Others",
+        "others_label_size": 14,
+        "others_logo_width": 90,
+        "others_mobile_logo_width": 60,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_solid_button_background": "#A06272",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "straw_results": {
+      "type": "results",
+      "blocks": {
+        "res_hydration": {
+          "type": "row",
+          "settings": {
+            "percentage": 94,
+            "row_text": "<h3>said their skin felt more hydrated after two weeks.</h3>"
+          }
+        },
+        "res_texture": {
+          "type": "row",
+          "settings": {
+            "percentage": 88,
+            "row_text": "<h3>saw smoother, more even-looking texture.</h3>"
+          }
+        },
+        "res_repurchase": {
+          "type": "row",
+          "settings": {
+            "percentage": 91,
+            "row_text": "<h3>would make it a permanent part of their routine.</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "res_hydration",
+        "res_texture",
+        "res_repurchase"
+      ],
+      "settings": {
+        "title": "The Results Speak For Themselves",
+        "heading_size": "h1",
+        "text": "<h4>Based on a self-assessed consumer study of 120 participants using the product twice daily for four weeks.</h4>",
+        "color_scheme": "custom",
+        "layout": "results_second",
+        "results_headline": "",
+        "results_headline_size": "h3",
+        "results_headline_alignment": "left",
+        "caption": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_accent": "#7C9473",
+        "custom_colors_solid_button_background": "#A06272",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "straw_testimonials": {
+      "type": "ds-testimonials",
+      "blocks": {
+        "review_maya": {
+          "type": "column",
+          "settings": {
+            "title": "Finally, Something My Skin Agrees With",
+            "text": "<h5>I have reactive skin and usually spend a month regretting new products. Two weeks in and my face is calm, soft and actually glowing. It's the only thing I've repurchased twice this year.</h5>",
+            "author": "Maya R."
+          }
+        },
+        "review_lena": {
+          "type": "column",
+          "settings": {
+            "title": "Simple Enough That I Actually Stick To It",
+            "text": "<h5>I wanted a routine I'd keep up with on a bad week. This is one step, it takes a minute, and the difference is obvious when I skip it.</h5>",
+            "author": "Lena K."
+          }
+        },
+        "review_sofia": {
+          "type": "column",
+          "settings": {
+            "title": "Clean Without The Compromise",
+            "text": "<h5>I switched for the ingredient list and stayed for the results. Lightweight, no scent, sinks in fast, and my makeup sits better over it.</h5>",
+            "author": "Sofia D."
+          }
+        }
+      },
+      "block_order": [
+        "review_maya",
+        "review_lena",
+        "review_sofia"
+      ],
+      "settings": {
+        "title": "What People Are Saying",
+        "heading_size": "h1",
+        "text": "",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "slider_preview": true,
+        "column_alignment": "center",
+        "show_stars": true,
+        "stars_color": "#E7B8BE",
+        "show_quotes": true,
+        "quotes_color_scheme": "background-1",
+        "background_style": "primary",
+        "color_scheme": "background-1",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "straw_ugc": {
+      "type": "thessvane-ugc-grid",
+      "blocks": {
+        "ugc_1": {
+          "type": "tile",
+          "settings": {
+            "link": "",
+            "handle": "@ellawrites"
+          }
+        },
+        "ugc_2": {
+          "type": "tile",
+          "settings": {
+            "link": "",
+            "handle": "@theskinjournal"
+          }
+        },
+        "ugc_3": {
+          "type": "tile",
+          "settings": {
+            "link": "",
+            "handle": "@noorbeauty"
+          }
+        },
+        "ugc_4": {
+          "type": "tile",
+          "settings": {
+            "link": "",
+            "handle": "@dailywithmai"
+          }
+        },
+        "ugc_5": {
+          "type": "tile",
+          "settings": {
+            "link": "",
+            "handle": "@clara.k"
+          }
+        }
+      },
+      "block_order": [
+        "ugc_1",
+        "ugc_2",
+        "ugc_3",
+        "ugc_4",
+        "ugc_5"
+      ],
+      "settings": {
+        "title": "Real Skin, Real Routines",
+        "heading_size": "h1",
+        "description": "<p>Tag @thessvane to show us how you use it — we feature a new set every month.</p>",
+        "color_scheme": "scheme-1",
+        "columns_desktop": 5,
+        "show_cta": true,
+        "cta_label": "Follow on Instagram",
+        "cta_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_bundle": {
+      "type": "ds-bundle-deals",
+      "disabled": true,
+      "blocks": {
+        "bundle_1": {
+          "type": "product",
+          "settings": {
+            "percentage_discount": "0",
+            "fixed_amount_discount": "0",
+            "required": true
+          }
+        },
+        "bundle_2": {
+          "type": "product",
+          "settings": {
+            "percentage_discount": "10",
+            "fixed_amount_discount": "0",
+            "required": false
+          }
+        },
+        "bundle_3": {
+          "type": "product",
+          "settings": {
+            "percentage_discount": "15",
+            "fixed_amount_discount": "0",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ],
+      "settings": {
+        "title": "Complete The Ritual",
+        "heading_size": "h1",
+        "text": "<p>Add the steps that pair with it and save more on the full routine.</p>",
+        "color_scheme": "custom",
+        "layout": "horizontal-images-left",
+        "enable_price_changes": true,
+        "skip_cart": false,
+        "total_price_label": "Total Price:",
+        "btn_label": "Add the Ritual to Cart",
+        "percentage_discount": "0",
+        "fixed_amount_discount": "0",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_accent": "#7C9473",
+        "custom_colors_solid_button_background": "#A06272",
+        "custom_colors_solid_button_text": "#FDFBF7"
+      }
+    },
+    "straw_press": {
+      "type": "ds-logo-list",
+      "disabled": true,
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4"
+      ],
+      "settings": {
+        "title": "As Seen In",
+        "heading_size": "h2",
+        "gray_logos": true,
+        "color_scheme": "background-1",
+        "layout": "horizontal",
+        "desktop_logo_height": 40,
+        "columns_mobile": 2,
+        "mobile_logo_height": 30,
+        "swipe_on_mobile": true,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_dots": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "straw_faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_skin_type": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Will it work for my skin type?",
+            "icon": "silhouette",
+            "row_content": "<p>It's formulated to be non-irritating across dry, oily, combination and sensitive skin. If you're actively treating a skin condition, patch test on your inner arm for 24 hours first — as you would with any new product.</p>",
+            "page": ""
+          }
+        },
+        "faq_results": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long until I see results?",
+            "icon": "stopwatch",
+            "row_content": "<p>Most people notice softer, more hydrated skin within the first week. Changes in tone and texture build over four to six weeks of consistent twice-daily use.</p>",
+            "page": ""
+          }
+        },
+        "faq_ingredients": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's in it — and what isn't?",
+            "icon": "leaf",
+            "row_content": "<p>Naturally derived actives, plant oils and humectants. No sulfates, parabens, synthetic fragrance, mineral oil or animal-derived ingredients. The full INCI list is printed on every carton.</p>",
+            "page": ""
+          }
+        },
+        "faq_layering": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I layer it with the rest of my routine?",
+            "icon": "bottle",
+            "row_content": "<p>Yes. Apply it to damp skin after cleansing and before moisturiser. It layers cleanly under SPF and makeup, and pairs with the rest of the Thessvane range without pilling.</p>",
+            "page": ""
+          }
+        },
+        "faq_shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Shipping, returns and refills",
+            "icon": "truck",
+            "row_content": "<p>Orders ship within 1-2 business days. If it isn't right for your skin, return it within 30 days — opened or not — for a full refund. Refill pouches are available for every full-size bottle.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_skin_type",
+        "faq_results",
+        "faq_ingredients",
+        "faq_layering",
+        "faq_shipping"
+      ],
+      "settings": {
+        "caption": "Good To Know",
+        "heading": "Questions, Answered",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "custom",
+        "container_color_scheme": "custom",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_contaner_colors_background": "#FDFBF7",
+        "custom_container_gradient_background": "",
+        "custom_contaner_colors_text": "#2B2A4A"
+      }
+    },
+    "straw_related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Pairs Well With",
+        "heading_size": "h1",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_newsletter": {
+      "type": "email-signup-banner",
+      "blocks": {
+        "nl_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "10% Off Your First Order",
+            "heading_size": "h1"
+          }
+        },
+        "nl_text": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join the ritual for skincare notes, restock alerts and early access to new formulas.</p>",
+            "text_style": "body"
+          }
+        },
+        "nl_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "nl_heading",
+        "nl_text",
+        "nl_form"
+      ],
+      "settings": {
+        "show_background_image": false,
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "straw_ticker",
+    "straw_icon_bar",
+    "straw_ingredient_callout",
+    "straw_benefits",
+    "straw_how_to_use",
+    "straw_comparison",
+    "straw_results",
+    "straw_testimonials",
+    "straw_ugc",
+    "straw_bundle",
+    "straw_press",
+    "straw_faq",
+    "straw_related",
+    "straw_newsletter"
+  ]
+}
