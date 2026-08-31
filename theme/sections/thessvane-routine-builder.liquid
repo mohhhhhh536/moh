@@ -73,9 +73,15 @@
             {%- if block.settings.step_text != blank -%}
               <div class="routine__step-text rte">{{ block.settings.step_text }}</div>
             {%- endif -%}
+            {%- liquid
+              assign step_placeholders = 'product-1,product-2,product-3' | split: ','
+              assign step_placeholder_index = forloop.index0 | modulo: 3
+              assign step_placeholder = step_placeholders[step_placeholder_index]
+            -%}
             <div class="routine__step-card">
               {% render 'card-product',
                 card_product: block.settings.product,
+                placeholder_image: step_placeholder,
                 media_aspect_ratio: 'square',
                 show_vendor: false,
                 section_id: section.id
