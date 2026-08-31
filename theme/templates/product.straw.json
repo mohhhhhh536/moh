@@ -1,0 +1,1004 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rating_stars_KqJMmE": {
+          "type": "rating_stars",
+          "settings": {
+            "rating": 4.8,
+            "star_color": "#ffcc00",
+            "bg_stars_style": "full",
+            "bg_star_color": "#ececec",
+            "label": "(345 Reviews)",
+            "size": 12,
+            "alignment": "flex-start",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_size": "h2",
+            "title_alignment": "left",
+            "uppercase_title": false,
+            "margin_top": 0,
+            "margin_bottom": 3
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "layout": "price_second",
+            "price_color": "accent-1",
+            "compare_price_color": "accent-2",
+            "hide_sale_badge": true,
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "emoji_benefits_xFGiTn": {
+          "type": "emoji_benefits",
+          "settings": {
+            "benefits": "<p>🍓 <strong>Smooths the rough, bumpy feel of KP and strawberry skin.</strong></p><p>💧 <strong>Hydrates deeply — no tight, stripped feeling.</strong></p><p>✨ <strong>Helps soften the look of dark dots and uneven tone.</strong></p><p>🧴 <strong>Made for body skin — legs, arms and thighs.</strong></p>",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_types": "swatches, pills",
+            "custom_labels": "[name]",
+            "swatches_custom_colors": "image_alt",
+            "swatches_custom_colors_list": "#000000, #D1DD1D, #0000FF, #FFCC00",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "enable_quantity_discounts": true,
+            "headline": "Bundle & Save",
+            "preselected": "option_2",
+            "display_badge": "option_2",
+            "badge_text": "Most Popular",
+            "enable_variant_selectors": true,
+            "color_scheme": "outline-button",
+            "option_1_quantity": 1,
+            "option_1_label": "Single",
+            "option_1_benefit": "",
+            "option_1_caption": "",
+            "option_1_percentage_off_text": "0",
+            "option_1_fixed_amount_off": "0",
+            "option_1_compare_price": "compare_price",
+            "option_2_quantity": 3,
+            "option_2_label": "Buy 2, Get 1 Free",
+            "option_2_benefit": "1 tube free",
+            "option_2_caption": "You save [amount_saved]",
+            "option_2_percentage_off_text": "33.33",
+            "option_2_fixed_amount_off": "0",
+            "option_2_compare_price": "price",
+            "option_3_quantity": 5,
+            "option_3_label": "Buy 3, Get 2 Free",
+            "option_3_benefit": "Best value — 2 tubes free",
+            "option_3_caption": "You save [amount_saved]",
+            "option_3_percentage_off_text": "40",
+            "option_3_fixed_amount_off": "0",
+            "option_3_compare_price": "price",
+            "option_4_quantity": 0,
+            "option_4_label": "",
+            "option_4_benefit": "",
+            "option_4_caption": "",
+            "option_4_percentage_off_text": "0",
+            "option_4_fixed_amount_off": "0",
+            "option_4_compare_price": "price",
+            "option_1_badge": "",
+            "option_2_badge": "",
+            "option_3_badge": "",
+            "option_4_badge": "",
+            "gift_enabled": false,
+            "gift_text": "+ FREE Care Guide E-Book",
+            "gift_value": "$15.00",
+            "autoship_enabled": false,
+            "autoship_checked": false,
+            "autoship_title": "Auto Ship & Save 15%",
+            "autoship_subtitle": "Zero Commitment, Cancel Anytime",
+            "qb_card_bg": "#fbeaeb",
+            "qb_accent": "#c0392b",
+            "qb_gift_bg": "#f5dadc",
+            "qb_badge_bg": "#141414",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "skip_cart": false,
+            "uppercase_text": true,
+            "enable_custom_color": true,
+            "custom_color": "#8B3888",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "alignment": "center"
+          }
+        },
+        "sticky_atc_xbBkLM": {
+          "type": "sticky_atc",
+          "disabled": true,
+          "settings": {
+            "function": "add_to_cart",
+            "display_when": "after_scroll",
+            "color_scheme": "background-1",
+            "button_label": "Add to cart",
+            "enable_custom_btn_color": true,
+            "custom_btn_color": "#243d00",
+            "show_price_badge": true,
+            "show_variant_picker": true,
+            "desktop_show_title": true,
+            "desktop_show_price": true,
+            "mobile_show_title": false,
+            "mobile_show_price": false
+          }
+        },
+        "payment_badges_NNJJTd": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, bitcoin, google_pay, ideal, jcb, klarna, litecoin, maestro, master, paypal, shopify_pay, sofort, unionpay, visa",
+            "margin_top": 6,
+            "margin_bottom": 6
+          }
+        },
+        "estimated_shipping_jccxdG": {
+          "type": "estimated_shipping",
+          "settings": {
+            "display_icon": true,
+            "icon_size": "small",
+            "icon_alignment": "middle",
+            "message": "<p>Get it between <strong>[start_date]</strong> and <strong>[end_date]</strong>.</p>",
+            "min_shipping_days": 15,
+            "max_shipping_days": 30,
+            "date_format": "day_mm_dd",
+            "days_labels": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+            "months_labels": "January, February, March, April, May, June, July, August, September, October, November, December",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "reviews_wbqVgr": {
+          "type": "reviews",
+          "settings": {
+            "display_stars": true,
+            "star_color": "#e7b8be",
+            "avatar_alignment": "top",
+            "author_1": "Amira H.",
+            "text_1": "<p>I've had KP on the backs of my arms my whole life and honestly stopped trying to fix it. A month of using this after every shower and the bumps are so much less noticeable. First short sleeves I've worn in years.</p>",
+            "author_2": "Rania K.",
+            "text_2": "<p>Scrubs left my legs red and raw, and plain lotion did nothing at all. This is the first thing that's gentle and actually works. It sinks in fast enough that I can get dressed straight after.</p>",
+            "author_3": "Dana S.",
+            "text_3": "<p>The little dark dots on my legs after shaving were the thing I hated most. They're much softer now, and my skin isn't dried out the way exfoliating products usually leave it. On my second tube.</p>",
+            "margin_top": 18,
+            "margin_bottom": 18
+          }
+        }
+      },
+      "block_order": [
+        "rating_stars_KqJMmE",
+        "title",
+        "price",
+        "emoji_benefits_xFGiTn",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "sticky_atc_xbBkLM",
+        "payment_badges_NNJJTd",
+        "estimated_shipping_jccxdG",
+        "reviews_wbqVgr"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "display_variant_image_first": true,
+        "disable_prepend": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "desktop_thumbnails_count": 4,
+        "video_player": "play_btn",
+        "enable_video_looping": false,
+        "autoplay_videos_pause_btn": true,
+        "play_btn_color_scheme": "background-1",
+        "mobile_thumbnails": "columns",
+        "mobile_media_corner_radius": 0,
+        "mobile_spacing": true,
+        "mobile_preview_media": true,
+        "mobile_thumbnails_count": 5,
+        "mobile_pagination": "dots_under",
+        "hide_arrows": true,
+        "dots_color_scheme": "inverse",
+        "trust_badge_position": "top-right",
+        "trust_badge_size": "small",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 100,
+        "desktop_padding_top": 32,
+        "desktop_padding_bottom": 32
+      }
+    },
+    "straw_ticker": {
+      "type": "ds-vertical-ticker",
+      "blocks": {
+        "tick_smooth": {
+          "type": "text",
+          "settings": {
+            "title": "✨ Smooths KP bumps"
+          }
+        },
+        "tick_hydrate": {
+          "type": "text",
+          "settings": {
+            "title": "💧 Hydrates while it resurfaces"
+          }
+        },
+        "tick_bright": {
+          "type": "text",
+          "settings": {
+            "title": "🍓 Brightens uneven tone"
+          }
+        }
+      },
+      "block_order": [
+        "tick_smooth",
+        "tick_hydrate",
+        "tick_bright"
+      ],
+      "settings": {
+        "number_of_rows": 4,
+        "speed": 3,
+        "text_size": "3",
+        "italic_text": false,
+        "uppercase_text": false,
+        "bold_text": false,
+        "ticker_color_scheme": "custom",
+        "layout": "ticker_second",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "display_content": "always",
+        "content_heading": "🍓 KP And Strawberry Skin, Meet Your Match",
+        "content_heading_size": "h2",
+        "content_text": "<h4>Smooth the rough bumps on arms, thighs and legs — one cream, once a day.</h4>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "content_color_scheme": "custom",
+        "overlay_color": "#1437E4",
+        "overlay_opacity": 0,
+        "content_padding_top": 36,
+        "content_padding_bottom": 24,
+        "custom_ticker_colors_background": "#D781AB",
+        "custom_ticker_gradient_background": "",
+        "custom_ticker_colors_text": "#ffffff",
+        "custom_colors_background": "#D781AB",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#ffffff",
+        "custom_colors_solid_button_background": "#ffffff",
+        "custom_colors_solid_button_text": "#243d00",
+        "custom_colors_outline_button": "#dd1d1d"
+      }
+    },
+    "straw_icon_bar": {
+      "type": "ds-icon-bar",
+      "blocks": {
+        "icon_smooth": {
+          "type": "column",
+          "settings": {
+            "icon": "silhouette",
+            "title": "Smooths KP Bumps",
+            "text": "<p>Resurfaces the rough, bumpy texture of KP on arms and thighs, and strawberry skin on legs.</p>"
+          }
+        },
+        "icon_hydrate": {
+          "type": "column",
+          "settings": {
+            "icon": "bottle",
+            "title": "Deep, Lasting Hydration",
+            "text": "<p>A hydrating base means it softens as it resurfaces — no tight, stripped feeling.</p>"
+          }
+        },
+        "icon_bright": {
+          "type": "column",
+          "settings": {
+            "icon": "star",
+            "title": "Brightens Uneven Tone",
+            "text": "<p>Helps soften the look of dark dots and patchy areas over consistent use.</p>"
+          }
+        },
+        "icon_daily": {
+          "type": "column",
+          "settings": {
+            "icon": "heart",
+            "title": "Simple Enough for Every Day",
+            "text": "<p>One step after your shower. No scrubbing, no complicated body routine.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_smooth",
+        "icon_hydrate",
+        "icon_bright",
+        "icon_daily"
+      ],
+      "settings": {
+        "title": "Why It Works",
+        "heading_size": "h2",
+        "text": "",
+        "icon_size": "medium",
+        "columns_desktop": 4,
+        "icon_color": "accent-1",
+        "background_style": "none",
+        "color_scheme": "background-2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a"
+      }
+    },
+    "straw_ingredient_callout": {
+      "type": "thessvane-ingredient-callout",
+      "settings": {
+        "image": "shopify://shop_images/601a5177-28a7-493f-8def-0eacb288616d.png",
+        "layout": "image_first",
+        "eyebrow": "What It's For",
+        "heading": "Made For KP And Strawberry Skin",
+        "heading_size": "h1",
+        "text": "<p>Those small rough bumps on the backs of your arms and thighs are <strong>keratosis pilaris</strong> — KP for short. On your legs it shows up as the dotted look people call strawberry skin, most obvious right after you shave. It's extremely common, it's harmless, and it's stubborn: ordinary body lotion sits on top of it and changes nothing.</p><p>This resurfacing cream works on the texture itself. It smooths and softens the surface while a hydrating base keeps skin nourished, so you're not trading comfort for smoothness the way harsh scrubs make you.</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": true,
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "benefit_smooth": {
+          "type": "column",
+          "settings": {
+            "title": "Resurfaces Rough Texture",
+            "text": "<p>Works on the bumpy KP texture that lotion alone can't reach, for skin that feels smooth to the touch.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit_hydrate": {
+          "type": "column",
+          "settings": {
+            "title": "Softens As It Works",
+            "text": "<p>A hydrating, nourishing formula — so resurfacing doesn't come at the cost of comfort or dryness.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit_bright": {
+          "type": "column",
+          "settings": {
+            "title": "Evens The Look Of Tone",
+            "text": "<p>Helps brighten dull, patchy areas so legs and arms look clearer and more even overall.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "benefit_smooth",
+        "benefit_hydrate",
+        "benefit_bright"
+      ],
+      "settings": {
+        "title": "What It Does For Your Skin",
+        "heading_size": "h1",
+        "image_width": "full",
+        "show_image_placeholders": false,
+        "image_ratio": "circle",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_how_to_use": {
+      "type": "thessvane-routine-builder",
+      "blocks": {
+        "use_clean": {
+          "type": "step",
+          "settings": {
+            "step_title": "1. Start With Clean, Dry Skin",
+            "step_text": "<p>Best straight after a shower, once skin is towel-dry. Warm, clean skin takes it in faster.</p>",
+            "product": ""
+          }
+        },
+        "use_massage": {
+          "type": "step",
+          "settings": {
+            "step_title": "2. Massage Into The Rough Areas",
+            "step_text": "<p>Work a generous amount into legs, thighs, upper arms — anywhere the texture feels bumpy. Massage until it disappears.</p>",
+            "product": ""
+          }
+        },
+        "use_repeat": {
+          "type": "step",
+          "settings": {
+            "step_title": "3. Repeat Daily",
+            "step_text": "<p>Use it every day and give it a full month before you judge the results. Patch test first if your skin runs sensitive.</p>",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "use_clean",
+        "use_massage",
+        "use_repeat"
+      ],
+      "settings": {
+        "title": "How To Use It",
+        "heading_size": "h1",
+        "description": "<p>One step, once a day. Texture takes time — the difference comes from being consistent.</p>",
+        "color_scheme": "scheme-2",
+        "show_cta": false,
+        "cta_label": "Shop the Full Ritual",
+        "cta_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_comparison": {
+      "type": "ds-comparison-table",
+      "blocks": {
+        "cmp_resurface": {
+          "type": "row",
+          "settings": {
+            "benefit": "Resurfaces KP bumps and strawberry skin",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_bright": {
+          "type": "row",
+          "settings": {
+            "benefit": "Helps brighten dull, patchy areas",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_hydrate": {
+          "type": "row",
+          "settings": {
+            "benefit": "Hydrates and nourishes at the same time",
+            "us": true,
+            "others": true
+          }
+        },
+        "cmp_body": {
+          "type": "row",
+          "settings": {
+            "benefit": "Formulated for body skin — legs, arms, thighs",
+            "us": true,
+            "others": false
+          }
+        },
+        "cmp_simple": {
+          "type": "row",
+          "settings": {
+            "benefit": "One step, no scrubbing or layering",
+            "us": true,
+            "others": false
+          }
+        }
+      },
+      "block_order": [
+        "cmp_resurface",
+        "cmp_bright",
+        "cmp_hydrate",
+        "cmp_body",
+        "cmp_simple"
+      ],
+      "settings": {
+        "title": "Not Just Another Body Lotion",
+        "heading_size": "h1",
+        "text": "<p>Ordinary lotion hydrates the surface and stops there. A resurfacing cream works on the texture underneath it.</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "color_scheme": "custom",
+        "layout": "table_second",
+        "benefit_color_scheme": "background-1",
+        "checkmark_color": "#7c9473",
+        "icon_cells_color_scheme": "background-1",
+        "us_label": "This Cream",
+        "us_label_size": 14,
+        "logo_width": 90,
+        "mobile_logo_width": 60,
+        "others_label": "Ordinary Lotion",
+        "others_label_size": 14,
+        "others_logo_width": 90,
+        "others_mobile_logo_width": 60,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a",
+        "custom_colors_solid_button_background": "#a06272",
+        "custom_colors_solid_button_text": "#fdfbf7",
+        "custom_colors_outline_button": "#2b2a4a"
+      }
+    },
+    "straw_results": {
+      "type": "results",
+      "blocks": {
+        "res_smooth": {
+          "type": "row",
+          "settings": {
+            "percentage": 0,
+            "row_text": "<h3>said their skin felt smoother to the touch. [replace]</h3>"
+          }
+        },
+        "res_look": {
+          "type": "row",
+          "settings": {
+            "percentage": 0,
+            "row_text": "<h3>saw less visible bumpiness on legs and arms. [replace]</h3>"
+          }
+        },
+        "res_keep": {
+          "type": "row",
+          "settings": {
+            "percentage": 0,
+            "row_text": "<h3>would keep it in their routine. [replace]</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "res_smooth",
+        "res_look",
+        "res_keep"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "The Results Speak For Themselves",
+        "heading_size": "h1",
+        "text": "<h4>PLACEHOLDER — replace these three figures with your own survey or review data, and note the sample size here, before enabling this section.</h4>",
+        "color_scheme": "custom",
+        "layout": "results_second",
+        "results_headline": "",
+        "results_headline_size": "h3",
+        "results_headline_alignment": "left",
+        "caption": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#fdfbf7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a",
+        "custom_colors_accent": "#7c9473",
+        "custom_colors_solid_button_background": "#a06272",
+        "custom_colors_solid_button_text": "#fdfbf7",
+        "custom_colors_outline_button": "#2b2a4a"
+      }
+    },
+    "straw_testimonials": {
+      "type": "ds-testimonials",
+      "blocks": {
+        "review_1": {
+          "type": "column",
+          "settings": {
+            "title": "I'd Given Up On My Thighs",
+            "text": "<h5>Dry brushing, exfoliating mitts, three different scrubs — nothing touched the bumps on my thighs. This is the first thing where I can run my hand over my skin and feel a difference. It took about three weeks before I noticed.</h5>",
+            "author": "Yasmin A."
+          }
+        },
+        "review_2": {
+          "type": "column",
+          "settings": {
+            "title": "Bought It For My Daughter, Kept One",
+            "text": "<h5>My teenager was self-conscious about the bumps on her arms before summer. Two tubes later she's stopped mentioning it, and I've started using it on my own legs. It doesn't sting or smell medicated, which is why she actually keeps up with it.</h5>",
+            "author": "Salma T."
+          }
+        },
+        "review_3": {
+          "type": "column",
+          "settings": {
+            "title": "Be Patient With It",
+            "text": "<h5>Nothing happened in the first week and I nearly gave up. Week three was when my legs started looking clearer, and by week five the difference was obvious in photos. Worth sticking with — just don't expect overnight.</h5>",
+            "author": "Noor F."
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "title": "What People Are Saying",
+        "heading_size": "h1",
+        "text": "",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "slider_preview": true,
+        "column_alignment": "center",
+        "show_stars": true,
+        "stars_color": "#e7b8be",
+        "show_quotes": true,
+        "quotes_color_scheme": "background-1",
+        "background_style": "primary",
+        "color_scheme": "background-1",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a"
+      }
+    },
+    "straw_before_after": {
+      "type": "thessvane-before-after",
+      "blocks": {
+        "pair_arms": {
+          "type": "pair",
+          "settings": {
+            "pair_title": "KP On The Upper Arms",
+            "review_text": "<p>PLACEHOLDER REVIEW — replace with a real customer quote. The bumps on the backs of my arms were the thing I covered up every summer. Six weeks of using it daily and they're far less noticeable to look at and to touch.</p>",
+            "author": "Layla M.",
+            "timeframe": "6 weeks of use",
+            "verified": true
+          }
+        },
+        "pair_legs": {
+          "type": "pair",
+          "settings": {
+            "pair_title": "Strawberry Skin On Legs",
+            "review_text": "<p>PLACEHOLDER REVIEW — replace with a real customer quote. The dotted look after shaving was what bothered me most. My legs look clearer now and, more importantly, they don't feel dried out the way scrubs left them.</p>",
+            "author": "Hana B.",
+            "timeframe": "8 weeks of use",
+            "verified": true
+          }
+        },
+        "pair_thighs": {
+          "type": "pair",
+          "settings": {
+            "pair_title": "Rough Texture On Thighs",
+            "review_text": "<p>PLACEHOLDER REVIEW — replace with a real customer quote. Nothing shifted in week one so I almost stopped. By the end of the first month my thighs were noticeably smoother — the photos surprised me more than the mirror did.</p>",
+            "author": "Sara E.",
+            "timeframe": "4 weeks of use",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "pair_arms",
+        "pair_legs",
+        "pair_thighs"
+      ],
+      "settings": {
+        "eyebrow": "Community",
+        "title": "Real Skin, Real Results",
+        "heading_size": "h1",
+        "description": "<p>Unretouched before-and-afters shared by customers on the daily routine.</p>",
+        "color_scheme": "scheme-1",
+        "columns_desktop": 3,
+        "image_ratio": "4 / 5",
+        "before_label": "Before",
+        "after_label": "After",
+        "show_stars": true,
+        "stars_color": "#e7b8be",
+        "review_alignment": "left",
+        "verified_label": "Verified buyer",
+        "disclaimer": "PLACEHOLDER — swap in real customer photos and quotes, with written permission, before publishing. Individual results vary.",
+        "show_cta": false,
+        "cta_label": "Start Smoothing",
+        "cta_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_bundle": {
+      "type": "ds-bundle-deals",
+      "blocks": {
+        "bundle_1": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "percentage_discount": "0",
+            "fixed_amount_discount": "0",
+            "required": true
+          }
+        },
+        "bundle_2": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "percentage_discount": "10",
+            "fixed_amount_discount": "0",
+            "required": false
+          }
+        },
+        "bundle_3": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "percentage_discount": "15",
+            "fixed_amount_discount": "0",
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Build The Full Routine",
+        "heading_size": "h1",
+        "text": "<p>Pair it with the rest of your body-care steps and save on the set.</p>",
+        "color_scheme": "custom",
+        "layout": "horizontal-images-left",
+        "enable_price_changes": true,
+        "skip_cart": false,
+        "total_price_label": "Total Price:",
+        "btn_label": "Add the Set to Cart",
+        "percentage_discount": "0",
+        "fixed_amount_discount": "0",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a",
+        "custom_colors_accent": "#7c9473",
+        "custom_colors_solid_button_background": "#a06272",
+        "custom_colors_solid_button_text": "#fdfbf7"
+      }
+    },
+    "straw_press": {
+      "type": "ds-logo-list",
+      "blocks": {
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "link": "",
+            "target_blank": true
+          }
+        }
+      },
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "As Seen In",
+        "heading_size": "h2",
+        "gray_logos": true,
+        "color_scheme": "background-1",
+        "layout": "horizontal",
+        "desktop_logo_height": 40,
+        "columns_mobile": 2,
+        "mobile_logo_height": 30,
+        "swipe_on_mobile": true,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_dots": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a"
+      }
+    },
+    "straw_faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_what": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What are KP and “strawberry skin”?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>Keratosis pilaris (KP)</strong> is the small, rough bumps that appear most often on the backs of the arms and the thighs — sometimes called chicken skin. <strong>Strawberry skin</strong> is the related dotted look on the legs, most visible after shaving. Both are very common and completely harmless. This cream is made to smooth how they look and feel; it isn't a medical treatment, so see a dermatologist if your skin is painful, inflamed or not settling.</p>",
+            "page": ""
+          }
+        },
+        "faq_where": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where on my body can I use it?",
+            "icon": "silhouette",
+            "row_content": "<p>Anywhere the texture bothers you — the backs of the upper arms and the thighs are the classic KP spots, and legs are where strawberry skin shows most. It's formulated for body skin, so keep it off your face and away from broken skin.</p>",
+            "page": ""
+          }
+        },
+        "faq_when": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long until I see a difference?",
+            "icon": "stopwatch",
+            "row_content": "<p>Skin texture changes slowly. Most body-resurfacing routines need consistent daily use before the difference is obvious, so give it a full month of regular use before you decide. Skipping days is what stalls progress.</p>",
+            "page": ""
+          }
+        },
+        "faq_shaving": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I use it after shaving or waxing?",
+            "icon": "washing",
+            "row_content": "<p>Wait until the day after. Freshly shaved or waxed skin is more reactive, and giving it 24 hours keeps things comfortable. Day-to-day, applying after your shower is the easiest way to remember it.</p>",
+            "page": ""
+          }
+        },
+        "faq_greasy": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Will it feel greasy under clothes?",
+            "icon": "bottle",
+            "row_content": "<p>Massage it in fully and give it a minute to settle before you dress. If you're applying at night, it has all the time it needs to sink in while you sleep.</p>",
+            "page": ""
+          }
+        },
+        "faq_sensitive": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is it suitable for sensitive skin?",
+            "icon": "heart",
+            "row_content": "<p>Patch test first, as you would with any new product: apply a small amount to your inner arm and leave it 24 hours. Check the full ingredient list on the carton if you have known sensitivities, and stop use if you get irritation.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_what",
+        "faq_where",
+        "faq_when",
+        "faq_shaving",
+        "faq_greasy",
+        "faq_sensitive"
+      ],
+      "settings": {
+        "caption": "Good To Know",
+        "heading": "Questions, Answered",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "custom",
+        "container_color_scheme": "custom",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#f3e9e4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2b2a4a",
+        "custom_contaner_colors_background": "#fdfbf7",
+        "custom_container_gradient_background": "",
+        "custom_contaner_colors_text": "#2b2a4a"
+      }
+    },
+    "straw_related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Pairs Well With",
+        "heading_size": "h1",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_newsletter": {
+      "type": "email-signup-banner",
+      "blocks": {
+        "nl_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "10% Off Your First Order",
+            "heading_size": "h1"
+          }
+        },
+        "nl_text": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join for body-care tips, restock alerts and early access to new drops.</p>",
+            "text_style": "body"
+          }
+        },
+        "nl_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "nl_heading",
+        "nl_text",
+        "nl_form"
+      ],
+      "settings": {
+        "image_overlay_opacity": 0,
+        "show_background_image": false,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "straw_ticker",
+    "straw_icon_bar",
+    "straw_ingredient_callout",
+    "straw_benefits",
+    "straw_how_to_use",
+    "straw_comparison",
+    "straw_results",
+    "straw_testimonials",
+    "straw_before_after",
+    "straw_bundle",
+    "straw_press",
+    "straw_faq",
+    "straw_related",
+    "straw_newsletter"
+  ]
+}

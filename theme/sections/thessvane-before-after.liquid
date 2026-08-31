@@ -12,6 +12,11 @@
     }
   }
 
+  .ba-{{ section.id }} .ba__eyebrow {
+    margin: 0 0 4px;
+    opacity: 0.75;
+  }
+
   .ba-{{ section.id }} .ba__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -116,6 +121,9 @@
 <div class="ba-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
   <div class="collection section-{{ section.id }}-padding page-width">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ba__eyebrow caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.title != blank -%}
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
       {%- endif -%}
@@ -128,8 +136,20 @@
       {%- assign placeholder_keys = 'image,lifestyle-1,lifestyle-2' | split: ',' -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'pair' -%}
-          {%- assign placeholder_index = forloop.index0 | modulo: 3 -%}
-          {%- assign placeholder_key = placeholder_keys[placeholder_index] -%}
+          {%- liquid
+            assign placeholder_index = forloop.index0 | modulo: 3
+            assign placeholder_key = placeholder_keys[placeholder_index]
+
+            assign alt_before = block.settings.image_before.alt
+            if alt_before == blank
+              assign alt_before = block.settings.pair_title
+            endif
+
+            assign alt_after = block.settings.image_after.alt
+            if alt_after == blank
+              assign alt_after = block.settings.pair_title
+            endif
+          -%}
           <div class="ba__pair" {{ block.shopify_attributes }}>
             {%- if block.settings.pair_title != blank -%}
               <h3 class="ba__pair-title h5">{{ block.settings.pair_title | escape }}</h3>
@@ -148,7 +168,7 @@
                       sizes: '(min-width: 750px) 20vw, 45vw',
                       widths: '200, 400, 600, 800',
                       loading: 'lazy',
-                      alt: block.settings.image_before.alt | default: block.settings.pair_title
+                      alt: alt_before
                   }}
                 {%- else -%}
                   {{- placeholder_key | placeholder_svg_tag: 'placeholder-svg' -}}
@@ -167,7 +187,7 @@
                       sizes: '(min-width: 750px) 20vw, 45vw',
                       widths: '200, 400, 600, 800',
                       loading: 'lazy',
-                      alt: block.settings.image_after.alt | default: block.settings.pair_title
+                      alt: alt_after
                   }}
                 {%- else -%}
                   {{- placeholder_key | placeholder_svg_tag: 'placeholder-svg' -}}
@@ -235,8 +255,14 @@
     },
     {
       "type": "text",
-      "id": "title",
+      "id": "eyebrow",
       "default": "Real Results",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Before & After",
       "label": "Heading"
     },
     {
