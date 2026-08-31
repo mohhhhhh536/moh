@@ -12,6 +12,19 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.custom_row_colors_enable -%}
+    {%- comment -%}
+      Scoped to this section instance, so it overrides whichever colour scheme
+      the rows carry without touching any other section on the store.
+    {%- endcomment -%}
+    #shopify-section-{{ section.id }} .image-with-text__media,
+    #shopify-section-{{ section.id }} .image-with-text__content {
+      --color-background: {{ section.settings.custom_row_background.red }}, {{ section.settings.custom_row_background.green }}, {{ section.settings.custom_row_background.blue }};
+      --gradient-background: {{ section.settings.custom_row_background }};
+      --color-foreground: {{ section.settings.custom_row_text.red }}, {{ section.settings.custom_row_text.green }}, {{ section.settings.custom_row_text.blue }};
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -68,9 +81,14 @@
                   | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
                 }}
               {%- elsif forloop.index == 1 -%}
-                {{ 'thessvane-story-placeholder.jpg' | asset_url | image_tag: width: 1600, height: 2400, loading: 'lazy' }}
+                {%- assign story_placeholder = 'thessvane-story-placeholder.jpg' | asset_url -%}
+                {%- if story_placeholder != blank -%}
+                  {{ story_placeholder | image_tag: width: 1600, height: 2400, loading: 'lazy' }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
               {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
             </div>
           </div>
@@ -293,6 +311,28 @@
       "id": "section_color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Custom row colors"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_row_colors_enable",
+      "default": false,
+      "label": "Override the row color scheme"
+    },
+    {
+      "type": "color",
+      "id": "custom_row_background",
+      "default": "#2B2A4A",
+      "label": "Row background"
+    },
+    {
+      "type": "color",
+      "id": "custom_row_text",
+      "default": "#FDFBF7",
+      "label": "Row text"
     },
     {
       "type": "color_scheme",
