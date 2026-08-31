@@ -424,47 +424,121 @@
         "padding_bottom": 48
       }
     },
-    "straw_how_to_use": {
-      "type": "thessvane-routine-builder",
+    "straw_ingredients": {
+      "type": "multicolumn",
       "blocks": {
-        "use_clean": {
-          "type": "step",
+        "column_urea": {
+          "type": "column",
           "settings": {
-            "step_title": "1. Start With Clean, Dry Skin",
-            "step_text": "<p>Best straight after a shower, once skin is towel-dry. Warm, clean skin takes it in faster.</p>",
-            "product": ""
+            "title": "Urea",
+            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A humectant that draws water into skin while softening the built-up keratin that makes KP feel rough.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "use_massage": {
-          "type": "step",
+        "column_aha": {
+          "type": "column",
           "settings": {
-            "step_title": "2. Massage Into The Rough Areas",
-            "step_text": "<p>Work a generous amount into legs, thighs, upper arms — anywhere the texture feels bumpy. Massage until it disappears.</p>",
-            "product": ""
+            "title": "Lactic Acid",
+            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A gentle AHA that loosens the surface plug in each bump, so texture smooths without scrubbing.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "use_repeat": {
-          "type": "step",
+        "column_ceramides": {
+          "type": "column",
           "settings": {
-            "step_title": "3. Repeat Daily",
-            "step_text": "<p>Use it every day and give it a full month before you judge the results. Patch test first if your skin runs sensitive.</p>",
-            "product": ""
+            "title": "Ceramides",
+            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. Barrier lipids that keep skin comfortable while it resurfaces, instead of stripped and tight.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_squalane": {
+          "type": "column",
+          "settings": {
+            "title": "Squalane",
+            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A lightweight emollient that softens and seals without leaving a greasy film under clothes.</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "use_clean",
-        "use_massage",
-        "use_repeat"
+        "column_urea",
+        "column_aha",
+        "column_ceramides",
+        "column_squalane"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "What It's Made Of",
+        "heading_size": "h1",
+        "image_width": "full",
+        "show_image_placeholders": false,
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "straw_how_to_use": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_step_1": {
+          "type": "column",
+          "settings": {
+            "title": "01 &mdash; Start Clean And Dry",
+            "text": "<p>Best straight after a shower, once skin is towel-dry. Warm, clean skin takes it in faster.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_step_2": {
+          "type": "column",
+          "settings": {
+            "title": "02 &mdash; Massage Into The Rough Areas",
+            "text": "<p>Work a generous amount into legs, thighs, upper arms &mdash; anywhere the texture feels bumpy. Massage until it disappears.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_step_3": {
+          "type": "column",
+          "settings": {
+            "title": "03 &mdash; Repeat Daily",
+            "text": "<p>One step, once a day, is the whole routine. Give it a full month before you judge the results &mdash; texture takes time, and consistency is what makes the difference. Patch test first if your skin runs sensitive.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_step_1",
+        "column_step_2",
+        "column_step_3"
       ],
       "settings": {
         "title": "How To Use It",
         "heading_size": "h1",
-        "description": "<p>One step, once a day. Texture takes time — the difference comes from being consistent.</p>",
-        "color_scheme": "scheme-2",
-        "show_cta": false,
-        "cta_label": "Shop the Full Ritual",
-        "cta_link": "",
+        "image_width": "full",
+        "show_image_placeholders": false,
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 48,
         "padding_bottom": 48
       }
@@ -990,6 +1064,7 @@
     "straw_icon_bar",
     "straw_ingredient_callout",
     "straw_benefits",
+    "straw_ingredients",
     "straw_how_to_use",
     "straw_comparison",
     "straw_results",
