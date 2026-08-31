@@ -5,8 +5,28 @@
   endif
 %}
 
+{%- if block.settings.layout_style == 'offers' -%}
+  {{ 'component-quantity-breaks-offers.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
 <quantity-breaks
-  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}"
+  class="quantity-breaks accent-color-{{ block.settings.color_scheme }}{% if block.settings.layout_style == 'offers' %} quantity-breaks--offers{% endif %}"
+  {%- if block.settings.layout_style == 'offers' %}
+    style="
+      --qb-card-bg: {{ block.settings.offers_card_bg }};
+      --qb-card-bg-selected: {{ block.settings.offers_card_bg_selected }};
+      --qb-border: {{ block.settings.offers_border }};
+      --qb-border-selected: {{ block.settings.offers_border_selected }};
+      --qb-badge-bg: {{ block.settings.offers_badge_bg }};
+      --qb-badge-text: {{ block.settings.offers_badge_text }};
+      --qb-gift-bg: {{ block.settings.offers_gift_bg }};
+      --qb-gift-bg-selected: {{ block.settings.offers_gift_bg_selected }};
+      --qb-gift-text: {{ block.settings.offers_gift_text }};
+      --qb-gift-text-selected: {{ block.settings.offers_gift_text_selected }};
+      --qb-price: {{ block.settings.offers_price_color }};
+      --qb-rule: {{ block.settings.offers_rule_color }};
+    "
+  {%- endif %}
   id="quantity-breaks-{{ section.id }}"
   data-section="{{ section.id }}"
   data-update-unavailable="{{ has_second_option }}"
@@ -61,12 +81,29 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_1' %}
+        {%- liquid
+          assign qb_badge = block.settings.option_1_badge_text
+          if qb_badge == blank and block.settings.display_badge == 'option_1'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ qb_badge }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_1_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {% if block.settings.layout_style == 'offers' and qb_image != blank %}
+            <div class="quantity-break__image">
+              {{ qb_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', alt: '' }}
+            </div>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -95,6 +132,19 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_1_compare_price > option_1_price %}{{ option_1_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.layout_style == 'offers' and block.settings.gift_label != blank and block.settings.option_1_show_gift %}
+          <div class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-image">
+                {{ block.settings.gift_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-label">{{ block.settings.gift_label }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_1_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-1-variants-{{ section.id }}'>
@@ -200,12 +250,29 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_2' %}
+        {%- liquid
+          assign qb_badge = block.settings.option_2_badge_text
+          if qb_badge == blank and block.settings.display_badge == 'option_2'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ qb_badge }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_2_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {% if block.settings.layout_style == 'offers' and qb_image != blank %}
+            <div class="quantity-break__image">
+              {{ qb_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', alt: '' }}
+            </div>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -234,6 +301,19 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_2_compare_price > option_2_price %}{{ option_2_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.layout_style == 'offers' and block.settings.gift_label != blank and block.settings.option_2_show_gift %}
+          <div class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-image">
+                {{ block.settings.gift_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-label">{{ block.settings.gift_label }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_2_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-2-variants-{{ section.id }}'>
@@ -339,12 +419,29 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_3' %}
+        {%- liquid
+          assign qb_badge = block.settings.option_3_badge_text
+          if qb_badge == blank and block.settings.display_badge == 'option_3'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ qb_badge }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_3_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {% if block.settings.layout_style == 'offers' and qb_image != blank %}
+            <div class="quantity-break__image">
+              {{ qb_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', alt: '' }}
+            </div>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -373,6 +470,19 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_3_compare_price > option_3_price %}{{ option_3_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.layout_style == 'offers' and block.settings.gift_label != blank and block.settings.option_3_show_gift %}
+          <div class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-image">
+                {{ block.settings.gift_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-label">{{ block.settings.gift_label }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_3_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-3-variants-{{ section.id }}'>
@@ -478,12 +588,29 @@
         data-percentage-left="{{ percentage_left }}"
         data-fixed-discount="{{ fixed_amount_off }}"
       >
-        {% if block.settings.display_badge == 'option_4' %}
+        {%- liquid
+          assign qb_badge = block.settings.option_4_badge_text
+          if qb_badge == blank and block.settings.display_badge == 'option_4'
+            assign qb_badge = block.settings.badge_text
+          endif
+        -%}
+        {% if qb_badge != blank %}
           <p class="quantity-break__badge">
-            {{ block.settings.badge_text }}
+            {{ qb_badge }}
           </p>
         {% endif %}
         <div class="quantity-break__content">
+          {%- liquid
+            assign qb_image = block.settings.option_4_image
+            if qb_image == blank
+              assign qb_image = product.featured_image
+            endif
+          -%}
+          {% if block.settings.layout_style == 'offers' and qb_image != blank %}
+            <div class="quantity-break__image">
+              {{ qb_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', alt: '' }}
+            </div>
+          {% endif %}
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -512,6 +639,19 @@
             <span class="quantity-break__compare-price variant-price-update" data-text="[compare_price]">{% if option_4_compare_price > option_4_price %}{{ option_4_compare_price | money_without_trailing_zeros }}{% endif %}</span>
           </div>
         </div>
+        {% if block.settings.layout_style == 'offers' and block.settings.gift_label != blank and block.settings.option_4_show_gift %}
+          <div class="quantity-break__gift">
+            {% if block.settings.gift_image != blank %}
+              <span class="quantity-break__gift-image">
+                {{ block.settings.gift_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}
+              </span>
+            {% endif %}
+            <span class="quantity-break__gift-label">{{ block.settings.gift_label }}</span>
+            {% if block.settings.gift_value != blank %}
+              <span class="quantity-break__gift-value">{{ block.settings.gift_value }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
         {% if product.has_only_default_variant == false and block.settings.enable_variant_selectors %}
           {% if block.settings.option_4_quantity != 1 or block.settings.enable_variant_selectors_on_quantity_of_1 %}
             <div class="quantity-break__variants" id='option-4-variants-{{ section.id }}'>
@@ -582,6 +722,31 @@
       </label>
     {% endif %}
   </div>
+
+  {% if block.settings.layout_style == 'offers' and block.settings.autoship_enabled %}
+    <label class="quantity-break__autoship" for="qb-autoship-{{ section.id }}">
+      <input
+        type="checkbox"
+        id="qb-autoship-{{ section.id }}"
+        class="quantity-break__autoship-input"
+        {% if product.selected_or_first_available_variant.selling_plan_allocations.size > 0 %}
+          name="selling_plan"
+          value="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
+          form="{{ product_form_id }}"
+        {% else %}
+          disabled
+          data-no-selling-plan
+        {% endif %}
+      >
+      <span class="quantity-break__autoship-box" aria-hidden="true"></span>
+      <span class="quantity-break__autoship-text">
+        <span class="quantity-break__autoship-label">{{ block.settings.autoship_label }}</span>
+        {% if block.settings.autoship_caption != blank %}
+          <span class="quantity-break__autoship-caption">{{ block.settings.autoship_caption }}</span>
+        {% endif %}
+      </span>
+    </label>
+  {% endif %}
 
   <script data-has-variants="{{ has_variants }}" type="application/json">
     {{ product.variants | json }}

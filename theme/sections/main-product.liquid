@@ -1834,6 +1834,23 @@
           "label": "Enable Quantity Discounts"
         },
         {
+          "type": "select",
+          "id": "layout_style",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "offers",
+              "label": "Offer cards"
+            }
+          ],
+          "default": "default",
+          "label": "Style",
+          "info": "\"Offer cards\" adds a product image, a badge per tier, an optional free-gift row and an auto-ship checkbox to each tier."
+        },
+        {
           "type": "paragraph",
           "content": "[Tutorial on how to set up](https:\/\/help.shrinetheme.com\/product-page\/quantity-breaks)"
         },
@@ -2015,6 +2032,24 @@
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
         },
         {
+          "type": "text",
+          "id": "option_1_badge_text",
+          "label": "Option #1 Badge text (offer cards)",
+          "info": "Overrides \"Badge text\" above for this tier only. Leave blank to use the shared badge on the tier selected in \"Display badge on\"."
+        },
+        {
+          "type": "image_picker",
+          "id": "option_1_image",
+          "label": "Option #1 Image (offer cards)",
+          "info": "Defaults to the product's featured image if left blank."
+        },
+        {
+          "type": "checkbox",
+          "id": "option_1_show_gift",
+          "label": "Show free gift row on this tier (offer cards)",
+          "default": false
+        },
+        {
           "type": "header",
           "content": "Quantity option #2"
         },
@@ -2078,6 +2113,24 @@
           "default": "compare_price",
           "label": "Option #2 Compare price based on",
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
+        },
+        {
+          "type": "text",
+          "id": "option_2_badge_text",
+          "label": "Option #2 Badge text (offer cards)",
+          "info": "Overrides \"Badge text\" above for this tier only. Leave blank to use the shared badge on the tier selected in \"Display badge on\"."
+        },
+        {
+          "type": "image_picker",
+          "id": "option_2_image",
+          "label": "Option #2 Image (offer cards)",
+          "info": "Defaults to the product's featured image if left blank."
+        },
+        {
+          "type": "checkbox",
+          "id": "option_2_show_gift",
+          "label": "Show free gift row on this tier (offer cards)",
+          "default": false
         },
         {
           "type": "header",
@@ -2145,6 +2198,24 @@
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
         },
         {
+          "type": "text",
+          "id": "option_3_badge_text",
+          "label": "Option #3 Badge text (offer cards)",
+          "info": "Overrides \"Badge text\" above for this tier only. Leave blank to use the shared badge on the tier selected in \"Display badge on\"."
+        },
+        {
+          "type": "image_picker",
+          "id": "option_3_image",
+          "label": "Option #3 Image (offer cards)",
+          "info": "Defaults to the product's featured image if left blank."
+        },
+        {
+          "type": "checkbox",
+          "id": "option_3_show_gift",
+          "label": "Show free gift row on this tier (offer cards)",
+          "default": false
+        },
+        {
           "type": "header",
           "content": "Quantity option #4"
         },
@@ -2208,6 +2279,146 @@
           "default": "compare_price",
           "label": "Option #4 Compare price based on",
           "info": "Choose if you want bundle compare price to be calculated based on product price or compare price (selected value multiplied by quantity)"
+        },
+        {
+          "type": "text",
+          "id": "option_4_badge_text",
+          "label": "Option #4 Badge text (offer cards)",
+          "info": "Overrides \"Badge text\" above for this tier only. Leave blank to use the shared badge on the tier selected in \"Display badge on\"."
+        },
+        {
+          "type": "image_picker",
+          "id": "option_4_image",
+          "label": "Option #4 Image (offer cards)",
+          "info": "Defaults to the product's featured image if left blank."
+        },
+        {
+          "type": "header",
+          "content": "Free gift (offer cards)"
+        },
+        {
+          "type": "text",
+          "id": "gift_label",
+          "label": "Gift label",
+          "default": "+ Free Care Guide E-Book",
+          "info": "Leave blank to hide the free-gift row on every tier."
+        },
+        {
+          "type": "text",
+          "id": "gift_value",
+          "label": "Gift value",
+          "default": "$15.00",
+          "info": "Shown struck through, e.g. a retail value. Leave blank to hide."
+        },
+        {
+          "type": "image_picker",
+          "id": "gift_image",
+          "label": "Gift image"
+        },
+        {
+          "type": "header",
+          "content": "Auto-ship row (offer cards)"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoship_enabled",
+          "label": "Show auto-ship checkbox",
+          "default": false,
+          "info": "Requires a selling plan (subscription) on the product to actually apply at checkout."
+        },
+        {
+          "type": "text",
+          "id": "autoship_label",
+          "label": "Auto-ship label",
+          "default": "Auto Ship & Save 15%"
+        },
+        {
+          "type": "text",
+          "id": "autoship_caption",
+          "label": "Auto-ship caption",
+          "default": "Zero Commitment, Cancel Anytime"
+        },
+        {
+          "type": "header",
+          "content": "Offer card colors"
+        },
+        {
+          "type": "color",
+          "id": "offers_card_bg",
+          "label": "Card background",
+          "default": "#FBE4E6"
+        },
+        {
+          "type": "color",
+          "id": "offers_card_bg_selected",
+          "label": "Selected card background",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "offers_border",
+          "label": "Card border",
+          "default": "#F2C6CB"
+        },
+        {
+          "type": "color",
+          "id": "offers_border_selected",
+          "label": "Selected card border",
+          "default": "#B3382C"
+        },
+        {
+          "type": "color",
+          "id": "offers_badge_bg",
+          "label": "Badge background",
+          "default": "#1A1A1A"
+        },
+        {
+          "type": "color",
+          "id": "offers_badge_text",
+          "label": "Badge text",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "offers_gift_bg",
+          "label": "Gift row background",
+          "default": "#F6CDD1"
+        },
+        {
+          "type": "color",
+          "id": "offers_gift_bg_selected",
+          "label": "Selected gift row background",
+          "default": "#B3382C"
+        },
+        {
+          "type": "color",
+          "id": "offers_gift_text",
+          "label": "Gift row text",
+          "default": "#1A1A1A"
+        },
+        {
+          "type": "color",
+          "id": "offers_gift_text_selected",
+          "label": "Selected gift row text",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "offers_price_color",
+          "label": "Price text",
+          "default": "#1A1A1A"
+        },
+        {
+          "type": "color",
+          "id": "offers_rule_color",
+          "label": "Heading rule",
+          "default": "#E7A9AE"
+        },
+        {
+          "type": "checkbox",
+          "id": "option_4_show_gift",
+          "label": "Show free gift row on this tier (offer cards)",
+          "default": false
         },
         {
           "type": "header",

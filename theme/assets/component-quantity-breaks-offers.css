@@ -1,0 +1,267 @@
+/*
+  Offer-style bundle selector for the product quantity_selector block.
+  Scoped to .quantity-breaks--offers so the default quantity-break styling
+  in section-main-product.css is left untouched.
+  Colours come from the CSS custom properties set inline by
+  snippets/ds-quantity-breaks.liquid.
+*/
+
+.quantity-breaks--offers .quantity-breaks-container {
+  row-gap: 1rem;
+}
+
+/* ---------------------------------------------------------------- heading */
+.quantity-breaks--offers .quantity-breaks__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  column-gap: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.quantity-breaks--offers .quantity-breaks__title span:nth-of-type(1),
+.quantity-breaks--offers .quantity-breaks__title span:nth-of-type(3) {
+  height: 1px;
+  background: var(--qb-rule);
+}
+
+/* ------------------------------------------------------------------ cards */
+.quantity-breaks--offers .quantity-break {
+  padding: 0;
+  margin-bottom: 0;
+  border-radius: 0.8rem;
+  background: var(--qb-card-bg);
+  border: solid 2px var(--qb-border);
+  overflow: visible;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.quantity-breaks--offers .quantity-break:hover {
+  background: var(--qb-card-bg);
+  border: solid 2px var(--qb-border-selected);
+}
+
+.quantity-breaks--offers .quantity-breaks-container input:checked + .quantity-break {
+  background: var(--qb-card-bg-selected);
+  border: solid 2px var(--qb-border-selected);
+}
+
+/* the default layout's radio dot is not part of this design */
+.quantity-breaks--offers .quantity-break::before,
+.quantity-breaks--offers .quantity-breaks-container input:checked + .quantity-break::before {
+  content: none;
+}
+
+/* ------------------------------------------------------------------ badge */
+.quantity-breaks--offers .quantity-break__badge {
+  position: absolute;
+  top: -1.2rem;
+  right: -0.2rem;
+  transform: none;
+  background: var(--qb-badge-bg);
+  color: var(--qb-badge-text);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.6rem 0.6rem 0 0.6rem;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ----------------------------------------------------------- card content */
+.quantity-breaks--offers .quantity-break__content {
+  align-items: center;
+  column-gap: 1.4rem;
+  padding: 1.4rem 1.8rem;
+}
+
+.quantity-breaks--offers .quantity-break__image {
+  flex: 0 0 auto;
+  width: 5.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-breaks--offers .quantity-break__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 6rem;
+  object-fit: contain;
+}
+
+.quantity-breaks--offers .quantity-break__left {
+  flex: 1 1 auto;
+  row-gap: 0.4rem;
+}
+
+.quantity-breaks--offers .quantity-break__left .quantity-break__label {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.quantity-breaks--offers .quantity-break__caption {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  opacity: 0.65;
+}
+
+.quantity-breaks--offers .quantity-break__right {
+  flex: 0 0 auto;
+  row-gap: 0.3rem;
+}
+
+.quantity-breaks--offers .quantity-break__price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--qb-price);
+}
+
+.quantity-breaks--offers .quantity-break__compare-price {
+  font-size: 1.5rem;
+  opacity: 0.55;
+}
+
+/* -------------------------------------------------------------- gift row */
+.quantity-breaks--offers .quantity-break__gift {
+  display: flex;
+  align-items: center;
+  column-gap: 1.1rem;
+  padding: 0.9rem 1.8rem;
+  background: var(--qb-gift-bg);
+  color: var(--qb-gift-text);
+  border-radius: 0 0 0.6rem 0.6rem;
+}
+
+.quantity-breaks--offers .quantity-breaks-container input:checked + .quantity-break .quantity-break__gift {
+  background: var(--qb-gift-bg-selected);
+  color: var(--qb-gift-text-selected);
+}
+
+.quantity-breaks--offers .quantity-break__gift-image {
+  flex: 0 0 auto;
+  width: 3.4rem;
+  display: block;
+}
+
+.quantity-breaks--offers .quantity-break__gift-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.4rem;
+}
+
+.quantity-breaks--offers .quantity-break__gift-label {
+  flex: 1 1 auto;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.quantity-breaks--offers .quantity-break__gift-value {
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* -------------------------------------------------------- auto-ship row */
+.quantity-breaks--offers .quantity-break__autoship {
+  display: flex;
+  align-items: center;
+  column-gap: 1.2rem;
+  margin-top: 1rem;
+  padding: 1.3rem 1.8rem;
+  border: dashed 2px var(--qb-border-selected);
+  border-radius: 0.8rem;
+  background: var(--qb-card-bg-selected);
+  cursor: pointer;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-box {
+  flex: 0 0 auto;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: solid 2px var(--qb-border-selected);
+  border-radius: 0.3rem;
+  position: relative;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-input:checked + .quantity-break__autoship-box::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 0.15rem;
+  width: 0.6rem;
+  height: 1.1rem;
+  border: solid var(--qb-border-selected);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.quantity-breaks--offers .quantity-break__autoship-input:focus-visible + .quantity-break__autoship-box {
+  outline: 2px solid var(--qb-border-selected);
+  outline-offset: 2px;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+  text-align: left;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-label {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.quantity-breaks--offers .quantity-break__autoship-caption {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  opacity: 0.65;
+}
+
+/* the checkbox is inert until the product has a subscription selling plan */
+.quantity-breaks--offers .quantity-break__autoship-input[data-no-selling-plan] ~ .quantity-break__autoship-box {
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 749px) {
+  .quantity-breaks--offers .quantity-break__content {
+    padding: 1.2rem 1.4rem;
+    column-gap: 1rem;
+  }
+
+  .quantity-breaks--offers .quantity-break__left .quantity-break__label {
+    font-size: 1.7rem;
+  }
+
+  .quantity-breaks--offers .quantity-break__price {
+    font-size: 1.9rem;
+  }
+
+  .quantity-breaks--offers .quantity-break__image {
+    width: 4.2rem;
+  }
+
+  .quantity-breaks--offers .quantity-break__gift,
+  .quantity-breaks--offers .quantity-break__autoship {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+}
