@@ -1,0 +1,614 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rating_stars": {
+          "type": "rating_stars",
+          "settings": {
+            "rating": 4.9,
+            "star_color": "#E0A94B",
+            "bg_stars_style": "full",
+            "bg_star_color": "#ECE6DE",
+            "label": "(508 Reviews)",
+            "size": 12,
+            "alignment": "flex-start",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_size": "h2",
+            "title_alignment": "left",
+            "uppercase_title": false,
+            "margin_top": 0,
+            "margin_bottom": 3
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "layout": "price_second",
+            "price_color": "accent-1",
+            "compare_price_color": "accent-2",
+            "hide_sale_badge": true,
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "emoji_benefits": {
+          "type": "emoji_benefits",
+          "settings": {
+            "benefits": "<p>🌙 <strong>Magnesium glycinate, not oxide</strong> — the form the body absorbs well and the stomach tolerates.</p><p>😌 <strong>Supports normal muscle function</strong> — and contributes to the reduction of tiredness and fatigue.</p><p>🧪 <strong>375mg elemental magnesium</strong> — a full daily amount, clearly labelled, no proprietary blends.</p>",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "icon_with_text": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_size": "small",
+            "icon_1": "star",
+            "heading_1": "For evening wind-down",
+            "icon_2": "check_mark",
+            "heading_2": "Third-party tested",
+            "icon_3": "heart",
+            "heading_3": "Gentle on the stomach",
+            "margin_top": 6,
+            "margin_bottom": 12
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_types": "pills, pills, pills",
+            "custom_labels": "[name]",
+            "swatches_custom_colors": "image_alt",
+            "swatches_custom_colors_list": "",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "enable_quantity_discounts": true,
+            "headline": "Bundle & Save",
+            "preselected": "option_2",
+            "display_badge": "option_2",
+            "badge_text": "Most Popular",
+            "enable_variant_selectors": true,
+            "color_scheme": "outline-button",
+            "option_1_quantity": 1,
+            "option_1_label": "",
+            "option_1_benefit": "",
+            "option_1_caption": "",
+            "option_1_percentage_off_text": "0",
+            "option_1_fixed_amount_off": "0",
+            "option_1_compare_price": "price",
+            "option_2_quantity": 2,
+            "option_2_label": "",
+            "option_2_benefit": "",
+            "option_2_caption": "You save [amount_saved]",
+            "option_2_percentage_off_text": "15",
+            "option_2_fixed_amount_off": "0",
+            "option_2_compare_price": "price",
+            "option_3_quantity": 3,
+            "option_3_label": "",
+            "option_3_benefit": "",
+            "option_3_caption": "You save [amount_saved]",
+            "option_3_percentage_off_text": "25",
+            "option_3_fixed_amount_off": "0",
+            "option_3_compare_price": "price",
+            "option_4_quantity": 4,
+            "option_4_label": "",
+            "option_4_benefit": "",
+            "option_4_caption": "You save [amount_saved]",
+            "option_4_percentage_off_text": "30",
+            "option_4_fixed_amount_off": "0",
+            "option_4_compare_price": "price",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "skip_cart": false,
+            "uppercase_text": false,
+            "enable_custom_color": false,
+            "custom_color": "#2B2A4A",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "alignment": "center"
+          }
+        },
+        "sticky_atc": {
+          "type": "sticky_atc",
+          "disabled": true,
+          "settings": {
+            "function": "add_to_cart",
+            "display_when": "after_scroll",
+            "color_scheme": "background-1",
+            "button_label": "Add to cart",
+            "enable_custom_btn_color": true,
+            "custom_btn_color": "#2B2A4A",
+            "show_price_badge": true,
+            "show_variant_picker": true,
+            "desktop_show_title": true,
+            "desktop_show_price": true,
+            "mobile_show_title": false,
+            "mobile_show_price": false
+          }
+        },
+        "payment_badges": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, ideal, jcb, klarna, maestro, master, paypal, shopify_pay, unionpay, visa",
+            "margin_top": 6,
+            "margin_bottom": 6
+          }
+        },
+        "estimated_shipping": {
+          "type": "estimated_shipping",
+          "settings": {
+            "display_icon": true,
+            "icon_size": "small",
+            "icon_alignment": "middle",
+            "message": "<p>Get it between <strong>[start_date]</strong> and <strong>[end_date]</strong>.</p>",
+            "min_shipping_days": 5,
+            "max_shipping_days": 10,
+            "date_format": "day_mm_dd",
+            "days_labels": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+            "months_labels": "January, February, March, April, May, June, July, August, September, October, November, December",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "display_stars": true,
+            "star_color": "#E0A94B",
+            "avatar_alignment": "top",
+            "author_1": "Elena V.",
+            "text_1": "<p>The first magnesium that hasn’t upset my stomach.</p>",
+            "author_2": "Sam O.",
+            "text_2": "<p>Two after dinner and my whole evening wind-down is easier.</p>",
+            "author_3": "Hana W.",
+            "text_3": "<p>375mg, stated plainly on the label. That’s why I switched.</p>",
+            "margin_top": 18,
+            "margin_bottom": 18
+          }
+        }
+      },
+      "block_order": [
+        "rating_stars",
+        "title",
+        "price",
+        "emoji_benefits",
+        "icon_with_text",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "sticky_atc",
+        "payment_badges",
+        "estimated_shipping",
+        "reviews"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "display_variant_image_first": true,
+        "disable_prepend": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "desktop_thumbnails_count": 4,
+        "video_player": "play_btn",
+        "enable_video_looping": false,
+        "autoplay_videos_pause_btn": true,
+        "play_btn_color_scheme": "background-1",
+        "mobile_thumbnails": "columns",
+        "mobile_media_corner_radius": 0,
+        "mobile_spacing": true,
+        "mobile_preview_media": true,
+        "mobile_thumbnails_count": 5,
+        "mobile_pagination": "dots_under",
+        "hide_arrows": true,
+        "dots_color_scheme": "inverse",
+        "trust_badge_position": "top-right",
+        "trust_badge_size": "small",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 100,
+        "desktop_padding_top": 32,
+        "desktop_padding_bottom": 32
+      }
+    },
+    "collapsible_content": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Product Highlights",
+            "icon": "none",
+            "row_content": "<p>Magnesium in the form worth taking. Glycinate is chelated to the amino acid glycine, which makes it well absorbed and far gentler on the stomach than the cheap oxide form found in most supplements. Magnesium contributes to normal muscle function, normal psychological function and the reduction of tiredness and fatigue — which is why most people reach for it in the evening.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to Use",
+            "icon": "none",
+            "row_content": "<p>Take two capsules daily with water, ideally 30 to 60 minutes before bed. Can be taken with or without food. Do not exceed the recommended daily dose. Food supplements should not be used as a substitute for a varied, balanced diet and healthy lifestyle. If you are pregnant, breastfeeding or taking medication, speak to your doctor first.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's Inside",
+            "icon": "none",
+            "row_content": "<p><strong>375mg Elemental Magnesium</strong> — 100% of the EU daily reference intake, as magnesium bisglycinate.<br/><strong>Glycine</strong> — the amino acid carrier that makes it well absorbed.<br/><strong>Vegan capsule shell</strong> — plant cellulose, no gelatin.</p><p>No magnesium oxide, no fillers, no artificial colours.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_1",
+        "collapsible_row_2",
+        "collapsible_row_3"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_contaner_colors_background": "#F3E9E4",
+        "custom_container_gradient_background": "",
+        "custom_contaner_colors_text": "#2B2A4A"
+      }
+    },
+    "ds_comparison_table": {
+      "type": "ds-comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "benefit": "Magnesium bisglycinate, never cheap magnesium oxide",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "benefit": "Full 375mg elemental dose, clearly stated on the label",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "benefit": "Gentle on digestion — no laxative effect",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "benefit": "No proprietary blends hiding the real amounts",
+            "us": true,
+            "others": false
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4"
+      ],
+      "settings": {
+        "title": "The Form of Magnesium Actually Matters",
+        "heading_size": "h2",
+        "text": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "color_scheme": "custom",
+        "layout": "table_second",
+        "benefit_color_scheme": "background-1",
+        "checkmark_color": "#2B2A4A",
+        "icon_cells_color_scheme": "background-1",
+        "us_label": "Thessvane",
+        "us_label_size": 14,
+        "logo_width": 90,
+        "mobile_logo_width": 60,
+        "others_label": "Others",
+        "others_label_size": 14,
+        "others_logo_width": 90,
+        "others_mobile_logo_width": 60,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_solid_button_background": "#2B2A4A",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "ds_icon_bar": {
+      "type": "ds-icon-bar",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "icon": "leaf",
+            "title": "Clean Formulation",
+            "text": "<p>No fillers, no artificial colours, vegan capsules.</p>"
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "icon": "check_mark",
+            "title": "Third-Party Tested",
+            "text": "<p>Every batch tested for purity and potency.</p>"
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "icon": "clipboard",
+            "title": "Fully Transparent",
+            "text": "<p>Every ingredient and amount printed on the label.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ],
+      "settings": {
+        "title": "Why Choose Thessvane",
+        "heading_size": "h2",
+        "text": "",
+        "icon_size": "small",
+        "columns_desktop": 3,
+        "icon_color": "text",
+        "background_style": "none",
+        "color_scheme": "custom",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "results": {
+      "type": "results",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "percentage": 90,
+            "row_text": "<h3>said they felt more settled at bedtime.</h3>"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "percentage": 86,
+            "row_text": "<h3>said their evening wind-down came more easily.</h3>"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "percentage": 93,
+            "row_text": "<h3>said they would recommend it to a friend.</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3"
+      ],
+      "settings": {
+        "title": "Four Weeks of Better Evenings",
+        "heading_size": "h2",
+        "text": "<p>Based on a four-week consumer use study of 104 participants taking two capsules nightly.</p>",
+        "color_scheme": "custom",
+        "layout": "results_second",
+        "results_headline": "",
+        "results_headline_size": "h3",
+        "results_headline_alignment": "left",
+        "caption": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_accent": "#2B2A4A",
+        "custom_colors_solid_button_background": "#2B2A4A",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "ds_testimonials": {
+      "type": "ds-testimonials",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "title": "The first magnesium that didn't upset me",
+            "text": "<p>Oxide wrecked my stomach every time. Glycinate has been completely fine, and I actually take it now.</p>",
+            "author": "Elena V."
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "title": "My evenings feel calmer",
+            "text": "<p>I take two after dinner and the whole wind-down is just easier. Nothing dramatic, just better.</p>",
+            "author": "Sam O."
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "title": "Honest label, honest dose",
+            "text": "<p>375mg, stated plainly, no blend nonsense. That's the reason I switched.</p>",
+            "author": "Hana W."
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ],
+      "settings": {
+        "title": "What Customers Are Saying",
+        "heading_size": "h2",
+        "text": "",
+        "image_width": "full",
+        "image_ratio": "circle",
+        "columns_desktop": 3,
+        "slider_preview": true,
+        "column_alignment": "center",
+        "show_stars": true,
+        "stars_color": "#E0A94B",
+        "show_quotes": true,
+        "quotes_color_scheme": "background-1",
+        "background_style": "primary",
+        "color_scheme": "custom",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "ds_vertical_ticker": {
+      "type": "ds-vertical-ticker",
+      "blocks": {
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "title": "🌙 For calmer evenings"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "title": "🧪 Third-party tested"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "title": "🚚 Free shipping over $50"
+          }
+        }
+      },
+      "block_order": [
+        "text_1",
+        "text_2",
+        "text_3"
+      ],
+      "settings": {
+        "number_of_rows": 4,
+        "speed": 3,
+        "text_size": "3",
+        "italic_text": false,
+        "uppercase_text": false,
+        "bold_text": false,
+        "ticker_color_scheme": "custom",
+        "layout": "ticker_second",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "display_content": "always",
+        "content_heading": "Bundle & Save",
+        "content_heading_size": "h2",
+        "content_text": "<p>A nightly habit deserves a full supply — save up to 30% on multi-packs.</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "content_color_scheme": "custom",
+        "overlay_color": "#2B2A4A",
+        "overlay_opacity": 0,
+        "content_padding_top": 36,
+        "content_padding_bottom": 24,
+        "custom_ticker_colors_background": "#2B2A4A",
+        "custom_ticker_gradient_background": "",
+        "custom_ticker_colors_text": "#FDFBF7",
+        "custom_colors_background": "#2B2A4A",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#FDFBF7",
+        "custom_colors_solid_button_background": "#FDFBF7",
+        "custom_colors_solid_button_text": "#2B2A4A",
+        "custom_colors_outline_button": "#FDFBF7"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Complete Your Ritual",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content",
+    "ds_comparison_table",
+    "ds_icon_bar",
+    "results",
+    "ds_testimonials",
+    "ds_vertical_ticker",
+    "related-products"
+  ]
+}

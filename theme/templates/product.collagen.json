@@ -1,0 +1,614 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rating_stars": {
+          "type": "rating_stars",
+          "settings": {
+            "rating": 4.8,
+            "star_color": "#E0A94B",
+            "bg_stars_style": "full",
+            "bg_star_color": "#ECE6DE",
+            "label": "(731 Reviews)",
+            "size": 12,
+            "alignment": "flex-start",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_size": "h2",
+            "title_alignment": "left",
+            "uppercase_title": false,
+            "margin_top": 0,
+            "margin_bottom": 3
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "layout": "price_second",
+            "price_color": "accent-1",
+            "compare_price_color": "accent-2",
+            "hide_sale_badge": true,
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "emoji_benefits": {
+          "type": "emoji_benefits",
+          "settings": {
+            "benefits": "<p>💫 <strong>5,000mg marine collagen peptides</strong> — hydrolysed small enough for the body to actually absorb.</p><p>🍊 <strong>With vitamin C and biotin</strong> — supporting normal collagen formation and the maintenance of normal skin and hair.</p><p>🥤 <strong>Dissolves clear, tastes of nothing</strong> — stir it into water, coffee or a smoothie.</p>",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "icon_with_text": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_size": "small",
+            "icon_1": "bottle",
+            "heading_1": "5,000mg per stick",
+            "icon_2": "check_mark",
+            "heading_2": "Third-party tested",
+            "icon_3": "stopwatch",
+            "heading_3": "One stick a day",
+            "margin_top": 6,
+            "margin_bottom": 12
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_types": "pills, pills, pills",
+            "custom_labels": "[name]",
+            "swatches_custom_colors": "image_alt",
+            "swatches_custom_colors_list": "",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+            "enable_quantity_discounts": true,
+            "headline": "Bundle & Save",
+            "preselected": "option_2",
+            "display_badge": "option_2",
+            "badge_text": "Most Popular",
+            "enable_variant_selectors": true,
+            "color_scheme": "outline-button",
+            "option_1_quantity": 1,
+            "option_1_label": "",
+            "option_1_benefit": "",
+            "option_1_caption": "",
+            "option_1_percentage_off_text": "0",
+            "option_1_fixed_amount_off": "0",
+            "option_1_compare_price": "price",
+            "option_2_quantity": 2,
+            "option_2_label": "",
+            "option_2_benefit": "",
+            "option_2_caption": "You save [amount_saved]",
+            "option_2_percentage_off_text": "15",
+            "option_2_fixed_amount_off": "0",
+            "option_2_compare_price": "price",
+            "option_3_quantity": 3,
+            "option_3_label": "",
+            "option_3_benefit": "",
+            "option_3_caption": "You save [amount_saved]",
+            "option_3_percentage_off_text": "25",
+            "option_3_fixed_amount_off": "0",
+            "option_3_compare_price": "price",
+            "option_4_quantity": 4,
+            "option_4_label": "",
+            "option_4_benefit": "",
+            "option_4_caption": "You save [amount_saved]",
+            "option_4_percentage_off_text": "30",
+            "option_4_fixed_amount_off": "0",
+            "option_4_compare_price": "price",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "skip_cart": false,
+            "uppercase_text": false,
+            "enable_custom_color": false,
+            "custom_color": "#2B2A4A",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "alignment": "center"
+          }
+        },
+        "sticky_atc": {
+          "type": "sticky_atc",
+          "disabled": true,
+          "settings": {
+            "function": "add_to_cart",
+            "display_when": "after_scroll",
+            "color_scheme": "background-1",
+            "button_label": "Add to cart",
+            "enable_custom_btn_color": true,
+            "custom_btn_color": "#2B2A4A",
+            "show_price_badge": true,
+            "show_variant_picker": true,
+            "desktop_show_title": true,
+            "desktop_show_price": true,
+            "mobile_show_title": false,
+            "mobile_show_price": false
+          }
+        },
+        "payment_badges": {
+          "type": "payment_badges",
+          "settings": {
+            "enabled_payment_types": "american_express, apple_pay, google_pay, ideal, jcb, klarna, maestro, master, paypal, shopify_pay, unionpay, visa",
+            "margin_top": 6,
+            "margin_bottom": 6
+          }
+        },
+        "estimated_shipping": {
+          "type": "estimated_shipping",
+          "settings": {
+            "display_icon": true,
+            "icon_size": "small",
+            "icon_alignment": "middle",
+            "message": "<p>Get it between <strong>[start_date]</strong> and <strong>[end_date]</strong>.</p>",
+            "min_shipping_days": 5,
+            "max_shipping_days": 10,
+            "date_format": "day_mm_dd",
+            "days_labels": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+            "months_labels": "January, February, March, April, May, June, July, August, September, October, November, December",
+            "margin_top": 15,
+            "margin_bottom": 15
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "display_stars": true,
+            "star_color": "#E0A94B",
+            "avatar_alignment": "top",
+            "author_1": "Jessica L.",
+            "text_1": "<p>Genuinely tasteless — it disappears into my morning coffee.</p>",
+            "author_2": "Kate F.",
+            "text_2": "<p>Around week six I realised my nails had stopped splitting.</p>",
+            "author_3": "Tina M.",
+            "text_3": "<p>The stick format is why I haven’t missed a day.</p>",
+            "margin_top": 18,
+            "margin_bottom": 18
+          }
+        }
+      },
+      "block_order": [
+        "rating_stars",
+        "title",
+        "price",
+        "emoji_benefits",
+        "icon_with_text",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "sticky_atc",
+        "payment_badges",
+        "estimated_shipping",
+        "reviews"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "display_variant_image_first": true,
+        "disable_prepend": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "desktop_thumbnails_count": 4,
+        "video_player": "play_btn",
+        "enable_video_looping": false,
+        "autoplay_videos_pause_btn": true,
+        "play_btn_color_scheme": "background-1",
+        "mobile_thumbnails": "columns",
+        "mobile_media_corner_radius": 0,
+        "mobile_spacing": true,
+        "mobile_preview_media": true,
+        "mobile_thumbnails_count": 5,
+        "mobile_pagination": "dots_under",
+        "hide_arrows": true,
+        "dots_color_scheme": "inverse",
+        "trust_badge_position": "top-right",
+        "trust_badge_size": "small",
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 100,
+        "desktop_padding_top": 32,
+        "desktop_padding_bottom": 32
+      }
+    },
+    "collapsible_content": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Product Highlights",
+            "icon": "none",
+            "row_content": "<p>A daily collagen stick built for people who won't stick to a scoop and a shaker. Each stick delivers 5,000mg of hydrolysed marine collagen peptides alongside vitamin C, which contributes to normal collagen formation for the normal function of skin, and biotin, which contributes to the maintenance of normal skin and hair. Unflavoured and fully dissolving, so it disappears into whatever you're already drinking.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to Use",
+            "icon": "none",
+            "row_content": "<p>Stir one stick into at least 200ml of water, coffee, tea or a smoothie once a day. It dissolves clear in hot or cold liquid. Take it consistently — most people notice the difference somewhere between weeks six and twelve. Food supplements should not replace a varied, balanced diet.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's Inside",
+            "icon": "none",
+            "row_content": "<p><strong>5,000mg Hydrolysed Marine Collagen</strong> — low molecular weight peptides.<br/><strong>Vitamin C</strong> — contributes to normal collagen formation.<br/><strong>Biotin</strong> — contributes to the maintenance of normal skin and hair.<br/><strong>Zinc</strong> — contributes to the maintenance of normal skin and nails.</p><p>No added sugar, no artificial sweeteners, no fillers.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_1",
+        "collapsible_row_2",
+        "collapsible_row_3"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_contaner_colors_background": "#F3E9E4",
+        "custom_container_gradient_background": "",
+        "custom_contaner_colors_text": "#2B2A4A"
+      }
+    },
+    "ds_comparison_table": {
+      "type": "ds-comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "benefit": "5,000mg of collagen per serving, not 1,000mg",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "benefit": "Hydrolysed peptides for better absorption",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "benefit": "Truly unflavoured — no fishy aftertaste",
+            "us": true,
+            "others": false
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "benefit": "Single-serve sticks, no scoop or shaker needed",
+            "us": true,
+            "others": false
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4"
+      ],
+      "settings": {
+        "title": "Not All Collagen Is Worth Drinking",
+        "heading_size": "h2",
+        "text": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "color_scheme": "custom",
+        "layout": "table_second",
+        "benefit_color_scheme": "background-1",
+        "checkmark_color": "#A06272",
+        "icon_cells_color_scheme": "background-1",
+        "us_label": "Thessvane",
+        "us_label_size": 14,
+        "logo_width": 90,
+        "mobile_logo_width": 60,
+        "others_label": "Others",
+        "others_label_size": 14,
+        "others_logo_width": 90,
+        "others_mobile_logo_width": 60,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_solid_button_background": "#2B2A4A",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "ds_icon_bar": {
+      "type": "ds-icon-bar",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "icon": "leaf",
+            "title": "Clean Formulation",
+            "text": "<p>No fillers, no added sugar, nothing you can't pronounce.</p>"
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "icon": "check_mark",
+            "title": "Third-Party Tested",
+            "text": "<p>Every batch tested for purity and heavy metals.</p>"
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "icon": "recycle",
+            "title": "Responsibly Sourced",
+            "text": "<p>Marine collagen from certified sustainable sources.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ],
+      "settings": {
+        "title": "Why Choose Thessvane",
+        "heading_size": "h2",
+        "text": "",
+        "icon_size": "small",
+        "columns_desktop": 3,
+        "icon_color": "text",
+        "background_style": "none",
+        "color_scheme": "custom",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "results": {
+      "type": "results",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "percentage": 88,
+            "row_text": "<h3>said their skin felt more hydrated and plump.</h3>"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "percentage": 85,
+            "row_text": "<h3>said their nails felt stronger and chipped less.</h3>"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "percentage": 92,
+            "row_text": "<h3>said they intended to keep taking it daily.</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3"
+      ],
+      "settings": {
+        "title": "Eight Weeks of Consistency",
+        "heading_size": "h2",
+        "text": "<p>Based on an eight-week consumer use study of 96 participants taking one stick daily.</p>",
+        "color_scheme": "custom",
+        "layout": "results_second",
+        "results_headline": "",
+        "results_headline_size": "h3",
+        "results_headline_alignment": "left",
+        "caption": "",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#F3E9E4",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A",
+        "custom_colors_accent": "#A06272",
+        "custom_colors_solid_button_background": "#2B2A4A",
+        "custom_colors_solid_button_text": "#FDFBF7",
+        "custom_colors_outline_button": "#2B2A4A"
+      }
+    },
+    "ds_testimonials": {
+      "type": "ds-testimonials",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "title": "It genuinely tastes of nothing",
+            "text": "<p>I've thrown away two tubs of collagen powder because of the aftertaste. This one just disappears into my morning coffee.</p>",
+            "author": "Jessica L."
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "title": "My nails stopped splitting",
+            "text": "<p>Around week six I realised I hadn't broken a nail in ages. That was the moment it clicked for me.</p>",
+            "author": "Kate F."
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "title": "The stick format is the whole point",
+            "text": "<p>A scoop and a shaker meant I skipped days. One stick in my bag means I don't.</p>",
+            "author": "Tina M."
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3"
+      ],
+      "settings": {
+        "title": "What Customers Are Saying",
+        "heading_size": "h2",
+        "text": "",
+        "image_width": "full",
+        "image_ratio": "circle",
+        "columns_desktop": 3,
+        "slider_preview": true,
+        "column_alignment": "center",
+        "show_stars": true,
+        "stars_color": "#E0A94B",
+        "show_quotes": true,
+        "quotes_color_scheme": "background-1",
+        "background_style": "primary",
+        "color_scheme": "custom",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "custom_colors_background": "#FDFBF7",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#2B2A4A"
+      }
+    },
+    "ds_vertical_ticker": {
+      "type": "ds-vertical-ticker",
+      "blocks": {
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "title": "💫 5,000mg per stick"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "title": "🥤 Dissolves clear, tastes of nothing"
+          }
+        },
+        "text_3": {
+          "type": "text",
+          "settings": {
+            "title": "🚚 Free shipping over $50"
+          }
+        }
+      },
+      "block_order": [
+        "text_1",
+        "text_2",
+        "text_3"
+      ],
+      "settings": {
+        "number_of_rows": 4,
+        "speed": 3,
+        "text_size": "3",
+        "italic_text": false,
+        "uppercase_text": false,
+        "bold_text": false,
+        "ticker_color_scheme": "custom",
+        "layout": "ticker_second",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "display_content": "always",
+        "content_heading": "Bundle & Save",
+        "content_heading_size": "h2",
+        "content_text": "<p>Collagen works on consistency — save up to 30% when you stock up for the season.</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "content_color_scheme": "custom",
+        "overlay_color": "#2B2A4A",
+        "overlay_opacity": 0,
+        "content_padding_top": 36,
+        "content_padding_bottom": 24,
+        "custom_ticker_colors_background": "#2B2A4A",
+        "custom_ticker_gradient_background": "",
+        "custom_ticker_colors_text": "#FDFBF7",
+        "custom_colors_background": "#A06272",
+        "custom_gradient_background": "",
+        "custom_colors_text": "#FDFBF7",
+        "custom_colors_solid_button_background": "#FDFBF7",
+        "custom_colors_solid_button_text": "#A06272",
+        "custom_colors_outline_button": "#FDFBF7"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Complete Your Ritual",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content",
+    "ds_comparison_table",
+    "ds_icon_bar",
+    "results",
+    "ds_testimonials",
+    "ds_vertical_ticker",
+    "related-products"
+  ]
+}
