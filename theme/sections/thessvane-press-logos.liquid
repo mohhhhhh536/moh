@@ -1,0 +1,334 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .press-{{ section.id }} .press__title {
+    margin: 0 0 24px;
+    font-size: 1.2rem;
+    letter-spacing: 0.12rem;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.8;
+  }
+  .press-{{ section.id }} .press__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 28px 44px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .press-{{ section.id }} .press__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: {{ section.settings.logo_width | plus: 60 }}px;
+    text-align: center;
+  }
+  .press-{{ section.id }} .press__logo {
+    display: block;
+    width: {{ section.settings.logo_width | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .press-{{ section.id }} .press__logo {
+      width: {{ section.settings.logo_width }}px;
+    }
+  }
+  .press-{{ section.id }} .press__logo img,
+  .press-{{ section.id }} .press__logo .placeholder-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    {% if section.settings.grayscale %}
+      filter: grayscale(100%);
+      opacity: 0.65;
+      transition: filter var(--duration-short) ease, opacity var(--duration-short) ease;
+    {% endif %}
+  }
+  {%- if section.settings.grayscale -%}
+    .press-{{ section.id }} .press__item:hover .press__logo img,
+    .press-{{ section.id }} a:focus-visible .press__logo img {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+  {%- endif -%}
+  .press-{{ section.id }} .press__name {
+    margin: 0;
+    font-size: 1.4rem;
+    font-family: var(--font-heading-family);
+    letter-spacing: 0.05rem;
+  }
+  .press-{{ section.id }} .press__quote {
+    margin: 0;
+    max-width: 26ch;
+    font-size: 1.3rem;
+    font-style: italic;
+    opacity: 0.85;
+  }
+  .press-{{ section.id }} .press__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  {%- comment -%} Marquee layout: one continuous row that scrolls on its own. {%- endcomment -%}
+  .press-{{ section.id }} .press__marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .press-{{ section.id }} .press__marquee .press__list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    animation: press-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+  }
+  .press-{{ section.id }} .press__marquee:hover .press__list {
+    animation-play-state: paused;
+  }
+  @keyframes press-scroll-{{ section.id }} {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .press-{{ section.id }} .press__marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .press-{{ section.id }} .press__marquee .press__list {
+      animation: none;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  comment
+    The marquee needs two identical passes of the logos so the -50% scroll loops seamlessly.
+    The second pass is a decorative clone: hidden from assistive tech and skipped by tab order.
+  endcomment
+  assign passes = 1
+  if section.settings.layout == 'marquee'
+    assign passes = 2
+  endif
+-%}
+
+{%- capture press_list -%}
+  <ul class="press__list" role="list">
+    {%- for pass in (1..passes) -%}
+      {%- assign is_clone = false -%}
+      {%- if pass > 1 -%}
+        {%- assign is_clone = true -%}
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'logo' -%}
+          <li
+            class="press__item"
+            {% if is_clone %}aria-hidden="true"{% else %}{{ block.shopify_attributes }}{% endif %}
+          >
+            {%- if block.settings.link != blank -%}
+              <a
+                class="press__link"
+                href="{{ block.settings.link }}"
+                target="_blank"
+                rel="noopener"
+                {% if is_clone %}tabindex="-1"{% endif %}
+              >
+            {%- endif -%}
+
+            {%- if block.settings.logo != blank -%}
+              <span class="press__logo">
+                {{
+                  block.settings.logo
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', widths: '120, 180, 240, 360, 600', alt: block.settings.name
+                }}
+              </span>
+            {%- elsif block.settings.name != blank -%}
+              <p class="press__name">{{ block.settings.name | escape }}</p>
+            {%- else -%}
+              <span class="press__logo">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</span>
+            {%- endif -%}
+
+            {%- if section.settings.show_quotes and block.settings.quote != blank -%}
+              <p class="press__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
+            {%- endif -%}
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </ul>
+{%- endcapture -%}
+
+<div class="press-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="section-{{ section.id }}-padding page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if section.settings.title != blank -%}
+      <p class="press__title">{{ section.settings.title | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.layout == 'marquee' -%}
+      <div class="press__marquee">{{ press_list }}</div>
+    {%- else -%}
+      {{ press_list }}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "As Seen In",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Only list outlets that have actually featured you — press logos are a factual claim."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "As Seen In",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "static", "label": "Static row" },
+        { "value": "marquee", "label": "Scrolling marquee" }
+      ],
+      "default": "static",
+      "label": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 20,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 40,
+      "label": "Marquee loop duration"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "default": 120,
+      "label": "Logo width"
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "default": true,
+      "label": "Show logos in grayscale"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quotes",
+      "default": false,
+      "label": "Show press quotes"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Publication",
+          "label": "Publication name",
+          "info": "Used as the logo's alt text, and shown instead of the logo when no image is picked."
+        },
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote",
+          "info": "A short pull quote from the feature."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link to the feature"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "As Seen In",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Publication one" } },
+        { "type": "logo", "settings": { "name": "Publication two" } },
+        { "type": "logo", "settings": { "name": "Publication three" } },
+        { "type": "logo", "settings": { "name": "Publication four" } },
+        { "type": "logo", "settings": { "name": "Publication five" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

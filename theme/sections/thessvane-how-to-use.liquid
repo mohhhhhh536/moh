@@ -1,0 +1,431 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .how-to-{{ section.id }} .how-to__steps {
+    display: grid;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: how-to-step;
+  }
+  .how-to-{{ section.id }} .how-to__step {
+    counter-increment: how-to-step;
+    position: relative;
+  }
+  .how-to-{{ section.id }} .how-to__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.25);
+    font-family: var(--font-heading-family);
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .how-to-{{ section.id }} .how-to__number::before {
+    content: counter(how-to-step);
+  }
+  .how-to-{{ section.id }} .how-to__media {
+    overflow: hidden;
+    margin-bottom: 16px;
+    aspect-ratio: {% if section.settings.image_ratio == 'square' %}1 / 1{% else %}4 / 3{% endif %};
+    background-color: rgba(var(--color-foreground), 0.04);
+  }
+  .how-to-{{ section.id }} .how-to__media img,
+  .how-to-{{ section.id }} .how-to__media .placeholder-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .how-to-{{ section.id }} .how-to__step-title {
+    margin: 0 0 8px;
+  }
+  .how-to-{{ section.id }} .how-to__step-text {
+    margin: 0;
+    max-width: 46ch;
+  }
+  .how-to-{{ section.id }} .how-to__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-top: 12px;
+    font-size: 1.3rem;
+    opacity: 0.8;
+  }
+  .how-to-{{ section.id }} .how-to__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .how-to-{{ section.id }} .how-to__meta-item svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  {%- comment -%} Horizontal layout: numbered columns joined by a rule on desktop. {%- endcomment -%}
+  @media screen and (min-width: 750px) {
+    .how-to-{{ section.id }} .how-to__steps--horizontal {
+      grid-template-columns: repeat({{ section.blocks.size | at_most: 4 | at_least: 1 }}, minmax(0, 1fr));
+      gap: 40px 28px;
+    }
+    .how-to-{{ section.id }} .how-to__steps--horizontal .how-to__step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 2.2rem;
+      left: calc(4.4rem + 14px);
+      right: -28px;
+      height: 0.1rem;
+      background-color: rgba(var(--color-foreground), 0.2);
+    }
+  }
+
+  {%- comment -%} Vertical layout: stacked rows with the number in a left rail. {%- endcomment -%}
+  .how-to-{{ section.id }} .how-to__steps--vertical .how-to__step {
+    display: grid;
+    grid-template-columns: 4.4rem minmax(0, 1fr);
+    gap: 0 20px;
+  }
+  .how-to-{{ section.id }} .how-to__steps--vertical .how-to__number {
+    margin-bottom: 0;
+  }
+  .how-to-{{ section.id }} .how-to__steps--vertical .how-to__step:not(:last-child) .how-to__number::after {
+    content: '';
+    position: absolute;
+    top: 5.4rem;
+    left: 2.2rem;
+    bottom: -32px;
+    width: 0.1rem;
+    background-color: rgba(var(--color-foreground), 0.2);
+  }
+  .how-to-{{ section.id }} .how-to__steps--vertical .how-to__media {
+    grid-column: 2;
+  }
+  .how-to-{{ section.id }} .how-to__steps--vertical .how-to__body {
+    grid-column: 2;
+    padding-top: 6px;
+  }
+
+  .how-to-{{ section.id }} .how-to__footnote {
+    margin: 36px 0 0;
+    text-align: center;
+    font-size: 1.3rem;
+    opacity: 0.75;
+  }
+  .how-to-{{ section.id }} .how-to__cta {
+    margin-top: 32px;
+    text-align: center;
+  }
+{%- endstyle -%}
+
+<div class="how-to-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="section-{{ section.id }}-padding page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank or section.settings.description != blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin center">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="caption-with-letter-spacing">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="subtitle rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ol class="how-to__steps how-to__steps--{{ section.settings.layout }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <li class="how-to__step" {{ block.shopify_attributes }}>
+            <span class="how-to__number" aria-hidden="true"></span>
+
+            {%- if section.settings.show_images -%}
+              <div class="how-to__media global-media-settings">
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      sizes: '(min-width: 750px) 25vw, 100vw',
+                      widths: '200, 300, 450, 600, 900',
+                      alt: block.settings.step_title
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="how-to__body">
+              {%- if block.settings.step_title != blank -%}
+                <h3 class="how-to__step-title h5">{{ block.settings.step_title | escape }}</h3>
+              {%- endif -%}
+              {%- if block.settings.step_text != blank -%}
+                <div class="how-to__step-text rte">{{ block.settings.step_text }}</div>
+              {%- endif -%}
+              {%- if block.settings.duration != blank or block.settings.frequency != blank -%}
+                <p class="how-to__meta">
+                  {%- if block.settings.duration != blank -%}
+                    <span class="how-to__meta-item">
+                      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/>
+                        <path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                      </svg>
+                      {{ block.settings.duration | escape }}
+                    </span>
+                  {%- endif -%}
+                  {%- if block.settings.frequency != blank -%}
+                    <span class="how-to__meta-item">
+                      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                        <path d="M4 8a6 6 0 0 1 10.5-4M16 12a6 6 0 0 1-10.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                        <path d="M14.5 1.5V4.5H11.5M5.5 18.5V15.5H8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ block.settings.frequency | escape }}
+                    </span>
+                  {%- endif -%}
+                </p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ol>
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="how-to__footnote">{{ section.settings.footnote | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="how-to__cta">
+        <a
+          {% if section.settings.cta_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.cta_link }}"
+          {% endif %}
+          class="button{% if section.settings.cta_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+        >
+          {{- section.settings.cta_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How to Use",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "How to Use",
+      "label": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Three Steps, Twice a Day",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>No complicated routine — here is exactly how to work this into your morning and night.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "horizontal", "label": "Side by side" },
+        { "value": "vertical", "label": "Stacked list" }
+      ],
+      "default": "horizontal",
+      "label": "Step layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_images",
+      "default": true,
+      "label": "Show step images"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "default": "Patch test before first use. For external use only.",
+      "label": "Footnote"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_style_secondary",
+      "default": false,
+      "label": "Use outline button style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "default": "Step title",
+          "label": "Step title"
+        },
+        {
+          "type": "richtext",
+          "id": "step_text",
+          "default": "<p>Describe what to do in this step, in one or two short sentences.</p>",
+          "label": "Step description"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "info": "For example: 30 seconds."
+        },
+        {
+          "type": "text",
+          "id": "frequency",
+          "label": "Frequency",
+          "info": "For example: AM & PM."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Use",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Cleanse",
+            "step_text": "<p>Massage onto damp skin for thirty seconds, then rinse with lukewarm water.</p>",
+            "duration": "30 seconds",
+            "frequency": "AM & PM"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Apply",
+            "step_text": "<p>Press two to three drops into clean, slightly damp skin — face, neck, and chest.</p>",
+            "duration": "1 minute",
+            "frequency": "AM & PM"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Seal",
+            "step_text": "<p>Follow with moisturiser to lock it in. In the morning, finish with SPF.</p>",
+            "duration": "1 minute",
+            "frequency": "AM & PM"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
