@@ -431,7 +431,7 @@
           "type": "column",
           "settings": {
             "title": "Urea",
-            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A humectant that draws water into skin while softening the built-up keratin that makes KP feel rough.</p>",
+            "text": "<p>A humectant that draws water into skin while softening the built-up keratin that makes KP feel rough.</p>",
             "link_label": "",
             "link": ""
           }
@@ -440,7 +440,7 @@
           "type": "column",
           "settings": {
             "title": "Lactic Acid",
-            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A gentle AHA that loosens the surface plug in each bump, so texture smooths without scrubbing.</p>",
+            "text": "<p>A gentle AHA that loosens the surface plug in each bump, so texture smooths without scrubbing.</p>",
             "link_label": "",
             "link": ""
           }
@@ -449,7 +449,7 @@
           "type": "column",
           "settings": {
             "title": "Ceramides",
-            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. Barrier lipids that keep skin comfortable while it resurfaces, instead of stripped and tight.</p>",
+            "text": "<p>Barrier lipids that keep skin comfortable while it resurfaces, instead of stripped and tight.</p>",
             "link_label": "",
             "link": ""
           }
@@ -458,7 +458,7 @@
           "type": "column",
           "settings": {
             "title": "Squalane",
-            "text": "<p>PLACEHOLDER &mdash; confirm against the carton before enabling this section. A lightweight emollient that softens and seals without leaving a greasy film under clothes.</p>",
+            "text": "<p>A lightweight emollient that softens and seals without leaving a greasy film under clothes.</p>",
             "link_label": "",
             "link": ""
           }
@@ -470,7 +470,6 @@
         "column_ceramides",
         "column_squalane"
       ],
-      "disabled": true,
       "settings": {
         "title": "What It's Made Of",
         "heading_size": "h1",
