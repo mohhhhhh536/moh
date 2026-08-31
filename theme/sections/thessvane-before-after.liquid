@@ -1,0 +1,450 @@
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .ba-{{ section.id }} .ba__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media screen and (min-width: 750px) {
+    .ba-{{ section.id }} .ba__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: 28px;
+    }
+  }
+
+  .ba-{{ section.id }} .ba__pair {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.02);
+  }
+  .ba-{{ section.id }} .ba__pair-title {
+    margin: 0;
+    padding: 16px 18px 12px;
+    text-align: center;
+  }
+  .ba-{{ section.id }} .ba__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .ba-{{ section.id }} .ba__frame {
+    position: relative;
+    aspect-ratio: {{ section.settings.image_ratio }};
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+  .ba-{{ section.id }} .ba__frame img,
+  .ba-{{ section.id }} .ba__frame .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ba-{{ section.id }} .ba__label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgb(var(--color-background));
+    background: rgba(var(--color-foreground), 0.72);
+    padding: 4px 9px;
+    border-radius: 4px;
+  }
+  .ba-{{ section.id }} .ba__review {
+    padding: 18px;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+    text-align: {{ section.settings.review_alignment }};
+  }
+  .ba-{{ section.id }} .ba__stars {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: {{ section.settings.stars_color }};
+  }
+  .ba-{{ section.id }} .ba__review-text {
+    margin: 0;
+  }
+  .ba-{{ section.id }} .ba__review-text > * {
+    margin: 0 0 8px;
+  }
+  .ba-{{ section.id }} .ba__review-text > *:last-child {
+    margin-bottom: 0;
+  }
+  .ba-{{ section.id }} .ba__author {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+  .ba-{{ section.id }} .ba__verified {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    opacity: 0.8;
+  }
+  .ba-{{ section.id }} .ba__disclaimer {
+    margin: 28px 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  .ba-{{ section.id }} .ba__cta {
+    margin-top: 32px;
+    text-align: center;
+  }
+{%- endstyle -%}
+
+<div class="ba-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="collection section-{{ section.id }}-padding page-width">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="collection__description subtitle rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="ba__grid">
+      {%- assign placeholder_keys = 'image,lifestyle-1,lifestyle-2' | split: ',' -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pair' -%}
+          {%- assign placeholder_index = forloop.index0 | modulo: 3 -%}
+          {%- assign placeholder_key = placeholder_keys[placeholder_index] -%}
+          <div class="ba__pair" {{ block.shopify_attributes }}>
+            {%- if block.settings.pair_title != blank -%}
+              <h3 class="ba__pair-title h5">{{ block.settings.pair_title | escape }}</h3>
+            {%- endif -%}
+
+            <div class="ba__images">
+              <div class="ba__frame">
+                {%- if section.settings.before_label != blank -%}
+                  <span class="ba__label">{{ section.settings.before_label | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.image_before != blank -%}
+                  {{
+                    block.settings.image_before
+                    | image_url: width: 800
+                    | image_tag:
+                      sizes: '(min-width: 750px) 20vw, 45vw',
+                      widths: '200, 400, 600, 800',
+                      loading: 'lazy',
+                      alt: block.settings.image_before.alt | default: block.settings.pair_title
+                  }}
+                {%- else -%}
+                  {{- placeholder_key | placeholder_svg_tag: 'placeholder-svg' -}}
+                {%- endif -%}
+              </div>
+
+              <div class="ba__frame">
+                {%- if section.settings.after_label != blank -%}
+                  <span class="ba__label">{{ section.settings.after_label | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.image_after != blank -%}
+                  {{
+                    block.settings.image_after
+                    | image_url: width: 800
+                    | image_tag:
+                      sizes: '(min-width: 750px) 20vw, 45vw',
+                      widths: '200, 400, 600, 800',
+                      loading: 'lazy',
+                      alt: block.settings.image_after.alt | default: block.settings.pair_title
+                  }}
+                {%- else -%}
+                  {{- placeholder_key | placeholder_svg_tag: 'placeholder-svg' -}}
+                {%- endif -%}
+              </div>
+            </div>
+
+            {%- if block.settings.review_text != blank or block.settings.author != blank -%}
+              <div class="ba__review">
+                {%- if section.settings.show_stars -%}
+                  <p class="ba__stars" aria-hidden="true">★★★★★</p>
+                {%- endif -%}
+                {%- if block.settings.review_text != blank -%}
+                  <div class="ba__review-text rte">{{ block.settings.review_text }}</div>
+                {%- endif -%}
+                {%- if block.settings.author != blank -%}
+                  <p class="ba__author">
+                    — {{ block.settings.author | escape }}
+                    {%- if block.settings.timeframe != blank %}, {{ block.settings.timeframe | escape }}{% endif -%}
+                    {%- if block.settings.verified -%}
+                      <span class="ba__verified">✓ {{ section.settings.verified_label | escape }}</span>
+                    {%- endif -%}
+                  </p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="ba__disclaimer">{{ section.settings.disclaimer | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.show_cta and section.settings.cta_label != blank -%}
+      <div class="ba__cta">
+        <a
+          {% if section.settings.cta_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.cta_link }}"
+          {% endif %}
+          class="button button--secondary"
+        >
+          {{- section.settings.cta_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Thessvane Before & After",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Each pair shows a before image, an after image and a customer review. Pairs without uploaded images show placeholder graphics."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Real Results",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Unretouched photos from customers who stuck with the ritual.</p>",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" },
+        { "value": "scheme-4", "label": "Scheme 4" },
+        { "value": "scheme-5", "label": "Scheme 5" }
+      ],
+      "default": "scheme-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3,
+      "label": "Pairs per row on desktop"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "4 / 5", "label": "Portrait" },
+        { "value": "3 / 4", "label": "Tall portrait" }
+      ],
+      "default": "4 / 5",
+      "label": "Image ratio"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "default": "Before",
+      "label": "Before label"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "default": "After",
+      "label": "After label"
+    },
+    {
+      "type": "header",
+      "content": "Reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "default": true,
+      "label": "Show stars"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "default": "#B9A98F",
+      "label": "Stars color"
+    },
+    {
+      "type": "select",
+      "id": "review_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Review alignment"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "default": "Verified buyer",
+      "label": "Verified badge text"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "default": "Individual results vary. Photos shared with customer permission.",
+      "label": "Disclaimer"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "default": true,
+      "label": "Show button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "default": "Start Your Ritual",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pair",
+      "name": "Before & after pair",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "pair_title",
+          "label": "Pair title",
+          "info": "e.g. the concern or the time on the routine"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_before",
+          "label": "Before image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_after",
+          "label": "After image"
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer name"
+        },
+        {
+          "type": "text",
+          "id": "timeframe",
+          "label": "Reviewer detail",
+          "info": "e.g. 8 weeks of use"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "default": true,
+          "label": "Show verified badge"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thessvane Before & After",
+      "blocks": [
+        { "type": "pair" },
+        { "type": "pair" },
+        { "type": "pair" }
+      ]
+    }
+  ]
+}
+{% endschema %}
