@@ -12,7 +12,7 @@
   data-update-unavailable="{{ has_second_option }}"
   data-update-prices="{{ block.settings.update_prices }}"
   data-money-format="{{ shop.money_format | escape }}"
-  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;"
+  style="--margin-top: {{ block.settings.margin_top | divided_by: 10.0 }}rem;--margin-bottom: {{ block.settings.margin_bottom | divided_by: 10.0 }}rem;--qb-card-bg: {{ block.settings.card_background_color }};--qb-best-value-bg: {{ block.settings.best_value_background_color }};--qb-best-value-accent: {{ block.settings.best_value_accent_color }};--qb-badge-bg: {{ block.settings.badge_background_color }};--qb-badge-color: {{ block.settings.badge_text_color }};--qb-addon-bg: {{ block.settings.addon_background_color }};--qb-addon-icon-bg: {{ block.settings.addon_icon_background_color }};--qb-text-color: {{ block.settings.text_color }};--qb-subtitle-color: {{ block.settings.subtitle_color }};--qb-line-color: {{ block.settings.line_color }};--qb-autoship-bg: {{ block.settings.autoship_background_color }};"
   {{ block.shopify_attributes }}
 >
   {% assign has_variants = false %}
@@ -55,7 +55,7 @@
       >
       <label
         for="quantity1"
-        class="quantity-break"
+        class="quantity-break{% if block.settings.highlight_option == 'option_1' %} quantity-break--best-value{% endif %}"
         data-quantity="{{ block.settings.option_1_quantity }}"
         data-input="input_1"
         data-percentage-left="{{ percentage_left }}"
@@ -66,7 +66,17 @@
             {{ block.settings.badge_text }}
           </p>
         {% endif %}
+        {% if block.settings.display_badge_2 == 'option_1' %}
+          <p class="quantity-break__badge quantity-break__badge--secondary">
+            {{ block.settings.badge_text_2 }}
+          </p>
+        {% endif %}
         <div class="quantity-break__content">
+          <span class="quantity-break__media">
+            {%- for i in (1..block.settings.option_1_quantity) -%}
+              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+            {%- endfor -%}
+          </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -162,6 +172,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.show_addon_row %}
+          <span class="quantity-break__addon">
+            <span class="quantity-break__addon-icon">
+              {%- if block.settings.addon_icon != blank -%}
+                <img src="{{ block.settings.addon_icon | image_url: width: 80 }}" alt="" loading="lazy" width="auto" height="auto">
+              {%- endif -%}
+            </span>
+            <span class="quantity-break__addon-label">{{ block.settings.addon_label | escape }}</span>
+            {%- if block.settings.addon_price != blank -%}
+              <span class="quantity-break__addon-price">{{ block.settings.addon_price | escape }}</span>
+            {%- endif -%}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_2_quantity != 0 %}
@@ -194,7 +217,7 @@
       >
       <label
         for="quantity2"
-        class="quantity-break"
+        class="quantity-break{% if block.settings.highlight_option == 'option_2' %} quantity-break--best-value{% endif %}"
         data-quantity="{{ block.settings.option_2_quantity }}"
         data-input="input_2"
         data-percentage-left="{{ percentage_left }}"
@@ -205,7 +228,17 @@
             {{ block.settings.badge_text }}
           </p>
         {% endif %}
+        {% if block.settings.display_badge_2 == 'option_2' %}
+          <p class="quantity-break__badge quantity-break__badge--secondary">
+            {{ block.settings.badge_text_2 }}
+          </p>
+        {% endif %}
         <div class="quantity-break__content">
+          <span class="quantity-break__media">
+            {%- for i in (1..block.settings.option_2_quantity) -%}
+              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+            {%- endfor -%}
+          </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -301,6 +334,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.show_addon_row %}
+          <span class="quantity-break__addon">
+            <span class="quantity-break__addon-icon">
+              {%- if block.settings.addon_icon != blank -%}
+                <img src="{{ block.settings.addon_icon | image_url: width: 80 }}" alt="" loading="lazy" width="auto" height="auto">
+              {%- endif -%}
+            </span>
+            <span class="quantity-break__addon-label">{{ block.settings.addon_label | escape }}</span>
+            {%- if block.settings.addon_price != blank -%}
+              <span class="quantity-break__addon-price">{{ block.settings.addon_price | escape }}</span>
+            {%- endif -%}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_3_quantity != 0 %}
@@ -333,7 +379,7 @@
       >
       <label
         for="quantity3"
-        class="quantity-break"
+        class="quantity-break{% if block.settings.highlight_option == 'option_3' %} quantity-break--best-value{% endif %}"
         data-quantity="{{ block.settings.option_3_quantity }}"
         data-input="input_3"
         data-percentage-left="{{ percentage_left }}"
@@ -344,7 +390,17 @@
             {{ block.settings.badge_text }}
           </p>
         {% endif %}
+        {% if block.settings.display_badge_2 == 'option_3' %}
+          <p class="quantity-break__badge quantity-break__badge--secondary">
+            {{ block.settings.badge_text_2 }}
+          </p>
+        {% endif %}
         <div class="quantity-break__content">
+          <span class="quantity-break__media">
+            {%- for i in (1..block.settings.option_3_quantity) -%}
+              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+            {%- endfor -%}
+          </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -440,6 +496,19 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.show_addon_row %}
+          <span class="quantity-break__addon">
+            <span class="quantity-break__addon-icon">
+              {%- if block.settings.addon_icon != blank -%}
+                <img src="{{ block.settings.addon_icon | image_url: width: 80 }}" alt="" loading="lazy" width="auto" height="auto">
+              {%- endif -%}
+            </span>
+            <span class="quantity-break__addon-label">{{ block.settings.addon_label | escape }}</span>
+            {%- if block.settings.addon_price != blank -%}
+              <span class="quantity-break__addon-price">{{ block.settings.addon_price | escape }}</span>
+            {%- endif -%}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
     {% if block.settings.option_4_quantity != 0 %}
@@ -472,7 +541,7 @@
       >
       <label
         for="quantity4"
-        class="quantity-break"
+        class="quantity-break{% if block.settings.highlight_option == 'option_4' %} quantity-break--best-value{% endif %}"
         data-quantity="{{ block.settings.option_4_quantity }}"
         data-input="input_4"
         data-percentage-left="{{ percentage_left }}"
@@ -483,7 +552,17 @@
             {{ block.settings.badge_text }}
           </p>
         {% endif %}
+        {% if block.settings.display_badge_2 == 'option_4' %}
+          <p class="quantity-break__badge quantity-break__badge--secondary">
+            {{ block.settings.badge_text_2 }}
+          </p>
+        {% endif %}
         <div class="quantity-break__content">
+          <span class="quantity-break__media">
+            {%- for i in (1..block.settings.option_4_quantity) -%}
+              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+            {%- endfor -%}
+          </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
               <span class="quantity-break__label-text">
@@ -579,9 +658,44 @@
             </div>
           {% endif %}
         {% endif %}
+        {% if block.settings.show_addon_row %}
+          <span class="quantity-break__addon">
+            <span class="quantity-break__addon-icon">
+              {%- if block.settings.addon_icon != blank -%}
+                <img src="{{ block.settings.addon_icon | image_url: width: 80 }}" alt="" loading="lazy" width="auto" height="auto">
+              {%- endif -%}
+            </span>
+            <span class="quantity-break__addon-label">{{ block.settings.addon_label | escape }}</span>
+            {%- if block.settings.addon_price != blank -%}
+              <span class="quantity-break__addon-price">{{ block.settings.addon_price | escape }}</span>
+            {%- endif -%}
+          </span>
+        {% endif %}
       </label>
     {% endif %}
   </div>
+
+  {%- if block.settings.show_autoship -%}
+    <label class="quantity-breaks__autoship">
+      <input
+        type="checkbox"
+        class="quantity-breaks__autoship-checkbox"
+        {% if block.settings.autoship_default_checked %}
+          checked
+        {% endif %}
+      >
+      <span class="quantity-breaks__autoship-check">
+        <svg viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 6L5.5 10.5L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="quantity-breaks__autoship-info">
+        <span class="quantity-breaks__autoship-title">{{ block.settings.autoship_title | escape }}</span>
+        <span class="quantity-breaks__autoship-subtitle">{{ block.settings.autoship_subtitle | escape }}</span>
+      </span>
+      <span class="quantity-breaks__autoship-toggle" aria-hidden="true"></span>
+    </label>
+  {%- endif -%}
 
   <script data-has-variants="{{ has_variants }}" type="application/json">
     {{ product.variants | json }}
