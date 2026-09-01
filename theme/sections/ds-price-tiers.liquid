@@ -1,0 +1,592 @@
+{{ 'section-price-tiers.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #price-tiers-{{ section.id }} {
+    --price-tiers-line-color: {{ section.settings.line_color }};
+    --price-tiers-heading-color: {{ section.settings.heading_color }};
+    --price-tiers-card-bg: {{ section.settings.card_background_color }};
+    --price-tiers-text-color: {{ section.settings.text_color }};
+    --price-tiers-subtitle-color: {{ section.settings.subtitle_color }};
+    --price-tiers-addon-bg: {{ section.settings.addon_background_color }};
+    --price-tiers-addon-icon-bg: {{ section.settings.addon_icon_background_color }};
+    --price-tiers-badge-bg: {{ section.settings.badge_background_color }};
+    --price-tiers-badge-color: {{ section.settings.badge_text_color }};
+    --price-tiers-best-value-bg: {{ section.settings.best_value_background_color }};
+    --price-tiers-best-value-accent: {{ section.settings.best_value_accent_color }};
+    --price-tiers-autoship-bg: {{ section.settings.autoship_background_color }};
+  }
+{%- endstyle -%}
+
+<div class="color-scheme-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <price-tiers id="price-tiers-{{ section.id }}" class="price-tiers-wrapper" data-section="{{ section.id }}">
+      {%- unless section.settings.heading == blank -%}
+        <div class="price-tiers__heading">
+          <span class="price-tiers__heading-line" aria-hidden="true"></span>
+          <h2 class="price-tiers__heading-text">{{ section.settings.heading | escape }}</h2>
+          <span class="price-tiers__heading-line" aria-hidden="true"></span>
+        </div>
+      {%- endunless -%}
+
+      <ul class="price-tiers__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tier' -%}
+            {%- liquid
+              assign tier_product = block.settings.product
+              assign tier_variant = tier_product.selected_or_first_available_variant
+
+              assign tier_price = block.settings.price
+              if tier_price == blank and tier_variant != blank
+                assign tier_price = tier_variant.price | money
+              endif
+
+              assign tier_compare_price = block.settings.compare_at_price
+              if tier_compare_price == blank and tier_variant != blank and tier_variant.compare_at_price > tier_variant.price
+                assign tier_compare_price = tier_variant.compare_at_price | money
+              endif
+            -%}
+            <li
+              class="price-tier{% if block.settings.highlight %} price-tier--best-value{% endif %}{% if block.settings.default_selected %} is-checked{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              <label>
+                <input
+                  type="radio"
+                  class="price-tier__radio"
+                  name="price-tier-{{ section.id }}"
+                  value="{{ block.id }}"
+                  data-variant-id="{{ tier_variant.id }}"
+                  data-quantity="{{ block.settings.quantity }}"
+                  {% if block.settings.default_selected %}
+                    checked
+                  {% endif %}
+                >
+                {%- if block.settings.badge_label != blank -%}
+                  <span class="price-tier__badge">{{ block.settings.badge_label | escape }}</span>
+                {%- endif -%}
+                <span class="price-tier__main">
+                  <span class="price-tier__media">
+                    {%- if block.settings.image != blank -%}
+                      <img
+                        src="{{ block.settings.image | image_url: width: 200 }}"
+                        alt="{{ block.settings.image.alt | escape }}"
+                        loading="lazy"
+                        width="auto"
+                        height="auto"
+                      >
+                    {%- elsif tier_product != blank and tier_product.featured_image != blank -%}
+                      <img
+                        src="{{ tier_product.featured_image | image_url: width: 200 }}"
+                        alt="{{ tier_product.featured_image.alt | escape }}"
+                        loading="lazy"
+                        width="auto"
+                        height="auto"
+                      >
+                    {%- endif -%}
+                  </span>
+                  <span class="price-tier__info">
+                    <span class="price-tier__title">{{ block.settings.title | escape }}</span>
+                    <span class="price-tier__subtitle">{{ block.settings.subtitle | escape }}</span>
+                  </span>
+                  <span class="price-tier__prices">
+                    <span class="price-tier__price">{{ tier_price }}</span>
+                    {%- if tier_compare_price != blank -%}
+                      <span class="price-tier__compare">{{ tier_compare_price }}</span>
+                    {%- endif -%}
+                  </span>
+                </span>
+                {%- if block.settings.show_addon -%}
+                  <span class="price-tier__addon">
+                    <span class="price-tier__addon-icon">
+                      {%- if block.settings.addon_icon != blank -%}
+                        <img
+                          src="{{ block.settings.addon_icon | image_url: width: 80 }}"
+                          alt=""
+                          loading="lazy"
+                          width="auto"
+                          height="auto"
+                        >
+                      {%- endif -%}
+                    </span>
+                    <span class="price-tier__addon-label">{{ block.settings.addon_label | escape }}</span>
+                    {%- if block.settings.addon_price != blank -%}
+                      <span class="price-tier__addon-price">{{ block.settings.addon_price | escape }}</span>
+                    {%- endif -%}
+                  </span>
+                {%- endif -%}
+              </label>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if section.settings.show_autoship -%}
+        <label class="price-tiers__autoship">
+          <input
+            type="checkbox"
+            class="price-tiers__autoship-checkbox"
+            {% if section.settings.autoship_default_checked %}
+              checked
+            {% endif %}
+          >
+          <span class="price-tiers__autoship-check">
+            <svg viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 6L5.5 10.5L15 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="price-tiers__autoship-info">
+            <span class="price-tiers__autoship-title">{{ section.settings.autoship_title | escape }}</span>
+            <span class="price-tiers__autoship-subtitle">{{ section.settings.autoship_subtitle | escape }}</span>
+          </span>
+          <span class="price-tiers__autoship-toggle" aria-hidden="true"></span>
+        </label>
+      {%- endif -%}
+
+      {%- if section.settings.show_button -%}
+        <div class="price-tiers__submit">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <span class="product-form__error-message"></span>
+          </div>
+          <button type="button" class="price-tiers__button button button--full-width">
+            <span>{{ section.settings.button_label | escape }}</span>
+            <div class="loading-overlay__spinner hidden">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+        </div>
+      {%- endif -%}
+    </price-tiers>
+  </div>
+</div>
+
+<script>
+  if (!customElements.get('price-tiers')) {
+    customElements.define(
+      'price-tiers',
+      class PriceTiers extends HTMLElement {
+        constructor() {
+          super();
+          this.cart =
+            document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+          this.radios = this.querySelectorAll('.price-tier__radio');
+          this.button = this.querySelector('.price-tiers__button');
+
+          this.radios.forEach((radio) => {
+            radio.addEventListener('change', () => this.handleSelectionChange());
+          });
+
+          if (this.button) {
+            this.button.addEventListener('click', (event) => this.handleAddToCart(event));
+          }
+        }
+
+        handleSelectionChange() {
+          this.querySelectorAll('.price-tier').forEach((tier) => {
+            const radio = tier.querySelector('.price-tier__radio');
+            tier.classList.toggle('is-checked', !!(radio && radio.checked));
+          });
+        }
+
+        handleErrorMessage(errorMessage = false) {
+          const wrapper = this.querySelector('.product-form__error-message-wrapper');
+          if (!wrapper) return;
+          const message = wrapper.querySelector('.product-form__error-message');
+          wrapper.toggleAttribute('hidden', !errorMessage);
+          if (errorMessage && message) {
+            message.textContent = errorMessage;
+          }
+        }
+
+        async handleAddToCart(event) {
+          event.preventDefault();
+          const selected = this.querySelector('.price-tier__radio:checked');
+
+          if (!selected || !selected.dataset.variantId) {
+            this.handleErrorMessage('Please select a product for this bundle option in the theme editor.');
+            return;
+          }
+
+          const quantity = Number(selected.dataset.quantity) || 1;
+          const spinner = this.button.querySelector('.loading-overlay__spinner');
+          const label = this.button.querySelector('span');
+
+          spinner.classList.remove('hidden');
+          label.classList.add('hidden');
+          this.handleErrorMessage(false);
+
+          try {
+            const response = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              body: JSON.stringify({
+                items: [{ id: selected.dataset.variantId, quantity }],
+                sections: 'cart-drawer,cart-icon-bubble',
+              }),
+            });
+
+            if (!response.ok) {
+              const data = await response.json();
+              this.handleErrorMessage(data.description || 'Failed to add items to cart.');
+              return;
+            }
+
+            const data = await response.json();
+            publish(PUB_SUB_EVENTS.cartUpdate, {
+              source: 'price-tiers',
+              cartData: data,
+            });
+            document.querySelector('cart-drawer.drawer')?.classList.remove('is-empty');
+            this.cart?.renderContents(data);
+          } catch (error) {
+            console.error('Error:', error);
+            this.handleErrorMessage('Failed to add items to cart.');
+          } finally {
+            spinner.classList.add('hidden');
+            label.classList.remove('hidden');
+          }
+        }
+      }
+    );
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Price tiers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Bundle & Save For Limited Time",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Auto ship row"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_autoship",
+      "label": "Show auto ship row",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoship_default_checked",
+      "label": "Auto ship checked by default",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "autoship_title",
+      "label": "Auto ship title",
+      "default": "Auto Ship & Save 15%"
+    },
+    {
+      "type": "text",
+      "id": "autoship_subtitle",
+      "label": "Auto ship subtitle",
+      "default": "Zero Commitment, Cancel Anytime"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show add to cart button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add To Cart"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Heading divider line",
+      "default": "#f0c9cf"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#fbe6e9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title & price text",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle & compare price text",
+      "default": "#8a8a8a"
+    },
+    {
+      "type": "color",
+      "id": "addon_background_color",
+      "label": "Add-on row background",
+      "default": "#f6d2d8"
+    },
+    {
+      "type": "color",
+      "id": "addon_icon_background_color",
+      "label": "Add-on icon background",
+      "default": "#2c1019"
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "Badge background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "best_value_background_color",
+      "label": "Best value card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "best_value_accent_color",
+      "label": "Best value accent (border, add-on row, auto ship)",
+      "default": "#a4292c"
+    },
+    {
+      "type": "color",
+      "id": "autoship_background_color",
+      "label": "Auto ship row background",
+      "default": "#fdf1f2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Price tier",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Buy 1 Bottle"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "30 Skin Applications"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Badge label",
+          "info": "Leave blank to hide the badge."
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Style as \"Best value\" (white card, accent border & add-on row)",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "default_selected",
+          "label": "Selected by default",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "If left blank, the linked product's image is used."
+        },
+        {
+          "type": "header",
+          "content": "Price"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Used for Add to cart. If price fields below are blank, the product's price is shown."
+        },
+        {
+          "type": "number",
+          "id": "quantity",
+          "label": "Quantity added to cart",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price override",
+          "info": "e.g. $21.21. Leave blank to use the linked product's price."
+        },
+        {
+          "type": "text",
+          "id": "compare_at_price",
+          "label": "Compare-at price override",
+          "info": "e.g. $39.99. Leave blank to use the linked product's compare-at price."
+        },
+        {
+          "type": "header",
+          "content": "Add-on row"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_addon",
+          "label": "Show add-on row",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "addon_icon",
+          "label": "Add-on icon"
+        },
+        {
+          "type": "text",
+          "id": "addon_label",
+          "label": "Add-on label",
+          "default": "+ FREE Care Guide E-Book"
+        },
+        {
+          "type": "text",
+          "id": "addon_price",
+          "label": "Add-on price",
+          "default": "$15.00"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Price tiers",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Buy 1 Bottle",
+            "subtitle": "30 Skin Applications",
+            "price": "$21.21",
+            "compare_at_price": "$39.99",
+            "addon_label": "+ FREE Care Guide E-Book",
+            "addon_price": "$15.00"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Buy 2 Get 1 Free",
+            "subtitle": "90 Skin Applications",
+            "badge_label": "Most Popular",
+            "price": "$42.46",
+            "compare_at_price": "$119.97",
+            "addon_label": "+ FREE Care Guide E-Book",
+            "addon_price": "$15.00"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "title": "Buy 3 Get 2 Free",
+            "subtitle": "150 Skin Applications",
+            "badge_label": "Best Value",
+            "highlight": true,
+            "default_selected": true,
+            "price": "$63.71",
+            "compare_at_price": "$199.95",
+            "addon_label": "+ FREE Care Guide E-Book",
+            "addon_price": "$15.00"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
