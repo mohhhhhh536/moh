@@ -73,9 +73,17 @@
         {% endif %}
         <div class="quantity-break__content">
           <span class="quantity-break__media">
-            {%- for i in (1..block.settings.option_1_quantity) -%}
-              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
-            {%- endfor -%}
+            {%- if product.featured_image != blank -%}
+              {%- for i in (1..block.settings.option_1_quantity) -%}
+                <span class="quantity-break__media-icon quantity-break__media-icon--photo">
+                  <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="auto" height="auto">
+                </span>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..block.settings.option_1_quantity) -%}
+                <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+              {%- endfor -%}
+            {%- endif -%}
           </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
@@ -235,9 +243,17 @@
         {% endif %}
         <div class="quantity-break__content">
           <span class="quantity-break__media">
-            {%- for i in (1..block.settings.option_2_quantity) -%}
-              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
-            {%- endfor -%}
+            {%- if product.featured_image != blank -%}
+              {%- for i in (1..block.settings.option_2_quantity) -%}
+                <span class="quantity-break__media-icon quantity-break__media-icon--photo">
+                  <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="auto" height="auto">
+                </span>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..block.settings.option_2_quantity) -%}
+                <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+              {%- endfor -%}
+            {%- endif -%}
           </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
@@ -397,9 +413,17 @@
         {% endif %}
         <div class="quantity-break__content">
           <span class="quantity-break__media">
-            {%- for i in (1..block.settings.option_3_quantity) -%}
-              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
-            {%- endfor -%}
+            {%- if product.featured_image != blank -%}
+              {%- for i in (1..block.settings.option_3_quantity) -%}
+                <span class="quantity-break__media-icon quantity-break__media-icon--photo">
+                  <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="auto" height="auto">
+                </span>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..block.settings.option_3_quantity) -%}
+                <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+              {%- endfor -%}
+            {%- endif -%}
           </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">
@@ -559,9 +583,17 @@
         {% endif %}
         <div class="quantity-break__content">
           <span class="quantity-break__media">
-            {%- for i in (1..block.settings.option_4_quantity) -%}
-              <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
-            {%- endfor -%}
+            {%- if product.featured_image != blank -%}
+              {%- for i in (1..block.settings.option_4_quantity) -%}
+                <span class="quantity-break__media-icon quantity-break__media-icon--photo">
+                  <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="auto" height="auto">
+                </span>
+              {%- endfor -%}
+            {%- else -%}
+              {%- for i in (1..block.settings.option_4_quantity) -%}
+                <span class="quantity-break__media-icon">{%- render 'ds-icon-accordion', icon: 'bottle' -%}</span>
+              {%- endfor -%}
+            {%- endif -%}
           </span>
           <div class="quantity-break__left">
             <span class="quantity-break__label">

@@ -3515,7 +3515,6 @@ quantity-breaks {
   background: var(--qb-card-bg, #fbe6e9);
   border: 2px solid transparent;
   position: relative;
-  overflow: hidden;
 }
 .quantity-break:last-of-type {
   margin-bottom: 0;
@@ -3561,6 +3560,24 @@ quantity-breaks {
 }
 .quantity-break__media-icon:not(:first-child) {
   margin-left: -0.9rem;
+}
+.quantity-break__media-icon--photo {
+  width: 5.4rem;
+  height: 5.4rem;
+  opacity: 1;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+.quantity-break__media-icon--photo:not(:first-child) {
+  margin-left: -1.8rem;
+}
+.quantity-break__media-icon--photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .quantity-break__media-icon svg {
   width: 100%;
@@ -3647,6 +3664,7 @@ quantity-breaks {
   padding: 1.3rem 2rem;
   background: var(--qb-addon-bg, #f6d2d8);
   border-top: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 1.2rem 1.2rem;
 }
 .quantity-break--best-value .quantity-break__addon {
   background: var(--qb-best-value-accent, #a4292c);
