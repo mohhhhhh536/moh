@@ -1215,7 +1215,11 @@ class QuantityBreaks extends HTMLElement {
     this.formVariants = [];
     this.selectedQuantity = 1;
     if (this.querySelector('input[checked]')) {
-      this.selectedQuantity = parseInt(this.querySelector("input[checked]").value);
+      const checkedInput = this.querySelector('input[checked]');
+      this.selectedQuantity = parseInt(checkedInput.value);
+      if (checkedInput.dataset.overrideVariantId) {
+        this.formVariants = [{ id: checkedInput.dataset.overrideVariantId, quantity: 1 }];
+      }
     }
     this.variantSelects = this.querySelectorAll('.quantity-break__selector-item');
     this.updatePrices = this.dataset.updatePrices === 'true';
@@ -1373,8 +1377,12 @@ class QuantityBreaks extends HTMLElement {
     const selectedQuantity = parseInt(event.target.value);
     this.selectedQuantity = selectedQuantity;
 
-    if (this.hasVariants) {
+    if (event.target.dataset.overrideVariantId) {
+      this.formVariants = [{ id: event.target.dataset.overrideVariantId, quantity: 1 }];
+    } else if (this.hasVariants) {
       this.updateFormVariants(event.target.dataset.input);
+    } else {
+      this.formVariants = [];
     }
 
     if (this.quantityGifts) {

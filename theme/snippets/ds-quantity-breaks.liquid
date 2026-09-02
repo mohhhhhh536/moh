@@ -27,6 +27,17 @@
   <div class="quantity-breaks-container">
     {% if block.settings.option_1_quantity != 0 %}
       {% liquid
+        assign option_1_override_variant = nil
+        if block.settings.option_1_variant_id != blank
+          assign option_1_override_id = block.settings.option_1_variant_id | plus: 0
+          for v in product.variants
+            if v.id == option_1_override_id
+              assign option_1_override_variant = v
+              break
+            endif
+          endfor
+        endif
+
         assign percentage_discount = block.settings.option_1_percentage_off_text | plus: 0
         assign percentage_left = 100 | minus: percentage_discount | divided_by: 100.00
         assign fixed_amount_off = block.settings.option_1_fixed_amount_off | times: 100
@@ -38,6 +49,16 @@
         endif
         assign option_1_compare_price = compare_price | times: block.settings.option_1_quantity
 
+        assign option_1_quantity_value = block.settings.option_1_quantity
+        if option_1_override_variant
+          assign option_1_price = option_1_override_variant.price
+          assign option_1_compare_price = option_1_override_variant.compare_at_price
+          if option_1_compare_price <= option_1_price
+            assign option_1_compare_price = option_1_price
+          endif
+          assign option_1_quantity_value = 1
+        endif
+
         assign option_1_price_difference = option_1_compare_price | minus: option_1_price
         assign option_1_price_difference_rounded = option_1_price_difference | divided_by: 100.00 | round | times: 100
       %}
@@ -46,12 +67,13 @@
         aria-label="Quantity"
         type="radio"
         name="quantity"
-        value="{{ block.settings.option_1_quantity }}"
+        value="{{ option_1_quantity_value }}"
         form="{{ product_form_id }}"
         {% if block.settings.preselected == 'option_1' %}
           checked
         {% endif %}
         data-input="input_1"
+        data-override-variant-id="{{ option_1_override_variant.id }}"
       >
       <label
         for="quantity1"
@@ -197,6 +219,17 @@
     {% endif %}
     {% if block.settings.option_2_quantity != 0 %}
       {% liquid
+        assign option_2_override_variant = nil
+        if block.settings.option_2_variant_id != blank
+          assign option_2_override_id = block.settings.option_2_variant_id | plus: 0
+          for v in product.variants
+            if v.id == option_2_override_id
+              assign option_2_override_variant = v
+              break
+            endif
+          endfor
+        endif
+
         assign percentage_discount = block.settings.option_2_percentage_off_text | plus: 0
         assign percentage_left = 100 | minus: percentage_discount | divided_by: 100.00
         assign fixed_amount_off = block.settings.option_2_fixed_amount_off | times: 100
@@ -208,6 +241,16 @@
         endif
         assign option_2_compare_price = compare_price | times: block.settings.option_2_quantity
 
+        assign option_2_quantity_value = block.settings.option_2_quantity
+        if option_2_override_variant
+          assign option_2_price = option_2_override_variant.price
+          assign option_2_compare_price = option_2_override_variant.compare_at_price
+          if option_2_compare_price <= option_2_price
+            assign option_2_compare_price = option_2_price
+          endif
+          assign option_2_quantity_value = 1
+        endif
+
         assign option_2_price_difference = option_2_compare_price | minus: option_2_price
         assign option_2_price_difference_rounded = option_2_price_difference | divided_by: 100.00 | round | times: 100
       %}
@@ -216,12 +259,13 @@
         aria-label="Quantity"
         type="radio"
         name="quantity"
-        value="{{ block.settings.option_2_quantity }}"
+        value="{{ option_2_quantity_value }}"
         form="{{ product_form_id }}"
         {% if block.settings.preselected == 'option_2' %}
           checked
         {% endif %}
         data-input="input_2"
+        data-override-variant-id="{{ option_2_override_variant.id }}"
       >
       <label
         for="quantity2"
@@ -367,6 +411,17 @@
     {% endif %}
     {% if block.settings.option_3_quantity != 0 %}
       {% liquid
+        assign option_3_override_variant = nil
+        if block.settings.option_3_variant_id != blank
+          assign option_3_override_id = block.settings.option_3_variant_id | plus: 0
+          for v in product.variants
+            if v.id == option_3_override_id
+              assign option_3_override_variant = v
+              break
+            endif
+          endfor
+        endif
+
         assign percentage_discount = block.settings.option_3_percentage_off_text | plus: 0
         assign percentage_left = 100 | minus: percentage_discount | divided_by: 100.00
         assign fixed_amount_off = block.settings.option_3_fixed_amount_off | times: 100
@@ -378,6 +433,16 @@
         endif
         assign option_3_compare_price = compare_price | times: block.settings.option_3_quantity
 
+        assign option_3_quantity_value = block.settings.option_3_quantity
+        if option_3_override_variant
+          assign option_3_price = option_3_override_variant.price
+          assign option_3_compare_price = option_3_override_variant.compare_at_price
+          if option_3_compare_price <= option_3_price
+            assign option_3_compare_price = option_3_price
+          endif
+          assign option_3_quantity_value = 1
+        endif
+
         assign option_3_price_difference = option_3_compare_price | minus: option_3_price
         assign option_3_price_difference_rounded = option_3_price_difference | divided_by: 100.00 | round | times: 100
       %}
@@ -386,12 +451,13 @@
         aria-label="Quantity"
         type="radio"
         name="quantity"
-        value="{{ block.settings.option_3_quantity }}"
+        value="{{ option_3_quantity_value }}"
         form="{{ product_form_id }}"
         {% if block.settings.preselected == 'option_3' %}
           checked
         {% endif %}
         data-input="input_3"
+        data-override-variant-id="{{ option_3_override_variant.id }}"
       >
       <label
         for="quantity3"
@@ -537,6 +603,17 @@
     {% endif %}
     {% if block.settings.option_4_quantity != 0 %}
       {% liquid
+        assign option_4_override_variant = nil
+        if block.settings.option_4_variant_id != blank
+          assign option_4_override_id = block.settings.option_4_variant_id | plus: 0
+          for v in product.variants
+            if v.id == option_4_override_id
+              assign option_4_override_variant = v
+              break
+            endif
+          endfor
+        endif
+
         assign percentage_discount = block.settings.option_4_percentage_off_text | plus: 0
         assign percentage_left = 100 | minus: percentage_discount | divided_by: 100.00
         assign fixed_amount_off = block.settings.option_4_fixed_amount_off | times: 100
@@ -546,7 +623,17 @@
         if block.settings.option_4_compare_price == 'compare_price' and product.selected_or_first_available_variant.compare_at_price > price
           assign compare_price = product.selected_or_first_available_variant.compare_at_price
         endif
-        assign option_4_compare_price = compare_price | times: block.settings.option_4_quantity 
+        assign option_4_compare_price = compare_price | times: block.settings.option_4_quantity
+
+        assign option_4_quantity_value = block.settings.option_4_quantity
+        if option_4_override_variant
+          assign option_4_price = option_4_override_variant.price
+          assign option_4_compare_price = option_4_override_variant.compare_at_price
+          if option_4_compare_price <= option_4_price
+            assign option_4_compare_price = option_4_price
+          endif
+          assign option_4_quantity_value = 1
+        endif
 
         assign option_4_price_difference = option_4_compare_price | minus: option_4_price
         assign option_4_price_difference_rounded = option_4_price_difference | divided_by: 100.00 | round | times: 100
@@ -556,12 +643,13 @@
         aria-label="Quantity"
         type="radio"
         name="quantity"
-        value="{{ block.settings.option_4_quantity }}"
+        value="{{ option_4_quantity_value }}"
         form="{{ product_form_id }}"
         {% if block.settings.preselected == 'option_4' %}
           checked
         {% endif %}
         data-input="input_4"
+        data-override-variant-id="{{ option_4_override_variant.id }}"
       >
       <label
         for="quantity4"
