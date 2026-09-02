@@ -15,7 +15,8 @@
   .ugc-{{ section.id }} .ugc__grid {
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-    gap: 4px;
+    gap: 4px 16px;
+    align-items: start;
   }
   .ugc-{{ section.id }} .ugc__tile {
     position: relative;
@@ -42,6 +43,25 @@
     padding: 4px 9px;
     border-radius: 5px;
   }
+  .ugc-{{ section.id }} .ugc__item {
+    display: flex;
+    flex-direction: column;
+  }
+  .ugc-{{ section.id }} .ugc__review {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .ugc-{{ section.id }} .ugc__review p {
+    margin: 0;
+  }
+  .ugc-{{ section.id }} .ugc__review-author {
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-size: 0.78rem;
+    opacity: 0.7;
+  }
   .ugc-{{ section.id }} .ugc__cta { margin-top: 32px; text-align: center; }
 {%- endstyle -%}
 
@@ -61,16 +81,26 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'tile' -%}
           {%- assign placeholder_index = forloop.index0 | modulo: 2 -%}
-          <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile" {{ block.shopify_attributes }}>
-            {%- if block.settings.handle != blank -%}
-              <span class="ugc__handle">{{ block.settings.handle | escape }}</span>
+          <div class="ugc__item" {{ block.shopify_attributes }}>
+            <{% if block.settings.link != blank %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="ugc__tile">
+              {%- if block.settings.handle != blank -%}
+                <span class="ugc__handle">{{ block.settings.handle | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: sizes: '(min-width: 750px) 20vw, 33vw', widths: '200, 400, 600, 800', loading: 'lazy' }}
+              {%- else -%}
+                {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
+              {%- endif -%}
+            </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
+            {%- if block.settings.review_text != blank -%}
+              <div class="ugc__review rte">
+                {{ block.settings.review_text }}
+                {%- if block.settings.reviewer_name != blank -%}
+                  <cite class="ugc__review-author">— {{ block.settings.reviewer_name | escape }}</cite>
+                {%- endif -%}
+              </div>
             {%- endif -%}
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 800 | image_tag: sizes: '(min-width: 750px) 20vw, 33vw', widths: '200, 400, 600, 800', loading: 'lazy' }}
-            {%- else -%}
-              {{- placeholder_keys[placeholder_index] | placeholder_svg_tag: 'placeholder-svg' -}}
-            {%- endif -%}
-          </{% if block.settings.link != blank %}a{% else %}div{% endif %}>
+          </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -219,6 +249,18 @@
           "id": "handle",
           "label": "Overlay text",
           "info": "e.g. an Instagram handle"
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review text",
+          "info": "Optional. Shown below the image as a written review."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "info": "Shown under the review text, e.g. \"Amara\"."
         }
       ]
     }
