@@ -63,6 +63,26 @@
     opacity: 0.7;
   }
   .ugc-{{ section.id }} .ugc__cta { margin-top: 32px; text-align: center; }
+
+  @media screen and (max-width: 480px) {
+    .ugc-{{ section.id }} .ugc__grid {
+      gap: 4px 10px;
+    }
+    .ugc-{{ section.id }} .ugc__handle {
+      font-size: 0.64rem;
+      padding: 3px 7px;
+      left: 6px;
+      bottom: 6px;
+    }
+    .ugc-{{ section.id }} .ugc__review {
+      margin-top: 8px;
+      font-size: 0.76rem;
+      line-height: 1.4;
+    }
+    .ugc-{{ section.id }} .ugc__review-author {
+      font-size: 0.7rem;
+    }
+  }
 {%- endstyle -%}
 
 <div class="ugc-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient">
